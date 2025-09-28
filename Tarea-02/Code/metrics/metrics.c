@@ -1,0 +1,425 @@
+#include "metrics.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+
+// Variable global del sistema de métricas
+static metrics_system_t g_metrics;
+static int g_metrics_initialized = 0;
+
+// Mutex global (solo se usa si USE_THREADING está definido)
+#ifdef USE_THREADING
+    pthread_mutex_t g_metrics_mutex = PTHREAD_MUTEX_INITIALIZER;
+#endif
+
+// Nombres de las estaciones
+static const char* station_names[3] = {"Corte", "Ensamblaje", "Empaque"};
+
+// Nombres de los eventos (para debugging/logging)
+static const char* event_names[] = {
+    "PRODUCT_CREATED",
+    "PRODUCT_QUEUED", 
+    "PRODUCT_PROCESSING_START",
+    "PRODUCT_PROCESSING_END",
+    "PRODUCT_COMPLETED",
+    "STATION_IDLE_START",
+    "STATION_IDLE_END",
+    "SCHEDULER_CONTEXT_SWITCH",
+    "SCHEDULER_PREEMPTION"
+};
+
+// =============================================
+// FUNCIONES AUXILIARES INTERNAS
+// =============================================
+
+static void init_station_metrics(station_metrics_t *station, int id) {
+    station->station_id = id;
+    strncpy(station->name, station_names[id], sizeof(station->name) - 1);
+    station->name[sizeof(station->name) - 1] = '\0';
+    
+    station->products_processed = 0;
+    station->products_waiting = 0;
+    station->total_processing_time_ms = 0;
+    station->total_idle_time_ms = 0;
+    station->min_processing_time_ms = INT_MAX;
+    station->max_processing_time_ms = 0;
+    station->avg_processing_time_ms = 0.0;
+    station->is_busy = 0;
+    
+    metrics_get_timestamp(&station->last_activity_time);
+}
+
+static void update_station_processing_stats(station_metrics_t *station, int processing_time_ms) {
+    station->products_processed++;
+    station->total_processing_time_ms += processing_time_ms;
+    
+    if (processing_time_ms < station->min_processing_time_ms) {
+        station->min_processing_time_ms = processing_time_ms;
+    }
+    if (processing_time_ms > station->max_processing_time_ms) {
+        station->max_processing_time_ms = processing_time_ms;
+    }
+    
+    station->avg_processing_time_ms = 
+        (double)station->total_processing_time_ms / station->products_processed;
+}
+
+// =============================================
+// FUNCIONES PRINCIPALES DE LA API
+// =============================================
+
+int metrics_init(void) {
+    if (g_metrics_initialized) {
+        printf("[METRICS] Sistema ya inicializado\n");
+        return 1;
+    }
+    
+    // Inicializar estructura principal
+    memset(&g_metrics, 0, sizeof(metrics_system_t));
+    
+    // Registrar tiempo de inicio
+    metrics_get_timestamp(&g_metrics.system_start_time);
+    
+    // Inicializar métricas de estaciones
+    for (int i = 0; i < 3; i++) {
+        init_station_metrics(&g_metrics.stations[i], i);
+    }
+    
+    // Crear buffer de eventos (tamaño fijo por ahora)
+    g_metrics.buffer_size = 1000;
+    g_metrics.event_buffer = malloc(sizeof(metric_event_t) * g_metrics.buffer_size);
+    if (!g_metrics.event_buffer) {
+        printf("[ERROR] No se pudo crear buffer de eventos\n");
+        return 0;
+    }
+    g_metrics.buffer_count = 0;
+    
+    #ifdef USE_THREADING
+        // Inicializar sincronización (futuro)
+        pthread_mutex_init(&g_metrics.buffer_mutex, NULL);
+        sem_init(&g_metrics.event_semaphore, 0, 0);
+    #endif
+    
+    g_metrics_initialized = 1;
+    printf("[METRICS] Sistema de métricas inicializado\n");
+    return 1;
+}
+
+void metrics_cleanup(void) {
+    if (!g_metrics_initialized) return;
+    
+    METRICS_LOCK();
+    
+    if (g_metrics.event_buffer) {
+        free(g_metrics.event_buffer);
+        g_metrics.event_buffer = NULL;
+    }
+    
+    #ifdef USE_THREADING
+        pthread_mutex_destroy(&g_metrics.buffer_mutex);
+        sem_destroy(&g_metrics.event_semaphore);
+    #endif
+    
+    g_metrics_initialized = 0;
+    
+    METRICS_UNLOCK();
+    
+    printf("[METRICS] Sistema de métricas finalizado\n");
+}
+
+// =============================================
+// FUNCIONES PARA REGISTRAR EVENTOS
+// =============================================
+
+void metrics_record_event(event_type_t type, int product_id, int station_id) {
+    if (!g_metrics_initialized) return;
+    
+    METRICS_LOCK();
+    
+    // Agregar al buffer si hay espacio
+    if (g_metrics.buffer_count < g_metrics.buffer_size) {
+        metric_event_t *event = &g_metrics.event_buffer[g_metrics.buffer_count];
+        event->type = type;
+        event->product_id = product_id;
+        event->station_id = station_id;
+        event->additional_data = 0;
+        metrics_get_timestamp(&event->timestamp);
+        
+        g_metrics.buffer_count++;
+        
+        printf("[METRICS] Evento: %s - Producto: %d, Estación: %d\n",
+               event_names[type], product_id, station_id);
+    }
+    
+    METRICS_UNLOCK();
+}
+
+void metrics_product_created(int product_id) {
+    if (!g_metrics_initialized) return;
+    
+    METRICS_LOCK();
+    g_metrics.total_products_created++;
+    METRICS_UNLOCK();
+    
+    metrics_record_event(EVENT_PRODUCT_CREATED, product_id, -1);
+}
+
+void metrics_product_queued(int product_id) {
+    metrics_record_event(EVENT_PRODUCT_QUEUED, product_id, -1);
+}
+
+void metrics_product_processing_start(int product_id, int station_id) {
+    if (!g_metrics_initialized || station_id < 0 || station_id >= 3) return;
+    
+    METRICS_LOCK();
+    g_metrics.stations[station_id].is_busy = 1;
+    metrics_get_timestamp(&g_metrics.stations[station_id].last_activity_time);
+    METRICS_UNLOCK();
+    
+    metrics_record_event(EVENT_PRODUCT_PROCESSING_START, product_id, station_id);
+}
+
+void metrics_product_processing_end(int product_id, int station_id) {
+    if (!g_metrics_initialized || station_id < 0 || station_id >= 3) return;
+    
+    METRICS_LOCK();
+    
+    station_metrics_t *station = &g_metrics.stations[station_id];
+    struct timespec end_time;
+    metrics_get_timestamp(&end_time);
+    
+    // Calcular tiempo de procesamiento
+    long processing_time_ms = metrics_time_diff_ms(&station->last_activity_time, &end_time);
+    
+    // Actualizar estadísticas
+    update_station_processing_stats(station, (int)processing_time_ms);
+    station->is_busy = 0;
+    
+    METRICS_UNLOCK();
+    
+    metrics_record_event(EVENT_PRODUCT_PROCESSING_END, product_id, station_id);
+}
+
+void metrics_product_completed(int product_id) {
+    if (!g_metrics_initialized) return;
+    
+    METRICS_LOCK();
+    g_metrics.total_products_completed++;
+    METRICS_UNLOCK();
+    
+    metrics_record_event(EVENT_PRODUCT_COMPLETED, product_id, -1);
+}
+
+void metrics_station_start_processing(int station_id, int product_id) {
+    metrics_product_processing_start(product_id, station_id);
+}
+
+void metrics_station_end_processing(int station_id, int product_id) {
+    metrics_product_processing_end(product_id, station_id);
+}
+
+void metrics_station_idle_start(int station_id) {
+    if (!g_metrics_initialized || station_id < 0 || station_id >= 3) return;
+    
+    METRICS_LOCK();
+    g_metrics.stations[station_id].is_busy = 0;
+    metrics_get_timestamp(&g_metrics.stations[station_id].last_activity_time);
+    METRICS_UNLOCK();
+    
+    metrics_record_event(EVENT_STATION_IDLE_START, -1, station_id);
+}
+
+void metrics_station_idle_end(int station_id) {
+    metrics_record_event(EVENT_STATION_IDLE_END, -1, station_id);
+}
+
+// Funciones del scheduler (preparadas para futuro)
+void metrics_scheduler_context_switch(int old_product_id, int new_product_id) {
+    if (!g_metrics_initialized) return;
+    
+    METRICS_LOCK();
+    g_metrics.scheduler.context_switches++;
+    METRICS_UNLOCK();
+    
+    printf("[METRICS] Context switch: %d -> %d\n", old_product_id, new_product_id);
+}
+
+void metrics_scheduler_preemption(int product_id) {
+    if (!g_metrics_initialized) return;
+    
+    METRICS_LOCK();
+    g_metrics.scheduler.preemptions++;
+    METRICS_UNLOCK();
+    
+    metrics_record_event(EVENT_SCHEDULER_PREEMPTION, product_id, -1);
+}
+
+// =============================================
+// FUNCIONES DE CONSULTA Y ESTADÍSTICAS
+// =============================================
+
+station_metrics_t* metrics_get_station_stats(int station_id) {
+    if (!g_metrics_initialized || station_id < 0 || station_id >= 3) {
+        return NULL;
+    }
+    return &g_metrics.stations[station_id];
+}
+
+scheduler_metrics_t* metrics_get_scheduler_stats(void) {
+    if (!g_metrics_initialized) return NULL;
+    return &g_metrics.scheduler;
+}
+
+double metrics_get_system_throughput(void) {
+    if (!g_metrics_initialized) return 0.0;
+    
+    int runtime_ms = metrics_get_total_runtime_ms();
+    if (runtime_ms <= 0) return 0.0;
+    
+    return (double)g_metrics.total_products_completed * 1000.0 / runtime_ms;
+}
+
+double metrics_get_system_utilization(void) {
+    if (!g_metrics_initialized) return 0.0;
+    
+    int total_processing_time = 0;
+    for (int i = 0; i < 3; i++) {
+        total_processing_time += g_metrics.stations[i].total_processing_time_ms;
+    }
+    
+    int runtime_ms = metrics_get_total_runtime_ms();
+    if (runtime_ms <= 0) return 0.0;
+    
+    return (double)total_processing_time * 100.0 / (runtime_ms * 3); // 3 estaciones
+}
+
+int metrics_get_total_runtime_ms(void) {
+    if (!g_metrics_initialized) return 0;
+    
+    struct timespec current_time;
+    metrics_get_timestamp(&current_time);
+    
+    return (int)metrics_time_diff_ms(&g_metrics.system_start_time, &current_time);
+}
+
+// =============================================
+// FUNCIONES DE SALIDA Y REPORTING
+// =============================================
+
+void metrics_print_summary(void) {
+    if (!g_metrics_initialized) {
+        printf("[ERROR] Sistema de métricas no inicializado\n");
+        return;
+    }
+    
+    printf("\n");
+    printf("=========================================\n");
+    printf("       RESUMEN DE MÉTRICAS GLOBALES     \n");
+    printf("=========================================\n");
+    
+    printf("Tiempo total de ejecución: %d ms\n", metrics_get_total_runtime_ms());
+    printf("Productos creados: %d\n", g_metrics.total_products_created);
+    printf("Productos completados: %d\n", g_metrics.total_products_completed);
+    printf("Productos fallidos: %d\n", g_metrics.total_products_failed);
+    printf("Throughput del sistema: %.2f productos/segundo\n", metrics_get_system_throughput());
+    printf("Utilización del sistema: %.1f%%\n", metrics_get_system_utilization());
+    
+    printf("\nMétricas por estación:\n");
+    for (int i = 0; i < 3; i++) {
+        metrics_print_station_stats(i);
+    }
+    
+    printf("=========================================\n\n");
+}
+
+void metrics_print_station_stats(int station_id) {
+    station_metrics_t *station = metrics_get_station_stats(station_id);
+    if (!station) {
+        printf("[ERROR] Estación %d inválida\n", station_id);
+        return;
+    }
+    
+    printf("\n--- Estación %d (%s) ---\n", station_id, station->name);
+    printf("  Productos procesados: %d\n", station->products_processed);
+    printf("  Tiempo total de procesamiento: %d ms\n", station->total_processing_time_ms);
+    printf("  Tiempo promedio: %.1f ms\n", station->avg_processing_time_ms);
+    printf("  Tiempo mínimo: %d ms\n", station->min_processing_time_ms == INT_MAX ? 0 : station->min_processing_time_ms);
+    printf("  Tiempo máximo: %d ms\n", station->max_processing_time_ms);
+    printf("  Estado actual: %s\n", station->is_busy ? "OCUPADA" : "LIBRE");
+}
+
+void metrics_print_scheduler_stats(void) {
+    scheduler_metrics_t *sched = metrics_get_scheduler_stats();
+    if (!sched) return;
+    
+    printf("\n--- Métricas del Scheduler ---\n");
+    printf("  Productos programados: %d\n", sched->total_products_scheduled);
+    printf("  Cambios de contexto: %d\n", sched->context_switches);
+    printf("  Preempciones: %d\n", sched->preemptions);
+    printf("  Tiempo promedio de espera: %.1f ms\n", sched->avg_wait_time_ms);
+    printf("  Tiempo promedio de turnaround: %.1f ms\n", sched->avg_turnaround_time_ms);
+}
+
+void metrics_print_system_stats(void) {
+    metrics_print_summary();
+    metrics_print_scheduler_stats();
+}
+
+// =============================================
+// FUNCIONES AUXILIARES
+// =============================================
+
+void metrics_get_timestamp(struct timespec *ts) {
+    clock_gettime(CLOCK_MONOTONIC, ts);
+}
+
+long metrics_time_diff_ms(const struct timespec *start, const struct timespec *end) {
+    long seconds = end->tv_sec - start->tv_sec;
+    long nanoseconds = end->tv_nsec - start->tv_nsec;
+    return (seconds * 1000) + (nanoseconds / 1000000);
+}
+
+void metrics_reset_all(void) {
+    if (!g_metrics_initialized) return;
+    
+    METRICS_LOCK();
+    
+    // Reiniciar contadores globales
+    g_metrics.total_products_created = 0;
+    g_metrics.total_products_completed = 0;
+    g_metrics.total_products_failed = 0;
+    
+    // Reiniciar métricas de estaciones
+    for (int i = 0; i < 3; i++) {
+        init_station_metrics(&g_metrics.stations[i], i);
+    }
+    
+    // Reiniciar métricas del scheduler
+    memset(&g_metrics.scheduler, 0, sizeof(scheduler_metrics_t));
+    
+    // Vaciar buffer de eventos
+    g_metrics.buffer_count = 0;
+    
+    // Actualizar tiempo de inicio
+    metrics_get_timestamp(&g_metrics.system_start_time);
+    
+    METRICS_UNLOCK();
+    
+    printf("[METRICS] Sistema reiniciado\n");
+}
+
+int metrics_validate_system(void) {
+    if (!g_metrics_initialized) {
+        printf("[METRICS] Sistema no inicializado\n");
+        return 0;
+    }
+    
+    if (!g_metrics.event_buffer) {
+        printf("[METRICS] Buffer de eventos inválido\n");
+        return 0;
+    }
+    
+    printf("[METRICS] Sistema válido\n");
+    return 1;
+}
