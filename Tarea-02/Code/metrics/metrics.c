@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <limits.h>
 
 // Variable global del sistema de métricas
 static metrics_system_t g_metrics;
