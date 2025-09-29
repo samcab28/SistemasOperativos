@@ -163,7 +163,7 @@ int station_start_thread(station_t *station) {
     if (!station) return 0;
     
     if (station->thread_running) {
-        STATION_WARNING("Hilo de '%s' ya está corriendo", station->name);
+        STATION_INFO("Hilo de '%s' ya está corriendo", station->name);
         return 1;
     }
     
