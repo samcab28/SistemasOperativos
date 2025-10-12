@@ -1,4 +1,5 @@
 #include "station.h"
+#include "scheduler.h"
 #include "../metrics/logger.h"
 #include "../metrics/metrics.h"
 #include <stdio.h>
@@ -81,6 +82,11 @@ station_t *create_station(station_type_t type, const char *name, int processing_
     
     // Chain of Responsibility
     station->next_station = NULL;
+    station->scheduler = NULL;
+
+    // Preempción
+    station->preemption_requested = 0;
+    station->preemption_target = NULL;
     
     // Inicializar estadísticas
     memset(&station->stats, 0, sizeof(station->stats));
@@ -155,6 +161,30 @@ void station_set_processing_variance(station_t *station, int variance_ms) {
     STATION_DEBUG("Varianza configurada: %d ms", variance_ms);
 }
 
+void station_set_scheduler(station_t *station, scheduler_t *scheduler) {
+    if (!station) return;
+
+    pthread_mutex_lock(&station->mutex);
+    station->scheduler = scheduler;
+    station_t *next = station->next_station;
+    pthread_mutex_unlock(&station->mutex);
+
+    if (next && next->scheduler != scheduler) {
+        station_set_scheduler(next, scheduler);
+    }
+}
+
+void station_request_preemption(station_t *station, product_t *product) {
+    if (!station || !product) return;
+
+    pthread_mutex_lock(&station->mutex);
+    if (station->current_product == product) {
+        station->preemption_requested = 1;
+        station->preemption_target = product;
+    }
+    pthread_mutex_unlock(&station->mutex);
+}
+
 // =============================================
 // FUNCIONES DE CONTROL DEL HILO
 // =============================================
@@ -189,6 +219,11 @@ void station_stop_thread(station_t *station) {
     station->thread_running = 0;
     pthread_cond_signal(&station->work_available);
     pthread_mutex_unlock(&station->mutex);
+
+    // Desbloquear posibles waits en la cola de entrada
+    if (station->input_queue) {
+        sem_post(&station->input_queue->items);
+    }
     
     // Esperar a que termine
     pthread_join(station->thread, NULL);
@@ -227,10 +262,12 @@ void *station_worker_thread(void *arg) {
         
         // Procesar producto
         STATION_INFO("'%s' recibió Producto %d", station->name, product->id);
-        station_process_product(station, product);
+        int completed = station_process_product(station, product);
         
-        // Enviar a siguiente estación
-        station_send_to_next(station, product);
+        if (completed) {
+            // Enviar a siguiente estación
+            station_send_to_next(station, product);
+        }
     }
     
     STATION_INFO("Worker thread finalizado para '%s'", station->name);
@@ -241,53 +278,179 @@ void *station_worker_thread(void *arg) {
 // FUNCIONES DE PROCESAMIENTO
 // =============================================
 
-void station_process_product(station_t *station, product_t *product) {
-    if (!station || !product) return;
+static int station_compute_processing_time(const station_t *station) {
+    if (!station) return 0;
+
+    int variance = station->processing_variance_ms;
+    int actual_time = station->processing_time_ms;
+
+    if (variance > 0) {
+        int offset = random_range(-variance, variance);
+        actual_time += offset;
+    }
+
+    if (actual_time < 0) {
+        actual_time = station->processing_time_ms / 2;
+    }
+
+    if (actual_time < 0) {
+        actual_time = 0;
+    }
+
+    return actual_time;
+}
+
+int station_process_product(station_t *station, product_t *product) {
+    if (!station || !product) {
+        return 0;
+    }
     
-    // Adquirir semáforo (solo 1 producto a la vez)
     sem_wait(&station->processing_semaphore);
     
     pthread_mutex_lock(&station->mutex);
     station->state = STATION_BUSY;
     station->current_product = product;
+    station->preemption_requested = 0;
+    station->preemption_target = NULL;
     get_current_time(&station->processing_start_time);
+    product->current_station = station;
     pthread_mutex_unlock(&station->mutex);
     
-    // Registrar inicio en métricas
     record_station_entry(product, station->id);
     metrics_station_start_processing(station->id, product->id);
     set_product_state(product, STATE_PROCESSING);
     
     STATION_INFO("'%s' procesando Producto %d...", station->name, product->id);
     
-    // Simular procesamiento
-    station_simulate_processing(station);
-    
-    // Registrar fin en métricas
-    record_station_exit(product, station->id);
-    metrics_station_end_processing(station->id, product->id);
-    
-    // Actualizar estadísticas
-    pthread_mutex_lock(&station->mutex);
+    const int slice_ms = 50;
+    int elapsed_ms = 0;
+    int preempted = 0;
+    int target_time_ms;
+
+    if (product->metrics) {
+        int *remaining_ptr = &product->metrics->station_metrics[station->id].remaining_time_ms;
+        if (*remaining_ptr > 0) {
+            target_time_ms = *remaining_ptr;
+        } else {
+            target_time_ms = station_compute_processing_time(station);
+            *remaining_ptr = target_time_ms;
+        }
+    } else {
+        target_time_ms = station_compute_processing_time(station);
+    }
+
+    while (elapsed_ms < target_time_ms) {
+        int remaining = target_time_ms - elapsed_ms;
+        int step = remaining < slice_ms ? remaining : slice_ms;
+        if (step <= 0) {
+            break;
+        }
+
+        usleep(step * 1000);
+        elapsed_ms += step;
+
+        pthread_mutex_lock(&station->mutex);
+        int should_preempt = station->preemption_requested &&
+                             station->preemption_target == product;
+        int stop_running = !station->thread_running;
+        int completed = elapsed_ms >= target_time_ms;
+
+        if (completed) {
+            station->preemption_requested = 0;
+            station->preemption_target = NULL;
+            pthread_mutex_unlock(&station->mutex);
+            break;
+        }
+
+        if (should_preempt) {
+            station->preemption_requested = 0;
+            station->preemption_target = NULL;
+        }
+        pthread_mutex_unlock(&station->mutex);
+
+        if (should_preempt || stop_running) {
+            preempted = 1;
+            break;
+        }
+    }
+
     struct timespec end_time;
     get_current_time(&end_time);
+
+    record_station_exit(product, station->id);
+    metrics_station_end_processing(station->id, product->id);
+
     long processing_time = time_diff_ms(&station->processing_start_time, &end_time);
-    
-    station->stats.products_processed++;
+
+    if (product->metrics) {
+        int *remaining_ptr = &product->metrics->station_metrics[station->id].remaining_time_ms;
+        if (*remaining_ptr > 0) {
+            *remaining_ptr -= (int)processing_time;
+            if (*remaining_ptr < 0) {
+                *remaining_ptr = 0;
+            }
+        }
+    }
+
+    update_remaining_time(product, (int)processing_time);
+
+    pthread_mutex_lock(&station->mutex);
     station->stats.total_processing_time_ms += processing_time;
+    station->stats.last_activity_time = end_time;
+    if (!preempted) {
+        station->stats.products_processed++;
+    }
     station->current_product = NULL;
     station->state = STATION_IDLE;
     pthread_mutex_unlock(&station->mutex);
-    
-    // Liberar semáforo
+
     sem_post(&station->processing_semaphore);
-    
-    STATION_INFO("'%s' completó Producto %d (tiempo: %ld ms)", 
+
+    if (preempted) {
+        STATION_INFO("'%s' preemptó Producto %d (tiempo parcial: %ld ms)",
+                     station->name, product->id, processing_time);
+        if (product->metrics) {
+            product->metrics->station_metrics[station->id].preemptions++;
+        }
+        product->current_station = station;
+        if (station->scheduler) {
+            scheduler_requeue_preempted_product(station->scheduler, product);
+            scheduler_notify_slice_end(station->scheduler, product, 1);
+        } else if (station->input_queue) {
+            set_product_state(product, STATE_IN_QUEUE);
+            queue_push(station->input_queue, product);
+        }
+        return 0;
+    }
+
+    STATION_INFO("'%s' completó Producto %d (tiempo: %ld ms)",
                  station->name, product->id, processing_time);
+    if (product->metrics) {
+        product->metrics->station_metrics[station->id].remaining_time_ms = 0;
+    }
+
+    if (station->scheduler) {
+        station_t *next_station = station->next_station;
+        if (next_station) {
+            product->current_station = next_station;
+            scheduler_requeue_preempted_product(station->scheduler, product);
+            scheduler_notify_slice_end(station->scheduler, product, 0);
+        } else {
+            product->current_station = NULL;
+            scheduler_notify_slice_end(station->scheduler, product, 0);
+        }
+    }
+
+    return 1;
 }
 
 void station_send_to_next(station_t *station, product_t *product) {
     if (!station || !product) return;
+
+    if (station->scheduler && station->next_station) {
+        // El scheduler se encargó de reencolar el producto para la siguiente estación
+        return;
+    }
     
     pthread_mutex_lock(&station->mutex);
     
@@ -295,6 +458,20 @@ void station_send_to_next(station_t *station, product_t *product) {
     if (station->output_queue) {
         queue_push(station->output_queue, product);
         STATION_DEBUG("Producto %d enviado a cola de salida", product->id);
+
+        // Si no existe siguiente estación, este es el producto finalizado
+        if (!station->next_station && product->metrics) {
+            struct timespec *exit_time = &product->metrics->station_metrics[station->id].exit_time;
+            product->metrics->completion_time = *exit_time;
+            product->metrics->turnaround_time_ms = (int)time_diff_ms(&product->metrics->creation_time,
+                                                                     exit_time);
+            set_product_state(product, STATE_COMPLETED);
+            metrics_product_completed(product->id);
+
+            if (station->scheduler) {
+                scheduler_record_product_completion(station->scheduler, product);
+            }
+        }
     }
     // Si hay siguiente estación (Chain), enviar a su cola de entrada
     else if (station->next_station && station->next_station->input_queue) {
@@ -304,26 +481,21 @@ void station_send_to_next(station_t *station, product_t *product) {
     }
     // Si es la última estación
     else {
+        if (product->metrics) {
+            struct timespec *exit_time = &product->metrics->station_metrics[station->id].exit_time;
+            product->metrics->completion_time = *exit_time;
+            product->metrics->turnaround_time_ms = (int)time_diff_ms(&product->metrics->creation_time,
+                                                                     exit_time);
+        }
         set_product_state(product, STATE_COMPLETED);
         metrics_product_completed(product->id);
+        if (station->scheduler) {
+            scheduler_record_product_completion(station->scheduler, product);
+        }
         STATION_INFO("Producto %d COMPLETADO (última estación)", product->id);
     }
     
     pthread_mutex_unlock(&station->mutex);
-}
-
-void station_simulate_processing(const station_t *station) {
-    if (!station) return;
-    
-    // Calcular tiempo con variación aleatoria
-    int variance = random_range(-station->processing_variance_ms, 
-                                station->processing_variance_ms);
-    int actual_time = station->processing_time_ms + variance;
-    
-    if (actual_time < 0) actual_time = station->processing_time_ms / 2;
-    
-    // Simular procesamiento
-    usleep(actual_time * 1000); // Convertir ms a microsegundos
 }
 
 // =============================================

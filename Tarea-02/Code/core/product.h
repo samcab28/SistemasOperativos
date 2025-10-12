@@ -14,6 +14,8 @@ typedef enum {
 // Forward declaration para métricas
 typedef struct product_metrics product_metrics_t;
 
+struct station;
+
 // Estructura del producto
 typedef struct product {
     int id;
@@ -22,12 +24,15 @@ typedef struct product {
     int remaining_time;              // Para Round Robin
     processing_state_t state;
     product_metrics_t *metrics;
+    struct station *current_station; // Próxima estación a la que debe ser despachado
 } product_t;
 
 // Estructura para métricas del producto
 struct product_metrics {
     int product_id;
     struct timespec creation_time;
+    struct timespec last_event_time;
+    struct timespec completion_time;
     
     // Métricas por estación (3 estaciones: Corte, Ensamblaje, Empaque)
     struct {
@@ -35,6 +40,8 @@ struct product_metrics {
         struct timespec exit_time;
         int wait_time_ms;
         int process_time_ms;
+        int remaining_time_ms;
+        int preemptions;
     } station_metrics[3];
     
     int total_wait_time_ms;

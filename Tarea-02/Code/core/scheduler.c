@@ -6,6 +6,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <time.h>
+#include <errno.h>
 
 // Nombres de los algoritmos
 static const char *algorithm_names[] = {
@@ -34,6 +35,23 @@ static long time_diff_ms(const struct timespec *start, const struct timespec *en
     long nanoseconds = end->tv_nsec - start->tv_nsec;
     return (seconds * 1000) + (nanoseconds / 1000000);
 }
+
+static struct timespec timespec_add_ms(const struct timespec *start, long ms) {
+    struct timespec result = *start;
+    result.tv_sec += ms / 1000;
+    result.tv_nsec += (ms % 1000) * 1000000L;
+    if (result.tv_nsec >= 1000000000L) {
+        result.tv_sec += result.tv_nsec / 1000000000L;
+        result.tv_nsec %= 1000000000L;
+    }
+    return result;
+}
+
+typedef enum {
+    SCHED_EVENT_NONE = 0,
+    SCHED_EVENT_SLICE_COMPLETED,
+    SCHED_EVENT_SLICE_PREEMPTED
+} scheduler_event_type_t;
 
 // =============================================
 // FUNCIONES DE CREACIÓN Y DESTRUCCIÓN
@@ -82,9 +100,16 @@ scheduler_t *create_scheduler(scheduling_algorithm_t algorithm, int quantum_ms) 
     // Estadísticas
     memset(&scheduler->stats, 0, sizeof(scheduler->stats));
     get_current_time(&scheduler->stats.start_time);
+    scheduler->stats.last_dispatched_product = NULL;
     
     // Control de quantum
     memset(&scheduler->quantum_control, 0, sizeof(scheduler->quantum_control));
+    pthread_condattr_t cond_attr;
+    pthread_condattr_init(&cond_attr);
+    pthread_condattr_setclock(&cond_attr, CLOCK_MONOTONIC);
+    pthread_cond_init(&scheduler->quantum_control.cond, &cond_attr);
+    pthread_condattr_destroy(&cond_attr);
+    scheduler->quantum_control.event_type = SCHED_EVENT_NONE;
     
     SCHEDULER_INFO("Scheduler creado (algoritmo: %s, quantum: %d ms)",
                    algorithm_names[algorithm], quantum_ms);
@@ -106,6 +131,7 @@ void destroy_scheduler(scheduler_t *scheduler) {
     pthread_mutex_destroy(&scheduler->mutex);
     pthread_cond_destroy(&scheduler->products_available);
     sem_destroy(&scheduler->scheduling_semaphore);
+    pthread_cond_destroy(&scheduler->quantum_control.cond);
     
     // Destruir colas
     if (scheduler->ready_queue) {
@@ -136,6 +162,10 @@ void scheduler_set_first_station(scheduler_t *scheduler, station_t *station) {
     pthread_mutex_lock(&scheduler->mutex);
     scheduler->first_station = station;
     pthread_mutex_unlock(&scheduler->mutex);
+    
+    if (station) {
+        station_set_scheduler(station, scheduler);
+    }
     
     SCHEDULER_INFO("Primera estación configurada: %s", 
                    station ? station->name : "NULL");
@@ -237,7 +267,16 @@ void scheduler_stop_thread(scheduler_t *scheduler) {
     pthread_mutex_lock(&scheduler->mutex);
     scheduler->thread_running = 0;
     pthread_cond_broadcast(&scheduler->products_available);
+    pthread_cond_broadcast(&scheduler->quantum_control.cond);
     pthread_mutex_unlock(&scheduler->mutex);
+
+    // Desbloquear posibles waits en las colas internas
+    if (scheduler->ready_queue) {
+        sem_post(&scheduler->ready_queue->items);
+    }
+    if (scheduler->waiting_queue) {
+        sem_post(&scheduler->waiting_queue->items);
+    }
     
     pthread_join(scheduler->thread, NULL);
     
@@ -314,6 +353,10 @@ void scheduler_add_product(scheduler_t *scheduler, product_t *product) {
     if (!scheduler || !product) return;
     
     pthread_mutex_lock(&scheduler->mutex);
+
+    if (!product->current_station) {
+        product->current_station = scheduler->first_station;
+    }
     
     queue_push(scheduler->ready_queue, product);
     set_product_state(product, STATE_IN_QUEUE);
@@ -337,6 +380,38 @@ void scheduler_add_batch(scheduler_t *scheduler, product_t **products, int count
     SCHEDULER_INFO("Batch de %d productos agregado", count);
 }
 
+void scheduler_requeue_preempted_product(scheduler_t *scheduler, product_t *product) {
+    if (!scheduler || !product) return;
+
+    pthread_mutex_lock(&scheduler->mutex);
+    if (!product->current_station) {
+        product->current_station = scheduler->first_station;
+    }
+    queue_push(scheduler->ready_queue, product);
+    set_product_state(product, STATE_IN_QUEUE);
+    pthread_cond_signal(&scheduler->products_available);
+    pthread_mutex_unlock(&scheduler->mutex);
+
+    metrics_product_queued(product->id);
+    SCHEDULER_DEBUG("Producto %d reencolado para replanificación", product->id);
+}
+
+void scheduler_notify_slice_end(scheduler_t *scheduler, product_t *product, int was_preempted) {
+    if (!scheduler || !product) return;
+
+    pthread_mutex_lock(&scheduler->mutex);
+
+    if (scheduler->current_product == product) {
+        scheduler->quantum_control.event_type = was_preempted ? SCHED_EVENT_SLICE_PREEMPTED
+                                                              : SCHED_EVENT_SLICE_COMPLETED;
+        scheduler->quantum_control.event_pending = 1;
+        scheduler->quantum_control.waiting_for_event = 0;
+        pthread_cond_signal(&scheduler->quantum_control.cond);
+    }
+
+    pthread_mutex_unlock(&scheduler->mutex);
+}
+
 product_t *scheduler_select_next_product(scheduler_t *scheduler) {
     if (!scheduler) return NULL;
     
@@ -350,16 +425,26 @@ product_t *scheduler_select_next_product(scheduler_t *scheduler) {
 }
 
 void scheduler_dispatch_product(scheduler_t *scheduler, product_t *product) {
-    if (!scheduler || !product || !scheduler->first_station) return;
-    
+    if (!scheduler || !product) return;
+
+    station_t *target_station = product->current_station;
+    if (!target_station) {
+        target_station = scheduler->first_station;
+    }
+
+    if (!target_station) {
+        SCHEDULER_ERROR("No hay estación objetivo para despachar el producto %d", product->id);
+        return;
+    }
+
+    product->current_station = target_station;
+
     SCHEDULER_INFO("Despachando Producto %d a estación '%s'",
-                   product->id, scheduler->first_station->name);
-    
-    // Enviar a la cola de entrada de la primera estación
-    queue_push(scheduler->first_station->input_queue, product);
-    
-    // Actualizar métricas
-    metrics_product_processing_start(product->id, scheduler->first_station->id);
+                   product->id, target_station->name);
+
+    queue_push(target_station->input_queue, product);
+
+    metrics_product_processing_start(product->id, target_station->id);
 }
 
 void scheduler_context_switch(scheduler_t *scheduler, product_t *old_product, 
@@ -433,14 +518,13 @@ void scheduler_rr_start_quantum(scheduler_t *scheduler, product_t *product) {
     pthread_mutex_lock(&scheduler->mutex);
     
     get_current_time(&scheduler->quantum_control.quantum_start_time);
-    scheduler->quantum_control.quantum_remaining_ms = scheduler->config.quantum_ms;
     scheduler->quantum_control.quantum_expired = 0;
-    
-    // Configurar tiempo restante del producto
-    if (product->remaining_time == 0) {
-        product->remaining_time = scheduler->config.quantum_ms;
-    }
-    
+    scheduler->quantum_control.quantum_deadline =
+        timespec_add_ms(&scheduler->quantum_control.quantum_start_time,
+                        scheduler->config.quantum_ms);
+    scheduler->quantum_control.waiting_for_event = 0;
+    scheduler->quantum_control.event_pending = 0;
+    scheduler->quantum_control.event_type = SCHED_EVENT_NONE;
     pthread_mutex_unlock(&scheduler->mutex);
     
     SCHEDULER_DEBUG("Quantum iniciado para Producto %d (%d ms)",
@@ -459,33 +543,40 @@ int scheduler_rr_is_quantum_expired(scheduler_t *scheduler) {
     return elapsed_ms >= scheduler->config.quantum_ms;
 }
 
-void scheduler_rr_handle_quantum_expiration(scheduler_t *scheduler) {
-    if (!scheduler || !scheduler->current_product) return;
-    
-    product_t *product = scheduler->current_product;
-    
-    pthread_mutex_lock(&scheduler->mutex);
-    
-    // Verificar si el producto aún necesita procesamiento
-    if (product->remaining_time > 0) {
-        // Producto no terminó - Preemption
-        scheduler->stats.preemptions++;
-        
-        SCHEDULER_INFO("Quantum expirado - Producto %d preempted (tiempo restante: %d ms)",
-                       product->id, product->remaining_time);
-        
-        metrics_scheduler_preemption(product->id);
-        
-        // Reencolar al final de ready_queue
-        queue_push(scheduler->ready_queue, product);
-        
-        SCHEDULER_DEBUG("Producto %d reencolado", product->id);
+static station_t *scheduler_find_station_with_product(station_t *station, product_t *product) {
+    while (station) {
+        pthread_mutex_lock(&station->mutex);
+        product_t *current = station->current_product;
+        pthread_mutex_unlock(&station->mutex);
+        if (current == product) {
+            return station;
+        }
+        station = station->next_station;
     }
-    
-    scheduler->current_product = NULL;
+    return NULL;
+}
+
+void scheduler_rr_handle_quantum_expiration(scheduler_t *scheduler) {
+    if (!scheduler) return;
+
+    pthread_mutex_lock(&scheduler->mutex);
+    product_t *product = scheduler->current_product;
+    if (!product) {
+        pthread_mutex_unlock(&scheduler->mutex);
+        return;
+    }
+
     scheduler->quantum_control.quantum_expired = 1;
-    
     pthread_mutex_unlock(&scheduler->mutex);
+
+    SCHEDULER_INFO("Quantum expirado - solicitando preempción de Producto %d", product->id);
+
+    station_t *station = scheduler_find_station_with_product(scheduler->first_station, product);
+    if (station) {
+        station_request_preemption(station, product);
+    } else {
+        SCHEDULER_DEBUG("Producto %d no encontrado en ninguna estación al expirar quantum", product->id);
+    }
 }
 
 void scheduler_rr_process(scheduler_t *scheduler) {
@@ -496,36 +587,82 @@ void scheduler_rr_process(scheduler_t *scheduler) {
     
     if (product) {
         pthread_mutex_lock(&scheduler->mutex);
+        product_t *previous = scheduler->stats.last_dispatched_product;
+        pthread_mutex_unlock(&scheduler->mutex);
+
+        if (previous && previous != product) {
+            scheduler_context_switch(scheduler, previous, product);
+        }
+
+        pthread_mutex_lock(&scheduler->mutex);
+        scheduler->stats.last_dispatched_product = product;
         scheduler->current_product = product;
         pthread_mutex_unlock(&scheduler->mutex);
-        
+
         SCHEDULER_INFO("Round Robin: Procesando Producto %d", product->id);
         
-        // Iniciar quantum
         scheduler_rr_start_quantum(scheduler, product);
-        
-        // Despachar a primera estación
         scheduler_dispatch_product(scheduler, product);
-        
-        // Simular procesamiento con verificación de quantum
-        while (!scheduler_rr_is_quantum_expired(scheduler) && 
-               product->remaining_time > 0 && 
-               scheduler->thread_running) {
-            usleep(100000); // 100ms
-            
-            pthread_mutex_lock(&scheduler->mutex);
-            product->remaining_time -= 100;
-            if (product->remaining_time < 0) product->remaining_time = 0;
+
+        scheduler_event_type_t event_type = SCHED_EVENT_NONE;
+
+        pthread_mutex_lock(&scheduler->mutex);
+        if (scheduler->quantum_control.event_pending) {
+            event_type = (scheduler_event_type_t)scheduler->quantum_control.event_type;
+            scheduler->quantum_control.event_pending = 0;
+            scheduler->quantum_control.waiting_for_event = 0;
+            pthread_mutex_unlock(&scheduler->mutex);
+        } else {
+            scheduler->quantum_control.waiting_for_event = 1;
+            struct timespec deadline = scheduler->quantum_control.quantum_deadline;
+
+            while (scheduler->thread_running && scheduler->quantum_control.waiting_for_event) {
+                int rc = pthread_cond_timedwait(&scheduler->quantum_control.cond,
+                                                &scheduler->mutex,
+                                                &deadline);
+
+                if (rc == 0 && scheduler->quantum_control.event_pending) {
+                    event_type = (scheduler_event_type_t)scheduler->quantum_control.event_type;
+                    scheduler->quantum_control.waiting_for_event = 0;
+                    scheduler->quantum_control.event_pending = 0;
+                    break;
+                }
+
+                if (rc == ETIMEDOUT) {
+                    scheduler->quantum_control.waiting_for_event = 0;
+                    pthread_mutex_unlock(&scheduler->mutex);
+
+                    scheduler_rr_handle_quantum_expiration(scheduler);
+
+                    pthread_mutex_lock(&scheduler->mutex);
+                    while (scheduler->thread_running && !scheduler->quantum_control.event_pending) {
+                        pthread_cond_wait(&scheduler->quantum_control.cond, &scheduler->mutex);
+                    }
+
+                    if (scheduler->quantum_control.event_pending) {
+                        event_type = (scheduler_event_type_t)scheduler->quantum_control.event_type;
+                        scheduler->quantum_control.event_pending = 0;
+                    }
+                    break;
+                }
+            }
+
+            scheduler->quantum_control.waiting_for_event = 0;
             pthread_mutex_unlock(&scheduler->mutex);
         }
-        
-        // Verificar si expiró el quantum
-        if (scheduler_rr_is_quantum_expired(scheduler) && product->remaining_time > 0) {
-            scheduler_rr_handle_quantum_expiration(scheduler);
-        } else {
+
+        pthread_mutex_lock(&scheduler->mutex);
+        scheduler->current_product = NULL;
+        pthread_mutex_unlock(&scheduler->mutex);
+
+        if (event_type == SCHED_EVENT_SLICE_COMPLETED) {
+            SCHEDULER_DEBUG("Producto %d completó su porción antes del fin del quantum", product->id);
+        } else if (event_type == SCHED_EVENT_SLICE_PREEMPTED) {
             pthread_mutex_lock(&scheduler->mutex);
-            scheduler->current_product = NULL;
+            scheduler->stats.preemptions++;
             pthread_mutex_unlock(&scheduler->mutex);
+            metrics_scheduler_preemption(product->id);
+            SCHEDULER_DEBUG("Producto %d fue preemptado al expirar el quantum", product->id);
         }
     } else {
         // No hay productos, esperar
@@ -583,6 +720,37 @@ void scheduler_wait_completion(scheduler_t *scheduler) {
     }
     
     SCHEDULER_INFO("Todos los productos procesados");
+}
+
+void scheduler_record_product_completion(scheduler_t *scheduler, product_t *product) {
+    if (!scheduler || !product || !product->metrics) return;
+
+    long total_wait_ms;
+    long total_turnaround_ms;
+    int scheduled;
+    int completed;
+    int context_switches;
+    int preemptions;
+
+    pthread_mutex_lock(&scheduler->mutex);
+    scheduler->stats.products_completed++;
+    scheduler->stats.total_wait_time_ms += product->metrics->total_wait_time_ms;
+    scheduler->stats.total_turnaround_time_ms += product->metrics->turnaround_time_ms;
+    product->remaining_time = 0;
+
+    total_wait_ms = scheduler->stats.total_wait_time_ms;
+    total_turnaround_ms = scheduler->stats.total_turnaround_time_ms;
+    scheduled = scheduler->stats.total_products_scheduled;
+    completed = scheduler->stats.products_completed;
+    context_switches = scheduler->stats.context_switches;
+    preemptions = scheduler->stats.preemptions;
+    pthread_mutex_unlock(&scheduler->mutex);
+
+    double avg_wait = completed ? (double)total_wait_ms / completed : 0.0;
+    double avg_turnaround = completed ? (double)total_turnaround_ms / completed : 0.0;
+
+    metrics_scheduler_update(scheduled, completed, context_switches, preemptions,
+                             avg_wait, avg_turnaround);
 }
 
 // =============================================
