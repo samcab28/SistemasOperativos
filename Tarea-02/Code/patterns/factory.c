@@ -37,6 +37,7 @@ product_t *factory_create_product(product_factory_t *factory) {
     product->priority = 0;
     product->remaining_time = 10000;  // 10 segundos por defecto
     product->state = STATE_CREATED;
+    product->current_station = NULL;
     
     // Crear métricas
     product->metrics = create_product_metrics(product->id);
