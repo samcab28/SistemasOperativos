@@ -55,6 +55,7 @@ product_metrics_t *create_product_metrics(int product_id) {
     memset(metrics, 0, sizeof(product_metrics_t));
     metrics->product_id = product_id;
     clock_gettime(CLOCK_MONOTONIC, &metrics->creation_time);
+    metrics->last_event_time = metrics->creation_time;
     
     return metrics;
 }
@@ -73,6 +74,14 @@ void record_station_entry(product_t *product, int station_id) {
     }
     
     clock_gettime(CLOCK_MONOTONIC, &product->metrics->station_metrics[station_id].entry_time);
+    
+    // Calcular tiempo de espera hasta iniciar procesamiento en esta estación
+    long wait_time = timespec_diff_ms(&product->metrics->last_event_time,
+                                      &product->metrics->station_metrics[station_id].entry_time);
+    if (wait_time < 0) wait_time = 0;
+    product->metrics->station_metrics[station_id].wait_time_ms = (int)wait_time;
+    product->metrics->total_wait_time_ms += (int)wait_time;
+    
     printf("[PRODUCT %d] Entrada a estación %d\n", product->id, station_id);
 }
 
@@ -88,8 +97,9 @@ void record_station_exit(product_t *product, int station_id) {
     clock_gettime(CLOCK_MONOTONIC, exit_time);
     
     // Calcular tiempo de procesamiento
-    product->metrics->station_metrics[station_id].process_time_ms = 
+    product->metrics->station_metrics[station_id].process_time_ms += 
         timespec_diff_ms(entry_time, exit_time);
+    product->metrics->last_event_time = *exit_time;
     
     printf("[PRODUCT %d] Salida de estación %d (tiempo: %d ms)\n", 
            product->id, station_id, 
@@ -140,6 +150,8 @@ void print_product_metrics(const product_t *product) {
             printf("  %s: %d ms\n", 
                    stations[i],
                    m->station_metrics[i].process_time_ms);
+            printf("    Espera: %d ms\n", m->station_metrics[i].wait_time_ms);
+            printf("    Preemptions: %d\n", m->station_metrics[i].preemptions);
         }
     }
     printf("==========================\n\n");

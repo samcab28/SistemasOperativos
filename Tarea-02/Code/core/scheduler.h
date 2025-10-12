@@ -76,13 +76,18 @@ struct scheduler {
         long total_wait_time_ms;
         long total_turnaround_time_ms;
         struct timespec start_time;
+        product_t *last_dispatched_product;
     } stats;
     
     // Control de quantum (Round Robin)
     struct {
-        int quantum_remaining_ms;
         struct timespec quantum_start_time;
         int quantum_expired;
+        struct timespec quantum_deadline;
+        int waiting_for_event;
+        int event_pending;
+        int event_type;
+        pthread_cond_t cond;
     } quantum_control;
 };
 
@@ -154,6 +159,12 @@ void scheduler_add_product(scheduler_t *scheduler, product_t *product);
 // Agregar múltiples productos (batch)
 void scheduler_add_batch(scheduler_t *scheduler, product_t **products, int count);
 
+// Reencolar producto preemptado sin contar como nuevo scheduling
+void scheduler_requeue_preempted_product(scheduler_t *scheduler, product_t *product);
+
+// Notificar al scheduler que el producto terminó su porción (preemptado o completado)
+void scheduler_notify_slice_end(scheduler_t *scheduler, product_t *product, int was_preempted);
+
 // Seleccionar siguiente producto según algoritmo
 product_t *scheduler_select_next_product(scheduler_t *scheduler);
 
@@ -211,6 +222,9 @@ int scheduler_get_queue_size(const scheduler_t *scheduler);
 
 // Esperar a que todos los productos sean procesados
 void scheduler_wait_completion(scheduler_t *scheduler);
+
+// Registrar la finalización de un producto
+void scheduler_record_product_completion(scheduler_t *scheduler, product_t *product);
 
 // =============================================
 // FUNCIONES DE ESTADÍSTICAS
