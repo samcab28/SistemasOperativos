@@ -29,7 +29,7 @@ void simulate_station_processing(product_t *product, int station_id, int process
     
     // Registrar salida
     record_station_exit(product, station_id);
-    metrics_station_end_processing(station_id, product->id);
+    metrics_station_end_processing(station_id, product, 1);
     
     STATION_INFO("Producto %d completado en %s", product->id, station_names[station_id]);
 }

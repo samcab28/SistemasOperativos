@@ -15,7 +15,7 @@ static int g_metrics_initialized = 0;
 #endif
 
 // Nombres de las estaciones
-static const char* station_names[3] = {"Corte", "Ensamblaje", "Empaque"};
+static const char* station_names[METRICS_STATION_COUNT] = {"Corte", "Ensamblaje", "Empaque"};
 
 // Nombres de los eventos (para debugging/logging)
 static const char* event_names[] = {
@@ -42,6 +42,7 @@ static void init_station_metrics(station_metrics_t *station, int id) {
     station->products_processed = 0;
     station->products_waiting = 0;
     station->total_processing_time_ms = 0;
+    station->completed_processing_time_ms = 0;
     station->total_idle_time_ms = 0;
     station->min_processing_time_ms = INT_MAX;
     station->max_processing_time_ms = 0;
@@ -51,19 +52,30 @@ static void init_station_metrics(station_metrics_t *station, int id) {
     metrics_get_timestamp(&station->last_activity_time);
 }
 
-static void update_station_processing_stats(station_metrics_t *station, int processing_time_ms) {
+static void update_station_processing_stats(station_metrics_t *station,
+                                           int slice_time_ms,
+                                           int completed,
+                                           int final_processing_time_ms) {
+    station->total_processing_time_ms += slice_time_ms;
+
+    if (!completed) {
+        return;
+    }
+
     station->products_processed++;
-    station->total_processing_time_ms += processing_time_ms;
-    
-    if (processing_time_ms < station->min_processing_time_ms) {
-        station->min_processing_time_ms = processing_time_ms;
+    station->completed_processing_time_ms += final_processing_time_ms;
+
+    if (final_processing_time_ms < station->min_processing_time_ms) {
+        station->min_processing_time_ms = final_processing_time_ms;
     }
-    if (processing_time_ms > station->max_processing_time_ms) {
-        station->max_processing_time_ms = processing_time_ms;
+    if (final_processing_time_ms > station->max_processing_time_ms) {
+        station->max_processing_time_ms = final_processing_time_ms;
     }
-    
-    station->avg_processing_time_ms = 
-        (double)station->total_processing_time_ms / station->products_processed;
+
+    station->avg_processing_time_ms =
+        station->products_processed > 0
+            ? (double)station->completed_processing_time_ms / station->products_processed
+            : 0.0;
 }
 
 // =============================================
@@ -83,7 +95,7 @@ int metrics_init(void) {
     metrics_get_timestamp(&g_metrics.system_start_time);
     
     // Inicializar métricas de estaciones
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < METRICS_STATION_COUNT; i++) {
         init_station_metrics(&g_metrics.stations[i], i);
     }
     
@@ -171,7 +183,7 @@ void metrics_product_queued(int product_id) {
 }
 
 void metrics_product_processing_start(int product_id, int station_id) {
-    if (!g_metrics_initialized || station_id < 0 || station_id >= 3) return;
+    if (!g_metrics_initialized || station_id < 0 || station_id >= METRICS_STATION_COUNT) return;
     
     METRICS_LOCK();
     g_metrics.stations[station_id].is_busy = 1;
@@ -181,24 +193,28 @@ void metrics_product_processing_start(int product_id, int station_id) {
     metrics_record_event(EVENT_PRODUCT_PROCESSING_START, product_id, station_id);
 }
 
-void metrics_product_processing_end(int product_id, int station_id) {
-    if (!g_metrics_initialized || station_id < 0 || station_id >= 3) return;
-    
+void metrics_product_processing_end(product_t *product, int station_id, int completed) {
+    if (!g_metrics_initialized || station_id < 0 || station_id >= METRICS_STATION_COUNT) return;
+
+    int product_id = product ? product->id : -1;
+    int total_time_ms = 0;
+    if (completed && product && product->metrics) {
+        total_time_ms = product->metrics->station_metrics[station_id].process_time_ms;
+    }
+
     METRICS_LOCK();
-    
+
     station_metrics_t *station = &g_metrics.stations[station_id];
     struct timespec end_time;
     metrics_get_timestamp(&end_time);
-    
-    // Calcular tiempo de procesamiento
-    long processing_time_ms = metrics_time_diff_ms(&station->last_activity_time, &end_time);
-    
-    // Actualizar estadísticas
-    update_station_processing_stats(station, (int)processing_time_ms);
+
+    long slice_time_ms = metrics_time_diff_ms(&station->last_activity_time, &end_time);
+    update_station_processing_stats(station, (int)slice_time_ms, completed, total_time_ms);
     station->is_busy = 0;
-    
+    station->last_activity_time = end_time;
+
     METRICS_UNLOCK();
-    
+
     metrics_record_event(EVENT_PRODUCT_PROCESSING_END, product_id, station_id);
 }
 
@@ -216,12 +232,12 @@ void metrics_station_start_processing(int station_id, int product_id) {
     metrics_product_processing_start(product_id, station_id);
 }
 
-void metrics_station_end_processing(int station_id, int product_id) {
-    metrics_product_processing_end(product_id, station_id);
+void metrics_station_end_processing(int station_id, product_t *product, int completed) {
+    metrics_product_processing_end(product, station_id, completed);
 }
 
 void metrics_station_idle_start(int station_id) {
-    if (!g_metrics_initialized || station_id < 0 || station_id >= 3) return;
+    if (!g_metrics_initialized || station_id < 0 || station_id >= METRICS_STATION_COUNT) return;
     
     METRICS_LOCK();
     g_metrics.stations[station_id].is_busy = 0;
@@ -279,7 +295,7 @@ void metrics_scheduler_update(int total_scheduled,
 // =============================================
 
 station_metrics_t* metrics_get_station_stats(int station_id) {
-    if (!g_metrics_initialized || station_id < 0 || station_id >= 3) {
+    if (!g_metrics_initialized || station_id < 0 || station_id >= METRICS_STATION_COUNT) {
         return NULL;
     }
     return &g_metrics.stations[station_id];
@@ -303,14 +319,14 @@ double metrics_get_system_utilization(void) {
     if (!g_metrics_initialized) return 0.0;
     
     int total_processing_time = 0;
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < METRICS_STATION_COUNT; i++) {
         total_processing_time += g_metrics.stations[i].total_processing_time_ms;
     }
     
     int runtime_ms = metrics_get_total_runtime_ms();
     if (runtime_ms <= 0) return 0.0;
     
-    return (double)total_processing_time * 100.0 / (runtime_ms * 3); // 3 estaciones
+    return (double)total_processing_time * 100.0 / (runtime_ms * METRICS_STATION_COUNT);
 }
 
 int metrics_get_total_runtime_ms(void) {
@@ -345,7 +361,7 @@ void metrics_print_summary(void) {
     printf("Utilización del sistema: %.1f%%\n", metrics_get_system_utilization());
     
     printf("\nMétricas por estación:\n");
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < METRICS_STATION_COUNT; i++) {
         metrics_print_station_stats(i);
     }
     
@@ -385,6 +401,121 @@ void metrics_print_system_stats(void) {
     metrics_print_scheduler_stats();
 }
 
+void metrics_capture_summary(metrics_summary_t *summary) {
+    if (!summary) return;
+
+    memset(summary, 0, sizeof(*summary));
+
+    if (!g_metrics_initialized) {
+        return;
+    }
+
+    METRICS_LOCK();
+
+    summary->total_products_created = g_metrics.total_products_created;
+    summary->total_products_completed = g_metrics.total_products_completed;
+    summary->total_products_failed = g_metrics.total_products_failed;
+    summary->scheduler = g_metrics.scheduler;
+
+    for (int i = 0; i < METRICS_STATION_COUNT; ++i) {
+        summary->stations[i] = g_metrics.stations[i];
+    }
+
+    struct timespec current_time;
+    metrics_get_timestamp(&current_time);
+    summary->total_runtime_ms = (int)metrics_time_diff_ms(&g_metrics.system_start_time, &current_time);
+    if (summary->total_runtime_ms < 0) {
+        summary->total_runtime_ms = 0;
+    }
+
+    int total_processing_time = 0;
+    for (int i = 0; i < METRICS_STATION_COUNT; ++i) {
+        total_processing_time += summary->stations[i].total_processing_time_ms;
+    }
+
+    if (summary->total_runtime_ms > 0) {
+        summary->throughput = (double)summary->total_products_completed * 1000.0 /
+                               summary->total_runtime_ms;
+        summary->utilization = (double)total_processing_time * 100.0 /
+                               (summary->total_runtime_ms * METRICS_STATION_COUNT);
+    } else {
+        summary->throughput = 0.0;
+        summary->utilization = 0.0;
+    }
+
+    METRICS_UNLOCK();
+}
+
+static void metrics_write_summary_stream(const metrics_summary_t *summary, FILE *stream) {
+    if (!summary || !stream) {
+        return;
+    }
+
+    const char *algorithm_name = summary->algorithm[0] ? summary->algorithm : "(desconocido)";
+
+    fprintf(stream, "\n=========================================\n");
+    fprintf(stream, " RESUMEN DE ALGORITMO: %s\n", algorithm_name);
+    fprintf(stream, "=========================================\n");
+    fprintf(stream, "Productos configurados: %d\n", summary->num_products);
+    fprintf(stream, "Modo de procesamiento: %s\n", summary->randomize_processing ? "ALEATORIO" : "DETERMINISTA");
+    fprintf(stream, "Productos creados: %d\n", summary->total_products_created);
+    fprintf(stream, "Productos completados: %d\n", summary->total_products_completed);
+    fprintf(stream, "Productos fallidos: %d\n", summary->total_products_failed);
+    fprintf(stream, "Tiempo total de ejecución: %d ms\n", summary->total_runtime_ms);
+    fprintf(stream, "Throughput del sistema: %.2f productos/segundo\n", summary->throughput);
+    fprintf(stream, "Utilización promedio de estaciones: %.1f%%\n", summary->utilization);
+
+    fprintf(stream, "\n--- Métricas del Scheduler ---\n");
+    fprintf(stream, "Productos programados: %d\n", summary->scheduler.total_products_scheduled);
+    fprintf(stream, "Cambios de contexto: %d\n", summary->scheduler.context_switches);
+    fprintf(stream, "Preempciones: %d\n", summary->scheduler.preemptions);
+    fprintf(stream, "Tiempo promedio de espera: %.2f ms\n", summary->scheduler.avg_wait_time_ms);
+    fprintf(stream, "Tiempo promedio de turnaround: %.2f ms\n", summary->scheduler.avg_turnaround_time_ms);
+
+    fprintf(stream, "\n--- Métricas por Estación ---\n");
+    for (int i = 0; i < METRICS_STATION_COUNT; ++i) {
+        const station_metrics_t *station = &summary->stations[i];
+        int min_time = (station->min_processing_time_ms == INT_MAX) ? 0 : station->min_processing_time_ms;
+        fprintf(stream, "Estación %d (%s)\n", station->station_id, station->name);
+        fprintf(stream, "  Productos procesados: %d\n", station->products_processed);
+        fprintf(stream, "  Tiempo total de procesamiento: %d ms\n", station->total_processing_time_ms);
+        fprintf(stream, "  Tiempo promedio: %.2f ms\n", station->avg_processing_time_ms);
+        fprintf(stream, "  Tiempo mínimo: %d ms\n", min_time);
+        fprintf(stream, "  Tiempo máximo: %d ms\n", station->max_processing_time_ms);
+    }
+
+    if (summary->sample_product_count > 0) {
+        fprintf(stream, "\n--- Productos destacados (primeros %d) ---\n", summary->sample_product_count);
+        for (int i = 0; i < summary->sample_product_count; ++i) {
+            const product_summary_t *product = &summary->sample_products[i];
+            fprintf(stream, "Producto %d\n", product->product_id);
+            fprintf(stream, "  Turnaround: %d ms\n", product->turnaround_time_ms);
+            fprintf(stream, "  Espera total: %d ms\n", product->total_wait_time_ms);
+            for (int station_id = 0; station_id < METRICS_STATION_COUNT; ++station_id) {
+                const product_station_summary_t *ps = &product->stations[station_id];
+                if (ps->process_time_ms == 0 && ps->wait_time_ms == 0 && ps->preemptions == 0) {
+                    continue;
+                }
+                const station_metrics_t *station = &summary->stations[station_id];
+                const char *station_name = station->name[0] ? station->name : "-";
+                fprintf(stream,
+                        "    Estación %d (%s): %d ms procesado, %d ms espera, %d preempciones\n",
+                        station_id, station_name, ps->process_time_ms, ps->wait_time_ms, ps->preemptions);
+            }
+        }
+    }
+    fprintf(stream, "=========================================\n\n");
+    fflush(stream);
+}
+
+void metrics_print_captured_summary(const metrics_summary_t *summary) {
+    metrics_write_summary_stream(summary, stdout);
+}
+
+void metrics_write_captured_summary(const metrics_summary_t *summary, FILE *stream) {
+    metrics_write_summary_stream(summary, stream);
+}
+
 // =============================================
 // FUNCIONES AUXILIARES
 // =============================================
@@ -410,7 +541,7 @@ void metrics_reset_all(void) {
     g_metrics.total_products_failed = 0;
     
     // Reiniciar métricas de estaciones
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < METRICS_STATION_COUNT; i++) {
         init_station_metrics(&g_metrics.stations[i], i);
     }
     

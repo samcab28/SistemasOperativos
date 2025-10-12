@@ -2,6 +2,7 @@
 #define METRICS_H
 
 #include "../core/product.h"
+#include <stdio.h>
 #include <time.h>
 
 // Configuración condicional para threading (futuro)
@@ -14,6 +15,9 @@
     #define METRICS_LOCK() // No-op para versión actual
     #define METRICS_UNLOCK() // No-op para versión actual
 #endif
+
+// Cantidad de estaciones soportadas por el sistema de métricas
+#define METRICS_STATION_COUNT 3
 
 // Tipos de eventos del sistema
 typedef enum {
@@ -46,6 +50,7 @@ typedef struct {
     int products_processed;
     int products_waiting;
     int total_processing_time_ms;
+    int completed_processing_time_ms;
     int total_idle_time_ms;
     
     // Estadísticas de tiempo
@@ -84,7 +89,7 @@ typedef struct {
     int total_products_failed;
     
     // Métricas por estación (3 estaciones)
-    station_metrics_t stations[3];
+    station_metrics_t stations[METRICS_STATION_COUNT];
     
     // Métricas del scheduler
     scheduler_metrics_t scheduler;
@@ -100,6 +105,37 @@ typedef struct {
     #endif
     
 } metrics_system_t;
+
+// Resumen resumido de producto para reportes diferidos
+typedef struct {
+    int wait_time_ms;
+    int process_time_ms;
+    int preemptions;
+} product_station_summary_t;
+
+typedef struct {
+    int product_id;
+    int turnaround_time_ms;
+    int total_wait_time_ms;
+    product_station_summary_t stations[METRICS_STATION_COUNT];
+} product_summary_t;
+
+// Resumen consolidado para reportes diferidos
+typedef struct {
+    char algorithm[32];
+    int num_products;
+    int randomize_processing;
+    int total_products_created;
+    int total_products_completed;
+    int total_products_failed;
+    int total_runtime_ms;
+    double throughput;
+    double utilization;
+    scheduler_metrics_t scheduler;
+    station_metrics_t stations[METRICS_STATION_COUNT];
+    int sample_product_count;
+    product_summary_t sample_products[3];
+} metrics_summary_t;
 
 // =============================================
 // FUNCIONES PRINCIPALES DE LA API
@@ -122,12 +158,12 @@ void metrics_record_event(event_type_t type, int product_id, int station_id);
 void metrics_product_created(int product_id);
 void metrics_product_queued(int product_id);
 void metrics_product_processing_start(int product_id, int station_id);
-void metrics_product_processing_end(int product_id, int station_id);
+void metrics_product_processing_end(product_t *product, int station_id, int completed);
 void metrics_product_completed(int product_id);
 
 // Funciones específicas para estaciones
 void metrics_station_start_processing(int station_id, int product_id);
-void metrics_station_end_processing(int station_id, int product_id);
+void metrics_station_end_processing(int station_id, product_t *product, int completed);
 void metrics_station_idle_start(int station_id);
 void metrics_station_idle_end(int station_id);
 
@@ -173,6 +209,11 @@ void metrics_print_scheduler_stats(void);
 
 // Imprimir métricas globales del sistema
 void metrics_print_system_stats(void);
+
+// Capturar y presentar resúmenes diferidos
+void metrics_capture_summary(metrics_summary_t *summary);
+void metrics_print_captured_summary(const metrics_summary_t *summary);
+void metrics_write_captured_summary(const metrics_summary_t *summary, FILE *stream);
 
 // =============================================
 // FUNCIONES AUXILIARES
