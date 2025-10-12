@@ -378,7 +378,7 @@ int station_process_product(station_t *station, product_t *product) {
     get_current_time(&end_time);
 
     record_station_exit(product, station->id);
-    metrics_station_end_processing(station->id, product->id);
+    metrics_station_end_processing(station->id, product, !preempted);
 
     long processing_time = time_diff_ms(&station->processing_start_time, &end_time);
 

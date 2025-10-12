@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include <unistd.h>
 #include "patterns/factory.h"
 #include "core/product.h"
@@ -71,7 +72,8 @@ static int parse_station_times(const char *value, int output[NUM_STATIONS]) {
 
 // Función para ejecutar simulación con un algoritmo específico
 void run_simulation(scheduling_algorithm_t algorithm, int quantum_ms, int num_products,
-                    const int station_times[NUM_STATIONS], int randomize_processing) {
+                    const int station_times[NUM_STATIONS], int randomize_processing,
+                    metrics_summary_t *out_summary) {
     // Imprimir encabezado
     const char *alg_name = (algorithm == SCHED_FCFS) ? "FCFS" : "ROUND ROBIN";
     print_comparison_header(alg_name);
@@ -274,23 +276,46 @@ void run_simulation(scheduling_algorithm_t algorithm, int quantum_ms, int num_pr
     printf(" ESTADÍSTICAS DE LA SIMULACIÓN\n");
     printf("=========================================\n");
     
-    // Estadísticas del scheduler
-    scheduler_print_stats(scheduler);
-    
-    // Estadísticas por estación
-    printf("\n--- Estadísticas por Estación ---\n");
-    station_print_stats(cutting);
-    station_print_stats(assembly);
-    station_print_stats(packaging);
-    
-    // Métricas globales
-    printf("\n--- Métricas Globales del Sistema ---\n");
-    metrics_print_summary();
-    
-    // Mostrar algunos productos como ejemplo
-    printf("\n--- Métricas de Productos (primeros 3) ---\n");
-    for (int i = 0; i < 3 && i < num_products; i++) {
-        print_product_metrics(products[i]);
+    if (out_summary) {
+        metrics_capture_summary(out_summary);
+        strncpy(out_summary->algorithm, alg_name, sizeof(out_summary->algorithm) - 1);
+        out_summary->algorithm[sizeof(out_summary->algorithm) - 1] = '\0';
+        out_summary->num_products = num_products;
+        out_summary->randomize_processing = randomize_processing;
+        int sample_count = num_products < 3 ? num_products : 3;
+        out_summary->sample_product_count = sample_count;
+        for (int i = 0; i < sample_count; ++i) {
+            const product_t *product = products[i];
+            product_summary_t *snapshot = &out_summary->sample_products[i];
+            snapshot->product_id = product ? product->id : -1;
+            if (!product || !product->metrics) {
+                continue;
+            }
+
+            const product_metrics_t *metrics = product->metrics;
+            snapshot->turnaround_time_ms = metrics->turnaround_time_ms;
+            snapshot->total_wait_time_ms = metrics->total_wait_time_ms;
+            for (int station_id = 0; station_id < METRICS_STATION_COUNT; ++station_id) {
+                snapshot->stations[station_id].process_time_ms =
+                    metrics->station_metrics[station_id].process_time_ms;
+                snapshot->stations[station_id].wait_time_ms =
+                    metrics->station_metrics[station_id].wait_time_ms;
+                snapshot->stations[station_id].preemptions =
+                    metrics->station_metrics[station_id].preemptions;
+            }
+        }
+    } else {
+        scheduler_print_stats(scheduler);
+        printf("\n--- Estadísticas por Estación ---\n");
+        station_print_stats(cutting);
+        station_print_stats(assembly);
+        station_print_stats(packaging);
+        printf("\n--- Métricas Globales del Sistema ---\n");
+        metrics_print_summary();
+        printf("\n--- Métricas de Productos (primeros 3) ---\n");
+        for (int i = 0; i < 3 && i < num_products; i++) {
+            print_product_metrics(products[i]);
+        }
     }
 
     // ========================================
@@ -350,14 +375,20 @@ int main(int argc, char *argv[]) {
     
     // Procesar argumentos de línea de comandos
     int num_products = 10;
-    int run_both = 1; // Por defecto ejecutar ambos algoritmos
     int randomize_processing = 0;
+    int run_fcfs = 1;
+    int run_rr = 1;
     int rr_quantum_ms = DEFAULT_RR_QUANTUM;
     int station_times[NUM_STATIONS] = {
         DEFAULT_TIME_CUTTING,
         DEFAULT_TIME_ASSEMBLY,
         DEFAULT_TIME_PACKAGING
     };
+
+    metrics_summary_t summary_fcfs;
+    metrics_summary_t summary_rr;
+    int summary_fcfs_valid = 0;
+    int summary_rr_valid = 0;
 
     for (int i = 1; i < argc; ++i) {
         const char *arg = argv[i];
@@ -369,6 +400,56 @@ int main(int argc, char *argv[]) {
 
         if (strcmp(arg, "--deterministic") == 0) {
             randomize_processing = 0;
+            continue;
+        }
+
+        if (strncmp(arg, "--algorithm=", 12) == 0) {
+            char buffer[64];
+            strncpy(buffer, arg + 12, sizeof(buffer) - 1);
+            buffer[sizeof(buffer) - 1] = '\0';
+
+            run_fcfs = 0;
+            run_rr = 0;
+
+            char *token = strtok(buffer, ",");
+            while (token) {
+                while (*token == ' ') token++;
+                size_t token_len = strlen(token);
+                while (token_len > 0 && token[token_len - 1] == ' ') {
+                    token[token_len - 1] = '\0';
+                    token_len--;
+                }
+
+                if (token_len == 0) {
+                    printf("Algoritmo vacío en --algorithm\n");
+                    return 1;
+                }
+
+                for (char *p = token; *p; ++p) {
+                    *p = (char)tolower((unsigned char)*p);
+                }
+
+                if (strcmp(token, "fcfs") == 0) {
+                    run_fcfs = 1;
+                } else if (strcmp(token, "rr") == 0 || strcmp(token, "roundrobin") == 0 || strcmp(token, "round-robin") == 0) {
+                    run_rr = 1;
+                } else if (strcmp(token, "both") == 0) {
+                    run_fcfs = 1;
+                    run_rr = 1;
+                } else if (strcmp(token, "none") == 0) {
+                    // Ignorar 'none' explícito, siempre que otro token habilite algo
+                } else {
+                    printf("Algoritmo desconocido en --algorithm: %s\n", token);
+                    return 1;
+                }
+
+                token = strtok(NULL, ",");
+            }
+
+            if (!run_fcfs && !run_rr) {
+                printf("Debe seleccionar al menos un algoritmo en --algorithm (fcfs, rr, ambos)\n");
+                return 1;
+            }
             continue;
         }
 
@@ -395,6 +476,17 @@ int main(int argc, char *argv[]) {
             continue;
         }
 
+        if (strncmp(arg, "--products=", 11) == 0) {
+            char *endptr = NULL;
+            long parsed_products = strtol(arg + 11, &endptr, 10);
+            if (*endptr != '\0' || parsed_products < 1 || parsed_products > 100) {
+                printf("Formato inválido para --products. Use --products=valor (1-100)\n");
+                return 1;
+            }
+            num_products = (int)parsed_products;
+            continue;
+        }
+
         char *endptr = NULL;
         long value = strtol(arg, &endptr, 10);
         if (*endptr == '\0') {
@@ -410,11 +502,29 @@ int main(int argc, char *argv[]) {
         return 1;
     }
     
+    if (!run_fcfs && !run_rr) {
+        SYSTEM_INFO("No se seleccionó algoritmo; se ejecutarán FCFS y Round Robin por defecto");
+        run_fcfs = 1;
+        run_rr = 1;
+    }
+
     SYSTEM_INFO("Configuración solicitada: productos=%d, tiempos=%d/%d/%d ms, modo=%s",
                 num_products,
                 station_times[0], station_times[1], station_times[2],
                 randomize_processing ? "aleatorio" : "determinista");
     SYSTEM_INFO("Quantum Round Robin: %d ms", rr_quantum_ms);
+
+    char algorithm_summary[32] = "";
+    if (run_fcfs) {
+        strncat(algorithm_summary, "FCFS", sizeof(algorithm_summary) - strlen(algorithm_summary) - 1);
+    }
+    if (run_rr) {
+        if (strlen(algorithm_summary) > 0) {
+            strncat(algorithm_summary, ", ", sizeof(algorithm_summary) - strlen(algorithm_summary) - 1);
+        }
+        strncat(algorithm_summary, "Round Robin", sizeof(algorithm_summary) - strlen(algorithm_summary) - 1);
+    }
+    SYSTEM_INFO("Algoritmos seleccionados: %s", algorithm_summary);
 
     // ========================================
     // Inicializar subsistemas
@@ -443,26 +553,47 @@ int main(int argc, char *argv[]) {
     // ========================================
     // Ejecutar simulaciones
     // ========================================
-    if (run_both) {
-        // Prueba 1: FCFS
+    int executed_fcfs = 0;
+    int executed_rr = 0;
+
+    if (run_fcfs) {
         SYSTEM_INFO("Iniciando simulación con FCFS...");
-        run_simulation(SCHED_FCFS, 0, num_products, station_times, randomize_processing);
-        
-        // Pausa entre simulaciones
-        printf("\nEsperando 3 segundos antes de la siguiente simulación...\n");
-        sleep(3);
-        
-        // Resetear métricas
-        metrics_reset_all();
-        logger_reset_stats();
-        
-        // Prueba 2: Round Robin
+        run_simulation(SCHED_FCFS, 0, num_products, station_times, randomize_processing,
+                       &summary_fcfs);
+        executed_fcfs = 1;
+        summary_fcfs_valid = 1;
+    }
+
+    if (run_rr) {
+        if (executed_fcfs) {
+            printf("\nEsperando 3 segundos antes de la siguiente simulación...\n");
+            sleep(3);
+            metrics_reset_all();
+            logger_reset_stats();
+        }
         SYSTEM_INFO("Iniciando simulación con Round Robin...");
-        run_simulation(SCHED_ROUND_ROBIN, rr_quantum_ms, num_products, station_times, randomize_processing);
-        
-        // ========================================
-        // Comparación de algoritmos
-        // ========================================
+        run_simulation(SCHED_ROUND_ROBIN, rr_quantum_ms, num_products, station_times,
+                       randomize_processing, &summary_rr);
+        executed_rr = 1;
+        summary_rr_valid = 1;
+    }
+
+    FILE *results_file = fopen("results.log", "a");
+    if (!results_file) {
+        SYSTEM_ERROR("No se pudo abrir 'results.log' para escritura. Resultados solo en consola.");
+    }
+
+    if (summary_fcfs_valid) {
+        metrics_print_captured_summary(&summary_fcfs);
+        metrics_write_captured_summary(&summary_fcfs, results_file);
+    }
+
+    if (summary_rr_valid) {
+        metrics_print_captured_summary(&summary_rr);
+        metrics_write_captured_summary(&summary_rr, results_file);
+    }
+
+    if (summary_fcfs_valid && summary_rr_valid) {
         printf("\n");
         printf("================================================\n");
         printf(" COMPARACIÓN DE ALGORITMOS\n");
@@ -484,9 +615,34 @@ int main(int argc, char *argv[]) {
         printf(" - Más equitativo en tiempo de CPU\n");
         printf(" - Overhead adicional por cambios de contexto\n");
         printf("\n");
-    } else {
-        // Ejecutar solo uno (por defecto FCFS)
-        run_simulation(SCHED_FCFS, 0, num_products, station_times, randomize_processing);
+
+        if (results_file) {
+            fprintf(results_file, "\n================================================\n");
+            fprintf(results_file, " COMPARACIÓN DE ALGORITMOS\n");
+            fprintf(results_file, "================================================\n");
+            fprintf(results_file, "\nPara comparar resultados detallados, revise:\n");
+            fprintf(results_file, " - Las estadísticas mostradas arriba\n");
+            fprintf(results_file, " - El archivo 'simulador.log'\n");
+            fprintf(results_file, " - Los tiempos de turnaround y espera\n");
+            fprintf(results_file, "\nObservaciones esperadas:\n");
+            fprintf(results_file, " FCFS:\n");
+            fprintf(results_file, " - Sin context switches\n");
+            fprintf(results_file, " - Sin preempciones\n");
+            fprintf(results_file, " - Orden estricto de llegada\n");
+            fprintf(results_file, " - Puede tener mayor variación en tiempos de espera\n");
+            fprintf(results_file, "\n");
+            fprintf(results_file, " Round Robin:\n");
+            fprintf(results_file, " - Múltiples context switches\n");
+            fprintf(results_file, " - Preempciones cuando expira quantum\n");
+            fprintf(results_file, " - Más equitativo en tiempo de CPU\n");
+            fprintf(results_file, " - Overhead adicional por cambios de contexto\n");
+            fprintf(results_file, "\n");
+            fflush(results_file);
+        }
+    }
+
+    if (results_file) {
+        fclose(results_file);
     }
     
     // ========================================
