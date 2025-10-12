@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 #include "patterns/factory.h"
 #include "core/product.h"
@@ -17,8 +18,60 @@ void print_comparison_header(const char *algorithm) {
     printf("================================================\n\n");
 }
 
+#define DEFAULT_TIME_CUTTING   2000
+#define DEFAULT_TIME_ASSEMBLY  2500
+#define DEFAULT_TIME_PACKAGING 4000
+#define DEFAULT_RR_QUANTUM     500
+
+#define NUM_STATIONS 3
+
+static int parse_station_times(const char *value, int output[NUM_STATIONS]) {
+    if (!value || !output) {
+        return 0;
+    }
+
+    char buffer[128];
+    strncpy(buffer, value, sizeof(buffer) - 1);
+    buffer[sizeof(buffer) - 1] = '\0';
+
+    char *cursor = buffer;
+    for (int i = 0; i < NUM_STATIONS; ++i) {
+        while (*cursor == ' ') {
+            cursor++;
+        }
+
+        if (*cursor == '\0') {
+            return 0;
+        }
+
+        char *endptr = NULL;
+        long parsed = strtol(cursor, &endptr, 10);
+        if (endptr == cursor || parsed <= 0) {
+            return 0;
+        }
+
+        output[i] = (int)parsed;
+
+        while (*endptr == ' ') {
+            endptr++;
+        }
+
+        if (i < NUM_STATIONS - 1) {
+            if (*endptr != ',') {
+                return 0;
+            }
+            cursor = endptr + 1;
+        } else if (*endptr != '\0') {
+            return 0;
+        }
+    }
+
+    return 1;
+}
+
 // Función para ejecutar simulación con un algoritmo específico
-void run_simulation(scheduling_algorithm_t algorithm, int quantum_ms, int num_products) {
+void run_simulation(scheduling_algorithm_t algorithm, int quantum_ms, int num_products,
+                    const int station_times[NUM_STATIONS], int randomize_processing) {
     // Imprimir encabezado
     const char *alg_name = (algorithm == SCHED_FCFS) ? "FCFS" : "ROUND ROBIN";
     print_comparison_header(alg_name);
@@ -44,21 +97,35 @@ void run_simulation(scheduling_algorithm_t algorithm, int quantum_ms, int num_pr
     // PASO 2: Crear estaciones como hilos
     // ========================================
     SYSTEM_INFO("Creando estaciones de trabajo...");
+    SYSTEM_INFO("Tiempos configurados - Corte: %d ms, Ensamblaje: %d ms, Empaque: %d ms (%s)",
+                station_times[0], station_times[1], station_times[2],
+                randomize_processing ? "modo aleatorio" : "modo determinista");
     
-    // Estación 1: Corte (2 segundos)
-    station_t *cutting = create_station(STATION_TYPE_CUTTING, "Corte", 2000);
+    // Estación 1: Corte
+    station_t *cutting = create_station(STATION_TYPE_CUTTING, "Corte", station_times[0]);
     station_set_input_queue(cutting, queue_cutting);
     station_set_output_queue(cutting, queue_assembly);
     
-    // Estación 2: Ensamblaje (3 segundos)
-    station_t *assembly = create_station(STATION_TYPE_ASSEMBLY, "Ensamblaje", 3000);
+    // Estación 2: Ensamblaje
+    station_t *assembly = create_station(STATION_TYPE_ASSEMBLY, "Ensamblaje", station_times[1]);
     station_set_input_queue(assembly, queue_assembly);
     station_set_output_queue(assembly, queue_packaging);
     
-    // Estación 3: Empaque (1 segundo)
-    station_t *packaging = create_station(STATION_TYPE_PACKAGING, "Empaque", 1000);
+    // Estación 3: Empaque
+    station_t *packaging = create_station(STATION_TYPE_PACKAGING, "Empaque", station_times[2]);
     station_set_input_queue(packaging, queue_packaging);
     station_set_output_queue(packaging, queue_output);
+
+    // Configurar variaciones
+    if (randomize_processing) {
+        station_set_processing_variance(cutting, station_times[0] / 4);
+        station_set_processing_variance(assembly, station_times[1] / 4);
+        station_set_processing_variance(packaging, station_times[2] / 4);
+    } else {
+        station_set_processing_variance(cutting, 0);
+        station_set_processing_variance(assembly, 0);
+        station_set_processing_variance(packaging, 0);
+    }
     
     // Configurar Chain of Responsibility
     station_set_next(cutting, assembly);
@@ -284,15 +351,71 @@ int main(int argc, char *argv[]) {
     // Procesar argumentos de línea de comandos
     int num_products = 10;
     int run_both = 1; // Por defecto ejecutar ambos algoritmos
-    
-    if (argc > 1) {
-        num_products = atoi(argv[1]);
-        if (num_products < 1 || num_products > 100) {
-            printf("Número de productos debe estar entre 1 y 100\n");
-            num_products = 10;
+    int randomize_processing = 0;
+    int rr_quantum_ms = DEFAULT_RR_QUANTUM;
+    int station_times[NUM_STATIONS] = {
+        DEFAULT_TIME_CUTTING,
+        DEFAULT_TIME_ASSEMBLY,
+        DEFAULT_TIME_PACKAGING
+    };
+
+    for (int i = 1; i < argc; ++i) {
+        const char *arg = argv[i];
+
+        if (strcmp(arg, "--random") == 0 || strcmp(arg, "--randomize") == 0) {
+            randomize_processing = 1;
+            continue;
         }
+
+        if (strcmp(arg, "--deterministic") == 0) {
+            randomize_processing = 0;
+            continue;
+        }
+
+        if (strncmp(arg, "--times=", 8) == 0) {
+            int parsed[NUM_STATIONS];
+            if (!parse_station_times(arg + 8, parsed)) {
+                printf("Formato inválido para --times. Use --times=t1,t2,t3\n");
+                return 1;
+            }
+            for (int j = 0; j < NUM_STATIONS; ++j) {
+                station_times[j] = parsed[j];
+            }
+            continue;
+        }
+
+        if (strncmp(arg, "--quantum=", 10) == 0) {
+            char *endptr = NULL;
+            long parsed_quantum = strtol(arg + 10, &endptr, 10);
+            if (*endptr != '\0' || parsed_quantum <= 0) {
+                printf("Formato inválido para --quantum. Use --quantum=valor_ms (>0)\n");
+                return 1;
+            }
+            rr_quantum_ms = (int)parsed_quantum;
+            continue;
+        }
+
+        char *endptr = NULL;
+        long value = strtol(arg, &endptr, 10);
+        if (*endptr == '\0') {
+            if (value < 1 || value > 100) {
+                printf("Número de productos debe estar entre 1 y 100\n");
+                return 1;
+            }
+            num_products = (int)value;
+            continue;
+        }
+
+        printf("Argumento desconocido: %s\n", arg);
+        return 1;
     }
     
+    SYSTEM_INFO("Configuración solicitada: productos=%d, tiempos=%d/%d/%d ms, modo=%s",
+                num_products,
+                station_times[0], station_times[1], station_times[2],
+                randomize_processing ? "aleatorio" : "determinista");
+    SYSTEM_INFO("Quantum Round Robin: %d ms", rr_quantum_ms);
+
     // ========================================
     // Inicializar subsistemas
     // ========================================
@@ -323,7 +446,7 @@ int main(int argc, char *argv[]) {
     if (run_both) {
         // Prueba 1: FCFS
         SYSTEM_INFO("Iniciando simulación con FCFS...");
-        run_simulation(SCHED_FCFS, 0, num_products);
+        run_simulation(SCHED_FCFS, 0, num_products, station_times, randomize_processing);
         
         // Pausa entre simulaciones
         printf("\nEsperando 3 segundos antes de la siguiente simulación...\n");
@@ -335,7 +458,7 @@ int main(int argc, char *argv[]) {
         
         // Prueba 2: Round Robin
         SYSTEM_INFO("Iniciando simulación con Round Robin...");
-        run_simulation(SCHED_ROUND_ROBIN, 2000, num_products);
+        run_simulation(SCHED_ROUND_ROBIN, rr_quantum_ms, num_products, station_times, randomize_processing);
         
         // ========================================
         // Comparación de algoritmos
@@ -363,7 +486,7 @@ int main(int argc, char *argv[]) {
         printf("\n");
     } else {
         // Ejecutar solo uno (por defecto FCFS)
-        run_simulation(SCHED_FCFS, 0, num_products);
+        run_simulation(SCHED_FCFS, 0, num_products, station_times, randomize_processing);
     }
     
     // ========================================

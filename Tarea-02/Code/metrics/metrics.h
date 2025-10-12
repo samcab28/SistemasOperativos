@@ -135,6 +135,14 @@ void metrics_station_idle_end(int station_id);
 void metrics_scheduler_context_switch(int old_product_id, int new_product_id);
 void metrics_scheduler_preemption(int product_id);
 
+// Actualizar métricas agregadas del scheduler
+void metrics_scheduler_update(int total_scheduled,
+                              int total_completed,
+                              int context_switches,
+                              int preemptions,
+                              double avg_wait_ms,
+                              double avg_turnaround_ms);
+
 // =============================================
 // FUNCIONES DE CONSULTA Y ESTADÍSTICAS
 // =============================================

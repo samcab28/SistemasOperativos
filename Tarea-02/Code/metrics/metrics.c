@@ -256,6 +256,24 @@ void metrics_scheduler_preemption(int product_id) {
     metrics_record_event(EVENT_SCHEDULER_PREEMPTION, product_id, -1);
 }
 
+void metrics_scheduler_update(int total_scheduled,
+                              int total_completed,
+                              int context_switches,
+                              int preemptions,
+                              double avg_wait_ms,
+                              double avg_turnaround_ms) {
+    if (!g_metrics_initialized) return;
+
+    METRICS_LOCK();
+    g_metrics.scheduler.total_products_scheduled = total_scheduled;
+    g_metrics.scheduler.context_switches = context_switches;
+    g_metrics.scheduler.preemptions = preemptions;
+    g_metrics.scheduler.avg_wait_time_ms = avg_wait_ms;
+    g_metrics.scheduler.avg_turnaround_time_ms = avg_turnaround_ms;
+    g_metrics.total_products_completed = total_completed;
+    METRICS_UNLOCK();
+}
+
 // =============================================
 // FUNCIONES DE CONSULTA Y ESTADÍSTICAS
 // =============================================

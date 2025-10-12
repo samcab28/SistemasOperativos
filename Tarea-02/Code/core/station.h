@@ -6,6 +6,8 @@
 #include <pthread.h>
 #include <semaphore.h>
 
+struct scheduler; // Forward declaration
+
 // Forward declaration
 typedef struct station station_t;
 
@@ -54,6 +56,11 @@ struct station {
     
     // Chain of Responsibility
     station_t *next_station;
+    struct scheduler *scheduler;
+
+    // Preemption control
+    int preemption_requested;
+    product_t *preemption_target;
     
     // Estadísticas
     struct {
@@ -89,6 +96,12 @@ void station_set_next(station_t *station, station_t *next);
 // Configurar variación de tiempo de procesamiento
 void station_set_processing_variance(station_t *station, int variance_ms);
 
+// Asociar estación con el scheduler principal (propaga a la cadena)
+void station_set_scheduler(station_t *station, struct scheduler *scheduler);
+
+// Solicitar preempción del producto actual (Round Robin)
+void station_request_preemption(station_t *station, product_t *product);
+
 // =============================================
 // FUNCIONES DE CONTROL DEL HILO
 // =============================================
@@ -114,13 +127,10 @@ void *station_worker_thread(void *arg);
 // =============================================
 
 // Procesar un producto (llamada interna por el hilo)
-void station_process_product(station_t *station, product_t *product);
+int station_process_product(station_t *station, product_t *product);
 
 // Enviar producto a la siguiente estación
 void station_send_to_next(station_t *station, product_t *product);
-
-// Simular tiempo de procesamiento con variación
-void station_simulate_processing(const station_t *station);
 
 // =============================================
 // FUNCIONES DE ESTADO Y ESTADÍSTICAS
