@@ -1,6 +1,7 @@
 #include "queue.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <errno.h>
 
 void queue_init(queue_t *q) {
     q->head = q->tail = NULL;
@@ -25,11 +26,32 @@ product_t* queue_pop(queue_t *q) {
     node_t *n = q->head;
     if (!n) {
         pthread_mutex_unlock(&q->lock);
+        sem_post(&q->items);
         return NULL;
     }
     q->head = n->next;
     if (!q->head) q->tail = NULL;
     pthread_mutex_unlock(&q->lock);
+    product_t *p = n->prod;
+    free(n);
+    return p;
+}
+
+product_t* queue_try_pop(queue_t *q) {
+    if (sem_trywait(&q->items) != 0) {
+        return NULL;
+    }
+
+    pthread_mutex_lock(&q->lock);
+    node_t *n = q->head;
+    if (!n) {
+        pthread_mutex_unlock(&q->lock);
+        return NULL;
+    }
+    q->head = n->next;
+    if (!q->head) q->tail = NULL;
+    pthread_mutex_unlock(&q->lock);
+
     product_t *p = n->prod;
     free(n);
     return p;

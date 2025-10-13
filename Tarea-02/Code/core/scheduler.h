@@ -1,11 +1,20 @@
 #ifndef SCHEDULER_H
 #define SCHEDULER_H
 
+#include <time.h>
 #include "product.h"
 #include "queue.h"
 #include "station.h"
 #include <pthread.h>
 #include <semaphore.h>
+
+#define SCHEDULER_MAX_ACTIVE_SLICES 256
+
+typedef struct {
+    product_t *product;
+    struct timespec start_time;
+    int preemption_requested;
+} rr_active_slice_t;
 
 // Forward declarations
 typedef struct scheduler scheduler_t;
@@ -58,9 +67,6 @@ struct scheduler {
     queue_t *ready_queue;        // Productos listos para procesar
     queue_t *waiting_queue;      // Productos esperando (futuro)
     
-    // Producto actualmente siendo despachado
-    product_t *current_product;
-    
     // Primera estación de la línea
     station_t *first_station;
     
@@ -79,16 +85,11 @@ struct scheduler {
         product_t *last_dispatched_product;
     } stats;
     
-    // Control de quantum (Round Robin)
+    // Estado en tiempo real para Round Robin
     struct {
-        struct timespec quantum_start_time;
-        int quantum_expired;
-        struct timespec quantum_deadline;
-        int waiting_for_event;
-        int event_pending;
-        int event_type;
-        pthread_cond_t cond;
-    } quantum_control;
+        rr_active_slice_t slices[SCHEDULER_MAX_ACTIVE_SLICES];
+        int count;
+    } rr_runtime;
 };
 
 // =============================================
@@ -162,6 +163,9 @@ void scheduler_add_batch(scheduler_t *scheduler, product_t **products, int count
 // Reencolar producto preemptado sin contar como nuevo scheduling
 void scheduler_requeue_preempted_product(scheduler_t *scheduler, product_t *product);
 
+// Notificar comienzo de procesamiento efectivo
+void scheduler_notify_execution_start(scheduler_t *scheduler, product_t *product);
+
 // Notificar al scheduler que el producto terminó su porción (preemptado o completado)
 void scheduler_notify_slice_end(scheduler_t *scheduler, product_t *product, int was_preempted);
 
@@ -194,12 +198,6 @@ product_t *scheduler_rr_select_next(scheduler_t *scheduler);
 
 // Iniciar quantum para producto
 void scheduler_rr_start_quantum(scheduler_t *scheduler, product_t *product);
-
-// Verificar si el quantum expiró
-int scheduler_rr_is_quantum_expired(scheduler_t *scheduler);
-
-// Manejar expiración de quantum (preemption)
-void scheduler_rr_handle_quantum_expiration(scheduler_t *scheduler);
 
 // Procesar con Round Robin
 void scheduler_rr_process(scheduler_t *scheduler);

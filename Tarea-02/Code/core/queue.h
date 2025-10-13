@@ -26,6 +26,9 @@ void queue_push(queue_t *q, product_t *p);
 /* Pop thread-safe (bloqueante) */
 product_t* queue_pop(queue_t *q);
 
+/* Pop no bloqueante: devuelve NULL si no hay elementos */
+product_t* queue_try_pop(queue_t *q);
+
 /* Vaciar cola y liberar nodos (no libera product_t) */
 void queue_destroy(queue_t *q);
 

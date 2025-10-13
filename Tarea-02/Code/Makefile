@@ -63,7 +63,7 @@ metrics/logger.o: metrics/logger.c metrics/logger.h
 
 # Limpiar archivos compilados
 clean:
-	rm -f *.o core/*.o patterns/*.o metrics/*.o utils/*.o simulador simulador.log
+	rm -f *.o core/*.o patterns/*.o metrics/*.o utils/*.o simulador simulador.log results.log
 	@echo "✓ Limpieza completada"
 
 # Limpiar solo archivos de log

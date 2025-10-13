@@ -319,6 +319,10 @@ int station_process_product(station_t *station, product_t *product) {
     record_station_entry(product, station->id);
     metrics_station_start_processing(station->id, product->id);
     set_product_state(product, STATE_PROCESSING);
+
+    if (station->scheduler) {
+        scheduler_notify_execution_start(station->scheduler, product);
+    }
     
     STATION_INFO("'%s' procesando Producto %d...", station->name, product->id);
     
