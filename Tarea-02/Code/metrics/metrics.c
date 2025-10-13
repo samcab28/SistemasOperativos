@@ -223,6 +223,9 @@ void metrics_product_completed(int product_id) {
     
     METRICS_LOCK();
     g_metrics.total_products_completed++;
+    if (g_metrics.completion_order_count < METRICS_COMPLETION_ORDER_MAX) {
+        g_metrics.completion_order[g_metrics.completion_order_count++] = product_id;
+    }
     METRICS_UNLOCK();
     
     metrics_record_event(EVENT_PRODUCT_COMPLETED, product_id, -1);
@@ -416,6 +419,14 @@ void metrics_capture_summary(metrics_summary_t *summary) {
     summary->total_products_completed = g_metrics.total_products_completed;
     summary->total_products_failed = g_metrics.total_products_failed;
     summary->scheduler = g_metrics.scheduler;
+    summary->completion_order_count = g_metrics.completion_order_count;
+    int copy_count = summary->completion_order_count;
+    if (copy_count > METRICS_COMPLETION_ORDER_MAX) {
+        copy_count = METRICS_COMPLETION_ORDER_MAX;
+    }
+    for (int i = 0; i < copy_count; ++i) {
+        summary->completion_order[i] = g_metrics.completion_order[i];
+    }
 
     for (int i = 0; i < METRICS_STATION_COUNT; ++i) {
         summary->stations[i] = g_metrics.stations[i];
@@ -484,13 +495,27 @@ static void metrics_write_summary_stream(const metrics_summary_t *summary, FILE 
         fprintf(stream, "  Tiempo máximo: %d ms\n", station->max_processing_time_ms);
     }
 
+    if (summary->completion_order_count > 0) {
+        int order_count = summary->completion_order_count;
+        if (order_count > METRICS_COMPLETION_ORDER_MAX) {
+            order_count = METRICS_COMPLETION_ORDER_MAX;
+        }
+        fprintf(stream, "\n--- Orden final de procesamiento ---\n");
+        for (int i = 0; i < order_count; ++i) {
+            fprintf(stream, "%s%d", (i == 0) ? "" : " -> ", summary->completion_order[i]);
+        }
+        fprintf(stream, "\n");
+    }
+
     if (summary->sample_product_count > 0) {
         fprintf(stream, "\n--- Productos destacados (primeros %d) ---\n", summary->sample_product_count);
         for (int i = 0; i < summary->sample_product_count; ++i) {
             const product_summary_t *product = &summary->sample_products[i];
             fprintf(stream, "Producto %d\n", product->product_id);
+            fprintf(stream, "  Llegada: %d ms\n", product->arrival_time_ms);
             fprintf(stream, "  Turnaround: %d ms\n", product->turnaround_time_ms);
             fprintf(stream, "  Espera total: %d ms\n", product->total_wait_time_ms);
+            fprintf(stream, "  Finalización: %d ms\n", product->completion_time_ms);
             for (int station_id = 0; station_id < METRICS_STATION_COUNT; ++station_id) {
                 const product_station_summary_t *ps = &product->stations[station_id];
                 if (ps->process_time_ms == 0 && ps->wait_time_ms == 0 && ps->preemptions == 0) {
@@ -501,6 +526,9 @@ static void metrics_write_summary_stream(const metrics_summary_t *summary, FILE 
                 fprintf(stream,
                         "    Estación %d (%s): %d ms procesado, %d ms espera, %d preempciones\n",
                         station_id, station_name, ps->process_time_ms, ps->wait_time_ms, ps->preemptions);
+                fprintf(stream,
+                        "      Entrada: %d ms | Salida: %d ms\n",
+                        ps->entry_time_ms, ps->exit_time_ms);
             }
         }
     }
@@ -530,6 +558,22 @@ long metrics_time_diff_ms(const struct timespec *start, const struct timespec *e
     return (seconds * 1000) + (nanoseconds / 1000000);
 }
 
+void metrics_get_system_start_time(struct timespec *out_start) {
+    if (!out_start) {
+        return;
+    }
+
+    if (!g_metrics_initialized) {
+        out_start->tv_sec = 0;
+        out_start->tv_nsec = 0;
+        return;
+    }
+
+    METRICS_LOCK();
+    *out_start = g_metrics.system_start_time;
+    METRICS_UNLOCK();
+}
+
 void metrics_reset_all(void) {
     if (!g_metrics_initialized) return;
     
@@ -548,6 +592,10 @@ void metrics_reset_all(void) {
     // Reiniciar métricas del scheduler
     memset(&g_metrics.scheduler, 0, sizeof(scheduler_metrics_t));
     
+    // Reiniciar orden de finalización
+    memset(g_metrics.completion_order, 0, sizeof(g_metrics.completion_order));
+    g_metrics.completion_order_count = 0;
+
     // Vaciar buffer de eventos
     g_metrics.buffer_count = 0;
     

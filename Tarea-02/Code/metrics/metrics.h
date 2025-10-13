@@ -18,6 +18,7 @@
 
 // Cantidad de estaciones soportadas por el sistema de métricas
 #define METRICS_STATION_COUNT 3
+#define METRICS_COMPLETION_ORDER_MAX 2048
 
 // Tipos de eventos del sistema
 typedef enum {
@@ -93,6 +94,10 @@ typedef struct {
     
     // Métricas del scheduler
     scheduler_metrics_t scheduler;
+
+    // Orden de finalización
+    int completion_order[METRICS_COMPLETION_ORDER_MAX];
+    int completion_order_count;
     
     // Buffer de eventos (simple para ahora, thread-safe para futuro)
     metric_event_t *event_buffer;
@@ -111,10 +116,14 @@ typedef struct {
     int wait_time_ms;
     int process_time_ms;
     int preemptions;
+    int entry_time_ms;
+    int exit_time_ms;
 } product_station_summary_t;
 
 typedef struct {
     int product_id;
+    int arrival_time_ms;
+    int completion_time_ms;
     int turnaround_time_ms;
     int total_wait_time_ms;
     product_station_summary_t stations[METRICS_STATION_COUNT];
@@ -135,6 +144,8 @@ typedef struct {
     station_metrics_t stations[METRICS_STATION_COUNT];
     int sample_product_count;
     product_summary_t sample_products[3];
+    int completion_order_count;
+    int completion_order[METRICS_COMPLETION_ORDER_MAX];
 } metrics_summary_t;
 
 // =============================================
@@ -224,6 +235,9 @@ void metrics_get_timestamp(struct timespec *ts);
 
 // Calcular diferencia de tiempo en milisegundos
 long metrics_time_diff_ms(const struct timespec *start, const struct timespec *end);
+
+// Obtener tiempo de inicio del sistema de métricas
+void metrics_get_system_start_time(struct timespec *out_start);
 
 // Resetear todas las métricas
 void metrics_reset_all(void);
