@@ -284,6 +284,8 @@ void run_simulation(scheduling_algorithm_t algorithm, int quantum_ms, int num_pr
         out_summary->randomize_processing = randomize_processing;
         int sample_count = num_products < 3 ? num_products : 3;
         out_summary->sample_product_count = sample_count;
+        struct timespec system_start;
+        metrics_get_system_start_time(&system_start);
         for (int i = 0; i < sample_count; ++i) {
             const product_t *product = products[i];
             product_summary_t *snapshot = &out_summary->sample_products[i];
@@ -293,6 +295,19 @@ void run_simulation(scheduling_algorithm_t algorithm, int quantum_ms, int num_pr
             }
 
             const product_metrics_t *metrics = product->metrics;
+            snapshot->arrival_time_ms = (int)metrics_time_diff_ms(&system_start, &metrics->creation_time);
+            if (snapshot->arrival_time_ms < 0) {
+                snapshot->arrival_time_ms = 0;
+            }
+            if (metrics->completion_time.tv_sec != 0 || metrics->completion_time.tv_nsec != 0) {
+                snapshot->completion_time_ms =
+                    (int)metrics_time_diff_ms(&system_start, &metrics->completion_time);
+            } else {
+                snapshot->completion_time_ms = snapshot->arrival_time_ms + metrics->turnaround_time_ms;
+            }
+            if (snapshot->completion_time_ms < 0) {
+                snapshot->completion_time_ms = snapshot->arrival_time_ms + metrics->turnaround_time_ms;
+            }
             snapshot->turnaround_time_ms = metrics->turnaround_time_ms;
             snapshot->total_wait_time_ms = metrics->total_wait_time_ms;
             for (int station_id = 0; station_id < METRICS_STATION_COUNT; ++station_id) {
@@ -302,6 +317,22 @@ void run_simulation(scheduling_algorithm_t algorithm, int quantum_ms, int num_pr
                     metrics->station_metrics[station_id].wait_time_ms;
                 snapshot->stations[station_id].preemptions =
                     metrics->station_metrics[station_id].preemptions;
+                const struct timespec *entry_ts = &metrics->station_metrics[station_id].entry_time;
+                const struct timespec *exit_ts = &metrics->station_metrics[station_id].exit_time;
+                if (entry_ts->tv_sec != 0 || entry_ts->tv_nsec != 0) {
+                    snapshot->stations[station_id].entry_time_ms =
+                        (int)metrics_time_diff_ms(&system_start, entry_ts);
+                    if (snapshot->stations[station_id].entry_time_ms < 0) {
+                        snapshot->stations[station_id].entry_time_ms = 0;
+                    }
+                }
+                if (exit_ts->tv_sec != 0 || exit_ts->tv_nsec != 0) {
+                    snapshot->stations[station_id].exit_time_ms =
+                        (int)metrics_time_diff_ms(&system_start, exit_ts);
+                    if (snapshot->stations[station_id].exit_time_ms < 0) {
+                        snapshot->stations[station_id].exit_time_ms = 0;
+                    }
+                }
             }
         }
     } else {
