@@ -1,0 +1,1635 @@
+[19:56:17.199] INFO     [SYSTEM    ] Logger inicializado
+[19:56:17.200] INFO     [SYSTEM    ] Sistema de métricas inicializado
+[19:56:17.201] INFO     [SYSTEM    ] Iniciando simulación con FCFS...
+[19:56:17.201] INFO     [SYSTEM    ] Creando colas de comunicación entre estaciones...
+[19:56:17.202] INFO     [SYSTEM    ] Colas creadas exitosamente
+[19:56:17.202] INFO     [SYSTEM    ] Creando estaciones de trabajo...
+[19:56:17.202] INFO     [SYSTEM    ] Tiempos configurados - Corte: 1000 ms, Ensamblaje: 2000 ms, Empaque: 3000 ms (modo determinista)
+[19:56:17.203] INFO     [STATION   ] Estación 'Corte' creada (tiempo procesamiento: 1000 ms)
+[19:56:17.204] INFO     [STATION   ] Estación 'Ensamblaje' creada (tiempo procesamiento: 2000 ms)
+[19:56:17.204] INFO     [STATION   ] Estación 'Empaque' creada (tiempo procesamiento: 3000 ms)
+[19:56:17.204] INFO     [SYSTEM    ] Estaciones configuradas
+[19:56:17.205] INFO     [SYSTEM    ] Iniciando hilos de estaciones...
+[19:56:17.206] INFO     [STATION   ] Hilo iniciado para estación 'Corte'
+[19:56:17.206] INFO     [STATION   ] Worker thread iniciado para 'Corte'
+[19:56:17.207] INFO     [STATION   ] Worker thread iniciado para 'Ensamblaje'
+[19:56:17.208] INFO     [STATION   ] Hilo iniciado para estación 'Ensamblaje'
+[19:56:17.209] INFO     [STATION   ] Hilo iniciado para estación 'Empaque'
+[19:56:17.209] INFO     [SYSTEM    ] Todos los hilos de estaciones iniciados
+[19:56:17.210] INFO     [SYSTEM    ] Creando scheduler...
+[19:56:17.210] INFO     [STATION   ] Worker thread iniciado para 'Empaque'
+[19:56:17.211] INFO     [SCHEDULER ] Scheduler creado (algoritmo: FCFS, quantum: 0 ms)
+[19:56:17.211] INFO     [SCHEDULER ] Primera estación configurada: Corte
+[19:56:17.212] INFO     [SYSTEM    ] Creando 5 productos...
+[19:56:17.212] INFO     [FACTORY   ] Batch de 5 productos creado
+[19:56:17.213] INFO     [SYSTEM    ] Agregando productos al scheduler...
+[19:56:17.213] INFO     [SCHEDULER ] 5 productos agregados a la cola de listos
+[19:56:17.214] INFO     [SYSTEM    ] Iniciando scheduler...
+[19:56:17.215] INFO     [SCHEDULER ] Hilo del scheduler iniciado
+[19:56:17.215] INFO     [SCHEDULER ] Worker thread del scheduler iniciado
+[19:56:17.216] INFO     [SCHEDULER ] FCFS: Procesando Producto 0
+[19:56:17.216] INFO     [SCHEDULER ] Despachando Producto 0 a estación 'Corte'
+[19:56:17.217] INFO     [SYSTEM    ] Procesamiento en curso...
+[19:56:17.217] INFO     [STATION   ] 'Corte' recibió Producto 0
+[19:56:17.218] INFO     [SCHEDULER ] FCFS: Procesando Producto 1
+[19:56:17.218] INFO     [SCHEDULER ] Despachando Producto 1 a estación 'Corte'
+[19:56:17.219] INFO     [STATION   ] 'Corte' procesando Producto 0...
+[19:56:17.219] INFO     [SCHEDULER ] FCFS: Procesando Producto 2
+[19:56:17.220] INFO     [SCHEDULER ] Despachando Producto 2 a estación 'Corte'
+[19:56:17.220] INFO     [SCHEDULER ] FCFS: Procesando Producto 3
+[19:56:17.220] INFO     [SCHEDULER ] Despachando Producto 3 a estación 'Corte'
+[19:56:17.221] INFO     [SCHEDULER ] FCFS: Procesando Producto 4
+[19:56:17.221] INFO     [SCHEDULER ] Despachando Producto 4 a estación 'Corte'
+[19:56:18.224] INFO     [STATION   ] 'Corte' completó Producto 0 (tiempo: 1006 ms)
+[19:56:18.225] INFO     [STATION   ] 'Corte' recibió Producto 1
+[19:56:18.226] INFO     [SCHEDULER ] FCFS: Procesando Producto 0
+[19:56:18.226] INFO     [SCHEDULER ] Despachando Producto 0 a estación 'Ensamblaje'
+[19:56:18.226] INFO     [STATION   ] 'Corte' procesando Producto 1...
+[19:56:18.227] INFO     [STATION   ] 'Ensamblaje' recibió Producto 0
+[19:56:18.228] INFO     [STATION   ] 'Ensamblaje' procesando Producto 0...
+[19:56:19.232] INFO     [STATION   ] 'Corte' completó Producto 1 (tiempo: 1006 ms)
+[19:56:19.233] INFO     [SCHEDULER ] FCFS: Procesando Producto 1
+[19:56:19.233] INFO     [SCHEDULER ] Despachando Producto 1 a estación 'Ensamblaje'
+[19:56:19.233] INFO     [STATION   ] 'Corte' recibió Producto 2
+[19:56:19.234] INFO     [STATION   ] 'Corte' procesando Producto 2...
+[19:56:20.237] INFO     [STATION   ] 'Ensamblaje' completó Producto 0 (tiempo: 2009 ms)
+[19:56:20.238] INFO     [STATION   ] 'Ensamblaje' recibió Producto 1
+[19:56:20.239] INFO     [SCHEDULER ] FCFS: Procesando Producto 0
+[19:56:20.240] INFO     [SCHEDULER ] Despachando Producto 0 a estación 'Empaque'
+[19:56:20.240] INFO     [STATION   ] 'Ensamblaje' procesando Producto 1...
+[19:56:20.241] INFO     [STATION   ] 'Corte' completó Producto 2 (tiempo: 1004 ms)
+[19:56:20.241] INFO     [STATION   ] 'Empaque' recibió Producto 0
+[19:56:20.242] INFO     [SCHEDULER ] FCFS: Procesando Producto 2
+[19:56:20.242] INFO     [SCHEDULER ] Despachando Producto 2 a estación 'Ensamblaje'
+[19:56:20.243] INFO     [STATION   ] 'Empaque' procesando Producto 0...
+[19:56:20.244] INFO     [STATION   ] 'Corte' recibió Producto 3
+[19:56:20.244] INFO     [STATION   ] 'Corte' procesando Producto 3...
+[19:56:21.248] INFO     [STATION   ] 'Corte' completó Producto 3 (tiempo: 1003 ms)
+[19:56:21.249] INFO     [SCHEDULER ] FCFS: Procesando Producto 3
+[19:56:21.249] INFO     [SCHEDULER ] Despachando Producto 3 a estación 'Ensamblaje'
+[19:56:21.250] INFO     [STATION   ] 'Corte' recibió Producto 4
+[19:56:21.250] INFO     [STATION   ] 'Corte' procesando Producto 4...
+[19:56:22.250] INFO     [STATION   ] 'Ensamblaje' completó Producto 1 (tiempo: 2010 ms)
+[19:56:22.251] INFO     [SCHEDULER ] FCFS: Procesando Producto 1
+[19:56:22.251] INFO     [SCHEDULER ] Despachando Producto 1 a estación 'Empaque'
+[19:56:22.252] INFO     [STATION   ] 'Ensamblaje' recibió Producto 2
+[19:56:22.252] INFO     [STATION   ] 'Ensamblaje' procesando Producto 2...
+[19:56:22.254] INFO     [STATION   ] 'Corte' completó Producto 4 (tiempo: 1004 ms)
+[19:56:22.255] INFO     [SCHEDULER ] FCFS: Procesando Producto 4
+[19:56:22.256] INFO     [SCHEDULER ] Despachando Producto 4 a estación 'Ensamblaje'
+[19:56:23.255] INFO     [STATION   ] 'Empaque' completó Producto 0 (tiempo: 3013 ms)
+[19:56:23.256] INFO     [STATION   ] 'Empaque' recibió Producto 1
+[19:56:23.257] INFO     [STATION   ] 'Empaque' procesando Producto 1...
+[19:56:24.262] INFO     [STATION   ] 'Ensamblaje' completó Producto 2 (tiempo: 2009 ms)
+[19:56:24.263] INFO     [SCHEDULER ] FCFS: Procesando Producto 2
+[19:56:24.263] INFO     [SCHEDULER ] Despachando Producto 2 a estación 'Empaque'
+[19:56:24.264] INFO     [STATION   ] 'Ensamblaje' recibió Producto 3
+[19:56:24.264] INFO     [STATION   ] 'Ensamblaje' procesando Producto 3...
+[19:56:25.219] INFO     [SYSTEM    ] Progreso: 1/5 productos completados
+[19:56:26.271] INFO     [STATION   ] 'Empaque' completó Producto 1 (tiempo: 3014 ms)
+[19:56:26.272] INFO     [STATION   ] 'Empaque' recibió Producto 2
+[19:56:26.272] INFO     [STATION   ] 'Empaque' procesando Producto 2...
+[19:56:26.273] INFO     [STATION   ] 'Ensamblaje' completó Producto 3 (tiempo: 2008 ms)
+[19:56:26.274] INFO     [SCHEDULER ] FCFS: Procesando Producto 3
+[19:56:26.274] INFO     [SCHEDULER ] Despachando Producto 3 a estación 'Empaque'
+[19:56:26.275] INFO     [STATION   ] 'Ensamblaje' recibió Producto 4
+[19:56:26.275] INFO     [STATION   ] 'Ensamblaje' procesando Producto 4...
+[19:56:27.220] INFO     [SYSTEM    ] Progreso: 2/5 productos completados
+[19:56:28.284] INFO     [STATION   ] 'Ensamblaje' completó Producto 4 (tiempo: 2008 ms)
+[19:56:28.285] INFO     [SCHEDULER ] FCFS: Procesando Producto 4
+[19:56:28.285] INFO     [SCHEDULER ] Despachando Producto 4 a estación 'Empaque'
+[19:56:29.286] INFO     [STATION   ] 'Empaque' completó Producto 2 (tiempo: 3013 ms)
+[19:56:29.287] INFO     [STATION   ] 'Empaque' recibió Producto 3
+[19:56:29.287] INFO     [STATION   ] 'Empaque' procesando Producto 3...
+[19:56:31.221] INFO     [SYSTEM    ] Progreso: 3/5 productos completados
+[19:56:32.302] INFO     [STATION   ] 'Empaque' completó Producto 3 (tiempo: 3014 ms)
+[19:56:32.303] INFO     [STATION   ] 'Empaque' recibió Producto 4
+[19:56:32.303] INFO     [STATION   ] 'Empaque' procesando Producto 4...
+[19:56:33.222] INFO     [SYSTEM    ] Progreso: 4/5 productos completados
+[19:56:35.316] INFO     [STATION   ] 'Empaque' completó Producto 4 (tiempo: 3013 ms)
+[19:56:37.223] INFO     [SYSTEM    ] Progreso: 5/5 productos completados
+[19:56:37.224] INFO     [SYSTEM    ] Todos los productos completados!
+[19:56:37.224] INFO     [SYSTEM    ] Deteniendo hilos del sistema...
+[19:56:37.224] INFO     [SCHEDULER ] Deteniendo scheduler...
+[19:56:37.325] INFO     [SCHEDULER ] Worker thread del scheduler finalizado
+[19:56:37.326] INFO     [SCHEDULER ] Scheduler detenido
+[19:56:37.327] INFO     [STATION   ] Deteniendo hilo de 'Corte'...
+[19:56:37.327] INFO     [STATION   ] Worker thread finalizado para 'Corte'
+[19:56:37.328] INFO     [STATION   ] Hilo de 'Corte' detenido
+[19:56:37.328] INFO     [STATION   ] Deteniendo hilo de 'Ensamblaje'...
+[19:56:37.329] INFO     [STATION   ] Worker thread finalizado para 'Ensamblaje'
+[19:56:37.329] INFO     [STATION   ] Hilo de 'Ensamblaje' detenido
+[19:56:37.330] INFO     [STATION   ] Deteniendo hilo de 'Empaque'...
+[19:56:37.330] INFO     [STATION   ] Worker thread finalizado para 'Empaque'
+[19:56:37.331] INFO     [STATION   ] Hilo de 'Empaque' detenido
+[19:56:37.331] INFO     [SYSTEM    ] Todos los hilos detenidos
+[19:56:37.332] INFO     [SYSTEM    ] Liberando recursos...
+[19:56:37.332] INFO     [STATION   ] Destruyendo estación 'Corte'
+[19:56:37.333] INFO     [STATION   ] Destruyendo estación 'Ensamblaje'
+[19:56:37.333] INFO     [STATION   ] Destruyendo estación 'Empaque'
+[19:56:37.333] INFO     [SCHEDULER ] Destruyendo scheduler
+[19:56:37.334] INFO     [SYSTEM    ] Recursos liberados
+[19:56:40.335] INFO     [SYSTEM    ] Iniciando simulación con Round Robin...
+[19:56:40.336] INFO     [SYSTEM    ] Creando colas de comunicación entre estaciones...
+[19:56:40.336] INFO     [SYSTEM    ] Colas creadas exitosamente
+[19:56:40.337] INFO     [SYSTEM    ] Creando estaciones de trabajo...
+[19:56:40.338] INFO     [SYSTEM    ] Tiempos configurados - Corte: 1000 ms, Ensamblaje: 2000 ms, Empaque: 3000 ms (modo determinista)
+[19:56:40.338] INFO     [STATION   ] Estación 'Corte' creada (tiempo procesamiento: 1000 ms)
+[19:56:40.339] INFO     [STATION   ] Estación 'Ensamblaje' creada (tiempo procesamiento: 2000 ms)
+[19:56:40.339] INFO     [STATION   ] Estación 'Empaque' creada (tiempo procesamiento: 3000 ms)
+[19:56:40.339] INFO     [SYSTEM    ] Estaciones configuradas
+[19:56:40.340] INFO     [SYSTEM    ] Iniciando hilos de estaciones...
+[19:56:40.340] INFO     [STATION   ] Hilo iniciado para estación 'Corte'
+[19:56:40.341] INFO     [STATION   ] Worker thread iniciado para 'Corte'
+[19:56:40.341] INFO     [STATION   ] Hilo iniciado para estación 'Ensamblaje'
+[19:56:40.342] INFO     [STATION   ] Worker thread iniciado para 'Ensamblaje'
+[19:56:40.342] INFO     [STATION   ] Hilo iniciado para estación 'Empaque'
+[19:56:40.343] INFO     [SYSTEM    ] Todos los hilos de estaciones iniciados
+[19:56:40.343] INFO     [SYSTEM    ] Creando scheduler...
+[19:56:40.343] INFO     [SCHEDULER ] Scheduler creado (algoritmo: Round Robin, quantum: 1250 ms)
+[19:56:40.344] INFO     [SCHEDULER ] Primera estación configurada: Corte
+[19:56:40.344] INFO     [STATION   ] Worker thread iniciado para 'Empaque'
+[19:56:40.345] INFO     [SYSTEM    ] Creando 5 productos...
+[19:56:40.345] INFO     [FACTORY   ] Batch de 5 productos creado
+[19:56:40.346] INFO     [SYSTEM    ] Agregando productos al scheduler...
+[19:56:40.346] INFO     [SCHEDULER ] 5 productos agregados a la cola de listos
+[19:56:40.346] INFO     [SYSTEM    ] Iniciando scheduler...
+[19:56:40.347] INFO     [SCHEDULER ] Hilo del scheduler iniciado
+[19:56:40.348] INFO     [SCHEDULER ] Worker thread del scheduler iniciado
+[19:56:40.348] INFO     [SYSTEM    ] Procesamiento en curso...
+[19:56:40.349] INFO     [SCHEDULER ] Round Robin: Procesando Producto 0
+[19:56:40.349] INFO     [SCHEDULER ] Despachando Producto 0 a estación 'Corte'
+[19:56:40.350] INFO     [SCHEDULER ] Round Robin: Procesando Producto 1
+[19:56:40.350] INFO     [SCHEDULER ] Despachando Producto 1 a estación 'Corte'
+[19:56:40.350] INFO     [STATION   ] 'Corte' recibió Producto 0
+[19:56:40.351] INFO     [SCHEDULER ] Round Robin: Procesando Producto 2
+[19:56:40.352] INFO     [SCHEDULER ] Despachando Producto 2 a estación 'Corte'
+[19:56:40.352] INFO     [SCHEDULER ] Round Robin: Procesando Producto 3
+[19:56:40.353] INFO     [SCHEDULER ] Despachando Producto 3 a estación 'Corte'
+[19:56:40.353] INFO     [SCHEDULER ] Round Robin: Procesando Producto 4
+[19:56:40.354] INFO     [SCHEDULER ] Despachando Producto 4 a estación 'Corte'
+[19:56:40.355] INFO     [STATION   ] 'Corte' procesando Producto 0...
+[19:56:41.360] INFO     [STATION   ] 'Corte' completó Producto 0 (tiempo: 1008 ms)
+[19:56:41.360] INFO     [STATION   ] 'Corte' recibió Producto 1
+[19:56:41.361] INFO     [SCHEDULER ] Round Robin: Procesando Producto 0
+[19:56:41.361] INFO     [SCHEDULER ] Despachando Producto 0 a estación 'Ensamblaje'
+[19:56:41.362] INFO     [STATION   ] 'Corte' procesando Producto 1...
+[19:56:41.362] INFO     [STATION   ] 'Ensamblaje' recibió Producto 0
+[19:56:41.363] INFO     [STATION   ] 'Ensamblaje' procesando Producto 0...
+[19:56:42.366] INFO     [STATION   ] 'Corte' completó Producto 1 (tiempo: 1004 ms)
+[19:56:42.366] INFO     [STATION   ] 'Corte' recibió Producto 2
+[19:56:42.367] INFO     [STATION   ] 'Corte' procesando Producto 2...
+[19:56:42.369] INFO     [SCHEDULER ] Round Robin: Procesando Producto 1
+[19:56:42.369] INFO     [SCHEDULER ] Despachando Producto 1 a estación 'Ensamblaje'
+[19:56:42.614] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 0
+[19:56:42.618] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 0 (tiempo parcial: 1256 ms)
+[19:56:42.619] INFO     [STATION   ] 'Ensamblaje' recibió Producto 1
+[19:56:42.619] INFO     [STATION   ] 'Ensamblaje' procesando Producto 1...
+[19:56:42.620] INFO     [SCHEDULER ] Round Robin: Procesando Producto 0
+[19:56:42.621] INFO     [SCHEDULER ] Despachando Producto 0 a estación 'Ensamblaje'
+[19:56:43.371] INFO     [STATION   ] 'Corte' completó Producto 2 (tiempo: 1004 ms)
+[19:56:43.372] INFO     [STATION   ] 'Corte' recibió Producto 3
+[19:56:43.372] INFO     [STATION   ] 'Corte' procesando Producto 3...
+[19:56:43.373] INFO     [SCHEDULER ] Round Robin: Procesando Producto 2
+[19:56:43.373] INFO     [SCHEDULER ] Despachando Producto 2 a estación 'Ensamblaje'
+[19:56:43.871] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 1
+[19:56:43.874] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 1 (tiempo parcial: 1254 ms)
+[19:56:43.874] INFO     [STATION   ] 'Ensamblaje' recibió Producto 0
+[19:56:43.875] INFO     [STATION   ] 'Ensamblaje' procesando Producto 0...
+[19:56:43.877] INFO     [SCHEDULER ] Round Robin: Procesando Producto 1
+[19:56:43.878] INFO     [SCHEDULER ] Despachando Producto 1 a estación 'Ensamblaje'
+[19:56:44.377] INFO     [STATION   ] 'Corte' completó Producto 3 (tiempo: 1004 ms)
+[19:56:44.377] INFO     [STATION   ] 'Corte' recibió Producto 4
+[19:56:44.378] INFO     [STATION   ] 'Corte' procesando Producto 4...
+[19:56:44.381] INFO     [SCHEDULER ] Round Robin: Procesando Producto 3
+[19:56:44.381] INFO     [SCHEDULER ] Despachando Producto 3 a estación 'Ensamblaje'
+[19:56:44.622] INFO     [STATION   ] 'Ensamblaje' completó Producto 0 (tiempo: 748 ms)
+[19:56:44.623] INFO     [STATION   ] 'Ensamblaje' recibió Producto 2
+[19:56:44.623] INFO     [STATION   ] 'Ensamblaje' procesando Producto 2...
+[19:56:44.626] INFO     [SCHEDULER ] Round Robin: Procesando Producto 0
+[19:56:44.626] INFO     [SCHEDULER ] Despachando Producto 0 a estación 'Empaque'
+[19:56:44.627] INFO     [STATION   ] 'Empaque' recibió Producto 0
+[19:56:44.627] INFO     [STATION   ] 'Empaque' procesando Producto 0...
+[19:56:45.382] INFO     [STATION   ] 'Corte' completó Producto 4 (tiempo: 1004 ms)
+[19:56:45.386] INFO     [SCHEDULER ] Round Robin: Procesando Producto 4
+[19:56:45.387] INFO     [SCHEDULER ] Despachando Producto 4 a estación 'Ensamblaje'
+[19:56:45.876] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 2
+[19:56:45.879] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 2 (tiempo parcial: 1255 ms)
+[19:56:45.879] INFO     [STATION   ] 'Ensamblaje' recibió Producto 1
+[19:56:45.880] INFO     [STATION   ] 'Ensamblaje' procesando Producto 1...
+[19:56:45.882] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 0
+[19:56:45.882] INFO     [SCHEDULER ] Round Robin: Procesando Producto 2
+[19:56:45.883] INFO     [SCHEDULER ] Despachando Producto 2 a estación 'Ensamblaje'
+[19:56:45.933] INFO     [STATION   ] 'Empaque' preemptó Producto 0 (tiempo parcial: 1305 ms)
+[19:56:45.935] INFO     [SCHEDULER ] Round Robin: Procesando Producto 0
+[19:56:45.936] INFO     [SCHEDULER ] Despachando Producto 0 a estación 'Empaque'
+[19:56:45.937] INFO     [STATION   ] 'Empaque' recibió Producto 0
+[19:56:45.937] INFO     [STATION   ] 'Empaque' procesando Producto 0...
+[19:56:46.629] INFO     [STATION   ] 'Ensamblaje' completó Producto 1 (tiempo: 750 ms)
+[19:56:46.630] INFO     [STATION   ] 'Ensamblaje' recibió Producto 3
+[19:56:46.630] INFO     [STATION   ] 'Ensamblaje' procesando Producto 3...
+[19:56:46.634] INFO     [SCHEDULER ] Round Robin: Procesando Producto 1
+[19:56:46.635] INFO     [SCHEDULER ] Despachando Producto 1 a estación 'Empaque'
+[19:56:47.188] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 0
+[19:56:47.192] INFO     [STATION   ] 'Empaque' preemptó Producto 0 (tiempo parcial: 1255 ms)
+[19:56:47.193] INFO     [STATION   ] 'Empaque' recibió Producto 1
+[19:56:47.193] INFO     [STATION   ] 'Empaque' procesando Producto 1...
+[19:56:47.194] INFO     [SCHEDULER ] Round Robin: Procesando Producto 0
+[19:56:47.194] INFO     [SCHEDULER ] Despachando Producto 0 a estación 'Empaque'
+[19:56:47.884] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 3
+[19:56:47.886] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 3 (tiempo parcial: 1255 ms)
+[19:56:47.887] INFO     [STATION   ] 'Ensamblaje' recibió Producto 4
+[19:56:47.887] INFO     [STATION   ] 'Ensamblaje' procesando Producto 4...
+[19:56:47.890] INFO     [SCHEDULER ] Round Robin: Procesando Producto 3
+[19:56:47.891] INFO     [SCHEDULER ] Despachando Producto 3 a estación 'Ensamblaje'
+[19:56:48.445] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 1
+[19:56:48.449] INFO     [STATION   ] 'Empaque' preemptó Producto 1 (tiempo parcial: 1256 ms)
+[19:56:48.450] INFO     [STATION   ] 'Empaque' recibió Producto 0
+[19:56:48.450] INFO     [STATION   ] 'Empaque' procesando Producto 0...
+[19:56:48.451] INFO     [SCHEDULER ] Round Robin: Procesando Producto 1
+[19:56:48.452] INFO     [SCHEDULER ] Despachando Producto 1 a estación 'Empaque'
+[19:56:48.892] INFO     [STATION   ] 'Empaque' completó Producto 0 (tiempo: 442 ms)
+[19:56:48.893] INFO     [STATION   ] 'Empaque' recibió Producto 1
+[19:56:48.894] INFO     [STATION   ] 'Empaque' procesando Producto 1...
+[19:56:49.139] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 4
+[19:56:49.143] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 4 (tiempo parcial: 1255 ms)
+[19:56:49.143] INFO     [STATION   ] 'Ensamblaje' recibió Producto 2
+[19:56:49.144] INFO     [STATION   ] 'Ensamblaje' procesando Producto 2...
+[19:56:49.145] INFO     [SCHEDULER ] Round Robin: Procesando Producto 4
+[19:56:49.145] INFO     [SCHEDULER ] Despachando Producto 4 a estación 'Ensamblaje'
+[19:56:49.892] INFO     [STATION   ] 'Ensamblaje' completó Producto 2 (tiempo: 749 ms)
+[19:56:49.893] INFO     [STATION   ] 'Ensamblaje' recibió Producto 3
+[19:56:49.894] INFO     [STATION   ] 'Ensamblaje' procesando Producto 3...
+[19:56:49.895] INFO     [SCHEDULER ] Round Robin: Procesando Producto 2
+[19:56:49.895] INFO     [SCHEDULER ] Despachando Producto 2 a estación 'Empaque'
+[19:56:50.145] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 1
+[19:56:50.149] INFO     [STATION   ] 'Empaque' preemptó Producto 1 (tiempo parcial: 1254 ms)
+[19:56:50.150] INFO     [STATION   ] 'Empaque' recibió Producto 2
+[19:56:50.150] INFO     [STATION   ] 'Empaque' procesando Producto 2...
+[19:56:50.151] INFO     [SCHEDULER ] Round Robin: Procesando Producto 1
+[19:56:50.151] INFO     [SCHEDULER ] Despachando Producto 1 a estación 'Empaque'
+[19:56:50.350] INFO     [SYSTEM    ] Progreso: 1/5 productos completados
+[19:56:50.642] INFO     [STATION   ] 'Ensamblaje' completó Producto 3 (tiempo: 749 ms)
+[19:56:50.643] INFO     [STATION   ] 'Ensamblaje' recibió Producto 4
+[19:56:50.644] INFO     [STATION   ] 'Ensamblaje' procesando Producto 4...
+[19:56:50.645] INFO     [SCHEDULER ] Round Robin: Procesando Producto 3
+[19:56:50.645] INFO     [SCHEDULER ] Despachando Producto 3 a estación 'Empaque'
+[19:56:51.393] INFO     [STATION   ] 'Ensamblaje' completó Producto 4 (tiempo: 748 ms)
+[19:56:51.396] INFO     [SCHEDULER ] Round Robin: Procesando Producto 4
+[19:56:51.397] INFO     [SCHEDULER ] Despachando Producto 4 a estación 'Empaque'
+[19:56:51.403] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 2
+[19:56:51.406] INFO     [STATION   ] 'Empaque' preemptó Producto 2 (tiempo parcial: 1255 ms)
+[19:56:51.406] INFO     [STATION   ] 'Empaque' recibió Producto 1
+[19:56:51.407] INFO     [STATION   ] 'Empaque' procesando Producto 1...
+[19:56:51.409] INFO     [SCHEDULER ] Round Robin: Procesando Producto 2
+[19:56:51.409] INFO     [SCHEDULER ] Despachando Producto 2 a estación 'Empaque'
+[19:56:51.899] INFO     [STATION   ] 'Empaque' completó Producto 1 (tiempo: 493 ms)
+[19:56:51.900] INFO     [STATION   ] 'Empaque' recibió Producto 3
+[19:56:51.901] INFO     [STATION   ] 'Empaque' procesando Producto 3...
+[19:56:52.351] INFO     [SYSTEM    ] Progreso: 2/5 productos completados
+[19:56:53.151] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 3
+[19:56:53.157] INFO     [STATION   ] 'Empaque' preemptó Producto 3 (tiempo parcial: 1256 ms)
+[19:56:53.157] INFO     [STATION   ] 'Empaque' recibió Producto 4
+[19:56:53.158] INFO     [STATION   ] 'Empaque' procesando Producto 4...
+[19:56:53.163] INFO     [SCHEDULER ] Round Robin: Procesando Producto 3
+[19:56:53.163] INFO     [SCHEDULER ] Despachando Producto 3 a estación 'Empaque'
+[19:56:54.412] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 4
+[19:56:54.414] INFO     [STATION   ] 'Empaque' preemptó Producto 4 (tiempo parcial: 1255 ms)
+[19:56:54.414] INFO     [STATION   ] 'Empaque' recibió Producto 2
+[19:56:54.415] INFO     [STATION   ] 'Empaque' procesando Producto 2...
+[19:56:54.418] INFO     [SCHEDULER ] Round Robin: Procesando Producto 4
+[19:56:54.418] INFO     [SCHEDULER ] Despachando Producto 4 a estación 'Empaque'
+[19:56:55.665] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 2
+[19:56:55.670] INFO     [STATION   ] 'Empaque' preemptó Producto 2 (tiempo parcial: 1256 ms)
+[19:56:55.671] INFO     [STATION   ] 'Empaque' recibió Producto 3
+[19:56:55.672] INFO     [SCHEDULER ] Round Robin: Procesando Producto 2
+[19:56:55.672] INFO     [SCHEDULER ] Despachando Producto 2 a estación 'Empaque'
+[19:56:55.673] INFO     [STATION   ] 'Empaque' procesando Producto 3...
+[19:56:56.923] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 3
+[19:56:56.929] INFO     [STATION   ] 'Empaque' preemptó Producto 3 (tiempo parcial: 1257 ms)
+[19:56:56.930] INFO     [STATION   ] 'Empaque' recibió Producto 4
+[19:56:56.930] INFO     [STATION   ] 'Empaque' procesando Producto 4...
+[19:56:56.934] INFO     [SCHEDULER ] Round Robin: Procesando Producto 3
+[19:56:56.935] INFO     [SCHEDULER ] Despachando Producto 3 a estación 'Empaque'
+[19:56:58.180] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 4
+[19:56:58.186] INFO     [STATION   ] 'Empaque' preemptó Producto 4 (tiempo parcial: 1255 ms)
+[19:56:58.187] INFO     [STATION   ] 'Empaque' recibió Producto 2
+[19:56:58.187] INFO     [STATION   ] 'Empaque' procesando Producto 2...
+[19:56:58.191] INFO     [SCHEDULER ] Round Robin: Procesando Producto 4
+[19:56:58.192] INFO     [SCHEDULER ] Despachando Producto 4 a estación 'Empaque'
+[19:56:58.679] INFO     [STATION   ] 'Empaque' completó Producto 2 (tiempo: 492 ms)
+[19:56:58.679] INFO     [STATION   ] 'Empaque' recibió Producto 3
+[19:56:58.680] INFO     [STATION   ] 'Empaque' procesando Producto 3...
+[19:56:59.169] INFO     [STATION   ] 'Empaque' completó Producto 3 (tiempo: 489 ms)
+[19:56:59.170] INFO     [STATION   ] 'Empaque' recibió Producto 4
+[19:56:59.170] INFO     [STATION   ] 'Empaque' procesando Producto 4...
+[19:56:59.663] INFO     [STATION   ] 'Empaque' completó Producto 4 (tiempo: 493 ms)
+[19:57:00.352] INFO     [SYSTEM    ] Progreso: 5/5 productos completados
+[19:57:00.353] INFO     [SYSTEM    ] Todos los productos completados!
+[19:57:00.353] INFO     [SYSTEM    ] Deteniendo hilos del sistema...
+[19:57:00.354] INFO     [SCHEDULER ] Deteniendo scheduler...
+[19:57:00.359] INFO     [SCHEDULER ] Worker thread del scheduler finalizado
+[19:57:00.360] INFO     [SCHEDULER ] Scheduler detenido
+[19:57:00.360] INFO     [STATION   ] Deteniendo hilo de 'Corte'...
+[19:57:00.361] INFO     [STATION   ] Worker thread finalizado para 'Corte'
+[19:57:00.361] INFO     [STATION   ] Hilo de 'Corte' detenido
+[19:57:00.362] INFO     [STATION   ] Deteniendo hilo de 'Ensamblaje'...
+[19:57:00.362] INFO     [STATION   ] Worker thread finalizado para 'Ensamblaje'
+[19:57:00.362] INFO     [STATION   ] Hilo de 'Ensamblaje' detenido
+[19:57:00.363] INFO     [STATION   ] Deteniendo hilo de 'Empaque'...
+[19:57:00.363] INFO     [STATION   ] Worker thread finalizado para 'Empaque'
+[19:57:00.363] INFO     [STATION   ] Hilo de 'Empaque' detenido
+[19:57:00.364] INFO     [SYSTEM    ] Todos los hilos detenidos
+[19:57:00.364] INFO     [SYSTEM    ] Liberando recursos...
+[19:57:00.365] INFO     [STATION   ] Destruyendo estación 'Corte'
+[19:57:00.365] INFO     [STATION   ] Destruyendo estación 'Ensamblaje'
+[19:57:00.365] INFO     [STATION   ] Destruyendo estación 'Empaque'
+[19:57:00.366] INFO     [SCHEDULER ] Destruyendo scheduler
+[19:57:00.366] INFO     [SYSTEM    ] Recursos liberados
+[19:57:00.373] INFO     [SYSTEM    ] Finalizando subsistemas...
+
+[LOGGER] Sistema finalizado
+[19:59:27.973] INFO     [SYSTEM    ] Logger inicializado
+[19:59:27.974] INFO     [SYSTEM    ] Sistema de métricas inicializado
+[19:59:27.975] INFO     [SYSTEM    ] Iniciando simulación con FCFS...
+[19:59:27.975] INFO     [SYSTEM    ] Creando colas de comunicación entre estaciones...
+[19:59:27.976] INFO     [SYSTEM    ] Colas creadas exitosamente
+[19:59:27.976] INFO     [SYSTEM    ] Creando estaciones de trabajo...
+[19:59:27.976] INFO     [SYSTEM    ] Tiempos configurados - Corte: 1000 ms, Ensamblaje: 2000 ms, Empaque: 3000 ms (modo aleatorio)
+[19:59:27.977] INFO     [STATION   ] Estación 'Corte' creada (tiempo procesamiento: 1000 ms)
+[19:59:27.977] INFO     [STATION   ] Estación 'Ensamblaje' creada (tiempo procesamiento: 2000 ms)
+[19:59:27.978] INFO     [STATION   ] Estación 'Empaque' creada (tiempo procesamiento: 3000 ms)
+[19:59:27.978] INFO     [SYSTEM    ] Estaciones configuradas
+[19:59:27.979] INFO     [SYSTEM    ] Iniciando hilos de estaciones...
+[19:59:27.980] INFO     [STATION   ] Hilo iniciado para estación 'Corte'
+[19:59:27.980] INFO     [STATION   ] Worker thread iniciado para 'Corte'
+[19:59:27.981] INFO     [STATION   ] Hilo iniciado para estación 'Ensamblaje'
+[19:59:27.982] INFO     [STATION   ] Worker thread iniciado para 'Ensamblaje'
+[19:59:27.983] INFO     [STATION   ] Hilo iniciado para estación 'Empaque'
+[19:59:27.983] INFO     [SYSTEM    ] Todos los hilos de estaciones iniciados
+[19:59:27.983] INFO     [SYSTEM    ] Creando scheduler...
+[19:59:27.984] INFO     [STATION   ] Worker thread iniciado para 'Empaque'
+[19:59:27.985] INFO     [SCHEDULER ] Scheduler creado (algoritmo: FCFS, quantum: 0 ms)
+[19:59:27.985] INFO     [SCHEDULER ] Primera estación configurada: Corte
+[19:59:27.985] INFO     [SYSTEM    ] Creando 5 productos...
+[19:59:27.986] INFO     [FACTORY   ] Batch de 5 productos creado
+[19:59:27.986] INFO     [SYSTEM    ] Agregando productos al scheduler...
+[19:59:27.987] INFO     [SCHEDULER ] 5 productos agregados a la cola de listos
+[19:59:27.987] INFO     [SYSTEM    ] Iniciando scheduler...
+[19:59:27.988] INFO     [SCHEDULER ] Hilo del scheduler iniciado
+[19:59:27.989] INFO     [SCHEDULER ] Worker thread del scheduler iniciado
+[19:59:27.989] INFO     [SCHEDULER ] FCFS: Procesando Producto 0
+[19:59:27.989] INFO     [SCHEDULER ] Despachando Producto 0 a estación 'Corte'
+[19:59:27.990] INFO     [SYSTEM    ] Procesamiento en curso...
+[19:59:27.990] INFO     [STATION   ] 'Corte' recibió Producto 0
+[19:59:27.991] INFO     [SCHEDULER ] FCFS: Procesando Producto 1
+[19:59:27.991] INFO     [SCHEDULER ] Despachando Producto 1 a estación 'Corte'
+[19:59:27.992] INFO     [SCHEDULER ] FCFS: Procesando Producto 2
+[19:59:27.992] INFO     [SCHEDULER ] Despachando Producto 2 a estación 'Corte'
+[19:59:27.992] INFO     [STATION   ] 'Corte' procesando Producto 0...
+[19:59:27.993] INFO     [SCHEDULER ] FCFS: Procesando Producto 3
+[19:59:27.993] INFO     [SCHEDULER ] Despachando Producto 3 a estación 'Corte'
+[19:59:27.993] INFO     [SCHEDULER ] FCFS: Procesando Producto 4
+[19:59:27.994] INFO     [SCHEDULER ] Despachando Producto 4 a estación 'Corte'
+[19:59:28.753] INFO     [STATION   ] 'Corte' completó Producto 0 (tiempo: 763 ms)
+[19:59:28.754] INFO     [STATION   ] 'Corte' recibió Producto 1
+[19:59:28.755] INFO     [STATION   ] 'Corte' procesando Producto 1...
+[19:59:28.755] INFO     [SCHEDULER ] FCFS: Procesando Producto 0
+[19:59:28.756] INFO     [SCHEDULER ] Despachando Producto 0 a estación 'Ensamblaje'
+[19:59:28.757] INFO     [STATION   ] 'Ensamblaje' recibió Producto 0
+[19:59:28.757] INFO     [STATION   ] 'Ensamblaje' procesando Producto 0...
+[19:59:29.917] INFO     [STATION   ] 'Corte' completó Producto 1 (tiempo: 1161 ms)
+[19:59:29.917] INFO     [SCHEDULER ] FCFS: Procesando Producto 1
+[19:59:29.918] INFO     [SCHEDULER ] Despachando Producto 1 a estación 'Ensamblaje'
+[19:59:29.918] INFO     [STATION   ] 'Corte' recibió Producto 2
+[19:59:29.919] INFO     [STATION   ] 'Corte' procesando Producto 2...
+[19:59:31.034] INFO     [STATION   ] 'Ensamblaje' completó Producto 0 (tiempo: 2276 ms)
+[19:59:31.034] INFO     [SCHEDULER ] FCFS: Procesando Producto 0
+[19:59:31.035] INFO     [SCHEDULER ] Despachando Producto 0 a estación 'Empaque'
+[19:59:31.035] INFO     [STATION   ] 'Ensamblaje' recibió Producto 1
+[19:59:31.036] INFO     [STATION   ] 'Empaque' recibió Producto 0
+[19:59:31.036] INFO     [STATION   ] 'Ensamblaje' procesando Producto 1...
+[19:59:31.037] INFO     [STATION   ] 'Empaque' procesando Producto 0...
+[19:59:31.161] INFO     [STATION   ] 'Corte' completó Producto 2 (tiempo: 1242 ms)
+[19:59:31.162] INFO     [STATION   ] 'Corte' recibió Producto 3
+[19:59:31.162] INFO     [STATION   ] 'Corte' procesando Producto 3...
+[19:59:31.163] INFO     [SCHEDULER ] FCFS: Procesando Producto 2
+[19:59:31.164] INFO     [SCHEDULER ] Despachando Producto 2 a estación 'Ensamblaje'
+[19:59:32.409] INFO     [STATION   ] 'Corte' completó Producto 3 (tiempo: 1246 ms)
+[19:59:32.409] INFO     [SCHEDULER ] FCFS: Procesando Producto 3
+[19:59:32.410] INFO     [SCHEDULER ] Despachando Producto 3 a estación 'Ensamblaje'
+[19:59:32.410] INFO     [STATION   ] 'Corte' recibió Producto 4
+[19:59:32.411] INFO     [STATION   ] 'Corte' procesando Producto 4...
+[19:59:32.545] INFO     [STATION   ] 'Ensamblaje' completó Producto 1 (tiempo: 1510 ms)
+[19:59:32.546] INFO     [SCHEDULER ] FCFS: Procesando Producto 1
+[19:59:32.546] INFO     [SCHEDULER ] Despachando Producto 1 a estación 'Empaque'
+[19:59:32.547] INFO     [STATION   ] 'Ensamblaje' recibió Producto 2
+[19:59:32.547] INFO     [STATION   ] 'Ensamblaje' procesando Producto 2...
+[19:59:33.222] INFO     [STATION   ] 'Corte' completó Producto 4 (tiempo: 812 ms)
+[19:59:33.223] INFO     [SCHEDULER ] FCFS: Procesando Producto 4
+[19:59:33.223] INFO     [SCHEDULER ] Despachando Producto 4 a estación 'Ensamblaje'
+[19:59:33.496] INFO     [STATION   ] 'Empaque' completó Producto 0 (tiempo: 2460 ms)
+[19:59:33.496] INFO     [STATION   ] 'Empaque' recibió Producto 1
+[19:59:33.497] INFO     [STATION   ] 'Empaque' procesando Producto 1...
+[19:59:33.991] INFO     [SYSTEM    ] Progreso: 1/5 productos completados
+[19:59:34.788] INFO     [STATION   ] 'Ensamblaje' completó Producto 2 (tiempo: 2240 ms)
+[19:59:34.788] INFO     [SCHEDULER ] FCFS: Procesando Producto 2
+[19:59:34.789] INFO     [SCHEDULER ] Despachando Producto 2 a estación 'Empaque'
+[19:59:34.790] INFO     [STATION   ] 'Ensamblaje' recibió Producto 3
+[19:59:34.790] INFO     [STATION   ] 'Ensamblaje' procesando Producto 3...
+[19:59:36.483] INFO     [STATION   ] 'Ensamblaje' completó Producto 3 (tiempo: 1693 ms)
+[19:59:36.484] INFO     [STATION   ] 'Ensamblaje' recibió Producto 4
+[19:59:36.484] INFO     [STATION   ] 'Ensamblaje' procesando Producto 4...
+[19:59:36.485] INFO     [SCHEDULER ] FCFS: Procesando Producto 3
+[19:59:36.485] INFO     [SCHEDULER ] Despachando Producto 3 a estación 'Empaque'
+[19:59:37.121] INFO     [STATION   ] 'Empaque' completó Producto 1 (tiempo: 3624 ms)
+[19:59:37.122] INFO     [STATION   ] 'Empaque' recibió Producto 2
+[19:59:37.122] INFO     [STATION   ] 'Empaque' procesando Producto 2...
+[19:59:37.992] INFO     [SYSTEM    ] Progreso: 2/5 productos completados
+[19:59:38.883] INFO     [STATION   ] 'Ensamblaje' completó Producto 4 (tiempo: 2399 ms)
+[19:59:38.884] INFO     [SCHEDULER ] FCFS: Procesando Producto 4
+[19:59:38.884] INFO     [SCHEDULER ] Despachando Producto 4 a estación 'Empaque'
+[19:59:40.685] INFO     [STATION   ] 'Empaque' completó Producto 2 (tiempo: 3563 ms)
+[19:59:40.686] INFO     [STATION   ] 'Empaque' recibió Producto 3
+[19:59:40.686] INFO     [STATION   ] 'Empaque' procesando Producto 3...
+[19:59:41.993] INFO     [SYSTEM    ] Progreso: 3/5 productos completados
+[19:59:43.990] INFO     [STATION   ] 'Empaque' completó Producto 3 (tiempo: 3303 ms)
+[19:59:43.991] INFO     [STATION   ] 'Empaque' recibió Producto 4
+[19:59:43.991] INFO     [STATION   ] 'Empaque' procesando Producto 4...
+[19:59:43.994] INFO     [SYSTEM    ] Progreso: 4/5 productos completados
+[19:59:47.667] INFO     [STATION   ] 'Empaque' completó Producto 4 (tiempo: 3676 ms)
+[19:59:47.995] INFO     [SYSTEM    ] Progreso: 5/5 productos completados
+[19:59:47.996] INFO     [SYSTEM    ] Todos los productos completados!
+[19:59:47.997] INFO     [SYSTEM    ] Deteniendo hilos del sistema...
+[19:59:47.997] INFO     [SCHEDULER ] Deteniendo scheduler...
+[19:59:48.098] INFO     [SCHEDULER ] Worker thread del scheduler finalizado
+[19:59:48.099] INFO     [SCHEDULER ] Scheduler detenido
+[19:59:48.099] INFO     [STATION   ] Deteniendo hilo de 'Corte'...
+[19:59:48.100] INFO     [STATION   ] Worker thread finalizado para 'Corte'
+[19:59:48.100] INFO     [STATION   ] Hilo de 'Corte' detenido
+[19:59:48.101] INFO     [STATION   ] Deteniendo hilo de 'Ensamblaje'...
+[19:59:48.101] INFO     [STATION   ] Worker thread finalizado para 'Ensamblaje'
+[19:59:48.102] INFO     [STATION   ] Hilo de 'Ensamblaje' detenido
+[19:59:48.102] INFO     [STATION   ] Deteniendo hilo de 'Empaque'...
+[19:59:48.103] INFO     [STATION   ] Worker thread finalizado para 'Empaque'
+[19:59:48.103] INFO     [STATION   ] Hilo de 'Empaque' detenido
+[19:59:48.103] INFO     [SYSTEM    ] Todos los hilos detenidos
+[19:59:48.104] INFO     [SYSTEM    ] Liberando recursos...
+[19:59:48.104] INFO     [STATION   ] Destruyendo estación 'Corte'
+[19:59:48.104] INFO     [STATION   ] Destruyendo estación 'Ensamblaje'
+[19:59:48.105] INFO     [STATION   ] Destruyendo estación 'Empaque'
+[19:59:48.105] INFO     [SCHEDULER ] Destruyendo scheduler
+[19:59:48.106] INFO     [SYSTEM    ] Recursos liberados
+[19:59:51.106] INFO     [SYSTEM    ] Iniciando simulación con Round Robin...
+[19:59:51.107] INFO     [SYSTEM    ] Creando colas de comunicación entre estaciones...
+[19:59:51.108] INFO     [SYSTEM    ] Colas creadas exitosamente
+[19:59:51.108] INFO     [SYSTEM    ] Creando estaciones de trabajo...
+[19:59:51.108] INFO     [SYSTEM    ] Tiempos configurados - Corte: 1000 ms, Ensamblaje: 2000 ms, Empaque: 3000 ms (modo aleatorio)
+[19:59:51.109] INFO     [STATION   ] Estación 'Corte' creada (tiempo procesamiento: 1000 ms)
+[19:59:51.109] INFO     [STATION   ] Estación 'Ensamblaje' creada (tiempo procesamiento: 2000 ms)
+[19:59:51.110] INFO     [STATION   ] Estación 'Empaque' creada (tiempo procesamiento: 3000 ms)
+[19:59:51.110] INFO     [SYSTEM    ] Estaciones configuradas
+[19:59:51.110] INFO     [SYSTEM    ] Iniciando hilos de estaciones...
+[19:59:51.111] INFO     [STATION   ] Hilo iniciado para estación 'Corte'
+[19:59:51.111] INFO     [STATION   ] Worker thread iniciado para 'Corte'
+[19:59:51.112] INFO     [STATION   ] Hilo iniciado para estación 'Ensamblaje'
+[19:59:51.112] INFO     [STATION   ] Worker thread iniciado para 'Ensamblaje'
+[19:59:51.113] INFO     [STATION   ] Hilo iniciado para estación 'Empaque'
+[19:59:51.113] INFO     [SYSTEM    ] Todos los hilos de estaciones iniciados
+[19:59:51.113] INFO     [SYSTEM    ] Creando scheduler...
+[19:59:51.114] INFO     [SCHEDULER ] Scheduler creado (algoritmo: Round Robin, quantum: 1250 ms)
+[19:59:51.114] INFO     [SCHEDULER ] Primera estación configurada: Corte
+[19:59:51.114] INFO     [STATION   ] Worker thread iniciado para 'Empaque'
+[19:59:51.115] INFO     [SYSTEM    ] Creando 5 productos...
+[19:59:51.115] INFO     [FACTORY   ] Batch de 5 productos creado
+[19:59:51.116] INFO     [SYSTEM    ] Agregando productos al scheduler...
+[19:59:51.116] INFO     [SCHEDULER ] 5 productos agregados a la cola de listos
+[19:59:51.117] INFO     [SYSTEM    ] Iniciando scheduler...
+[19:59:51.117] INFO     [SCHEDULER ] Hilo del scheduler iniciado
+[19:59:51.118] INFO     [SCHEDULER ] Worker thread del scheduler iniciado
+[19:59:51.118] INFO     [SYSTEM    ] Procesamiento en curso...
+[19:59:51.118] INFO     [SCHEDULER ] Round Robin: Procesando Producto 0
+[19:59:51.119] INFO     [SCHEDULER ] Despachando Producto 0 a estación 'Corte'
+[19:59:51.119] INFO     [STATION   ] 'Corte' recibió Producto 0
+[19:59:51.119] INFO     [SCHEDULER ] Round Robin: Procesando Producto 1
+[19:59:51.120] INFO     [SCHEDULER ] Despachando Producto 1 a estación 'Corte'
+[19:59:51.120] INFO     [STATION   ] 'Corte' procesando Producto 0...
+[19:59:51.120] INFO     [SCHEDULER ] Round Robin: Procesando Producto 2
+[19:59:51.121] INFO     [SCHEDULER ] Despachando Producto 2 a estación 'Corte'
+[19:59:51.121] INFO     [SCHEDULER ] Round Robin: Procesando Producto 3
+[19:59:51.121] INFO     [SCHEDULER ] Despachando Producto 3 a estación 'Corte'
+[19:59:51.122] INFO     [SCHEDULER ] Round Robin: Procesando Producto 4
+[19:59:51.122] INFO     [SCHEDULER ] Despachando Producto 4 a estación 'Corte'
+[19:59:52.128] INFO     [STATION   ] 'Corte' completó Producto 0 (tiempo: 1008 ms)
+[19:59:52.129] INFO     [STATION   ] 'Corte' recibió Producto 1
+[19:59:52.129] INFO     [STATION   ] 'Corte' procesando Producto 1...
+[19:59:52.133] INFO     [SCHEDULER ] Round Robin: Procesando Producto 0
+[19:59:52.134] INFO     [SCHEDULER ] Despachando Producto 0 a estación 'Ensamblaje'
+[19:59:52.134] INFO     [STATION   ] 'Ensamblaje' recibió Producto 0
+[19:59:52.135] INFO     [STATION   ] 'Ensamblaje' procesando Producto 0...
+[19:59:53.012] INFO     [STATION   ] 'Corte' completó Producto 1 (tiempo: 884 ms)
+[19:59:53.013] INFO     [STATION   ] 'Corte' recibió Producto 2
+[19:59:53.013] INFO     [STATION   ] 'Corte' procesando Producto 2...
+[19:59:53.017] INFO     [SCHEDULER ] Round Robin: Procesando Producto 1
+[19:59:53.018] INFO     [SCHEDULER ] Despachando Producto 1 a estación 'Ensamblaje'
+[19:59:53.385] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 0
+[19:59:53.391] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 0 (tiempo parcial: 1255 ms)
+[19:59:53.391] INFO     [STATION   ] 'Ensamblaje' recibió Producto 1
+[19:59:53.392] INFO     [SCHEDULER ] Round Robin: Procesando Producto 0
+[19:59:53.392] INFO     [SCHEDULER ] Despachando Producto 0 a estación 'Ensamblaje'
+[19:59:53.393] INFO     [STATION   ] 'Ensamblaje' procesando Producto 1...
+[19:59:53.976] INFO     [STATION   ] 'Corte' completó Producto 2 (tiempo: 963 ms)
+[19:59:53.976] INFO     [STATION   ] 'Corte' recibió Producto 3
+[19:59:53.977] INFO     [STATION   ] 'Corte' procesando Producto 3...
+[19:59:53.978] INFO     [SCHEDULER ] Round Robin: Procesando Producto 2
+[19:59:53.979] INFO     [SCHEDULER ] Despachando Producto 2 a estación 'Ensamblaje'
+[19:59:54.643] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 1
+[19:59:54.648] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 1 (tiempo parcial: 1257 ms)
+[19:59:54.649] INFO     [STATION   ] 'Ensamblaje' recibió Producto 0
+[19:59:54.649] INFO     [SCHEDULER ] Round Robin: Procesando Producto 1
+[19:59:54.650] INFO     [SCHEDULER ] Despachando Producto 1 a estación 'Ensamblaje'
+[19:59:54.650] INFO     [STATION   ] 'Ensamblaje' procesando Producto 0...
+[19:59:55.073] INFO     [STATION   ] 'Corte' completó Producto 3 (tiempo: 1095 ms)
+[19:59:55.074] INFO     [STATION   ] 'Corte' recibió Producto 4
+[19:59:55.074] INFO     [STATION   ] 'Corte' procesando Producto 4...
+[19:59:55.076] INFO     [SCHEDULER ] Round Robin: Procesando Producto 3
+[19:59:55.077] INFO     [SCHEDULER ] Despachando Producto 3 a estación 'Ensamblaje'
+[19:59:55.482] INFO     [STATION   ] 'Ensamblaje' completó Producto 0 (tiempo: 833 ms)
+[19:59:55.482] INFO     [STATION   ] 'Ensamblaje' recibió Producto 2
+[19:59:55.483] INFO     [STATION   ] 'Ensamblaje' procesando Producto 2...
+[19:59:55.487] INFO     [SCHEDULER ] Round Robin: Procesando Producto 0
+[19:59:55.488] INFO     [SCHEDULER ] Despachando Producto 0 a estación 'Empaque'
+[19:59:55.488] INFO     [STATION   ] 'Empaque' recibió Producto 0
+[19:59:55.489] INFO     [STATION   ] 'Empaque' procesando Producto 0...
+[19:59:56.090] INFO     [STATION   ] 'Corte' completó Producto 4 (tiempo: 1015 ms)
+[19:59:56.092] INFO     [SCHEDULER ] Round Robin: Procesando Producto 4
+[19:59:56.093] INFO     [SCHEDULER ] Despachando Producto 4 a estación 'Ensamblaje'
+[19:59:56.737] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 2
+[19:59:56.738] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 2 (tiempo parcial: 1255 ms)
+[19:59:56.739] INFO     [STATION   ] 'Ensamblaje' recibió Producto 1
+[19:59:56.739] INFO     [STATION   ] 'Ensamblaje' procesando Producto 1...
+[19:59:56.743] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 0
+[19:59:56.743] INFO     [SCHEDULER ] Round Robin: Procesando Producto 2
+[19:59:56.743] INFO     [SCHEDULER ] Despachando Producto 2 a estación 'Ensamblaje'
+[19:59:56.744] INFO     [STATION   ] 'Empaque' preemptó Producto 0 (tiempo parcial: 1255 ms)
+[19:59:56.749] INFO     [SCHEDULER ] Round Robin: Procesando Producto 0
+[19:59:56.749] INFO     [SCHEDULER ] Despachando Producto 0 a estación 'Empaque'
+[19:59:56.750] INFO     [STATION   ] 'Empaque' recibió Producto 0
+[19:59:56.751] INFO     [STATION   ] 'Empaque' procesando Producto 0...
+[19:59:57.569] INFO     [STATION   ] 'Ensamblaje' completó Producto 1 (tiempo: 831 ms)
+[19:59:57.570] INFO     [STATION   ] 'Ensamblaje' recibió Producto 3
+[19:59:57.571] INFO     [STATION   ] 'Ensamblaje' procesando Producto 3...
+[19:59:57.571] INFO     [SCHEDULER ] Round Robin: Procesando Producto 1
+[19:59:57.572] INFO     [SCHEDULER ] Despachando Producto 1 a estación 'Empaque'
+[19:59:58.003] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 0
+[19:59:58.006] INFO     [STATION   ] 'Empaque' preemptó Producto 0 (tiempo parcial: 1255 ms)
+[19:59:58.007] INFO     [STATION   ] 'Empaque' recibió Producto 1
+[19:59:58.007] INFO     [STATION   ] 'Empaque' procesando Producto 1...
+[19:59:58.009] INFO     [SCHEDULER ] Round Robin: Procesando Producto 0
+[19:59:58.010] INFO     [SCHEDULER ] Despachando Producto 0 a estación 'Empaque'
+[19:59:58.823] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 3
+[19:59:58.827] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 3 (tiempo parcial: 1255 ms)
+[19:59:58.827] INFO     [STATION   ] 'Ensamblaje' recibió Producto 4
+[19:59:58.828] INFO     [STATION   ] 'Ensamblaje' procesando Producto 4...
+[19:59:58.829] INFO     [SCHEDULER ] Round Robin: Procesando Producto 3
+[19:59:58.829] INFO     [SCHEDULER ] Despachando Producto 3 a estación 'Ensamblaje'
+[19:59:59.262] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 1
+[19:59:59.263] INFO     [STATION   ] 'Empaque' preemptó Producto 1 (tiempo parcial: 1255 ms)
+[19:59:59.263] INFO     [STATION   ] 'Empaque' recibió Producto 0
+[19:59:59.264] INFO     [STATION   ] 'Empaque' procesando Producto 0...
+[19:59:59.268] INFO     [SCHEDULER ] Round Robin: Procesando Producto 1
+[19:59:59.269] INFO     [SCHEDULER ] Despachando Producto 1 a estación 'Empaque'
+[19:59:59.397] INFO     [STATION   ] 'Empaque' completó Producto 0 (tiempo: 133 ms)
+[19:59:59.398] INFO     [STATION   ] 'Empaque' recibió Producto 1
+[19:59:59.399] INFO     [STATION   ] 'Empaque' procesando Producto 1...
+[20:00:00.080] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 4
+[20:00:00.082] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 4 (tiempo parcial: 1254 ms)
+[20:00:00.083] INFO     [STATION   ] 'Ensamblaje' recibió Producto 2
+[20:00:00.083] INFO     [STATION   ] 'Ensamblaje' procesando Producto 2...
+[20:00:00.086] INFO     [SCHEDULER ] Round Robin: Procesando Producto 4
+[20:00:00.087] INFO     [SCHEDULER ] Despachando Producto 4 a estación 'Ensamblaje'
+[20:00:00.489] INFO     [STATION   ] 'Ensamblaje' completó Producto 2 (tiempo: 406 ms)
+[20:00:00.490] INFO     [STATION   ] 'Ensamblaje' recibió Producto 3
+[20:00:00.491] INFO     [STATION   ] 'Ensamblaje' procesando Producto 3...
+[20:00:00.491] INFO     [SCHEDULER ] Round Robin: Procesando Producto 2
+[20:00:00.491] INFO     [SCHEDULER ] Despachando Producto 2 a estación 'Empaque'
+[20:00:00.652] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 1
+[20:00:00.655] INFO     [STATION   ] 'Empaque' preemptó Producto 1 (tiempo parcial: 1257 ms)
+[20:00:00.655] INFO     [STATION   ] 'Empaque' recibió Producto 2
+[20:00:00.656] INFO     [STATION   ] 'Empaque' procesando Producto 2...
+[20:00:00.658] INFO     [SCHEDULER ] Round Robin: Procesando Producto 1
+[20:00:00.659] INFO     [SCHEDULER ] Despachando Producto 1 a estación 'Empaque'
+[20:00:01.119] INFO     [SYSTEM    ] Progreso: 1/5 productos completados
+[20:00:01.392] INFO     [STATION   ] 'Ensamblaje' completó Producto 3 (tiempo: 901 ms)
+[20:00:01.393] INFO     [STATION   ] 'Ensamblaje' recibió Producto 4
+[20:00:01.393] INFO     [STATION   ] 'Ensamblaje' procesando Producto 4...
+[20:00:01.394] INFO     [SCHEDULER ] Round Robin: Procesando Producto 3
+[20:00:01.394] INFO     [SCHEDULER ] Despachando Producto 3 a estación 'Empaque'
+[20:00:01.907] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 2
+[20:00:01.911] INFO     [STATION   ] 'Empaque' preemptó Producto 2 (tiempo parcial: 1255 ms)
+[20:00:01.911] INFO     [STATION   ] 'Empaque' recibió Producto 1
+[20:00:01.912] INFO     [STATION   ] 'Empaque' procesando Producto 1...
+[20:00:01.913] INFO     [SCHEDULER ] Round Robin: Procesando Producto 2
+[20:00:01.914] INFO     [SCHEDULER ] Despachando Producto 2 a estación 'Empaque'
+[20:00:02.060] INFO     [STATION   ] 'Ensamblaje' completó Producto 4 (tiempo: 668 ms)
+[20:00:02.066] INFO     [SCHEDULER ] Round Robin: Procesando Producto 4
+[20:00:02.066] INFO     [SCHEDULER ] Despachando Producto 4 a estación 'Empaque'
+[20:00:03.054] INFO     [STATION   ] 'Empaque' completó Producto 1 (tiempo: 1142 ms)
+[20:00:03.055] INFO     [STATION   ] 'Empaque' recibió Producto 3
+[20:00:03.056] INFO     [STATION   ] 'Empaque' procesando Producto 3...
+[20:00:03.120] INFO     [SYSTEM    ] Progreso: 2/5 productos completados
+[20:00:04.309] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 3
+[20:00:04.311] INFO     [STATION   ] 'Empaque' preemptó Producto 3 (tiempo parcial: 1255 ms)
+[20:00:04.311] INFO     [STATION   ] 'Empaque' recibió Producto 2
+[20:00:04.312] INFO     [STATION   ] 'Empaque' procesando Producto 2...
+[20:00:04.315] INFO     [SCHEDULER ] Round Robin: Procesando Producto 3
+[20:00:04.316] INFO     [SCHEDULER ] Despachando Producto 3 a estación 'Empaque'
+[20:00:05.562] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 2
+[20:00:05.567] INFO     [STATION   ] 'Empaque' preemptó Producto 2 (tiempo parcial: 1256 ms)
+[20:00:05.568] INFO     [STATION   ] 'Empaque' recibió Producto 4
+[20:00:05.568] INFO     [STATION   ] 'Empaque' procesando Producto 4...
+[20:00:05.573] INFO     [SCHEDULER ] Round Robin: Procesando Producto 2
+[20:00:05.573] INFO     [SCHEDULER ] Despachando Producto 2 a estación 'Empaque'
+[20:00:06.819] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 4
+[20:00:06.823] INFO     [STATION   ] 'Empaque' preemptó Producto 4 (tiempo parcial: 1255 ms)
+[20:00:06.824] INFO     [STATION   ] 'Empaque' recibió Producto 3
+[20:00:06.825] INFO     [STATION   ] 'Empaque' procesando Producto 3...
+[20:00:06.825] INFO     [SCHEDULER ] Round Robin: Procesando Producto 4
+[20:00:06.826] INFO     [SCHEDULER ] Despachando Producto 4 a estación 'Empaque'
+[20:00:08.075] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 3
+[20:00:08.080] INFO     [STATION   ] 'Empaque' preemptó Producto 3 (tiempo parcial: 1255 ms)
+[20:00:08.081] INFO     [STATION   ] 'Empaque' recibió Producto 2
+[20:00:08.082] INFO     [SCHEDULER ] Round Robin: Procesando Producto 3
+[20:00:08.082] INFO     [SCHEDULER ] Despachando Producto 3 a estación 'Empaque'
+[20:00:08.083] INFO     [STATION   ] 'Empaque' procesando Producto 2...
+[20:00:09.277] INFO     [STATION   ] 'Empaque' completó Producto 2 (tiempo: 1195 ms)
+[20:00:09.278] INFO     [STATION   ] 'Empaque' recibió Producto 4
+[20:00:09.279] INFO     [STATION   ] 'Empaque' procesando Producto 4...
+[20:00:10.530] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 4
+[20:00:10.534] INFO     [STATION   ] 'Empaque' preemptó Producto 4 (tiempo parcial: 1256 ms)
+[20:00:10.535] INFO     [STATION   ] 'Empaque' recibió Producto 3
+[20:00:10.535] INFO     [STATION   ] 'Empaque' procesando Producto 3...
+[20:00:10.537] INFO     [SCHEDULER ] Round Robin: Procesando Producto 4
+[20:00:10.537] INFO     [SCHEDULER ] Despachando Producto 4 a estación 'Empaque'
+[20:00:10.680] INFO     [STATION   ] 'Empaque' completó Producto 3 (tiempo: 145 ms)
+[20:00:10.681] INFO     [STATION   ] 'Empaque' recibió Producto 4
+[20:00:10.681] INFO     [STATION   ] 'Empaque' procesando Producto 4...
+[20:00:11.122] INFO     [SYSTEM    ] Progreso: 4/5 productos completados
+[20:00:11.299] INFO     [STATION   ] 'Empaque' completó Producto 4 (tiempo: 617 ms)
+[20:00:13.123] INFO     [SYSTEM    ] Progreso: 5/5 productos completados
+[20:00:13.123] INFO     [SYSTEM    ] Todos los productos completados!
+[20:00:13.124] INFO     [SYSTEM    ] Deteniendo hilos del sistema...
+[20:00:13.124] INFO     [SCHEDULER ] Deteniendo scheduler...
+[20:00:13.126] INFO     [SCHEDULER ] Worker thread del scheduler finalizado
+[20:00:13.127] INFO     [SCHEDULER ] Scheduler detenido
+[20:00:13.127] INFO     [STATION   ] Deteniendo hilo de 'Corte'...
+[20:00:13.128] INFO     [STATION   ] Worker thread finalizado para 'Corte'
+[20:00:13.128] INFO     [STATION   ] Hilo de 'Corte' detenido
+[20:00:13.129] INFO     [STATION   ] Deteniendo hilo de 'Ensamblaje'...
+[20:00:13.129] INFO     [STATION   ] Worker thread finalizado para 'Ensamblaje'
+[20:00:13.130] INFO     [STATION   ] Hilo de 'Ensamblaje' detenido
+[20:00:13.130] INFO     [STATION   ] Deteniendo hilo de 'Empaque'...
+[20:00:13.131] INFO     [STATION   ] Worker thread finalizado para 'Empaque'
+[20:00:13.132] INFO     [STATION   ] Hilo de 'Empaque' detenido
+[20:00:13.132] INFO     [SYSTEM    ] Todos los hilos detenidos
+[20:00:13.133] INFO     [SYSTEM    ] Liberando recursos...
+[20:00:13.133] INFO     [STATION   ] Destruyendo estación 'Corte'
+[20:00:13.134] INFO     [STATION   ] Destruyendo estación 'Ensamblaje'
+[20:00:13.134] INFO     [STATION   ] Destruyendo estación 'Empaque'
+[20:00:13.135] INFO     [SCHEDULER ] Destruyendo scheduler
+[20:00:13.135] INFO     [SYSTEM    ] Recursos liberados
+[20:00:13.142] INFO     [SYSTEM    ] Finalizando subsistemas...
+
+[LOGGER] Sistema finalizado
+[20:02:13.662] INFO     [SYSTEM    ] Logger inicializado
+[20:02:13.663] INFO     [SYSTEM    ] Sistema de métricas inicializado
+[20:02:13.664] INFO     [SYSTEM    ] Iniciando simulación con Round Robin...
+[20:02:13.664] INFO     [SYSTEM    ] Creando colas de comunicación entre estaciones...
+[20:02:13.665] INFO     [SYSTEM    ] Colas creadas exitosamente
+[20:02:13.665] INFO     [SYSTEM    ] Creando estaciones de trabajo...
+[20:02:13.665] INFO     [SYSTEM    ] Tiempos configurados - Corte: 2000 ms, Ensamblaje: 6000 ms, Empaque: 4000 ms (modo aleatorio)
+[20:02:13.666] INFO     [STATION   ] Estación 'Corte' creada (tiempo procesamiento: 2000 ms)
+[20:02:13.666] INFO     [STATION   ] Estación 'Ensamblaje' creada (tiempo procesamiento: 6000 ms)
+[20:02:13.667] INFO     [STATION   ] Estación 'Empaque' creada (tiempo procesamiento: 4000 ms)
+[20:02:13.667] INFO     [SYSTEM    ] Estaciones configuradas
+[20:02:13.668] INFO     [SYSTEM    ] Iniciando hilos de estaciones...
+[20:02:13.668] INFO     [STATION   ] Hilo iniciado para estación 'Corte'
+[20:02:13.668] INFO     [STATION   ] Worker thread iniciado para 'Corte'
+[20:02:13.669] INFO     [STATION   ] Hilo iniciado para estación 'Ensamblaje'
+[20:02:13.669] INFO     [STATION   ] Worker thread iniciado para 'Ensamblaje'
+[20:02:13.670] INFO     [STATION   ] Hilo iniciado para estación 'Empaque'
+[20:02:13.670] INFO     [SYSTEM    ] Todos los hilos de estaciones iniciados
+[20:02:13.671] INFO     [SYSTEM    ] Creando scheduler...
+[20:02:13.671] INFO     [STATION   ] Worker thread iniciado para 'Empaque'
+[20:02:13.672] INFO     [SCHEDULER ] Scheduler creado (algoritmo: Round Robin, quantum: 2000 ms)
+[20:02:13.672] INFO     [SCHEDULER ] Primera estación configurada: Corte
+[20:02:13.673] INFO     [SYSTEM    ] Creando 20 productos...
+[20:02:13.673] INFO     [FACTORY   ] Batch de 20 productos creado
+[20:02:13.674] INFO     [SYSTEM    ] Agregando productos al scheduler...
+[20:02:13.675] INFO     [SCHEDULER ] 20 productos agregados a la cola de listos
+[20:02:13.676] INFO     [SYSTEM    ] Iniciando scheduler...
+[20:02:13.676] INFO     [SCHEDULER ] Hilo del scheduler iniciado
+[20:02:13.677] INFO     [SCHEDULER ] Worker thread del scheduler iniciado
+[20:02:13.678] INFO     [SYSTEM    ] Procesamiento en curso...
+[20:02:13.678] INFO     [SCHEDULER ] Round Robin: Procesando Producto 0
+[20:02:13.679] INFO     [SCHEDULER ] Despachando Producto 0 a estación 'Corte'
+[20:02:13.679] INFO     [STATION   ] 'Corte' recibió Producto 0
+[20:02:13.679] INFO     [SCHEDULER ] Round Robin: Procesando Producto 1
+[20:02:13.680] INFO     [SCHEDULER ] Despachando Producto 1 a estación 'Corte'
+[20:02:13.680] INFO     [STATION   ] 'Corte' procesando Producto 0...
+[20:02:13.681] INFO     [SCHEDULER ] Round Robin: Procesando Producto 2
+[20:02:13.681] INFO     [SCHEDULER ] Despachando Producto 2 a estación 'Corte'
+[20:02:13.682] INFO     [SCHEDULER ] Round Robin: Procesando Producto 3
+[20:02:13.682] INFO     [SCHEDULER ] Despachando Producto 3 a estación 'Corte'
+[20:02:13.683] INFO     [SCHEDULER ] Round Robin: Procesando Producto 4
+[20:02:13.683] INFO     [SCHEDULER ] Despachando Producto 4 a estación 'Corte'
+[20:02:13.683] INFO     [SCHEDULER ] Round Robin: Procesando Producto 5
+[20:02:13.684] INFO     [SCHEDULER ] Despachando Producto 5 a estación 'Corte'
+[20:02:13.684] INFO     [SCHEDULER ] Round Robin: Procesando Producto 6
+[20:02:13.684] INFO     [SCHEDULER ] Despachando Producto 6 a estación 'Corte'
+[20:02:13.685] INFO     [SCHEDULER ] Round Robin: Procesando Producto 7
+[20:02:13.685] INFO     [SCHEDULER ] Despachando Producto 7 a estación 'Corte'
+[20:02:13.685] INFO     [SCHEDULER ] Round Robin: Procesando Producto 8
+[20:02:13.686] INFO     [SCHEDULER ] Despachando Producto 8 a estación 'Corte'
+[20:02:13.686] INFO     [SCHEDULER ] Round Robin: Procesando Producto 9
+[20:02:13.687] INFO     [SCHEDULER ] Despachando Producto 9 a estación 'Corte'
+[20:02:13.687] INFO     [SCHEDULER ] Round Robin: Procesando Producto 10
+[20:02:13.687] INFO     [SCHEDULER ] Despachando Producto 10 a estación 'Corte'
+[20:02:13.688] INFO     [SCHEDULER ] Round Robin: Procesando Producto 11
+[20:02:13.688] INFO     [SCHEDULER ] Despachando Producto 11 a estación 'Corte'
+[20:02:13.688] INFO     [SCHEDULER ] Round Robin: Procesando Producto 12
+[20:02:13.689] INFO     [SCHEDULER ] Despachando Producto 12 a estación 'Corte'
+[20:02:13.689] INFO     [SCHEDULER ] Round Robin: Procesando Producto 13
+[20:02:13.689] INFO     [SCHEDULER ] Despachando Producto 13 a estación 'Corte'
+[20:02:13.690] INFO     [SCHEDULER ] Round Robin: Procesando Producto 14
+[20:02:13.690] INFO     [SCHEDULER ] Despachando Producto 14 a estación 'Corte'
+[20:02:13.691] INFO     [SCHEDULER ] Round Robin: Procesando Producto 15
+[20:02:13.691] INFO     [SCHEDULER ] Despachando Producto 15 a estación 'Corte'
+[20:02:13.691] INFO     [SCHEDULER ] Round Robin: Procesando Producto 16
+[20:02:13.692] INFO     [SCHEDULER ] Despachando Producto 16 a estación 'Corte'
+[20:02:13.692] INFO     [SCHEDULER ] Round Robin: Procesando Producto 17
+[20:02:13.692] INFO     [SCHEDULER ] Despachando Producto 17 a estación 'Corte'
+[20:02:13.693] INFO     [SCHEDULER ] Round Robin: Procesando Producto 18
+[20:02:13.693] INFO     [SCHEDULER ] Despachando Producto 18 a estación 'Corte'
+[20:02:13.694] INFO     [SCHEDULER ] Round Robin: Procesando Producto 19
+[20:02:13.694] INFO     [SCHEDULER ] Despachando Producto 19 a estación 'Corte'
+[20:02:15.680] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 0
+[20:02:15.690] INFO     [STATION   ] 'Corte' preemptó Producto 0 (tiempo parcial: 2010 ms)
+[20:02:15.691] INFO     [STATION   ] 'Corte' recibió Producto 1
+[20:02:15.691] INFO     [STATION   ] 'Corte' procesando Producto 1...
+[20:02:15.696] INFO     [SCHEDULER ] Round Robin: Procesando Producto 0
+[20:02:15.696] INFO     [SCHEDULER ] Despachando Producto 0 a estación 'Corte'
+[20:02:17.694] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 1
+[20:02:17.701] INFO     [STATION   ] 'Corte' preemptó Producto 1 (tiempo parcial: 2009 ms)
+[20:02:17.702] INFO     [STATION   ] 'Corte' recibió Producto 2
+[20:02:17.702] INFO     [STATION   ] 'Corte' procesando Producto 2...
+[20:02:17.705] INFO     [SCHEDULER ] Round Robin: Procesando Producto 1
+[20:02:17.706] INFO     [SCHEDULER ] Despachando Producto 1 a estación 'Corte'
+[20:02:19.703] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 2
+[20:02:19.711] INFO     [STATION   ] 'Corte' preemptó Producto 2 (tiempo parcial: 2008 ms)
+[20:02:19.712] INFO     [STATION   ] 'Corte' recibió Producto 3
+[20:02:19.712] INFO     [STATION   ] 'Corte' procesando Producto 3...
+[20:02:19.714] INFO     [SCHEDULER ] Round Robin: Procesando Producto 2
+[20:02:19.714] INFO     [SCHEDULER ] Despachando Producto 2 a estación 'Corte'
+[20:02:21.716] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 3
+[20:02:21.721] INFO     [STATION   ] 'Corte' preemptó Producto 3 (tiempo parcial: 2008 ms)
+[20:02:21.722] INFO     [STATION   ] 'Corte' recibió Producto 4
+[20:02:21.722] INFO     [STATION   ] 'Corte' procesando Producto 4...
+[20:02:21.723] INFO     [SCHEDULER ] Round Robin: Procesando Producto 3
+[20:02:21.723] INFO     [SCHEDULER ] Despachando Producto 3 a estación 'Corte'
+[20:02:23.230] INFO     [STATION   ] 'Corte' completó Producto 4 (tiempo: 1508 ms)
+[20:02:23.231] INFO     [STATION   ] 'Corte' recibió Producto 5
+[20:02:23.232] INFO     [SCHEDULER ] Round Robin: Procesando Producto 4
+[20:02:23.232] INFO     [SCHEDULER ] Despachando Producto 4 a estación 'Ensamblaje'
+[20:02:23.233] INFO     [STATION   ] 'Corte' procesando Producto 5...
+[20:02:23.233] INFO     [STATION   ] 'Ensamblaje' recibió Producto 4
+[20:02:23.234] INFO     [STATION   ] 'Ensamblaje' procesando Producto 4...
+[20:02:25.232] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 5
+[20:02:25.234] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 4
+[20:02:25.241] INFO     [STATION   ] 'Corte' preemptó Producto 5 (tiempo parcial: 2009 ms)
+[20:02:25.242] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 4 (tiempo parcial: 2007 ms)
+[20:02:25.243] INFO     [STATION   ] 'Corte' recibió Producto 6
+[20:02:25.243] INFO     [STATION   ] 'Corte' procesando Producto 6...
+[20:02:25.245] INFO     [SCHEDULER ] Round Robin: Procesando Producto 5
+[20:02:25.245] INFO     [SCHEDULER ] Despachando Producto 5 a estación 'Corte'
+[20:02:25.246] INFO     [SCHEDULER ] Round Robin: Procesando Producto 4
+[20:02:25.246] INFO     [SCHEDULER ] Despachando Producto 4 a estación 'Ensamblaje'
+[20:02:25.246] INFO     [STATION   ] 'Ensamblaje' recibió Producto 4
+[20:02:25.247] INFO     [STATION   ] 'Ensamblaje' procesando Producto 4...
+[20:02:27.132] INFO     [STATION   ] 'Corte' completó Producto 6 (tiempo: 1889 ms)
+[20:02:27.132] INFO     [STATION   ] 'Corte' recibió Producto 7
+[20:02:27.133] INFO     [STATION   ] 'Corte' procesando Producto 7...
+[20:02:27.134] INFO     [SCHEDULER ] Round Robin: Procesando Producto 6
+[20:02:27.135] INFO     [SCHEDULER ] Despachando Producto 6 a estación 'Ensamblaje'
+[20:02:27.249] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 4
+[20:02:27.255] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 4 (tiempo parcial: 2008 ms)
+[20:02:27.256] INFO     [STATION   ] 'Ensamblaje' recibió Producto 6
+[20:02:27.256] INFO     [STATION   ] 'Ensamblaje' procesando Producto 6...
+[20:02:27.260] INFO     [SCHEDULER ] Round Robin: Procesando Producto 4
+[20:02:27.261] INFO     [SCHEDULER ] Despachando Producto 4 a estación 'Ensamblaje'
+[20:02:29.132] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 7
+[20:02:29.142] INFO     [STATION   ] 'Corte' preemptó Producto 7 (tiempo parcial: 2009 ms)
+[20:02:29.143] INFO     [STATION   ] 'Corte' recibió Producto 8
+[20:02:29.144] INFO     [SCHEDULER ] Round Robin: Procesando Producto 7
+[20:02:29.144] INFO     [SCHEDULER ] Despachando Producto 7 a estación 'Corte'
+[20:02:29.144] INFO     [STATION   ] 'Corte' procesando Producto 8...
+[20:02:29.258] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 6
+[20:02:29.265] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 6 (tiempo parcial: 2008 ms)
+[20:02:29.265] INFO     [STATION   ] 'Ensamblaje' recibió Producto 4
+[20:02:29.266] INFO     [STATION   ] 'Ensamblaje' procesando Producto 4...
+[20:02:29.269] INFO     [SCHEDULER ] Round Robin: Procesando Producto 6
+[20:02:29.270] INFO     [SCHEDULER ] Despachando Producto 6 a estación 'Ensamblaje'
+[20:02:30.837] INFO     [STATION   ] 'Corte' completó Producto 8 (tiempo: 1694 ms)
+[20:02:30.838] INFO     [STATION   ] 'Corte' recibió Producto 9
+[20:02:30.838] INFO     [STATION   ] 'Corte' procesando Producto 9...
+[20:02:30.842] INFO     [SCHEDULER ] Round Robin: Procesando Producto 8
+[20:02:30.843] INFO     [SCHEDULER ] Despachando Producto 8 a estación 'Ensamblaje'
+[20:02:31.268] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 4
+[20:02:31.274] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 4 (tiempo parcial: 2008 ms)
+[20:02:31.275] INFO     [STATION   ] 'Ensamblaje' recibió Producto 6
+[20:02:31.276] INFO     [STATION   ] 'Ensamblaje' procesando Producto 6...
+[20:02:31.279] INFO     [SCHEDULER ] Round Robin: Procesando Producto 4
+[20:02:31.280] INFO     [SCHEDULER ] Despachando Producto 4 a estación 'Ensamblaje'
+[20:02:32.842] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 9
+[20:02:32.847] INFO     [STATION   ] 'Corte' preemptó Producto 9 (tiempo parcial: 2008 ms)
+[20:02:32.848] INFO     [STATION   ] 'Corte' recibió Producto 10
+[20:02:32.848] INFO     [STATION   ] 'Corte' procesando Producto 10...
+[20:02:32.849] INFO     [SCHEDULER ] Round Robin: Procesando Producto 9
+[20:02:32.850] INFO     [SCHEDULER ] Despachando Producto 9 a estación 'Corte'
+[20:02:33.278] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 6
+[20:02:33.285] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 6 (tiempo parcial: 2009 ms)
+[20:02:33.286] INFO     [STATION   ] 'Ensamblaje' recibió Producto 8
+[20:02:33.286] INFO     [STATION   ] 'Ensamblaje' procesando Producto 8...
+[20:02:33.289] INFO     [SCHEDULER ] Round Robin: Procesando Producto 6
+[20:02:33.289] INFO     [SCHEDULER ] Despachando Producto 6 a estación 'Ensamblaje'
+[20:02:34.460] INFO     [STATION   ] 'Corte' completó Producto 10 (tiempo: 1612 ms)
+[20:02:34.461] INFO     [STATION   ] 'Corte' recibió Producto 11
+[20:02:34.461] INFO     [STATION   ] 'Corte' procesando Producto 11...
+[20:02:34.464] INFO     [SCHEDULER ] Round Robin: Procesando Producto 10
+[20:02:34.464] INFO     [SCHEDULER ] Despachando Producto 10 a estación 'Ensamblaje'
+[20:02:35.289] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 8
+[20:02:35.294] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 8 (tiempo parcial: 2008 ms)
+[20:02:35.295] INFO     [STATION   ] 'Ensamblaje' recibió Producto 4
+[20:02:35.296] INFO     [STATION   ] 'Ensamblaje' procesando Producto 4...
+[20:02:35.300] INFO     [SCHEDULER ] Round Robin: Procesando Producto 8
+[20:02:35.301] INFO     [SCHEDULER ] Despachando Producto 8 a estación 'Ensamblaje'
+[20:02:36.282] INFO     [STATION   ] 'Ensamblaje' completó Producto 4 (tiempo: 987 ms)
+[20:02:36.283] INFO     [STATION   ] 'Ensamblaje' recibió Producto 6
+[20:02:36.283] INFO     [STATION   ] 'Ensamblaje' procesando Producto 6...
+[20:02:36.286] INFO     [SCHEDULER ] Round Robin: Procesando Producto 4
+[20:02:36.287] INFO     [SCHEDULER ] Despachando Producto 4 a estación 'Empaque'
+[20:02:36.287] INFO     [STATION   ] 'Empaque' recibió Producto 4
+[20:02:36.288] INFO     [STATION   ] 'Empaque' procesando Producto 4...
+[20:02:36.464] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 11
+[20:02:36.469] INFO     [STATION   ] 'Corte' preemptó Producto 11 (tiempo parcial: 2008 ms)
+[20:02:36.470] INFO     [STATION   ] 'Corte' recibió Producto 12
+[20:02:36.470] INFO     [STATION   ] 'Corte' procesando Producto 12...
+[20:02:36.475] INFO     [SCHEDULER ] Round Robin: Procesando Producto 11
+[20:02:36.475] INFO     [SCHEDULER ] Despachando Producto 11 a estación 'Corte'
+[20:02:36.775] INFO     [STATION   ] 'Ensamblaje' completó Producto 6 (tiempo: 492 ms)
+[20:02:36.775] INFO     [STATION   ] 'Ensamblaje' recibió Producto 10
+[20:02:36.776] INFO     [STATION   ] 'Ensamblaje' procesando Producto 10...
+[20:02:36.776] INFO     [SCHEDULER ] Round Robin: Procesando Producto 6
+[20:02:36.777] INFO     [SCHEDULER ] Despachando Producto 6 a estación 'Empaque'
+[20:02:38.288] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 4
+[20:02:38.296] INFO     [STATION   ] 'Empaque' preemptó Producto 4 (tiempo parcial: 2008 ms)
+[20:02:38.296] INFO     [STATION   ] 'Empaque' recibió Producto 6
+[20:02:38.297] INFO     [STATION   ] 'Empaque' procesando Producto 6...
+[20:02:38.299] INFO     [SCHEDULER ] Round Robin: Procesando Producto 4
+[20:02:38.300] INFO     [SCHEDULER ] Despachando Producto 4 a estación 'Empaque'
+[20:02:38.471] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 12
+[20:02:38.479] INFO     [STATION   ] 'Corte' preemptó Producto 12 (tiempo parcial: 2008 ms)
+[20:02:38.480] INFO     [STATION   ] 'Corte' recibió Producto 13
+[20:02:38.480] INFO     [STATION   ] 'Corte' procesando Producto 13...
+[20:02:38.482] INFO     [SCHEDULER ] Round Robin: Procesando Producto 12
+[20:02:38.483] INFO     [SCHEDULER ] Despachando Producto 12 a estación 'Corte'
+[20:02:38.775] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 10
+[20:02:38.784] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 10 (tiempo parcial: 2008 ms)
+[20:02:38.785] INFO     [STATION   ] 'Ensamblaje' recibió Producto 8
+[20:02:38.786] INFO     [STATION   ] 'Ensamblaje' procesando Producto 8...
+[20:02:38.787] INFO     [SCHEDULER ] Round Robin: Procesando Producto 10
+[20:02:38.787] INFO     [SCHEDULER ] Despachando Producto 10 a estación 'Ensamblaje'
+[20:02:40.297] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 6
+[20:02:40.305] INFO     [STATION   ] 'Empaque' preemptó Producto 6 (tiempo parcial: 2007 ms)
+[20:02:40.305] INFO     [STATION   ] 'Empaque' recibió Producto 4
+[20:02:40.306] INFO     [STATION   ] 'Empaque' procesando Producto 4...
+[20:02:40.308] INFO     [SCHEDULER ] Round Robin: Procesando Producto 6
+[20:02:40.308] INFO     [SCHEDULER ] Despachando Producto 6 a estación 'Empaque'
+[20:02:40.484] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 13
+[20:02:40.489] INFO     [STATION   ] 'Corte' preemptó Producto 13 (tiempo parcial: 2009 ms)
+[20:02:40.490] INFO     [STATION   ] 'Corte' recibió Producto 14
+[20:02:40.490] INFO     [STATION   ] 'Corte' procesando Producto 14...
+[20:02:40.495] INFO     [SCHEDULER ] Round Robin: Procesando Producto 13
+[20:02:40.495] INFO     [SCHEDULER ] Despachando Producto 13 a estación 'Corte'
+[20:02:40.786] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 8
+[20:02:40.795] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 8 (tiempo parcial: 2008 ms)
+[20:02:40.795] INFO     [STATION   ] 'Ensamblaje' recibió Producto 10
+[20:02:40.796] INFO     [STATION   ] 'Ensamblaje' procesando Producto 10...
+[20:02:40.797] INFO     [SCHEDULER ] Round Robin: Procesando Producto 8
+[20:02:40.798] INFO     [SCHEDULER ] Despachando Producto 8 a estación 'Ensamblaje'
+[20:02:41.966] INFO     [STATION   ] 'Empaque' completó Producto 4 (tiempo: 1661 ms)
+[20:02:41.967] INFO     [STATION   ] 'Empaque' recibió Producto 6
+[20:02:41.967] INFO     [STATION   ] 'Empaque' procesando Producto 6...
+[20:02:42.239] INFO     [STATION   ] 'Corte' completó Producto 14 (tiempo: 1748 ms)
+[20:02:42.240] INFO     [STATION   ] 'Corte' recibió Producto 15
+[20:02:42.240] INFO     [STATION   ] 'Corte' procesando Producto 15...
+[20:02:42.242] INFO     [SCHEDULER ] Round Robin: Procesando Producto 14
+[20:02:42.242] INFO     [SCHEDULER ] Despachando Producto 14 a estación 'Ensamblaje'
+[20:02:42.798] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 10
+[20:02:42.805] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 10 (tiempo parcial: 2009 ms)
+[20:02:42.806] INFO     [STATION   ] 'Ensamblaje' recibió Producto 8
+[20:02:42.806] INFO     [STATION   ] 'Ensamblaje' procesando Producto 8...
+[20:02:42.809] INFO     [SCHEDULER ] Round Robin: Procesando Producto 10
+[20:02:42.810] INFO     [SCHEDULER ] Despachando Producto 10 a estación 'Ensamblaje'
+[20:02:43.681] INFO     [SYSTEM    ] Progreso: 1/20 productos completados
+[20:02:43.969] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 6
+[20:02:43.971] INFO     [STATION   ] 'Ensamblaje' completó Producto 8 (tiempo: 1164 ms)
+[20:02:43.971] INFO     [STATION   ] 'Ensamblaje' recibió Producto 14
+[20:02:43.972] INFO     [STATION   ] 'Ensamblaje' procesando Producto 14...
+[20:02:43.975] INFO     [SCHEDULER ] Round Robin: Procesando Producto 8
+[20:02:43.976] INFO     [SCHEDULER ] Despachando Producto 8 a estación 'Empaque'
+[20:02:43.976] INFO     [STATION   ] 'Empaque' preemptó Producto 6 (tiempo parcial: 2008 ms)
+[20:02:43.976] INFO     [STATION   ] 'Empaque' recibió Producto 8
+[20:02:43.977] INFO     [STATION   ] 'Empaque' procesando Producto 8...
+[20:02:43.981] INFO     [SCHEDULER ] Round Robin: Procesando Producto 6
+[20:02:43.982] INFO     [SCHEDULER ] Despachando Producto 6 a estación 'Empaque'
+[20:02:44.042] INFO     [STATION   ] 'Corte' completó Producto 15 (tiempo: 1802 ms)
+[20:02:44.043] INFO     [STATION   ] 'Corte' recibió Producto 16
+[20:02:44.043] INFO     [STATION   ] 'Corte' procesando Producto 16...
+[20:02:44.044] INFO     [SCHEDULER ] Round Robin: Procesando Producto 15
+[20:02:44.044] INFO     [SCHEDULER ] Despachando Producto 15 a estación 'Ensamblaje'
+[20:02:45.976] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 14
+[20:02:45.977] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 8
+[20:02:45.980] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 14 (tiempo parcial: 2008 ms)
+[20:02:45.980] INFO     [STATION   ] 'Ensamblaje' recibió Producto 10
+[20:02:45.981] INFO     [STATION   ] 'Ensamblaje' procesando Producto 10...
+[20:02:45.982] INFO     [SCHEDULER ] Round Robin: Procesando Producto 14
+[20:02:45.983] INFO     [SCHEDULER ] Despachando Producto 14 a estación 'Ensamblaje'
+[20:02:45.985] INFO     [STATION   ] 'Empaque' preemptó Producto 8 (tiempo parcial: 2008 ms)
+[20:02:45.985] INFO     [STATION   ] 'Empaque' recibió Producto 6
+[20:02:45.986] INFO     [STATION   ] 'Empaque' procesando Producto 6...
+[20:02:45.988] INFO     [SCHEDULER ] Round Robin: Procesando Producto 8
+[20:02:45.989] INFO     [SCHEDULER ] Despachando Producto 8 a estación 'Empaque'
+[20:02:46.046] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 16
+[20:02:46.102] INFO     [STATION   ] 'Corte' preemptó Producto 16 (tiempo parcial: 2059 ms)
+[20:02:46.103] INFO     [STATION   ] 'Corte' recibió Producto 17
+[20:02:46.104] INFO     [STATION   ] 'Corte' procesando Producto 17...
+[20:02:46.105] INFO     [SCHEDULER ] Round Robin: Procesando Producto 16
+[20:02:46.105] INFO     [SCHEDULER ] Despachando Producto 16 a estación 'Corte'
+[20:02:46.176] INFO     [STATION   ] 'Empaque' completó Producto 6 (tiempo: 190 ms)
+[20:02:46.185] INFO     [STATION   ] 'Empaque' recibió Producto 8
+[20:02:46.186] INFO     [STATION   ] 'Empaque' procesando Producto 8...
+[20:02:46.603] INFO     [STATION   ] 'Ensamblaje' completó Producto 10 (tiempo: 623 ms)
+[20:02:46.604] INFO     [STATION   ] 'Ensamblaje' recibió Producto 15
+[20:02:46.604] INFO     [STATION   ] 'Ensamblaje' procesando Producto 15...
+[20:02:46.605] INFO     [SCHEDULER ] Round Robin: Procesando Producto 10
+[20:02:46.605] INFO     [SCHEDULER ] Despachando Producto 10 a estación 'Empaque'
+[20:02:47.682] INFO     [SYSTEM    ] Progreso: 2/20 productos completados
+[20:02:47.980] INFO     [STATION   ] 'Corte' completó Producto 17 (tiempo: 1877 ms)
+[20:02:47.981] INFO     [STATION   ] 'Corte' recibió Producto 18
+[20:02:47.981] INFO     [STATION   ] 'Corte' procesando Producto 18...
+[20:02:47.984] INFO     [SCHEDULER ] Round Robin: Procesando Producto 17
+[20:02:47.985] INFO     [SCHEDULER ] Despachando Producto 17 a estación 'Ensamblaje'
+[20:02:48.187] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 8
+[20:02:48.194] INFO     [STATION   ] 'Empaque' preemptó Producto 8 (tiempo parcial: 2008 ms)
+[20:02:48.195] INFO     [STATION   ] 'Empaque' recibió Producto 10
+[20:02:48.195] INFO     [STATION   ] 'Empaque' procesando Producto 10...
+[20:02:48.198] INFO     [SCHEDULER ] Round Robin: Procesando Producto 8
+[20:02:48.199] INFO     [SCHEDULER ] Despachando Producto 8 a estación 'Empaque'
+[20:02:48.604] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 15
+[20:02:48.613] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 15 (tiempo parcial: 2008 ms)
+[20:02:48.613] INFO     [STATION   ] 'Ensamblaje' recibió Producto 14
+[20:02:48.614] INFO     [STATION   ] 'Ensamblaje' procesando Producto 14...
+[20:02:48.615] INFO     [SCHEDULER ] Round Robin: Procesando Producto 15
+[20:02:48.615] INFO     [SCHEDULER ] Despachando Producto 15 a estación 'Ensamblaje'
+[20:02:49.983] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 18
+[20:02:49.990] INFO     [STATION   ] 'Corte' preemptó Producto 18 (tiempo parcial: 2008 ms)
+[20:02:49.990] INFO     [STATION   ] 'Corte' recibió Producto 19
+[20:02:49.991] INFO     [STATION   ] 'Corte' procesando Producto 19...
+[20:02:49.994] INFO     [SCHEDULER ] Round Robin: Procesando Producto 18
+[20:02:49.995] INFO     [SCHEDULER ] Despachando Producto 18 a estación 'Corte'
+[20:02:50.198] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 10
+[20:02:50.203] INFO     [STATION   ] 'Empaque' preemptó Producto 10 (tiempo parcial: 2008 ms)
+[20:02:50.204] INFO     [STATION   ] 'Empaque' recibió Producto 8
+[20:02:50.204] INFO     [STATION   ] 'Empaque' procesando Producto 8...
+[20:02:50.209] INFO     [SCHEDULER ] Round Robin: Procesando Producto 10
+[20:02:50.212] INFO     [SCHEDULER ] Despachando Producto 10 a estación 'Empaque'
+[20:02:50.573] INFO     [STATION   ] 'Empaque' completó Producto 8 (tiempo: 369 ms)
+[20:02:50.574] INFO     [STATION   ] 'Empaque' recibió Producto 10
+[20:02:50.575] INFO     [STATION   ] 'Empaque' procesando Producto 10...
+[20:02:50.614] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 14
+[20:02:50.622] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 14 (tiempo parcial: 2008 ms)
+[20:02:50.623] INFO     [STATION   ] 'Ensamblaje' recibió Producto 17
+[20:02:50.624] INFO     [STATION   ] 'Ensamblaje' procesando Producto 17...
+[20:02:50.625] INFO     [SCHEDULER ] Round Robin: Procesando Producto 14
+[20:02:50.626] INFO     [SCHEDULER ] Despachando Producto 14 a estación 'Ensamblaje'
+[20:02:51.588] INFO     [STATION   ] 'Empaque' completó Producto 10 (tiempo: 1012 ms)
+[20:02:51.683] INFO     [SYSTEM    ] Progreso: 4/20 productos completados
+[20:02:51.993] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 19
+[20:02:52.000] INFO     [STATION   ] 'Corte' preemptó Producto 19 (tiempo parcial: 2009 ms)
+[20:02:52.001] INFO     [STATION   ] 'Corte' recibió Producto 0
+[20:02:52.001] INFO     [STATION   ] 'Corte' procesando Producto 0...
+[20:02:52.005] INFO     [SCHEDULER ] Round Robin: Procesando Producto 19
+[20:02:52.005] INFO     [SCHEDULER ] Despachando Producto 19 a estación 'Corte'
+[20:02:52.391] INFO     [STATION   ] 'Corte' completó Producto 0 (tiempo: 389 ms)
+[20:02:52.391] INFO     [STATION   ] 'Corte' recibió Producto 1
+[20:02:52.392] INFO     [STATION   ] 'Corte' procesando Producto 1...
+[20:02:52.397] INFO     [SCHEDULER ] Round Robin: Procesando Producto 0
+[20:02:52.397] INFO     [SCHEDULER ] Despachando Producto 0 a estación 'Ensamblaje'
+[20:02:52.628] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 17
+[20:02:52.632] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 17 (tiempo parcial: 2008 ms)
+[20:02:52.633] INFO     [STATION   ] 'Ensamblaje' recibió Producto 15
+[20:02:52.633] INFO     [SCHEDULER ] Round Robin: Procesando Producto 17
+[20:02:52.634] INFO     [SCHEDULER ] Despachando Producto 17 a estación 'Ensamblaje'
+[20:02:52.634] INFO     [STATION   ] 'Ensamblaje' procesando Producto 15...
+[20:02:52.687] INFO     [STATION   ] 'Corte' completó Producto 1 (tiempo: 295 ms)
+[20:02:52.687] INFO     [STATION   ] 'Corte' recibió Producto 2
+[20:02:52.688] INFO     [STATION   ] 'Corte' procesando Producto 2...
+[20:02:52.692] INFO     [SCHEDULER ] Round Robin: Procesando Producto 1
+[20:02:52.692] INFO     [SCHEDULER ] Despachando Producto 1 a estación 'Ensamblaje'
+[20:02:52.947] INFO     [STATION   ] 'Corte' completó Producto 2 (tiempo: 258 ms)
+[20:02:52.947] INFO     [STATION   ] 'Corte' recibió Producto 3
+[20:02:52.948] INFO     [STATION   ] 'Corte' procesando Producto 3...
+[20:02:52.948] INFO     [SCHEDULER ] Round Robin: Procesando Producto 2
+[20:02:52.949] INFO     [SCHEDULER ] Despachando Producto 2 a estación 'Ensamblaje'
+[20:02:53.435] INFO     [STATION   ] 'Corte' completó Producto 3 (tiempo: 487 ms)
+[20:02:53.435] INFO     [STATION   ] 'Corte' recibió Producto 5
+[20:02:53.436] INFO     [STATION   ] 'Corte' procesando Producto 5...
+[20:02:53.440] INFO     [SCHEDULER ] Round Robin: Procesando Producto 3
+[20:02:53.440] INFO     [SCHEDULER ] Despachando Producto 3 a estación 'Ensamblaje'
+[20:02:53.448] INFO     [STATION   ] 'Corte' completó Producto 5 (tiempo: 12 ms)
+[20:02:53.449] INFO     [STATION   ] 'Corte' recibió Producto 7
+[20:02:53.449] INFO     [STATION   ] 'Corte' procesando Producto 7...
+[20:02:53.451] INFO     [SCHEDULER ] Round Robin: Procesando Producto 5
+[20:02:53.452] INFO     [SCHEDULER ] Despachando Producto 5 a estación 'Ensamblaje'
+[20:02:53.671] INFO     [STATION   ] 'Corte' completó Producto 7 (tiempo: 221 ms)
+[20:02:53.672] INFO     [STATION   ] 'Corte' recibió Producto 9
+[20:02:53.673] INFO     [STATION   ] 'Corte' procesando Producto 9...
+[20:02:53.677] INFO     [SCHEDULER ] Round Robin: Procesando Producto 7
+[20:02:53.678] INFO     [SCHEDULER ] Despachando Producto 7 a estación 'Ensamblaje'
+[20:02:54.054] INFO     [STATION   ] 'Corte' completó Producto 9 (tiempo: 381 ms)
+[20:02:54.055] INFO     [STATION   ] 'Corte' recibió Producto 11
+[20:02:54.055] INFO     [STATION   ] 'Corte' procesando Producto 11...
+[20:02:54.059] INFO     [SCHEDULER ] Round Robin: Procesando Producto 9
+[20:02:54.060] INFO     [SCHEDULER ] Despachando Producto 9 a estación 'Ensamblaje'
+[20:02:54.459] INFO     [STATION   ] 'Corte' completó Producto 11 (tiempo: 404 ms)
+[20:02:54.460] INFO     [STATION   ] 'Corte' recibió Producto 12
+[20:02:54.460] INFO     [STATION   ] 'Corte' procesando Producto 12...
+[20:02:54.461] INFO     [SCHEDULER ] Round Robin: Procesando Producto 11
+[20:02:54.462] INFO     [SCHEDULER ] Despachando Producto 11 a estación 'Ensamblaje'
+[20:02:54.634] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 15
+[20:02:54.643] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 15 (tiempo parcial: 2009 ms)
+[20:02:54.644] INFO     [STATION   ] 'Ensamblaje' recibió Producto 14
+[20:02:54.644] INFO     [STATION   ] 'Ensamblaje' procesando Producto 14...
+[20:02:54.645] INFO     [SCHEDULER ] Round Robin: Procesando Producto 15
+[20:02:54.646] INFO     [SCHEDULER ] Despachando Producto 15 a estación 'Ensamblaje'
+[20:02:54.678] INFO     [STATION   ] 'Corte' completó Producto 12 (tiempo: 217 ms)
+[20:02:54.679] INFO     [STATION   ] 'Corte' recibió Producto 13
+[20:02:54.679] INFO     [STATION   ] 'Corte' procesando Producto 13...
+[20:02:54.683] INFO     [SCHEDULER ] Round Robin: Procesando Producto 12
+[20:02:54.684] INFO     [SCHEDULER ] Despachando Producto 12 a estación 'Ensamblaje'
+[20:02:54.755] INFO     [STATION   ] 'Corte' completó Producto 13 (tiempo: 75 ms)
+[20:02:54.755] INFO     [STATION   ] 'Corte' recibió Producto 16
+[20:02:54.756] INFO     [STATION   ] 'Corte' procesando Producto 16...
+[20:02:54.757] INFO     [SCHEDULER ] Round Robin: Procesando Producto 13
+[20:02:54.758] INFO     [SCHEDULER ] Despachando Producto 13 a estación 'Ensamblaje'
+[20:02:54.851] INFO     [STATION   ] 'Corte' completó Producto 16 (tiempo: 94 ms)
+[20:02:54.861] INFO     [STATION   ] 'Corte' recibió Producto 18
+[20:02:54.861] INFO     [SCHEDULER ] Round Robin: Procesando Producto 16
+[20:02:54.862] INFO     [SCHEDULER ] Despachando Producto 16 a estación 'Ensamblaje'
+[20:02:54.862] INFO     [STATION   ] 'Corte' procesando Producto 18...
+[20:02:55.048] INFO     [STATION   ] 'Corte' completó Producto 18 (tiempo: 186 ms)
+[20:02:55.049] INFO     [STATION   ] 'Corte' recibió Producto 19
+[20:02:55.049] INFO     [STATION   ] 'Corte' procesando Producto 19...
+[20:02:55.051] INFO     [SCHEDULER ] Round Robin: Procesando Producto 18
+[20:02:55.051] INFO     [SCHEDULER ] Despachando Producto 18 a estación 'Ensamblaje'
+[20:02:55.443] INFO     [STATION   ] 'Corte' completó Producto 19 (tiempo: 394 ms)
+[20:02:55.448] INFO     [SCHEDULER ] Round Robin: Procesando Producto 19
+[20:02:55.449] INFO     [SCHEDULER ] Despachando Producto 19 a estación 'Ensamblaje'
+[20:02:56.503] INFO     [STATION   ] 'Ensamblaje' completó Producto 14 (tiempo: 1859 ms)
+[20:02:56.504] INFO     [STATION   ] 'Ensamblaje' recibió Producto 0
+[20:02:56.504] INFO     [STATION   ] 'Ensamblaje' procesando Producto 0...
+[20:02:56.508] INFO     [SCHEDULER ] Round Robin: Procesando Producto 14
+[20:02:56.509] INFO     [SCHEDULER ] Despachando Producto 14 a estación 'Empaque'
+[20:02:56.510] INFO     [STATION   ] 'Empaque' recibió Producto 14
+[20:02:56.510] INFO     [STATION   ] 'Empaque' procesando Producto 14...
+[20:02:58.503] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 0
+[20:02:58.510] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 14
+[20:02:58.513] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 0 (tiempo parcial: 2008 ms)
+[20:02:58.514] INFO     [STATION   ] 'Ensamblaje' recibió Producto 17
+[20:02:58.517] INFO     [SCHEDULER ] Round Robin: Procesando Producto 0
+[20:02:58.518] INFO     [SCHEDULER ] Despachando Producto 0 a estación 'Ensamblaje'
+[20:02:58.519] INFO     [STATION   ] 'Ensamblaje' procesando Producto 17...
+[20:02:58.520] INFO     [STATION   ] 'Empaque' preemptó Producto 14 (tiempo parcial: 2009 ms)
+[20:02:58.524] INFO     [SCHEDULER ] Round Robin: Procesando Producto 14
+[20:02:58.525] INFO     [SCHEDULER ] Despachando Producto 14 a estación 'Empaque'
+[20:02:58.526] INFO     [STATION   ] 'Empaque' recibió Producto 14
+[20:02:58.526] INFO     [STATION   ] 'Empaque' procesando Producto 14...
+[20:03:00.059] INFO     [STATION   ] 'Empaque' completó Producto 14 (tiempo: 1532 ms)
+[20:03:00.518] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 17
+[20:03:00.527] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 17 (tiempo parcial: 2010 ms)
+[20:03:00.528] INFO     [STATION   ] 'Ensamblaje' recibió Producto 1
+[20:03:00.528] INFO     [STATION   ] 'Ensamblaje' procesando Producto 1...
+[20:03:00.529] INFO     [SCHEDULER ] Round Robin: Procesando Producto 17
+[20:03:00.530] INFO     [SCHEDULER ] Despachando Producto 17 a estación 'Ensamblaje'
+[20:03:01.685] INFO     [SYSTEM    ] Progreso: 5/20 productos completados
+[20:03:02.530] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 1
+[20:03:02.537] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 1 (tiempo parcial: 2009 ms)
+[20:03:02.538] INFO     [STATION   ] 'Ensamblaje' recibió Producto 2
+[20:03:02.539] INFO     [STATION   ] 'Ensamblaje' procesando Producto 2...
+[20:03:02.541] INFO     [SCHEDULER ] Round Robin: Procesando Producto 1
+[20:03:02.542] INFO     [SCHEDULER ] Despachando Producto 1 a estación 'Ensamblaje'
+[20:03:04.542] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 2
+[20:03:04.548] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 2 (tiempo parcial: 2009 ms)
+[20:03:04.549] INFO     [STATION   ] 'Ensamblaje' recibió Producto 3
+[20:03:04.549] INFO     [STATION   ] 'Ensamblaje' procesando Producto 3...
+[20:03:04.553] INFO     [SCHEDULER ] Round Robin: Procesando Producto 2
+[20:03:04.554] INFO     [SCHEDULER ] Despachando Producto 2 a estación 'Ensamblaje'
+[20:03:06.550] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 3
+[20:03:06.559] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 3 (tiempo parcial: 2009 ms)
+[20:03:06.560] INFO     [STATION   ] 'Ensamblaje' recibió Producto 5
+[20:03:06.560] INFO     [STATION   ] 'Ensamblaje' procesando Producto 5...
+[20:03:06.561] INFO     [SCHEDULER ] Round Robin: Procesando Producto 3
+[20:03:06.561] INFO     [SCHEDULER ] Despachando Producto 3 a estación 'Ensamblaje'
+[20:03:08.563] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 5
+[20:03:08.569] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 5 (tiempo parcial: 2008 ms)
+[20:03:08.569] INFO     [STATION   ] 'Ensamblaje' recibió Producto 7
+[20:03:08.570] INFO     [STATION   ] 'Ensamblaje' procesando Producto 7...
+[20:03:08.575] INFO     [SCHEDULER ] Round Robin: Procesando Producto 5
+[20:03:08.575] INFO     [SCHEDULER ] Despachando Producto 5 a estación 'Ensamblaje'
+[20:03:10.573] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 7
+[20:03:10.578] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 7 (tiempo parcial: 2008 ms)
+[20:03:10.579] INFO     [STATION   ] 'Ensamblaje' recibió Producto 9
+[20:03:10.580] INFO     [SCHEDULER ] Round Robin: Procesando Producto 7
+[20:03:10.580] INFO     [SCHEDULER ] Despachando Producto 7 a estación 'Ensamblaje'
+[20:03:10.580] INFO     [STATION   ] 'Ensamblaje' procesando Producto 9...
+[20:03:12.583] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 9
+[20:03:12.589] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 9 (tiempo parcial: 2009 ms)
+[20:03:12.590] INFO     [STATION   ] 'Ensamblaje' recibió Producto 11
+[20:03:12.590] INFO     [STATION   ] 'Ensamblaje' procesando Producto 11...
+[20:03:12.595] INFO     [SCHEDULER ] Round Robin: Procesando Producto 9
+[20:03:12.595] INFO     [SCHEDULER ] Despachando Producto 9 a estación 'Ensamblaje'
+[20:03:14.594] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 11
+[20:03:14.599] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 11 (tiempo parcial: 2008 ms)
+[20:03:14.600] INFO     [STATION   ] 'Ensamblaje' recibió Producto 15
+[20:03:14.601] INFO     [STATION   ] 'Ensamblaje' procesando Producto 15...
+[20:03:14.605] INFO     [SCHEDULER ] Round Robin: Procesando Producto 11
+[20:03:14.605] INFO     [SCHEDULER ] Despachando Producto 11 a estación 'Ensamblaje'
+[20:03:16.602] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 15
+[20:03:16.610] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 15 (tiempo parcial: 2009 ms)
+[20:03:16.611] INFO     [STATION   ] 'Ensamblaje' recibió Producto 12
+[20:03:16.611] INFO     [STATION   ] 'Ensamblaje' procesando Producto 12...
+[20:03:16.613] INFO     [SCHEDULER ] Round Robin: Procesando Producto 15
+[20:03:16.614] INFO     [SCHEDULER ] Despachando Producto 15 a estación 'Ensamblaje'
+[20:03:18.612] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 12
+[20:03:18.620] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 12 (tiempo parcial: 2008 ms)
+[20:03:18.621] INFO     [STATION   ] 'Ensamblaje' recibió Producto 13
+[20:03:18.621] INFO     [STATION   ] 'Ensamblaje' procesando Producto 13...
+[20:03:18.623] INFO     [SCHEDULER ] Round Robin: Procesando Producto 12
+[20:03:18.623] INFO     [SCHEDULER ] Despachando Producto 12 a estación 'Ensamblaje'
+[20:03:20.623] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 13
+[20:03:20.630] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 13 (tiempo parcial: 2008 ms)
+[20:03:20.630] INFO     [STATION   ] 'Ensamblaje' recibió Producto 16
+[20:03:20.631] INFO     [STATION   ] 'Ensamblaje' procesando Producto 16...
+[20:03:20.634] INFO     [SCHEDULER ] Round Robin: Procesando Producto 13
+[20:03:20.634] INFO     [SCHEDULER ] Despachando Producto 13 a estación 'Ensamblaje'
+[20:03:22.635] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 16
+[20:03:22.639] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 16 (tiempo parcial: 2008 ms)
+[20:03:22.640] INFO     [STATION   ] 'Ensamblaje' recibió Producto 18
+[20:03:22.641] INFO     [STATION   ] 'Ensamblaje' procesando Producto 18...
+[20:03:22.641] INFO     [SCHEDULER ] Round Robin: Procesando Producto 16
+[20:03:22.641] INFO     [SCHEDULER ] Despachando Producto 16 a estación 'Ensamblaje'
+[20:03:24.642] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 18
+[20:03:24.648] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 18 (tiempo parcial: 2007 ms)
+[20:03:24.649] INFO     [STATION   ] 'Ensamblaje' recibió Producto 19
+[20:03:24.649] INFO     [STATION   ] 'Ensamblaje' procesando Producto 19...
+[20:03:24.653] INFO     [SCHEDULER ] Round Robin: Procesando Producto 18
+[20:03:24.653] INFO     [SCHEDULER ] Despachando Producto 18 a estación 'Ensamblaje'
+[20:03:26.652] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 19
+[20:03:26.658] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 19 (tiempo parcial: 2008 ms)
+[20:03:26.658] INFO     [STATION   ] 'Ensamblaje' recibió Producto 0
+[20:03:26.659] INFO     [STATION   ] 'Ensamblaje' procesando Producto 0...
+[20:03:26.662] INFO     [SCHEDULER ] Round Robin: Procesando Producto 19
+[20:03:26.663] INFO     [SCHEDULER ] Despachando Producto 19 a estación 'Ensamblaje'
+[20:03:28.659] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 0
+[20:03:28.667] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 0 (tiempo parcial: 2008 ms)
+[20:03:28.668] INFO     [STATION   ] 'Ensamblaje' recibió Producto 17
+[20:03:28.669] INFO     [STATION   ] 'Ensamblaje' procesando Producto 17...
+[20:03:28.671] INFO     [SCHEDULER ] Round Robin: Procesando Producto 0
+[20:03:28.671] INFO     [SCHEDULER ] Despachando Producto 0 a estación 'Ensamblaje'
+[20:03:30.673] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 17
+[20:03:30.677] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 17 (tiempo parcial: 2007 ms)
+[20:03:30.677] INFO     [STATION   ] 'Ensamblaje' recibió Producto 1
+[20:03:30.678] INFO     [STATION   ] 'Ensamblaje' procesando Producto 1...
+[20:03:30.679] INFO     [SCHEDULER ] Round Robin: Procesando Producto 17
+[20:03:30.679] INFO     [SCHEDULER ] Despachando Producto 17 a estación 'Ensamblaje'
+[20:03:32.680] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 1
+[20:03:32.686] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 1 (tiempo parcial: 2008 ms)
+[20:03:32.687] INFO     [STATION   ] 'Ensamblaje' recibió Producto 2
+[20:03:32.687] INFO     [STATION   ] 'Ensamblaje' procesando Producto 2...
+[20:03:32.691] INFO     [SCHEDULER ] Round Robin: Procesando Producto 1
+[20:03:32.692] INFO     [SCHEDULER ] Despachando Producto 1 a estación 'Ensamblaje'
+[20:03:34.688] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 2
+[20:03:34.697] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 2 (tiempo parcial: 2009 ms)
+[20:03:34.698] INFO     [STATION   ] 'Ensamblaje' recibió Producto 3
+[20:03:34.698] INFO     [STATION   ] 'Ensamblaje' procesando Producto 3...
+[20:03:34.700] INFO     [SCHEDULER ] Round Robin: Procesando Producto 2
+[20:03:34.700] INFO     [SCHEDULER ] Despachando Producto 2 a estación 'Ensamblaje'
+[20:03:36.702] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 3
+[20:03:36.707] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 3 (tiempo parcial: 2009 ms)
+[20:03:36.708] INFO     [STATION   ] 'Ensamblaje' recibió Producto 5
+[20:03:36.709] INFO     [STATION   ] 'Ensamblaje' procesando Producto 5...
+[20:03:36.713] INFO     [SCHEDULER ] Round Robin: Procesando Producto 3
+[20:03:36.713] INFO     [SCHEDULER ] Despachando Producto 3 a estación 'Ensamblaje'
+[20:03:38.710] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 5
+[20:03:38.717] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 5 (tiempo parcial: 2008 ms)
+[20:03:38.718] INFO     [STATION   ] 'Ensamblaje' recibió Producto 7
+[20:03:38.718] INFO     [STATION   ] 'Ensamblaje' procesando Producto 7...
+[20:03:38.721] INFO     [SCHEDULER ] Round Robin: Procesando Producto 5
+[20:03:38.722] INFO     [SCHEDULER ] Despachando Producto 5 a estación 'Ensamblaje'
+[20:03:40.721] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 7
+[20:03:40.727] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 7 (tiempo parcial: 2008 ms)
+[20:03:40.728] INFO     [STATION   ] 'Ensamblaje' recibió Producto 9
+[20:03:40.728] INFO     [STATION   ] 'Ensamblaje' procesando Producto 9...
+[20:03:40.732] INFO     [SCHEDULER ] Round Robin: Procesando Producto 7
+[20:03:40.732] INFO     [SCHEDULER ] Despachando Producto 7 a estación 'Ensamblaje'
+[20:03:42.729] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 9
+[20:03:42.738] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 9 (tiempo parcial: 2009 ms)
+[20:03:42.738] INFO     [STATION   ] 'Ensamblaje' recibió Producto 11
+[20:03:42.739] INFO     [STATION   ] 'Ensamblaje' procesando Producto 11...
+[20:03:42.740] INFO     [SCHEDULER ] Round Robin: Procesando Producto 9
+[20:03:42.741] INFO     [SCHEDULER ] Despachando Producto 9 a estación 'Ensamblaje'
+[20:03:44.739] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 11
+[20:03:44.748] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 11 (tiempo parcial: 2009 ms)
+[20:03:44.749] INFO     [STATION   ] 'Ensamblaje' recibió Producto 15
+[20:03:44.750] INFO     [STATION   ] 'Ensamblaje' procesando Producto 15...
+[20:03:44.750] INFO     [SCHEDULER ] Round Robin: Procesando Producto 11
+[20:03:44.751] INFO     [SCHEDULER ] Despachando Producto 11 a estación 'Ensamblaje'
+[20:03:45.212] INFO     [STATION   ] 'Ensamblaje' completó Producto 15 (tiempo: 462 ms)
+[20:03:45.213] INFO     [STATION   ] 'Ensamblaje' recibió Producto 12
+[20:03:45.213] INFO     [STATION   ] 'Ensamblaje' procesando Producto 12...
+[20:03:45.216] INFO     [SCHEDULER ] Round Robin: Procesando Producto 15
+[20:03:45.217] INFO     [SCHEDULER ] Despachando Producto 15 a estación 'Empaque'
+[20:03:45.217] INFO     [STATION   ] 'Empaque' recibió Producto 15
+[20:03:45.218] INFO     [STATION   ] 'Empaque' procesando Producto 15...
+[20:03:47.214] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 12
+[20:03:47.220] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 15
+[20:03:47.222] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 12 (tiempo parcial: 2009 ms)
+[20:03:47.223] INFO     [STATION   ] 'Ensamblaje' recibió Producto 13
+[20:03:47.224] INFO     [STATION   ] 'Ensamblaje' procesando Producto 13...
+[20:03:47.225] INFO     [SCHEDULER ] Round Robin: Procesando Producto 12
+[20:03:47.226] INFO     [SCHEDULER ] Despachando Producto 12 a estación 'Ensamblaje'
+[20:03:47.227] INFO     [STATION   ] 'Empaque' preemptó Producto 15 (tiempo parcial: 2008 ms)
+[20:03:47.232] INFO     [SCHEDULER ] Round Robin: Procesando Producto 15
+[20:03:47.233] INFO     [SCHEDULER ] Despachando Producto 15 a estación 'Empaque'
+[20:03:47.233] INFO     [STATION   ] 'Empaque' recibió Producto 15
+[20:03:47.234] INFO     [STATION   ] 'Empaque' procesando Producto 15...
+[20:03:48.508] INFO     [STATION   ] 'Empaque' completó Producto 15 (tiempo: 1275 ms)
+[20:03:49.226] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 13
+[20:03:49.233] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 13 (tiempo parcial: 2009 ms)
+[20:03:49.234] INFO     [STATION   ] 'Ensamblaje' recibió Producto 16
+[20:03:49.234] INFO     [STATION   ] 'Ensamblaje' procesando Producto 16...
+[20:03:49.237] INFO     [SCHEDULER ] Round Robin: Procesando Producto 13
+[20:03:49.238] INFO     [SCHEDULER ] Despachando Producto 13 a estación 'Ensamblaje'
+[20:03:49.691] INFO     [SYSTEM    ] Progreso: 6/20 productos completados
+[20:03:51.237] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 16
+[20:03:51.244] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 16 (tiempo parcial: 2009 ms)
+[20:03:51.245] INFO     [STATION   ] 'Ensamblaje' recibió Producto 18
+[20:03:51.245] INFO     [STATION   ] 'Ensamblaje' procesando Producto 18...
+[20:03:51.248] INFO     [SCHEDULER ] Round Robin: Procesando Producto 16
+[20:03:51.249] INFO     [SCHEDULER ] Despachando Producto 16 a estación 'Ensamblaje'
+[20:03:53.249] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 18
+[20:03:53.255] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 18 (tiempo parcial: 2009 ms)
+[20:03:53.256] INFO     [STATION   ] 'Ensamblaje' recibió Producto 19
+[20:03:53.256] INFO     [STATION   ] 'Ensamblaje' procesando Producto 19...
+[20:03:53.260] INFO     [SCHEDULER ] Round Robin: Procesando Producto 18
+[20:03:53.260] INFO     [SCHEDULER ] Despachando Producto 18 a estación 'Ensamblaje'
+[20:03:55.259] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 19
+[20:03:55.265] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 19 (tiempo parcial: 2009 ms)
+[20:03:55.266] INFO     [STATION   ] 'Ensamblaje' recibió Producto 0
+[20:03:55.266] INFO     [STATION   ] 'Ensamblaje' procesando Producto 0...
+[20:03:55.270] INFO     [SCHEDULER ] Round Robin: Procesando Producto 19
+[20:03:55.271] INFO     [SCHEDULER ] Despachando Producto 19 a estación 'Ensamblaje'
+[20:03:57.270] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 0
+[20:03:57.276] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 0 (tiempo parcial: 2010 ms)
+[20:03:57.277] INFO     [STATION   ] 'Ensamblaje' recibió Producto 17
+[20:03:57.278] INFO     [STATION   ] 'Ensamblaje' procesando Producto 17...
+[20:03:57.281] INFO     [SCHEDULER ] Round Robin: Procesando Producto 0
+[20:03:57.282] INFO     [SCHEDULER ] Despachando Producto 0 a estación 'Ensamblaje'
+[20:03:58.640] INFO     [STATION   ] 'Ensamblaje' completó Producto 17 (tiempo: 1363 ms)
+[20:03:58.640] INFO     [STATION   ] 'Ensamblaje' recibió Producto 1
+[20:03:58.641] INFO     [STATION   ] 'Ensamblaje' procesando Producto 1...
+[20:03:58.644] INFO     [SCHEDULER ] Round Robin: Procesando Producto 17
+[20:03:58.645] INFO     [SCHEDULER ] Despachando Producto 17 a estación 'Empaque'
+[20:03:58.645] INFO     [STATION   ] 'Empaque' recibió Producto 17
+[20:03:58.646] INFO     [STATION   ] 'Empaque' procesando Producto 17...
+[20:03:59.348] INFO     [STATION   ] 'Ensamblaje' completó Producto 1 (tiempo: 707 ms)
+[20:03:59.349] INFO     [STATION   ] 'Ensamblaje' recibió Producto 2
+[20:03:59.350] INFO     [STATION   ] 'Ensamblaje' procesando Producto 2...
+[20:03:59.353] INFO     [SCHEDULER ] Round Robin: Procesando Producto 1
+[20:03:59.353] INFO     [SCHEDULER ] Despachando Producto 1 a estación 'Empaque'
+[20:04:00.646] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 17
+[20:04:00.653] INFO     [STATION   ] 'Empaque' preemptó Producto 17 (tiempo parcial: 2007 ms)
+[20:04:00.653] INFO     [STATION   ] 'Empaque' recibió Producto 1
+[20:04:00.654] INFO     [STATION   ] 'Empaque' procesando Producto 1...
+[20:04:00.657] INFO     [SCHEDULER ] Round Robin: Procesando Producto 17
+[20:04:00.658] INFO     [SCHEDULER ] Despachando Producto 17 a estación 'Empaque'
+[20:04:01.349] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 2
+[20:04:01.359] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 2 (tiempo parcial: 2009 ms)
+[20:04:01.360] INFO     [STATION   ] 'Ensamblaje' recibió Producto 3
+[20:04:01.360] INFO     [STATION   ] 'Ensamblaje' procesando Producto 3...
+[20:04:01.365] INFO     [SCHEDULER ] Round Robin: Procesando Producto 2
+[20:04:01.366] INFO     [SCHEDULER ] Despachando Producto 2 a estación 'Ensamblaje'
+[20:04:02.657] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 1
+[20:04:02.662] INFO     [STATION   ] 'Empaque' preemptó Producto 1 (tiempo parcial: 2008 ms)
+[20:04:02.663] INFO     [STATION   ] 'Empaque' recibió Producto 17
+[20:04:02.663] INFO     [SCHEDULER ] Round Robin: Procesando Producto 1
+[20:04:02.664] INFO     [SCHEDULER ] Despachando Producto 1 a estación 'Empaque'
+[20:04:02.665] INFO     [STATION   ] 'Empaque' procesando Producto 17...
+[20:04:02.842] INFO     [STATION   ] 'Ensamblaje' completó Producto 3 (tiempo: 1482 ms)
+[20:04:02.843] INFO     [STATION   ] 'Ensamblaje' recibió Producto 5
+[20:04:02.844] INFO     [STATION   ] 'Ensamblaje' procesando Producto 5...
+[20:04:02.847] INFO     [SCHEDULER ] Round Robin: Procesando Producto 3
+[20:04:02.848] INFO     [SCHEDULER ] Despachando Producto 3 a estación 'Empaque'
+[20:04:04.008] INFO     [STATION   ] 'Empaque' completó Producto 17 (tiempo: 1344 ms)
+[20:04:04.009] INFO     [STATION   ] 'Empaque' recibió Producto 1
+[20:04:04.009] INFO     [STATION   ] 'Empaque' procesando Producto 1...
+[20:04:04.846] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 5
+[20:04:04.853] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 5 (tiempo parcial: 2009 ms)
+[20:04:04.854] INFO     [STATION   ] 'Ensamblaje' recibió Producto 7
+[20:04:04.854] INFO     [STATION   ] 'Ensamblaje' procesando Producto 7...
+[20:04:04.857] INFO     [SCHEDULER ] Round Robin: Procesando Producto 5
+[20:04:04.858] INFO     [SCHEDULER ] Despachando Producto 5 a estación 'Ensamblaje'
+[20:04:05.026] INFO     [STATION   ] 'Empaque' completó Producto 1 (tiempo: 1016 ms)
+[20:04:05.027] INFO     [STATION   ] 'Empaque' recibió Producto 3
+[20:04:05.027] INFO     [STATION   ] 'Empaque' procesando Producto 3...
+[20:04:05.694] INFO     [SYSTEM    ] Progreso: 8/20 productos completados
+[20:04:06.695] INFO     [STATION   ] 'Ensamblaje' completó Producto 7 (tiempo: 1842 ms)
+[20:04:06.696] INFO     [STATION   ] 'Ensamblaje' recibió Producto 9
+[20:04:06.697] INFO     [STATION   ] 'Ensamblaje' procesando Producto 9...
+[20:04:06.700] INFO     [SCHEDULER ] Round Robin: Procesando Producto 7
+[20:04:06.701] INFO     [SCHEDULER ] Despachando Producto 7 a estación 'Empaque'
+[20:04:07.030] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 3
+[20:04:07.036] INFO     [STATION   ] 'Empaque' preemptó Producto 3 (tiempo parcial: 2008 ms)
+[20:04:07.037] INFO     [STATION   ] 'Empaque' recibió Producto 7
+[20:04:07.037] INFO     [STATION   ] 'Empaque' procesando Producto 7...
+[20:04:07.041] INFO     [SCHEDULER ] Round Robin: Procesando Producto 3
+[20:04:07.042] INFO     [SCHEDULER ] Despachando Producto 3 a estación 'Empaque'
+[20:04:08.699] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 9
+[20:04:08.706] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 9 (tiempo parcial: 2009 ms)
+[20:04:08.707] INFO     [STATION   ] 'Ensamblaje' recibió Producto 11
+[20:04:08.707] INFO     [STATION   ] 'Ensamblaje' procesando Producto 11...
+[20:04:08.710] INFO     [SCHEDULER ] Round Robin: Procesando Producto 9
+[20:04:08.711] INFO     [SCHEDULER ] Despachando Producto 9 a estación 'Ensamblaje'
+[20:04:09.039] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 7
+[20:04:09.046] INFO     [STATION   ] 'Empaque' preemptó Producto 7 (tiempo parcial: 2008 ms)
+[20:04:09.046] INFO     [STATION   ] 'Empaque' recibió Producto 3
+[20:04:09.047] INFO     [STATION   ] 'Empaque' procesando Producto 3...
+[20:04:09.050] INFO     [SCHEDULER ] Round Robin: Procesando Producto 7
+[20:04:09.050] INFO     [SCHEDULER ] Despachando Producto 7 a estación 'Empaque'
+[20:04:10.263] INFO     [STATION   ] 'Ensamblaje' completó Producto 11 (tiempo: 1556 ms)
+[20:04:10.264] INFO     [STATION   ] 'Ensamblaje' recibió Producto 12
+[20:04:10.265] INFO     [STATION   ] 'Ensamblaje' procesando Producto 12...
+[20:04:10.269] INFO     [SCHEDULER ] Round Robin: Procesando Producto 11
+[20:04:10.270] INFO     [SCHEDULER ] Despachando Producto 11 a estación 'Empaque'
+[20:04:11.046] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 3
+[20:04:11.048] INFO     [STATION   ] 'Ensamblaje' completó Producto 12 (tiempo: 783 ms)
+[20:04:11.048] INFO     [STATION   ] 'Ensamblaje' recibió Producto 13
+[20:04:11.049] INFO     [STATION   ] 'Ensamblaje' procesando Producto 13...
+[20:04:11.052] INFO     [SCHEDULER ] Round Robin: Procesando Producto 12
+[20:04:11.053] INFO     [SCHEDULER ] Despachando Producto 12 a estación 'Empaque'
+[20:04:11.055] INFO     [STATION   ] 'Empaque' preemptó Producto 3 (tiempo parcial: 2008 ms)
+[20:04:11.056] INFO     [STATION   ] 'Empaque' recibió Producto 7
+[20:04:11.057] INFO     [STATION   ] 'Empaque' procesando Producto 7...
+[20:04:11.058] INFO     [SCHEDULER ] Round Robin: Procesando Producto 3
+[20:04:11.059] INFO     [SCHEDULER ] Despachando Producto 3 a estación 'Empaque'
+[20:04:11.967] INFO     [STATION   ] 'Ensamblaje' completó Producto 13 (tiempo: 918 ms)
+[20:04:11.967] INFO     [STATION   ] 'Ensamblaje' recibió Producto 16
+[20:04:11.968] INFO     [STATION   ] 'Ensamblaje' procesando Producto 16...
+[20:04:11.970] INFO     [SCHEDULER ] Round Robin: Procesando Producto 13
+[20:04:11.970] INFO     [SCHEDULER ] Despachando Producto 13 a estación 'Empaque'
+[20:04:13.059] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 7
+[20:04:13.066] INFO     [STATION   ] 'Empaque' preemptó Producto 7 (tiempo parcial: 2008 ms)
+[20:04:13.067] INFO     [STATION   ] 'Empaque' recibió Producto 11
+[20:04:13.067] INFO     [STATION   ] 'Empaque' procesando Producto 11...
+[20:04:13.070] INFO     [SCHEDULER ] Round Robin: Procesando Producto 7
+[20:04:13.071] INFO     [SCHEDULER ] Despachando Producto 7 a estación 'Empaque'
+[20:04:13.480] INFO     [STATION   ] 'Ensamblaje' completó Producto 16 (tiempo: 1512 ms)
+[20:04:13.481] INFO     [STATION   ] 'Ensamblaje' recibió Producto 18
+[20:04:13.481] INFO     [STATION   ] 'Ensamblaje' procesando Producto 18...
+[20:04:13.484] INFO     [SCHEDULER ] Round Robin: Procesando Producto 16
+[20:04:13.484] INFO     [SCHEDULER ] Despachando Producto 16 a estación 'Empaque'
+[20:04:15.067] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 11
+[20:04:15.076] INFO     [STATION   ] 'Empaque' preemptó Producto 11 (tiempo parcial: 2008 ms)
+[20:04:15.077] INFO     [STATION   ] 'Empaque' recibió Producto 12
+[20:04:15.077] INFO     [STATION   ] 'Empaque' procesando Producto 12...
+[20:04:15.079] INFO     [SCHEDULER ] Round Robin: Procesando Producto 11
+[20:04:15.079] INFO     [SCHEDULER ] Despachando Producto 11 a estación 'Empaque'
+[20:04:15.481] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 18
+[20:04:15.490] INFO     [STATION   ] 'Ensamblaje' preemptó Producto 18 (tiempo parcial: 2008 ms)
+[20:04:15.491] INFO     [STATION   ] 'Ensamblaje' recibió Producto 19
+[20:04:15.491] INFO     [STATION   ] 'Ensamblaje' procesando Producto 19...
+[20:04:15.492] INFO     [SCHEDULER ] Round Robin: Procesando Producto 18
+[20:04:15.492] INFO     [SCHEDULER ] Despachando Producto 18 a estación 'Ensamblaje'
+[20:04:16.023] INFO     [STATION   ] 'Ensamblaje' completó Producto 19 (tiempo: 532 ms)
+[20:04:16.024] INFO     [STATION   ] 'Ensamblaje' recibió Producto 0
+[20:04:16.024] INFO     [STATION   ] 'Ensamblaje' procesando Producto 0...
+[20:04:16.025] INFO     [SCHEDULER ] Round Robin: Procesando Producto 19
+[20:04:16.025] INFO     [SCHEDULER ] Despachando Producto 19 a estación 'Empaque'
+[20:04:16.845] INFO     [STATION   ] 'Ensamblaje' completó Producto 0 (tiempo: 822 ms)
+[20:04:16.846] INFO     [STATION   ] 'Ensamblaje' recibió Producto 2
+[20:04:16.846] INFO     [STATION   ] 'Ensamblaje' procesando Producto 2...
+[20:04:16.848] INFO     [SCHEDULER ] Round Robin: Procesando Producto 0
+[20:04:16.848] INFO     [SCHEDULER ] Despachando Producto 0 a estación 'Empaque'
+[20:04:17.078] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 12
+[20:04:17.086] INFO     [STATION   ] 'Empaque' preemptó Producto 12 (tiempo parcial: 2008 ms)
+[20:04:17.086] INFO     [STATION   ] 'Empaque' recibió Producto 3
+[20:04:17.087] INFO     [STATION   ] 'Empaque' procesando Producto 3...
+[20:04:17.089] INFO     [SCHEDULER ] Round Robin: Procesando Producto 12
+[20:04:17.089] INFO     [SCHEDULER ] Despachando Producto 12 a estación 'Empaque'
+[20:04:17.165] INFO     [STATION   ] 'Ensamblaje' completó Producto 2 (tiempo: 318 ms)
+[20:04:17.166] INFO     [STATION   ] 'Ensamblaje' recibió Producto 5
+[20:04:17.166] INFO     [STATION   ] 'Ensamblaje' procesando Producto 5...
+[20:04:17.167] INFO     [SCHEDULER ] Round Robin: Procesando Producto 2
+[20:04:17.168] INFO     [SCHEDULER ] Despachando Producto 2 a estación 'Empaque'
+[20:04:17.527] INFO     [STATION   ] 'Empaque' completó Producto 3 (tiempo: 441 ms)
+[20:04:17.527] INFO     [STATION   ] 'Empaque' recibió Producto 13
+[20:04:17.528] INFO     [STATION   ] 'Empaque' procesando Producto 13...
+[20:04:17.727] INFO     [SYSTEM    ] Progreso: 9/20 productos completados
+[20:04:17.836] INFO     [STATION   ] 'Ensamblaje' completó Producto 5 (tiempo: 670 ms)
+[20:04:17.836] INFO     [STATION   ] 'Ensamblaje' recibió Producto 9
+[20:04:17.837] INFO     [STATION   ] 'Ensamblaje' procesando Producto 9...
+[20:04:17.841] INFO     [SCHEDULER ] Round Robin: Procesando Producto 5
+[20:04:17.841] INFO     [SCHEDULER ] Despachando Producto 5 a estación 'Empaque'
+[20:04:19.004] INFO     [STATION   ] 'Ensamblaje' completó Producto 9 (tiempo: 1167 ms)
+[20:04:19.005] INFO     [STATION   ] 'Ensamblaje' recibió Producto 18
+[20:04:19.006] INFO     [STATION   ] 'Ensamblaje' procesando Producto 18...
+[20:04:19.008] INFO     [SCHEDULER ] Round Robin: Procesando Producto 9
+[20:04:19.009] INFO     [SCHEDULER ] Despachando Producto 9 a estación 'Empaque'
+[20:04:19.530] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 13
+[20:04:19.537] INFO     [STATION   ] 'Empaque' preemptó Producto 13 (tiempo parcial: 2009 ms)
+[20:04:19.538] INFO     [STATION   ] 'Empaque' recibió Producto 7
+[20:04:19.538] INFO     [STATION   ] 'Empaque' procesando Producto 7...
+[20:04:19.541] INFO     [SCHEDULER ] Round Robin: Procesando Producto 13
+[20:04:19.542] INFO     [SCHEDULER ] Despachando Producto 13 a estación 'Empaque'
+[20:04:20.073] INFO     [STATION   ] 'Empaque' completó Producto 7 (tiempo: 534 ms)
+[20:04:20.073] INFO     [STATION   ] 'Empaque' recibió Producto 16
+[20:04:20.074] INFO     [STATION   ] 'Empaque' procesando Producto 16...
+[20:04:20.439] INFO     [STATION   ] 'Ensamblaje' completó Producto 18 (tiempo: 1434 ms)
+[20:04:20.443] INFO     [SCHEDULER ] Round Robin: Procesando Producto 18
+[20:04:20.443] INFO     [SCHEDULER ] Despachando Producto 18 a estación 'Empaque'
+[20:04:21.729] INFO     [SYSTEM    ] Progreso: 10/20 productos completados
+[20:04:22.074] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 16
+[20:04:22.082] INFO     [STATION   ] 'Empaque' preemptó Producto 16 (tiempo parcial: 2008 ms)
+[20:04:22.083] INFO     [STATION   ] 'Empaque' recibió Producto 11
+[20:04:22.083] INFO     [STATION   ] 'Empaque' procesando Producto 11...
+[20:04:22.085] INFO     [SCHEDULER ] Round Robin: Procesando Producto 16
+[20:04:22.085] INFO     [SCHEDULER ] Despachando Producto 16 a estación 'Empaque'
+[20:04:24.083] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 11
+[20:04:24.092] INFO     [STATION   ] 'Empaque' preemptó Producto 11 (tiempo parcial: 2008 ms)
+[20:04:24.092] INFO     [STATION   ] 'Empaque' recibió Producto 19
+[20:04:24.093] INFO     [STATION   ] 'Empaque' procesando Producto 19...
+[20:04:24.094] INFO     [SCHEDULER ] Round Robin: Procesando Producto 11
+[20:04:24.094] INFO     [SCHEDULER ] Despachando Producto 11 a estación 'Empaque'
+[20:04:26.093] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 19
+[20:04:26.102] INFO     [STATION   ] 'Empaque' preemptó Producto 19 (tiempo parcial: 2008 ms)
+[20:04:26.102] INFO     [STATION   ] 'Empaque' recibió Producto 0
+[20:04:26.103] INFO     [STATION   ] 'Empaque' procesando Producto 0...
+[20:04:26.105] INFO     [SCHEDULER ] Round Robin: Procesando Producto 19
+[20:04:26.105] INFO     [SCHEDULER ] Despachando Producto 19 a estación 'Empaque'
+[20:04:28.105] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 0
+[20:04:28.112] INFO     [STATION   ] 'Empaque' preemptó Producto 0 (tiempo parcial: 2009 ms)
+[20:04:28.112] INFO     [STATION   ] 'Empaque' recibió Producto 12
+[20:04:28.113] INFO     [STATION   ] 'Empaque' procesando Producto 12...
+[20:04:28.116] INFO     [SCHEDULER ] Round Robin: Procesando Producto 0
+[20:04:28.117] INFO     [SCHEDULER ] Despachando Producto 0 a estación 'Empaque'
+[20:04:30.113] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 12
+[20:04:30.122] INFO     [STATION   ] 'Empaque' preemptó Producto 12 (tiempo parcial: 2008 ms)
+[20:04:30.123] INFO     [STATION   ] 'Empaque' recibió Producto 2
+[20:04:30.123] INFO     [STATION   ] 'Empaque' procesando Producto 2...
+[20:04:30.125] INFO     [SCHEDULER ] Round Robin: Procesando Producto 12
+[20:04:30.125] INFO     [SCHEDULER ] Despachando Producto 12 a estación 'Empaque'
+[20:04:32.124] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 2
+[20:04:32.131] INFO     [STATION   ] 'Empaque' preemptó Producto 2 (tiempo parcial: 2008 ms)
+[20:04:32.132] INFO     [STATION   ] 'Empaque' recibió Producto 5
+[20:04:32.133] INFO     [STATION   ] 'Empaque' procesando Producto 5...
+[20:04:32.135] INFO     [SCHEDULER ] Round Robin: Procesando Producto 2
+[20:04:32.135] INFO     [SCHEDULER ] Despachando Producto 2 a estación 'Empaque'
+[20:04:34.137] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 5
+[20:04:34.142] INFO     [STATION   ] 'Empaque' preemptó Producto 5 (tiempo parcial: 2009 ms)
+[20:04:34.142] INFO     [STATION   ] 'Empaque' recibió Producto 9
+[20:04:34.143] INFO     [STATION   ] 'Empaque' procesando Producto 9...
+[20:04:34.143] INFO     [SCHEDULER ] Round Robin: Procesando Producto 5
+[20:04:34.144] INFO     [SCHEDULER ] Despachando Producto 5 a estación 'Empaque'
+[20:04:36.146] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 9
+[20:04:36.152] INFO     [STATION   ] 'Empaque' preemptó Producto 9 (tiempo parcial: 2009 ms)
+[20:04:36.153] INFO     [STATION   ] 'Empaque' recibió Producto 13
+[20:04:36.153] INFO     [STATION   ] 'Empaque' procesando Producto 13...
+[20:04:36.157] INFO     [SCHEDULER ] Round Robin: Procesando Producto 9
+[20:04:36.157] INFO     [SCHEDULER ] Despachando Producto 9 a estación 'Empaque'
+[20:04:38.155] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 13
+[20:04:38.161] INFO     [STATION   ] 'Empaque' preemptó Producto 13 (tiempo parcial: 2007 ms)
+[20:04:38.162] INFO     [STATION   ] 'Empaque' recibió Producto 18
+[20:04:38.162] INFO     [STATION   ] 'Empaque' procesando Producto 18...
+[20:04:38.166] INFO     [SCHEDULER ] Round Robin: Procesando Producto 13
+[20:04:38.166] INFO     [SCHEDULER ] Despachando Producto 13 a estación 'Empaque'
+[20:04:40.162] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 18
+[20:04:40.171] INFO     [STATION   ] 'Empaque' preemptó Producto 18 (tiempo parcial: 2008 ms)
+[20:04:40.171] INFO     [STATION   ] 'Empaque' recibió Producto 16
+[20:04:40.172] INFO     [STATION   ] 'Empaque' procesando Producto 16...
+[20:04:40.174] INFO     [SCHEDULER ] Round Robin: Procesando Producto 18
+[20:04:40.174] INFO     [SCHEDULER ] Despachando Producto 18 a estación 'Empaque'
+[20:04:42.171] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 16
+[20:04:42.181] INFO     [STATION   ] 'Empaque' preemptó Producto 16 (tiempo parcial: 2009 ms)
+[20:04:42.182] INFO     [STATION   ] 'Empaque' recibió Producto 11
+[20:04:42.182] INFO     [STATION   ] 'Empaque' procesando Producto 11...
+[20:04:42.182] INFO     [SCHEDULER ] Round Robin: Procesando Producto 16
+[20:04:42.183] INFO     [SCHEDULER ] Despachando Producto 16 a estación 'Empaque'
+[20:04:43.083] INFO     [STATION   ] 'Empaque' completó Producto 11 (tiempo: 902 ms)
+[20:04:43.084] INFO     [STATION   ] 'Empaque' recibió Producto 19
+[20:04:43.084] INFO     [STATION   ] 'Empaque' procesando Producto 19...
+[20:04:43.732] INFO     [SYSTEM    ] Progreso: 11/20 productos completados
+[20:04:44.637] INFO     [STATION   ] 'Empaque' completó Producto 19 (tiempo: 1553 ms)
+[20:04:44.637] INFO     [STATION   ] 'Empaque' recibió Producto 0
+[20:04:44.638] INFO     [STATION   ] 'Empaque' procesando Producto 0...
+[20:04:45.733] INFO     [SYSTEM    ] Progreso: 12/20 productos completados
+[20:04:46.638] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 0
+[20:04:46.647] INFO     [STATION   ] 'Empaque' preemptó Producto 0 (tiempo parcial: 2008 ms)
+[20:04:46.647] INFO     [STATION   ] 'Empaque' recibió Producto 12
+[20:04:46.648] INFO     [STATION   ] 'Empaque' procesando Producto 12...
+[20:04:46.649] INFO     [SCHEDULER ] Round Robin: Procesando Producto 0
+[20:04:46.650] INFO     [SCHEDULER ] Despachando Producto 0 a estación 'Empaque'
+[20:04:46.804] INFO     [STATION   ] 'Empaque' completó Producto 12 (tiempo: 156 ms)
+[20:04:46.805] INFO     [STATION   ] 'Empaque' recibió Producto 2
+[20:04:46.805] INFO     [STATION   ] 'Empaque' procesando Producto 2...
+[20:04:47.734] INFO     [SYSTEM    ] Progreso: 13/20 productos completados
+[20:04:48.809] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 2
+[20:04:48.814] INFO     [STATION   ] 'Empaque' preemptó Producto 2 (tiempo parcial: 2008 ms)
+[20:04:48.814] INFO     [STATION   ] 'Empaque' recibió Producto 5
+[20:04:48.815] INFO     [STATION   ] 'Empaque' procesando Producto 5...
+[20:04:48.815] INFO     [SCHEDULER ] Round Robin: Procesando Producto 2
+[20:04:48.816] INFO     [SCHEDULER ] Despachando Producto 2 a estación 'Empaque'
+[20:04:50.818] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 5
+[20:04:50.823] INFO     [STATION   ] 'Empaque' preemptó Producto 5 (tiempo parcial: 2008 ms)
+[20:04:50.824] INFO     [STATION   ] 'Empaque' recibió Producto 9
+[20:04:50.824] INFO     [STATION   ] 'Empaque' procesando Producto 9...
+[20:04:50.825] INFO     [SCHEDULER ] Round Robin: Procesando Producto 5
+[20:04:50.825] INFO     [SCHEDULER ] Despachando Producto 5 a estación 'Empaque'
+[20:04:52.827] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 9
+[20:04:52.833] INFO     [STATION   ] 'Empaque' preemptó Producto 9 (tiempo parcial: 2008 ms)
+[20:04:52.834] INFO     [STATION   ] 'Empaque' recibió Producto 13
+[20:04:52.834] INFO     [STATION   ] 'Empaque' procesando Producto 13...
+[20:04:52.838] INFO     [SCHEDULER ] Round Robin: Procesando Producto 9
+[20:04:52.838] INFO     [SCHEDULER ] Despachando Producto 9 a estación 'Empaque'
+[20:04:53.629] INFO     [STATION   ] 'Empaque' completó Producto 13 (tiempo: 795 ms)
+[20:04:53.630] INFO     [STATION   ] 'Empaque' recibió Producto 18
+[20:04:53.631] INFO     [STATION   ] 'Empaque' procesando Producto 18...
+[20:04:53.735] INFO     [SYSTEM    ] Progreso: 14/20 productos completados
+[20:04:55.633] INFO     [SCHEDULER ] Quantum expirado - solicitando preempción de Producto 18
+[20:04:55.639] INFO     [STATION   ] 'Empaque' preemptó Producto 18 (tiempo parcial: 2008 ms)
+[20:04:55.640] INFO     [STATION   ] 'Empaque' recibió Producto 16
+[20:04:55.640] INFO     [STATION   ] 'Empaque' procesando Producto 16...
+[20:04:55.644] INFO     [SCHEDULER ] Round Robin: Procesando Producto 18
+[20:04:55.645] INFO     [SCHEDULER ] Despachando Producto 18 a estación 'Empaque'
+[20:04:55.827] INFO     [STATION   ] 'Empaque' completó Producto 16 (tiempo: 186 ms)
+[20:04:55.828] INFO     [STATION   ] 'Empaque' recibió Producto 0
+[20:04:55.828] INFO     [STATION   ] 'Empaque' procesando Producto 0...
+[20:04:56.254] INFO     [STATION   ] 'Empaque' completó Producto 0 (tiempo: 425 ms)
+[20:04:56.255] INFO     [STATION   ] 'Empaque' recibió Producto 2
+[20:04:56.255] INFO     [STATION   ] 'Empaque' procesando Producto 2...
+[20:04:57.239] INFO     [STATION   ] 'Empaque' completó Producto 2 (tiempo: 984 ms)
+[20:04:57.239] INFO     [STATION   ] 'Empaque' recibió Producto 5
+[20:04:57.240] INFO     [STATION   ] 'Empaque' procesando Producto 5...
+[20:04:57.736] INFO     [SYSTEM    ] Progreso: 17/20 productos completados
+[20:04:57.909] INFO     [STATION   ] 'Empaque' completó Producto 5 (tiempo: 669 ms)
+[20:04:57.910] INFO     [STATION   ] 'Empaque' recibió Producto 9
+[20:04:57.910] INFO     [STATION   ] 'Empaque' procesando Producto 9...
+[20:04:58.686] INFO     [STATION   ] 'Empaque' completó Producto 9 (tiempo: 777 ms)
+[20:04:58.687] INFO     [STATION   ] 'Empaque' recibió Producto 18
+[20:04:58.688] INFO     [STATION   ] 'Empaque' procesando Producto 18...
+[20:04:59.242] INFO     [STATION   ] 'Empaque' completó Producto 18 (tiempo: 554 ms)
+[20:04:59.737] INFO     [SYSTEM    ] Progreso: 20/20 productos completados
+[20:04:59.738] INFO     [SYSTEM    ] Todos los productos completados!
+[20:04:59.739] INFO     [SYSTEM    ] Deteniendo hilos del sistema...
+[20:04:59.739] INFO     [SCHEDULER ] Deteniendo scheduler...
+[20:04:59.742] INFO     [SCHEDULER ] Worker thread del scheduler finalizado
+[20:04:59.743] INFO     [SCHEDULER ] Scheduler detenido
+[20:04:59.744] INFO     [STATION   ] Deteniendo hilo de 'Corte'...
+[20:04:59.744] INFO     [STATION   ] Worker thread finalizado para 'Corte'
+[20:04:59.745] INFO     [STATION   ] Hilo de 'Corte' detenido
+[20:04:59.745] INFO     [STATION   ] Deteniendo hilo de 'Ensamblaje'...
+[20:04:59.746] INFO     [STATION   ] Worker thread finalizado para 'Ensamblaje'
+[20:04:59.746] INFO     [STATION   ] Hilo de 'Ensamblaje' detenido
+[20:04:59.747] INFO     [STATION   ] Deteniendo hilo de 'Empaque'...
+[20:04:59.747] INFO     [STATION   ] Worker thread finalizado para 'Empaque'
+[20:04:59.748] INFO     [STATION   ] Hilo de 'Empaque' detenido
+[20:04:59.748] INFO     [SYSTEM    ] Todos los hilos detenidos
+[20:04:59.748] INFO     [SYSTEM    ] Liberando recursos...
+[20:04:59.749] INFO     [STATION   ] Destruyendo estación 'Corte'
+[20:04:59.749] INFO     [STATION   ] Destruyendo estación 'Ensamblaje'
+[20:04:59.749] INFO     [STATION   ] Destruyendo estación 'Empaque'
+[20:04:59.750] INFO     [SCHEDULER ] Destruyendo scheduler
+[20:04:59.750] INFO     [SYSTEM    ] Recursos liberados
+[20:04:59.777] INFO     [SYSTEM    ] Finalizando subsistemas...
+
+[LOGGER] Sistema finalizado
