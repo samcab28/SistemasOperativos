@@ -585,7 +585,6 @@ int main(int argc, char *argv[]) {
     // Ejecutar simulaciones
     // ========================================
     int executed_fcfs = 0;
-    int executed_rr = 0;
 
     if (run_fcfs) {
         SYSTEM_INFO("Iniciando simulación con FCFS...");
@@ -605,7 +604,6 @@ int main(int argc, char *argv[]) {
         SYSTEM_INFO("Iniciando simulación con Round Robin...");
         run_simulation(SCHED_ROUND_ROBIN, rr_quantum_ms, num_products, station_times,
                        randomize_processing, &summary_rr);
-        executed_rr = 1;
         summary_rr_valid = 1;
     }
 

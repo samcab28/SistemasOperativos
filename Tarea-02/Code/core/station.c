@@ -248,6 +248,7 @@ void *station_worker_thread(void *arg) {
     while (station->thread_running) {
         // Esperar por producto en la cola de entrada
         if (!station->input_queue) {
+            // Sin cola asignada: dormir un momento para no consumir CPU
             usleep(100000); // 100ms
             continue;
         }
@@ -256,6 +257,7 @@ void *station_worker_thread(void *arg) {
         product_t *product = queue_pop(station->input_queue);
         
         if (!product) {
+            // La cola pudo despertar por una señal de parada
             if (!station->thread_running) break;
             continue;
         }
@@ -350,6 +352,7 @@ int station_process_product(station_t *station, product_t *product) {
             break;
         }
 
+        // Procesar en rebanadas pequeñas para reaccionar a preempciones del scheduler
         usleep(step * 1000);
         elapsed_ms += step;
 
@@ -373,6 +376,7 @@ int station_process_product(station_t *station, product_t *product) {
         pthread_mutex_unlock(&station->mutex);
 
         if (should_preempt || stop_running) {
+            // Salir temprano para devolver el producto al scheduler
             preempted = 1;
             break;
         }
@@ -418,6 +422,7 @@ int station_process_product(station_t *station, product_t *product) {
         }
         product->current_station = station;
         if (station->scheduler) {
+            // Reentregar al scheduler para decidir el siguiente destino
             scheduler_requeue_preempted_product(station->scheduler, product);
             scheduler_notify_slice_end(station->scheduler, product, 1);
         } else if (station->input_queue) {
@@ -436,6 +441,7 @@ int station_process_product(station_t *station, product_t *product) {
     if (station->scheduler) {
         station_t *next_station = station->next_station;
         if (next_station) {
+            // Continuar hacia la siguiente estación del pipeline
             product->current_station = next_station;
             scheduler_requeue_preempted_product(station->scheduler, product);
             scheduler_notify_slice_end(station->scheduler, product, 0);
