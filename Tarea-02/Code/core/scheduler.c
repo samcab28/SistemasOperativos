@@ -115,22 +115,12 @@ static int scheduler_rr_collect_expired_slices_locked(scheduler_t *scheduler,
 
         long elapsed = time_diff_ms(&slice->start_time, &now);
         if (elapsed >= scheduler->config.quantum_ms) {
+            // Marcar slice para preempción en el ciclo actual
             slice->preemption_requested = 1;
             out_products[count++] = slice->product;
         }
     }
     return count;
-}
-
-static struct timespec timespec_add_ms(const struct timespec *start, long ms) {
-    struct timespec result = *start;
-    result.tv_sec += ms / 1000;
-    result.tv_nsec += (ms % 1000) * 1000000L;
-    if (result.tv_nsec >= 1000000000L) {
-        result.tv_sec += result.tv_nsec / 1000000000L;
-        result.tv_nsec %= 1000000000L;
-    }
-    return result;
 }
 
 // =============================================
@@ -181,6 +171,7 @@ scheduler_t *create_scheduler(scheduling_algorithm_t algorithm, int quantum_ms) 
     get_current_time(&scheduler->stats.start_time);
     scheduler->stats.last_dispatched_product = NULL;
 
+    // Inicialización del runtime RR: sin slices activos al inicio
     scheduler->rr_runtime.count = 0;
     for (int i = 0; i < SCHEDULER_MAX_ACTIVE_SLICES; ++i) {
         scheduler->rr_runtime.slices[i].product = NULL;
@@ -410,6 +401,7 @@ void *scheduler_worker_thread(void *arg) {
         if (!scheduler->thread_running) break;
         
         // Ejecutar algoritmo correspondiente
+        // La elección se mantiene en un único punto para evitar duplicar locks.
         if (scheduler->config.algorithm == SCHED_FCFS) {
             scheduler_fcfs_process(scheduler);
         } else if (scheduler->config.algorithm == SCHED_ROUND_ROBIN) {
@@ -460,9 +452,11 @@ void scheduler_requeue_preempted_product(scheduler_t *scheduler, product_t *prod
     if (!scheduler || !product) return;
 
     pthread_mutex_lock(&scheduler->mutex);
+    // Si llegó aquí sin estación asignada, regresar al primer eslabón del pipeline
     if (!product->current_station) {
         product->current_station = scheduler->first_station;
     }
+    // Vuelve a la cola de listos respetando la política FIFO
     queue_push(scheduler->ready_queue, product);
     set_product_state(product, STATE_IN_QUEUE);
     pthread_cond_signal(&scheduler->products_available);
@@ -479,6 +473,7 @@ void scheduler_notify_execution_start(scheduler_t *scheduler, product_t *product
 
     if (scheduler->config.algorithm == SCHED_ROUND_ROBIN &&
         scheduler->config.quantum_ms > 0) {
+        // Iniciar conteo de quantum solo cuando la estación comienza a trabajar
         scheduler_rr_start_quantum(scheduler, product);
     }
 }
@@ -528,6 +523,7 @@ void scheduler_dispatch_product(scheduler_t *scheduler, product_t *product) {
     SCHEDULER_INFO("Despachando Producto %d a estación '%s'",
                    product->id, target_station->name);
 
+    // La cola de la estación gestiona el siguiente paso del pipeline
     queue_push(target_station->input_queue, product);
 
     metrics_product_processing_start(product->id, target_station->id);
@@ -623,6 +619,7 @@ void scheduler_rr_process(scheduler_t *scheduler) {
     int expired_count = 0;
 
     pthread_mutex_lock(&scheduler->mutex);
+    // Revisar qué productos excedieron su quantum
     expired_count = scheduler_rr_collect_expired_slices_locked(
         scheduler, expired, SCHEDULER_MAX_ACTIVE_SLICES);
     pthread_mutex_unlock(&scheduler->mutex);
@@ -636,6 +633,7 @@ void scheduler_rr_process(scheduler_t *scheduler) {
 
     if (!product) {
         if (expired_count == 0) {
+            // Ceder CPU si no hay trabajo inmediato ni expiraciones pendientes
             usleep(5000); // Evitar busy-wait si no hay nada que hacer
         }
         return;

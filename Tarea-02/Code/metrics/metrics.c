@@ -161,6 +161,7 @@ void metrics_record_event(event_type_t type, int product_id, int station_id) {
         
         g_metrics.buffer_count++;
         
+        // Opcionalmente dar visibilidad inmediata para depuración
         printf("[METRICS] Evento: %s - Producto: %d, Estación: %d\n",
                event_names[type], product_id, station_id);
     }
@@ -209,6 +210,7 @@ void metrics_product_processing_end(product_t *product, int station_id, int comp
     metrics_get_timestamp(&end_time);
 
     long slice_time_ms = metrics_time_diff_ms(&station->last_activity_time, &end_time);
+    // Registrar el fragmento procesado e identificar si completó la estación
     update_station_processing_stats(station, (int)slice_time_ms, completed, total_time_ms);
     station->is_busy = 0;
     station->last_activity_time = end_time;
@@ -224,6 +226,7 @@ void metrics_product_completed(int product_id) {
     METRICS_LOCK();
     g_metrics.total_products_completed++;
     if (g_metrics.completion_order_count < METRICS_COMPLETION_ORDER_MAX) {
+        // Almacenar el orden exacto de finalización para los resúmenes
         g_metrics.completion_order[g_metrics.completion_order_count++] = product_id;
     }
     METRICS_UNLOCK();
@@ -425,6 +428,7 @@ void metrics_capture_summary(metrics_summary_t *summary) {
         copy_count = METRICS_COMPLETION_ORDER_MAX;
     }
     for (int i = 0; i < copy_count; ++i) {
+        // Copia defensiva: el consumidor puede persistir el resumen después del reset
         summary->completion_order[i] = g_metrics.completion_order[i];
     }
 
@@ -597,6 +601,7 @@ void metrics_reset_all(void) {
     g_metrics.completion_order_count = 0;
 
     // Vaciar buffer de eventos
+    // Los eventos históricos dejan de ser relevantes tras un nuevo experimento
     g_metrics.buffer_count = 0;
     
     // Actualizar tiempo de inicio
