@@ -1,0 +1,258 @@
+
+=========================================
+ RESUMEN DE ALGORITMO: FCFS
+=========================================
+Productos configurados: 5
+Modo de procesamiento: DETERMINISTA
+Productos creados: 5
+Productos completados: 5
+Productos fallidos: 0
+Tiempo total de ejecución: 20131 ms
+Throughput del sistema: 0.25 productos/segundo
+Utilización promedio de estaciones: 38.2%
+
+--- Métricas del Scheduler ---
+Productos programados: 5
+Cambios de contexto: 0
+Preempciones: 0
+Tiempo promedio de espera: 6043.80 ms
+Tiempo promedio de turnaround: 12073.00 ms
+
+--- Métricas por Estación ---
+Estación 0 (Corte)
+  Productos procesados: 5
+  Tiempo total de procesamiento: 5021 ms
+  Tiempo promedio: 1004.60 ms
+  Tiempo mínimo: 1003 ms
+  Tiempo máximo: 1006 ms
+Estación 1 (Ensamblaje)
+  Productos procesados: 5
+  Tiempo total de procesamiento: 8025 ms
+  Tiempo promedio: 2008.80 ms
+  Tiempo mínimo: 2008 ms
+  Tiempo máximo: 2010 ms
+Estación 2 (Empaque)
+  Productos procesados: 5
+  Tiempo total de procesamiento: 10037 ms
+  Tiempo promedio: 3013.40 ms
+  Tiempo mínimo: 3013 ms
+  Tiempo máximo: 3014 ms
+
+--- Orden final de procesamiento ---
+0 -> 1 -> 2 -> 3 -> 4
+
+--- Productos destacados (primeros 3) ---
+Producto 0
+  Llegada: 11 ms
+  Turnaround: 6042 ms
+  Espera total: 12 ms
+  Finalización: 6054 ms
+    Estación 0 (Corte): 1006 ms procesado, 5 ms espera, 0 preempciones
+      Entrada: 17 ms | Salida: 1023 ms
+    Estación 1 (Ensamblaje): 2009 ms procesado, 3 ms espera, 0 preempciones
+      Entrada: 1026 ms | Salida: 3036 ms
+    Estación 2 (Empaque): 3013 ms procesado, 4 ms espera, 0 preempciones
+      Entrada: 3041 ms | Salida: 6054 ms
+Producto 1
+  Llegada: 11 ms
+  Turnaround: 9058 ms
+  Espera total: 3026 ms
+  Finalización: 9070 ms
+    Estación 0 (Corte): 1006 ms procesado, 1013 ms espera, 0 preempciones
+      Entrada: 1024 ms | Salida: 2030 ms
+    Estación 1 (Ensamblaje): 2010 ms procesado, 1007 ms espera, 0 preempciones
+      Entrada: 3038 ms | Salida: 5049 ms
+    Estación 2 (Empaque): 3014 ms procesado, 1006 ms espera, 0 preempciones
+      Entrada: 6055 ms | Salida: 9070 ms
+Producto 2
+  Llegada: 11 ms
+  Turnaround: 12073 ms
+  Espera total: 6044 ms
+  Finalización: 12085 ms
+    Estación 0 (Corte): 1004 ms procesado, 2021 ms espera, 0 preempciones
+      Entrada: 2033 ms | Salida: 3037 ms
+    Estación 1 (Ensamblaje): 2009 ms procesado, 2013 ms espera, 0 preempciones
+      Entrada: 5051 ms | Salida: 7061 ms
+    Estación 2 (Empaque): 3013 ms procesado, 2010 ms espera, 0 preempciones
+      Entrada: 9071 ms | Salida: 12085 ms
+=========================================
+
+
+=========================================
+ RESUMEN DE ALGORITMO: ROUND ROBIN
+=========================================
+Productos configurados: 5
+Modo de procesamiento: DETERMINISTA
+Productos creados: 5
+Productos completados: 5
+Productos fallidos: 0
+Tiempo total de ejecución: 20029 ms
+Throughput del sistema: 0.25 productos/segundo
+Utilización promedio de estaciones: 40.0%
+
+--- Métricas del Scheduler ---
+Productos programados: 5
+Cambios de contexto: 29
+Preempciones: 15
+Tiempo promedio de espera: 9302.40 ms
+Tiempo promedio de turnaround: 15315.80 ms
+
+--- Métricas por Estación ---
+Estación 0 (Corte)
+  Productos procesados: 5
+  Tiempo total de procesamiento: 5021 ms
+  Tiempo promedio: 1004.80 ms
+  Tiempo mínimo: 1004 ms
+  Tiempo máximo: 1008 ms
+Estación 1 (Ensamblaje)
+  Productos procesados: 5
+  Tiempo total de procesamiento: 6979 ms
+  Tiempo promedio: 2003.80 ms
+  Tiempo mínimo: 2003 ms
+  Tiempo máximo: 2004 ms
+Estación 2 (Empaque)
+  Productos procesados: 5
+  Tiempo total de procesamiento: 12040 ms
+  Tiempo promedio: 3002.60 ms
+  Tiempo mínimo: 3002 ms
+  Tiempo máximo: 3003 ms
+
+--- Orden final de procesamiento ---
+0 -> 1 -> 2 -> 3 -> 4
+
+--- Productos destacados (primeros 3) ---
+Producto 0
+  Llegada: 10 ms
+  Turnaround: 8548 ms
+  Espera total: 2531 ms
+  Finalización: 8558 ms
+    Estación 0 (Corte): 1008 ms procesado, 5 ms espera, 0 preempciones
+      Entrada: 16 ms | Salida: 1024 ms
+    Estación 1 (Ensamblaje): 2004 ms procesado, 1256 ms espera, 1 preempciones
+      Entrada: 3541 ms | Salida: 4288 ms
+    Estación 2 (Empaque): 3002 ms procesado, 1258 ms espera, 2 preempciones
+      Entrada: 8116 ms | Salida: 8558 ms
+Producto 1
+  Llegada: 10 ms
+  Turnaround: 11555 ms
+  Espera total: 5540 ms
+  Finalización: 11565 ms
+    Estación 0 (Corte): 1004 ms procesado, 1015 ms espera, 0 preempciones
+      Entrada: 1026 ms | Salida: 2031 ms
+    Estación 1 (Ensamblaje): 2004 ms procesado, 2005 ms espera, 1 preempciones
+      Entrada: 5545 ms | Salida: 6295 ms
+    Estación 2 (Empaque): 3003 ms procesado, 1258 ms espera, 2 preempciones
+      Entrada: 11071 ms | Salida: 11565 ms
+Producto 2
+  Llegada: 10 ms
+  Turnaround: 18334 ms
+  Espera total: 12321 ms
+  Finalización: 18345 ms
+    Estación 0 (Corte): 1004 ms procesado, 2021 ms espera, 0 preempciones
+      Entrada: 2032 ms | Salida: 3036 ms
+    Estación 1 (Ensamblaje): 2004 ms procesado, 3265 ms espera, 1 preempciones
+      Entrada: 8810 ms | Salida: 9558 ms
+    Estación 2 (Empaque): 3003 ms procesado, 2516 ms espera, 2 preempciones
+      Entrada: 17853 ms | Salida: 18345 ms
+=========================================
+
+
+================================================
+ COMPARACIÓN DE ALGORITMOS
+================================================
+
+Para comparar resultados detallados, revise:
+ - Las estadísticas mostradas arriba
+ - El archivo 'simulador.log'
+ - Los tiempos de turnaround y espera
+
+Observaciones esperadas:
+ FCFS:
+ - Sin context switches
+ - Sin preempciones
+ - Orden estricto de llegada
+ - Puede tener mayor variación en tiempos de espera
+
+ Round Robin:
+ - Múltiples context switches
+ - Preempciones cuando expira quantum
+ - Más equitativo en tiempo de CPU
+ - Overhead adicional por cambios de contexto
+=========================================
+ RESUMEN DE ALGORITMO: ROUND ROBIN
+=========================================
+Productos configurados: 20
+Modo de procesamiento: ALEATORIO
+Productos creados: 20
+Productos completados: 20
+Productos fallidos: 0
+Tiempo total de ejecución: 166084 ms
+Throughput del sistema: 0.12 productos/segundo
+Utilización promedio de estaciones: 43.9%
+
+--- Métricas del Scheduler ---
+Productos programados: 20
+Cambios de contexto: 153
+Preempciones: 94
+Tiempo promedio de espera: 105191.70 ms
+Tiempo promedio de turnaround: 117267.20 ms
+
+--- Métricas por Estación ---
+Estación 0 (Corte)
+  Productos procesados: 20
+  Tiempo total de procesamiento: 41649 ms
+  Tiempo promedio: 2085.25 ms
+  Tiempo mínimo: 1508 ms
+  Tiempo máximo: 2495 ms
+Estación 1 (Ensamblaje)
+  Productos procesados: 20
+  Tiempo total de procesamiento: 105002 ms
+  Tiempo promedio: 5854.90 ms
+  Tiempo mínimo: 4509 ms
+  Tiempo máximo: 7458 ms
+Estación 2 (Empaque)
+  Productos procesados: 20
+  Tiempo total de procesamiento: 72034 ms
+  Tiempo promedio: 4132.10 ms
+  Tiempo mínimo: 3020 ms
+  Tiempo máximo: 5000 ms
+
+--- Orden final de procesamiento ---
+4 -> 6 -> 8 -> 10 -> 14 -> 15 -> 17 -> 1 -> 3 -> 7 -> 11 -> 19 -> 12 -> 13 -> 16 -> 0 -> 2 -> 5 -> 9 -> 18
+
+--- Productos destacados (primeros 3) ---
+Producto 0
+  Llegada: 9 ms
+  Turnaround: 162580 ms
+  Espera total: 148887 ms
+  Finalización: 162590 ms
+    Estación 0 (Corte): 2399 ms procesado, 36311 ms espera, 1 preempciones
+      Entrada: 38337 ms | Salida: 38726 ms
+    Estación 1 (Ensamblaje): 6848 ms procesado, 18749 ms espera, 3 preempciones
+      Entrada: 122360 ms | Salida: 123181 ms
+    Estación 2 (Empaque): 4442 ms procesado, 9181 ms espera, 2 preempciones
+      Entrada: 162164 ms | Salida: 162590 ms
+Producto 1
+  Llegada: 9 ms
+  Turnaround: 111353 ms
+  Espera total: 101298 ms
+  Finalización: 111362 ms
+    Estación 0 (Corte): 2304 ms procesado, 34690 ms espera, 1 preempciones
+      Entrada: 38728 ms | Salida: 39022 ms
+    Estación 1 (Ensamblaje): 4724 ms procesado, 25955 ms espera, 2 preempciones
+      Entrada: 104978 ms | Salida: 105684 ms
+    Estación 2 (Empaque): 3024 ms procesado, 1347 ms espera, 1 preempciones
+      Entrada: 110345 ms | Salida: 111362 ms
+Producto 2
+  Llegada: 9 ms
+  Turnaround: 163565 ms
+  Espera total: 149951 ms
+  Finalización: 163574 ms
+    Estación 0 (Corte): 2266 ms procesado, 32977 ms espera, 1 preempciones
+      Entrada: 39024 ms | Salida: 39282 ms
+    Estación 1 (Ensamblaje): 6345 ms procesado, 15488 ms espera, 3 preempciones
+      Entrada: 123182 ms | Salida: 123501 ms
+    Estación 2 (Empaque): 5000 ms procesado, 7441 ms espera, 2 preempciones
+      Entrada: 162591 ms | Salida: 163574 ms
+=========================================
+
