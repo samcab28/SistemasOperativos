@@ -3,10 +3,8 @@
 pub mod basics;
 pub mod handler_traits;
 
-// Future sprint modules
-#[allow(dead_code)]
+// CPU/IO intensive handlers (skeletons provided)
 pub mod cpu_intensive;
-#[allow(dead_code)]
 pub mod io_intensive;
 #[allow(dead_code)]
 pub mod job_endpoints;
@@ -21,3 +19,11 @@ pub use basics::{
 };
 
 pub use handler_traits::QueryParamExt;
+
+// Re-export CPU/IO handler functions for router wiring
+pub use cpu_intensive::{
+    handle_factor, handle_isprime, handle_mandelbrot, handle_matrixmul, handle_pi,
+};
+pub use io_intensive::{
+    handle_compress, handle_grep, handle_hashfile, handle_sortfile, handle_wordcount,
+};
