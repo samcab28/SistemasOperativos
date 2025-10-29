@@ -12,6 +12,7 @@ use std::net::TcpListener;
 use std::sync::atomic::{AtomicBool, AtomicU64, Ordering};
 use std::sync::Arc;
 use std::time::SystemTime;
+use std::thread;
 
 /// HTTP Server
 pub struct HttpServer {
@@ -53,14 +54,67 @@ impl HttpServer {
 
             match stream {
                 Ok(stream) => {
-                    if let Err(e) = self.handle_connection(stream) {
-                        logger().log(
-                            LogLevel::Error,
-                            &format!("Connection error: {}", e),
-                        );
-                    }
+                    // Clone data needed per-connection and handle in a new OS thread
+                    let router = self.router.clone();
+                    let config = self.config.clone();
+                    let connections_served = self.connections_served.clone();
 
-                    self.connections_served.fetch_add(1, Ordering::SeqCst);
+                    thread::spawn(move || {
+                        // Handle connection lifecycle inside the thread
+                        let result = (|| -> ServerResult<()> {
+                            let mut connection = Connection::new(stream)?;
+
+                            connection.set_read_timeout(config.timeouts.read_timeout)?;
+                            connection.set_write_timeout(config.timeouts.write_timeout)?;
+
+                            // Clone context to avoid lifetime conflict
+                            let ctx = connection.context().clone();
+                            logger().log_request(LogLevel::Info, &ctx, "Connection established");
+
+                            let request = match connection.read_request() {
+                                Ok(req) => req,
+                                Err(e) => {
+                                    logger().log_request(
+                                        LogLevel::Warn,
+                                        &ctx,
+                                        &format!("Invalid request: {}", e),
+                                    );
+                                    let _ = connection.send_error(&e);
+                                    return Ok(());
+                                }
+                            };
+
+                            logger().log_request(
+                                LogLevel::Info,
+                                &ctx,
+                                &format!("{} {}", request.method.as_str(), request.path),
+                            );
+
+                            let response = match router.handle(&request) {
+                                Ok(resp) => resp.with_request_id(ctx.id()),
+                                Err(e) => {
+                                    logger().log_request(
+                                        LogLevel::Warn,
+                                        &ctx,
+                                        &format!("Handler error: {}", e),
+                                    );
+                                    HttpResponse::from_error(&e).with_request_id(ctx.id())
+                                }
+                            };
+
+                            connection.send_response(response)?;
+
+                            logger().log_request(LogLevel::Info, &ctx, "Response sent");
+
+                            Ok(())
+                        })();
+
+                        if let Err(e) = result {
+                            logger().log(LogLevel::Error, &format!("Connection error: {}", e));
+                        }
+
+                        connections_served.fetch_add(1, Ordering::SeqCst);
+                    });
                 }
                 Err(e) => {
                     logger().log(
@@ -74,42 +128,7 @@ impl HttpServer {
         Ok(())
     }
 
-    /// Handle a single connection
-    fn handle_connection(&self, stream: std::net::TcpStream) -> ServerResult<()> {
-        let mut connection = Connection::new(stream)?;
-
-        connection.set_read_timeout(self.config.timeouts.read_timeout)?;
-        connection.set_write_timeout(self.config.timeouts.write_timeout)?;
-
-        // Clone context to avoid lifetime conflict
-        let ctx = connection.context().clone();
-        logger().log_request(LogLevel::Info, &ctx, "Connection established");
-
-        let request = match connection.read_request() {
-            Ok(req) => req,
-            Err(e) => {
-                logger().log_request(LogLevel::Warn, &ctx, &format!("Invalid request: {}", e));
-                let _ = connection.send_error(&e);
-                return Ok(());
-            }
-        };
-
-        logger().log_request(LogLevel::Info, &ctx, &format!("{} {}", request.method.as_str(), request.path));
-
-        let response = match self.router.handle(&request) {
-            Ok(resp) => resp.with_request_id(ctx.id()),
-            Err(e) => {
-                logger().log_request(LogLevel::Warn, &ctx, &format!("Handler error: {}", e));
-                HttpResponse::from_error(&e).with_request_id(ctx.id())
-            }
-        };
-
-        connection.send_response(response)?;
-
-        logger().log_request(LogLevel::Info, &ctx, "Response sent");
-
-        Ok(())
-    }
+    // Per-connection handling is moved into the thread closure in start()
 
 
     /// Get server statistics
@@ -130,6 +149,11 @@ impl HttpServer {
     pub fn stop(&mut self) {
         self.running.store(false, Ordering::SeqCst);
         logger().info("Server stopped");
+    }
+
+    /// Expose a clone of the running flag for external shutdown coordination
+    pub fn running_flag(&self) -> Arc<AtomicBool> {
+        self.running.clone()
     }
 }
 
