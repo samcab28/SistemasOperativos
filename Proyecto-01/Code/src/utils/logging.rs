@@ -4,6 +4,7 @@
 //! Request IDs enable distributed tracing across the system.
 
 use std::sync::atomic::{AtomicU64, Ordering};
+use std::sync::OnceLock;
 use std::time::{SystemTime, UNIX_EPOCH};
 
 /// Global counter for request IDs
@@ -156,21 +157,17 @@ impl Default for Logger {
     }
 }
 
-/// Global logger instance
-static mut GLOBAL_LOGGER: Option<Logger> = None;
+/// Global logger instance (thread-safe)
+static GLOBAL_LOGGER: OnceLock<Logger> = OnceLock::new();
 
 /// Initialize global logger
 pub fn init_logger(enabled: bool) {
-    unsafe {
-        GLOBAL_LOGGER = Some(Logger::new(enabled));
-    }
+    let _ = GLOBAL_LOGGER.set(Logger::new(enabled));
 }
 
 /// Get global logger reference
 pub fn logger() -> &'static Logger {
-    unsafe {
-        GLOBAL_LOGGER.get_or_insert_with(|| Logger::new(true))
-    }
+    GLOBAL_LOGGER.get_or_init(|| Logger::new(true))
 }
 
 /// Log macro for convenience

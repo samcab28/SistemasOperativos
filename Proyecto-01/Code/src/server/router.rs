@@ -11,6 +11,7 @@ use std::collections::HashMap;
 pub type HandlerFn = fn(&HttpRequest) -> ServerResult<HttpResponse>;
 
 /// Router for HTTP requests
+#[derive(Clone)]
 pub struct Router {
     routes: HashMap<String, HandlerFn>,
 }
