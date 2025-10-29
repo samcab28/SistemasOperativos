@@ -2,11 +2,9 @@
 //!
 //! Will contain worker management in future sprints.
 
-#[allow(dead_code)]
 pub mod task_queue;
-#[allow(dead_code)]
 pub mod worker_manager;
-#[allow(dead_code)]
 pub mod worker_pool;
-#[allow(dead_code)]
 pub mod worker_types;
+
+pub use worker_manager::{init_global_worker_manager, worker_manager};

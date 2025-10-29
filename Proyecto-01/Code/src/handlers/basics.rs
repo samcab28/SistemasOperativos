@@ -7,6 +7,7 @@ use crate::handlers::handler_traits::QueryParamExt;
 use crate::server::requests::HttpRequest;
 use crate::server::response::{HttpResponse, JsonResponseBuilder};
 use crate::utils::crypto;
+use crate::workers::worker_manager::worker_manager;
 use std::time::{SystemTime, UNIX_EPOCH};
 
 /// Handle /timestamp - Return current Unix timestamp
@@ -146,15 +147,18 @@ pub fn handle_fibonacci(req: &HttpRequest) -> ServerResult<HttpResponse> {
         ));
     }
 
-    let start = SystemTime::now();
-    let result = fibonacci(n);
-    let elapsed = start.elapsed().unwrap_or_default().as_millis();
+    // Offload to CPU worker pool with timeout; fall back to error mapping
+    let response = worker_manager().submit_cpu(move || {
+        let start = SystemTime::now();
+        let result = fibonacci(n);
+        let elapsed = start.elapsed().unwrap_or_default().as_millis();
 
-    let response = JsonResponseBuilder::new(200)
-        .field_num("n", n)
-        .field_num("result", result)
-        .field_num("elapsed_ms", elapsed)
-        .build();
+        JsonResponseBuilder::new(200)
+            .field_num("n", n)
+            .field_num("result", result)
+            .field_num("elapsed_ms", elapsed)
+            .build()
+    })?;
 
     Ok(response)
 }
