@@ -8,6 +8,7 @@ use crate::handlers::handler_traits::QueryParamExt;
 use crate::server::requests::HttpRequest;
 use crate::server::response::{HttpResponse, JsonResponseBuilder};
 use crate::workers::worker_manager::worker_manager;
+use crate::workers::worker_types::WorkPriority;
 use crate::algorithms::{prime, mandelbrot, matrix_ops, pi_calculation};
 use crate::utils::validation::validate_filename;
 use std::time::SystemTime;
@@ -26,8 +27,9 @@ pub fn handle_isprime(req: &HttpRequest) -> ServerResult<HttpResponse> {
     let algo: String = req.parse_param_or("algo", String::from("mr"))?;
     let rounds: u32 = req.parse_param_or("rounds", 6)?;
 
+    let prio = WorkPriority::from_str(req.query_params.get("prio").map(|s| s.as_str()).unwrap_or("normal"));
     let timeout = worker_manager().cpu_timeout();
-    let resp = worker_manager().submit_for("/isprime", timeout, move || {
+    let resp = worker_manager().submit_for_with_priority("/isprime", timeout, prio, move || {
         let start = SystemTime::now();
         let (algo_used, is_p) = match algo.to_lowercase().as_str() {
             "division" => ("division", prime::is_prime_trial(n)),
@@ -49,8 +51,9 @@ pub fn handle_isprime(req: &HttpRequest) -> ServerResult<HttpResponse> {
 /// GET /factor?n=NUM
 pub fn handle_factor(req: &HttpRequest) -> ServerResult<HttpResponse> {
     let n: u64 = req.parse_param("n")?;
+    let prio = WorkPriority::from_str(req.query_params.get("prio").map(|s| s.as_str()).unwrap_or("normal"));
     let timeout = worker_manager().cpu_timeout();
-    let resp = worker_manager().submit_for("/factor", timeout, move || {
+    let resp = worker_manager().submit_for_with_priority("/factor", timeout, prio, move || {
         let start = SystemTime::now();
         let factors = prime::factor_trial(n);
         let elapsed = start.elapsed().unwrap_or_default().as_millis();
@@ -92,8 +95,9 @@ pub fn handle_pi(req: &HttpRequest) -> ServerResult<HttpResponse> {
         _ => return Err(ServerError::invalid_param("algo", "use spigot or chudnovsky")),
     }
 
+    let prio = WorkPriority::from_str(req.query_params.get("prio").map(|s| s.as_str()).unwrap_or("normal"));
     let timeout = worker_manager().cpu_timeout();
-    let resp = worker_manager().submit_for("/pi", timeout, move || {
+    let resp = worker_manager().submit_for_with_priority("/pi", timeout, prio, move || {
         let start = SystemTime::now();
         let (algo_used, value) = match algo.as_str() {
             "chudnovsky" => ("chudnovsky", pi_calculation::pi_chudnovsky_string(digits)),
@@ -116,8 +120,9 @@ pub fn handle_mandelbrot(req: &HttpRequest) -> ServerResult<HttpResponse> {
     let height: u32 = req.parse_param("height")?;
     let max_iter: u32 = req.parse_param_or("max_iter", 1000)?;
     let dump: Option<String> = req.parse_param_optional("dump")?;
+    let prio = WorkPriority::from_str(req.query_params.get("prio").map(|s| s.as_str()).unwrap_or("normal"));
     let timeout = worker_manager().cpu_timeout();
-    let resp = worker_manager().submit_for("/mandelbrot", timeout, move || {
+    let resp = worker_manager().submit_for_with_priority("/mandelbrot", timeout, prio, move || {
         let start = SystemTime::now();
         let map = mandelbrot::mandelbrot_iterations(width, height, max_iter);
         let elapsed = start.elapsed().unwrap_or_default().as_millis();
@@ -200,8 +205,9 @@ pub fn handle_mandelbrot(req: &HttpRequest) -> ServerResult<HttpResponse> {
 pub fn handle_matrixmul(req: &HttpRequest) -> ServerResult<HttpResponse> {
     let size: u32 = req.parse_param("size")?;
     let seed: u64 = req.parse_param_or("seed", 0)?;
+    let prio = WorkPriority::from_str(req.query_params.get("prio").map(|s| s.as_str()).unwrap_or("normal"));
     let timeout = worker_manager().cpu_timeout();
-    let resp = worker_manager().submit_for("/matrixmul", timeout, move || {
+    let resp = worker_manager().submit_for_with_priority("/matrixmul", timeout, prio, move || {
         let start = SystemTime::now();
         let hash = matrix_ops::matrixmul_hash(size, seed);
         let elapsed = start.elapsed().unwrap_or_default().as_millis();

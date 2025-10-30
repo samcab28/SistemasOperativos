@@ -7,8 +7,11 @@ pub struct TaskQueue<T> {
 }
 
 struct Inner<T> {
-    queue: VecDeque<T>,
+    high: VecDeque<T>,
+    normal: VecDeque<T>,
+    low: VecDeque<T>,
     capacity: usize,
+    size: usize,
     closed: bool,
 }
 
@@ -16,8 +19,11 @@ impl<T> TaskQueue<T> {
     pub fn with_capacity(capacity: usize) -> Self {
         Self {
             inner: Mutex::new(Inner {
-                queue: VecDeque::with_capacity(capacity),
+                high: VecDeque::new(),
+                normal: VecDeque::new(),
+                low: VecDeque::new(),
                 capacity,
+                size: 0,
                 closed: false,
             }),
             cv: Condvar::new(),
@@ -26,11 +32,19 @@ impl<T> TaskQueue<T> {
 
     /// Try to push without blocking. Returns false if full or closed.
     pub fn try_push(&self, item: T) -> bool {
+        self.try_push_with_priority(item, crate::workers::worker_types::WorkPriority::Normal)
+    }
+
+    /// Push with explicit priority
+    pub fn try_push_with_priority(&self, item: T, prio: crate::workers::worker_types::WorkPriority) -> bool {
         let mut inner = self.inner.lock().unwrap();
-        if inner.closed || inner.queue.len() >= inner.capacity {
-            return false;
+        if inner.closed || inner.size >= inner.capacity { return false; }
+        match prio {
+            crate::workers::worker_types::WorkPriority::High => inner.high.push_back(item),
+            crate::workers::worker_types::WorkPriority::Normal => inner.normal.push_back(item),
+            crate::workers::worker_types::WorkPriority::Low => inner.low.push_back(item),
         }
-        inner.queue.push_back(item);
+        inner.size += 1;
         self.cv.notify_one();
         true
     }
@@ -39,9 +53,9 @@ impl<T> TaskQueue<T> {
     pub fn pop(&self) -> Option<T> {
         let mut inner = self.inner.lock().unwrap();
         loop {
-            if let Some(item) = inner.queue.pop_front() {
-                return Some(item);
-            }
+            if let Some(item) = inner.high.pop_front() { inner.size -= 1; return Some(item); }
+            if let Some(item) = inner.normal.pop_front() { inner.size -= 1; return Some(item); }
+            if let Some(item) = inner.low.pop_front() { inner.size -= 1; return Some(item); }
             if inner.closed {
                 return None;
             }
@@ -58,7 +72,7 @@ impl<T> TaskQueue<T> {
     /// Current queue length
     pub fn len(&self) -> usize {
         let inner = self.inner.lock().unwrap();
-        inner.queue.len()
+        inner.size
     }
 
     /// Queue capacity

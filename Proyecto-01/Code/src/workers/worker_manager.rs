@@ -7,7 +7,7 @@ use crate::config::ServerConfig;
 use crate::error::{ServerError, ServerResult};
 
 use super::worker_pool::{Job, WorkerPool};
-use super::worker_types::CpuWorkerConfig;
+use super::worker_types::{CpuWorkerConfig, WorkPriority};
 
 pub struct WorkerManager {
     cpu_pool: WorkerPool,
@@ -121,6 +121,42 @@ impl WorkerManager {
             let map = self.endpoint_pools.lock().unwrap();
             let pool = map.get(route).expect("pool must exist");
             pool.submit(job)?;
+        }
+
+        match rx.recv_timeout(timeout) {
+            Ok(value) => Ok(value),
+            Err(mpsc::RecvTimeoutError::Timeout) => Err(ServerError::Timeout),
+            Err(_) => Err(ServerError::internal("worker channel closed")),
+        }
+    }
+
+    /// Submit to a route-specific pool with explicit priority.
+    pub fn submit_for_with_priority<F, R>(&self, route: &str, timeout: Duration, prio: WorkPriority, f: F) -> ServerResult<R>
+    where
+        F: FnOnce() -> R + Send + 'static,
+        R: Send + 'static,
+    {
+        // Ensure pool exists
+        {
+            let mut map = self.endpoint_pools.lock().unwrap();
+            if !map.contains_key(route) {
+                let workers = self.config.workers.get_workers(route);
+                let depth = self.config.queues.get_depth(route);
+                let pool = WorkerPool::new(route.to_string(), workers, depth);
+                map.insert(route.to_string(), pool);
+            }
+        }
+
+        let (tx, rx): (Sender<R>, Receiver<R>) = mpsc::channel();
+        let job: Job = Box::new(move || {
+            let result = f();
+            let _ = tx.send(result);
+        });
+
+        {
+            let map = self.endpoint_pools.lock().unwrap();
+            let pool = map.get(route).expect("pool must exist");
+            pool.submit_with_priority(job, prio)?;
         }
 
         match rx.recv_timeout(timeout) {

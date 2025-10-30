@@ -4,6 +4,7 @@ use std::sync::{Arc};
 use std::thread::{JoinHandle, Builder};
 
 use super::task_queue::TaskQueue;
+use super::worker_types::WorkPriority;
 
 pub type Job = Box<dyn FnOnce() + Send + 'static>;
 
@@ -62,6 +63,16 @@ impl WorkerPool {
                 "pool {} queue full",
                 self.name
             )));
+        }
+        Ok(())
+    }
+
+    pub fn submit_with_priority(&self, job: Job, prio: WorkPriority) -> ServerResult<()> {
+        if self.shutdown.load(Ordering::SeqCst) {
+            return Err(ServerError::ResourceExhausted(format!("pool {} shutting down", self.name)));
+        }
+        if !self.queue.try_push_with_priority(job, prio) {
+            return Err(ServerError::ResourceExhausted(format!("pool {} queue full", self.name)));
         }
         Ok(())
     }
