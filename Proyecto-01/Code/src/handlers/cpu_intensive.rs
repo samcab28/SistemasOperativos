@@ -8,7 +8,8 @@ use crate::handlers::handler_traits::QueryParamExt;
 use crate::server::requests::HttpRequest;
 use crate::server::response::{HttpResponse, JsonResponseBuilder};
 use crate::workers::worker_manager::worker_manager;
-use crate::algorithms::prime;
+use crate::algorithms::{prime, mandelbrot, matrix_ops, pi_calculation};
+use crate::utils::validation::validate_filename;
 use std::time::SystemTime;
 
 fn not_implemented(endpoint: &str) -> HttpResponse {
@@ -72,11 +73,35 @@ pub fn handle_factor(req: &HttpRequest) -> ServerResult<HttpResponse> {
 /// GET /pi?digits=D
 pub fn handle_pi(req: &HttpRequest) -> ServerResult<HttpResponse> {
     let digits: u32 = req.parse_param("digits")?;
+    let algo: String = req.parse_param_or("algo", String::from("spigot"))?;
+
+    // Guardrails per algorithm
+    match algo.as_str() {
+        "spigot" => {
+            if digits > 5000 {
+                return Err(ServerError::invalid_param("digits", "maximum is 5000 for spigot"));
+            }
+        }
+        "chudnovsky" => {
+            if digits > 15 {
+                return Err(ServerError::invalid_param("digits", "maximum is 15 for chudnovsky (f64 precision)"));
+            }
+        }
+        _ => return Err(ServerError::invalid_param("algo", "use spigot or chudnovsky")),
+    }
+
     let resp = worker_manager().submit_cpu(move || {
-        JsonResponseBuilder::new(501)
+        let start = SystemTime::now();
+        let (algo_used, value) = match algo.as_str() {
+            "chudnovsky" => ("chudnovsky", pi_calculation::pi_chudnovsky_string(digits)),
+            _ => ("spigot", pi_calculation::pi_spigot_string(digits)),
+        };
+        let elapsed = start.elapsed().unwrap_or_default().as_millis();
+        JsonResponseBuilder::new(200)
             .field_num("digits", digits)
-            .field("endpoint", "/pi")
-            .field("status", "not_implemented")
+            .field("algo", algo_used)
+            .field("value", value)
+            .field_num("elapsed_ms", elapsed)
             .build()
     })?;
     Ok(resp)
@@ -87,15 +112,82 @@ pub fn handle_mandelbrot(req: &HttpRequest) -> ServerResult<HttpResponse> {
     let width: u32 = req.parse_param("width")?;
     let height: u32 = req.parse_param("height")?;
     let max_iter: u32 = req.parse_param_or("max_iter", 1000)?;
-    let _dump: Option<String> = req.parse_param_optional("dump")?;
+    let dump: Option<String> = req.parse_param_optional("dump")?;
     let resp = worker_manager().submit_cpu(move || {
-        JsonResponseBuilder::new(501)
+        let start = SystemTime::now();
+        let map = mandelbrot::mandelbrot_iterations(width, height, max_iter);
+        let elapsed = start.elapsed().unwrap_or_default().as_millis();
+        let rows_json = format!(
+            "[{}]",
+            map.iter()
+                .map(|row| {
+                    let s = row.iter().map(|v| v.to_string()).collect::<Vec<_>>().join(",");
+                    format!("[{}]", s)
+                })
+                .collect::<Vec<_>>()
+                .join(",")
+        );
+
+        // Optionally dump to PGM file
+        let mut builder = JsonResponseBuilder::new(200)
             .field_num("width", width)
             .field_num("height", height)
             .field_num("max_iter", max_iter)
-            .field("endpoint", "/mandelbrot")
-            .field("status", "not_implemented")
-            .build()
+            .field_num("elapsed_ms", elapsed)
+            .field_raw("map", rows_json);
+
+        if let Some(filename) = dump {
+            // Basic filename validation (no path traversal)
+            if let Err(e) = validate_filename(&filename) {
+                return JsonResponseBuilder::new(400)
+                    .field("error", e.to_string())
+                    .build();
+            }
+
+            // Ensure data directory exists
+            if let Err(e) = std::fs::create_dir_all("./data") {
+                return JsonResponseBuilder::new(500)
+                    .field("error", format!("Failed to create data dir: {}", e))
+                    .build();
+            }
+
+            let path = format!("./data/{}", filename);
+
+            // Determine scaling to 0..255 (points that reach max_iter -> 0)
+            let mut max_seen = 0u32;
+            for row in &map {
+                for &v in row {
+                    if v > max_seen { max_seen = v; }
+                }
+            }
+            let scale = if max_iter > 0 { max_iter } else { 1 };
+
+            let mut pgm = String::new();
+            pgm.push_str("P2\n");
+            pgm.push_str(&format!("{} {}\n", width, height));
+            pgm.push_str("255\n");
+            for row in &map {
+                for (idx, &v) in row.iter().enumerate() {
+                    let val = if v >= scale { 0 } else { ((v as u64 * 255) / scale as u64) as u32 };
+                    if idx > 0 { pgm.push(' '); }
+                    pgm.push_str(&val.to_string());
+                }
+                pgm.push('\n');
+            }
+
+            match std::fs::write(&path, pgm.as_bytes()) {
+                Ok(_) => {
+                    builder = builder.field("dump", path);
+                }
+                Err(e) => {
+                    return JsonResponseBuilder::new(500)
+                        .field("error", format!("Failed to write PGM: {}", e))
+                        .build();
+                }
+            }
+        }
+
+        builder.build()
     })?;
     Ok(resp)
 }
@@ -105,11 +197,14 @@ pub fn handle_matrixmul(req: &HttpRequest) -> ServerResult<HttpResponse> {
     let size: u32 = req.parse_param("size")?;
     let seed: u64 = req.parse_param_or("seed", 0)?;
     let resp = worker_manager().submit_cpu(move || {
-        JsonResponseBuilder::new(501)
+        let start = SystemTime::now();
+        let hash = matrix_ops::matrixmul_hash(size, seed);
+        let elapsed = start.elapsed().unwrap_or_default().as_millis();
+        JsonResponseBuilder::new(200)
             .field_num("size", size)
             .field_num("seed", seed)
-            .field("endpoint", "/matrixmul")
-            .field("status", "not_implemented")
+            .field("hash", hash)
+            .field_num("elapsed_ms", elapsed)
             .build()
     })?;
     Ok(resp)
