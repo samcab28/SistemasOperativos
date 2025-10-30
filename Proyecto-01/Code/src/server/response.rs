@@ -177,7 +177,6 @@ impl HttpResponse {
 }
 
 /// Helper for building JSON responses
-/// Helper for building JSON responses
 pub struct JsonResponseBuilder {
     status_code: u16,
     fields: Vec<(String, String)>,
