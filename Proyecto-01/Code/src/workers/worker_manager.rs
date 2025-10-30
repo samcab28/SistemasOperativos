@@ -1,4 +1,5 @@
-use std::sync::OnceLock;
+use std::collections::HashMap;
+use std::sync::{OnceLock, Mutex};
 use std::time::Duration;
 use std::sync::mpsc::{self, Receiver, Sender};
 
@@ -13,6 +14,8 @@ pub struct WorkerManager {
     cpu_timeout: Duration,
     io_pool: WorkerPool,
     io_timeout: Duration,
+    endpoint_pools: Mutex<HashMap<String, WorkerPool>>,
+    config: ServerConfig,
 }
 
 impl WorkerManager {
@@ -32,10 +35,18 @@ impl WorkerManager {
         let io_timeout = config.timeouts.io_timeout;
         let io_pool = WorkerPool::new("io", io_workers, io_depth);
 
-        Self { cpu_pool, cpu_timeout: cpu_cfg.timeout, io_pool, io_timeout }
+        Self {
+            cpu_pool,
+            cpu_timeout: cpu_cfg.timeout,
+            io_pool,
+            io_timeout,
+            endpoint_pools: Mutex::new(HashMap::new()),
+            config: config.clone(),
+        }
     }
 
     pub fn cpu_timeout(&self) -> Duration { self.cpu_timeout }
+    pub fn io_timeout(&self) -> Duration { self.io_timeout }
 
     /// Submit a CPU task that returns a value via oneshot channel.
     pub fn submit_cpu<F, R>(&self, f: F) -> ServerResult<R>
@@ -81,6 +92,65 @@ impl WorkerManager {
             Err(_) => Err(ServerError::internal("worker channel closed")),
         }
     }
+
+    /// Submit to a route-specific pool with the provided timeout.
+    pub fn submit_for<F, R>(&self, route: &str, timeout: Duration, f: F) -> ServerResult<R>
+    where
+        F: FnOnce() -> R + Send + 'static,
+        R: Send + 'static,
+    {
+        // Ensure pool exists
+        {
+            let mut map = self.endpoint_pools.lock().unwrap();
+            if !map.contains_key(route) {
+                let workers = self.config.workers.get_workers(route);
+                let depth = self.config.queues.get_depth(route);
+                let pool = WorkerPool::new(route.to_string(), workers, depth);
+                map.insert(route.to_string(), pool);
+            }
+        }
+
+        let (tx, rx): (Sender<R>, Receiver<R>) = mpsc::channel();
+        let job: Job = Box::new(move || {
+            let result = f();
+            let _ = tx.send(result);
+        });
+
+        // Submit without holding lock during execution
+        {
+            let map = self.endpoint_pools.lock().unwrap();
+            let pool = map.get(route).expect("pool must exist");
+            pool.submit(job)?;
+        }
+
+        match rx.recv_timeout(timeout) {
+            Ok(value) => Ok(value),
+            Err(mpsc::RecvTimeoutError::Timeout) => Err(ServerError::Timeout),
+            Err(_) => Err(ServerError::internal("worker channel closed")),
+        }
+    }
+
+    /// Snapshot of current endpoint pools with queue/worker stats
+    pub fn pool_stats(&self) -> Vec<RoutePoolStats> {
+        let mut out = Vec::new();
+        let map = self.endpoint_pools.lock().unwrap();
+        for (route, pool) in map.iter() {
+            out.push(RoutePoolStats {
+                route: route.clone(),
+                workers: pool.workers_count(),
+                queue_len: pool.queue_len(),
+                queue_capacity: pool.queue_capacity(),
+            });
+        }
+        out
+    }
+}
+
+pub struct RoutePoolStats {
+    pub route: String,
+    pub workers: usize,
+    pub queue_len: usize,
+    pub queue_capacity: usize,
 }
 
 static GLOBAL_MANAGER: OnceLock<WorkerManager> = OnceLock::new();

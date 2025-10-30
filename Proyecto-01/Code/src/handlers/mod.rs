@@ -27,6 +27,7 @@ pub use cpu_intensive::{
 pub use io_intensive::{
     handle_compress, handle_grep, handle_hashfile, handle_sortfile, handle_wordcount,
 };
+pub use metrics::handle_metrics;
 
 // Expose a global list of available routes for dynamic /help
 use std::sync::OnceLock;
@@ -50,3 +51,7 @@ pub fn set_data_dir(path: String) {
 pub fn data_dir() -> &'static str {
     DATA_DIR.get().map(|s| s.as_str()).unwrap_or("./data")
 }
+// Job endpoints
+pub use job_endpoints::{
+    handle_job_submit, handle_job_status, handle_job_result, handle_job_cancel, handle_job_list,
+};

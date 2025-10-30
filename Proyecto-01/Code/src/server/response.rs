@@ -110,6 +110,11 @@ impl HttpResponse {
         self.with_header("X-Worker-Pid", pid.to_string())
     }
 
+    /// Expose the status code for metrics/logging
+    pub fn status_code(&self) -> u16 {
+        self.status_code
+    }
+
     /// Convert this response to a HEAD-compatible response: preserve
     /// Content-Length for the original body, but clear the body bytes.
     pub fn into_head(mut self) -> Self {

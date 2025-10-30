@@ -54,4 +54,16 @@ impl<T> TaskQueue<T> {
         inner.closed = true;
         self.cv.notify_all();
     }
+
+    /// Current queue length
+    pub fn len(&self) -> usize {
+        let inner = self.inner.lock().unwrap();
+        inner.queue.len()
+    }
+
+    /// Queue capacity
+    pub fn capacity(&self) -> usize {
+        let inner = self.inner.lock().unwrap();
+        inner.capacity
+    }
 }

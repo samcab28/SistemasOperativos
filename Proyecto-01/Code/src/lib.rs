@@ -7,7 +7,7 @@ pub mod config;
 pub mod error;
 pub mod handlers;
 pub mod io_operations;
-//pub mod jobs;
+pub mod jobs;
 pub mod server;
 pub mod utils;
 pub mod workers;

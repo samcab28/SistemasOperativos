@@ -27,7 +27,8 @@ pub fn handle_sortfile(req: &HttpRequest) -> ServerResult<HttpResponse> {
     validate_filename(&name)?;
     let path = format!("{}/{}", data_dir(), name);
     let algo_clone = algo.clone();
-    let resp = worker_manager().submit_io(move || {
+    let timeout = worker_manager().io_timeout();
+    let resp = worker_manager().submit_for("/sortfile", timeout, move || {
         let res = match algo_clone.as_str() {
             "merge" => file_ops::mergesort_file_external(&path),
             "quick" => file_ops::quicksort_file(&path),
@@ -60,7 +61,8 @@ pub fn handle_wordcount(req: &HttpRequest) -> ServerResult<HttpResponse> {
     let name = req.require_query_param("name")?.to_string();
     validate_filename(&name)?;
     let path = format!("{}/{}", data_dir(), name);
-    let resp = worker_manager().submit_io(move || {
+    let timeout = worker_manager().io_timeout();
+    let resp = worker_manager().submit_for("/wordcount", timeout, move || {
         let start = SystemTime::now();
         match file_processing::word_count(&path) {
             Ok(wc) => {
@@ -97,7 +99,8 @@ pub fn handle_grep(req: &HttpRequest) -> ServerResult<HttpResponse> {
     let icase = icase != 0;
     let overlap = overlap != 0;
     let path = format!("{}/{}", data_dir(), name);
-    let resp = worker_manager().submit_io(move || {
+    let timeout = worker_manager().io_timeout();
+    let resp = worker_manager().submit_for("/grep", timeout, move || {
         let start = SystemTime::now();
         match file_processing::grep_file_opts(&path, &pattern, preview, icase, overlap) {
             Ok(res) => {
@@ -139,7 +142,8 @@ pub fn handle_compress(req: &HttpRequest) -> ServerResult<HttpResponse> {
     let impl_flag: String = req.parse_param_or("impl", String::from("auto"))?;
     validate_filename(&name)?;
     let path = format!("{}/{}", data_dir(), name);
-    let resp = worker_manager().submit_io(move || {
+    let timeout = worker_manager().io_timeout();
+    let resp = worker_manager().submit_for("/compress", timeout, move || {
         let impl_hint = compression::ImplHint::from_str(&impl_flag);
         let result = match codec.as_str() {
             "gzip" => compression::compress_gzip_select(&path, impl_hint),
@@ -176,7 +180,8 @@ pub fn handle_hashfile(req: &HttpRequest) -> ServerResult<HttpResponse> {
         return Err(ServerError::invalid_param("algo", "only sha256 supported"));
     }
     let path = format!("{}/{}", data_dir(), name);
-    let resp = worker_manager().submit_io(move || {
+    let timeout = worker_manager().io_timeout();
+    let resp = worker_manager().submit_for("/hashfile", timeout, move || {
         let start = SystemTime::now();
         match std::fs::metadata(&path) {
             Ok(md) => {

@@ -88,8 +88,7 @@ pub fn mergesort_file_external(input: &str) -> io::Result<(String, SortMetrics)>
 }
 
 fn derive_sorted_path(input: &Path) -> PathBuf {
-    let mut out = input.to_path_buf();
-    let os = out.as_os_str().to_owned();
+    let os = input.as_os_str().to_owned();
     let mut s = os.to_string_lossy().to_string();
     s.push_str(".sorted");
     PathBuf::from(s)

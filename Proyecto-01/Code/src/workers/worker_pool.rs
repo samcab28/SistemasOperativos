@@ -1,7 +1,7 @@
 use crate::error::{ServerError, ServerResult};
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::{Arc};
-use std::thread::{self, JoinHandle};
+use std::thread::{JoinHandle, Builder};
 
 use super::task_queue::TaskQueue;
 
@@ -24,8 +24,8 @@ impl WorkerPool {
         for i in 0..size {
             let queue = Arc::clone(&queue);
             let shutdown = Arc::clone(&shutdown);
-            let _worker_name = format!("{}-{}", &name, i);
-            let handle = thread::spawn(move || {
+            let worker_name = format!("{}-{}", &name, i);
+            let handle = Builder::new().name(worker_name).spawn(move || {
                 while !shutdown.load(Ordering::SeqCst) {
                     match queue.pop() {
                         Some(job) => {
@@ -38,7 +38,7 @@ impl WorkerPool {
                         }
                     }
                 }
-            });
+            }).expect("failed to spawn worker thread");
             workers.push(handle);
         }
 
@@ -74,6 +74,10 @@ impl WorkerPool {
             let _ = handle.join();
         }
     }
+
+    pub fn queue_len(&self) -> usize { self.queue.len() }
+    pub fn queue_capacity(&self) -> usize { self.queue.capacity() }
+    pub fn workers_count(&self) -> usize { self.workers.len() }
 }
 
 impl Drop for WorkerPool {

@@ -96,6 +96,7 @@ impl HttpServer {
                                 &format!("{} {}", request.method.as_str(), request.path),
                             );
 
+                            let start = std::time::Instant::now();
                             let mut response = match router.handle(&request) {
                                 Ok(resp) => resp.with_request_id(ctx.id()),
                                 Err(e) => {
@@ -113,7 +114,13 @@ impl HttpServer {
                                 response = response.into_head();
                             }
 
+                            // Capture status before consuming response
+                            let status = response.status_code();
                             connection.send_response(response)?;
+
+                            // Record metrics per route with status buckets
+                            let dur = start.elapsed();
+                            crate::utils::metrics::metrics().lock().unwrap().record_status(&request.path, status, dur);
 
                             logger().log_request(LogLevel::Info, &ctx, "Response sent");
 
