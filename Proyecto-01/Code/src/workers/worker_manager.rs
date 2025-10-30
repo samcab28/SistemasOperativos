@@ -123,7 +123,8 @@ impl WorkerManager {
             pool.submit(job)?;
         }
 
-        match rx.recv_timeout(timeout) {
+        let effective_timeout = self.config.timeouts.get_for_route(route).unwrap_or(timeout);
+        match rx.recv_timeout(effective_timeout) {
             Ok(value) => Ok(value),
             Err(mpsc::RecvTimeoutError::Timeout) => Err(ServerError::Timeout),
             Err(_) => Err(ServerError::internal("worker channel closed")),
@@ -159,7 +160,8 @@ impl WorkerManager {
             pool.submit_with_priority(job, prio)?;
         }
 
-        match rx.recv_timeout(timeout) {
+        let effective_timeout = self.config.timeouts.get_for_route(route).unwrap_or(timeout);
+        match rx.recv_timeout(effective_timeout) {
             Ok(value) => Ok(value),
             Err(mpsc::RecvTimeoutError::Timeout) => Err(ServerError::Timeout),
             Err(_) => Err(ServerError::internal("worker channel closed")),
@@ -171,11 +173,15 @@ impl WorkerManager {
         let mut out = Vec::new();
         let map = self.endpoint_pools.lock().unwrap();
         for (route, pool) in map.iter() {
+            let (qh, qn, ql) = pool.queue_len_per_prio();
             out.push(RoutePoolStats {
                 route: route.clone(),
                 workers: pool.workers_count(),
                 queue_len: pool.queue_len(),
                 queue_capacity: pool.queue_capacity(),
+                q_high: qh,
+                q_normal: qn,
+                q_low: ql,
             });
         }
         out
@@ -187,6 +193,9 @@ pub struct RoutePoolStats {
     pub workers: usize,
     pub queue_len: usize,
     pub queue_capacity: usize,
+    pub q_high: usize,
+    pub q_normal: usize,
+    pub q_low: usize,
 }
 
 static GLOBAL_MANAGER: OnceLock<WorkerManager> = OnceLock::new();

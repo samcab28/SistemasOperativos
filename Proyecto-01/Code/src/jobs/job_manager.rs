@@ -4,13 +4,13 @@ use std::thread;
 
 use crate::error::ServerResult;
 use crate::handlers;
-use crate::jobs::job_storage::storage;
+use crate::jobs::job_storage::{storage, CancelOutcome};
 use crate::jobs::job_types::{Job, JobStatus, JobPriority, now_ms};
 use crate::jobs::job_queue::JobQueue;
 use crate::server::requests::{HttpMethod, HttpRequest};
 
 pub struct JobManager {
-    queue: JobQueue,
+    pub(crate) queue: JobQueue,
 }
 
 static MANAGER: OnceLock<JobManager> = OnceLock::new();
@@ -18,6 +18,34 @@ static MANAGER: OnceLock<JobManager> = OnceLock::new();
 pub fn job_manager() -> &'static JobManager { MANAGER.get_or_init(|| JobManager { queue: JobQueue::with_capacity(1000) }) }
 
 impl JobManager {
+    /// Re-enqueue persisted jobs that were queued or running before shutdown.
+    /// Running jobs are reset back to Queued and cleared of transient fields.
+    pub fn recover_on_start(&self) {
+        // Take a snapshot first to avoid holding the lock while pushing to queue
+        let jobs_snapshot: Vec<Job> = { storage().lock().unwrap().list() };
+        for mut j in jobs_snapshot.into_iter() {
+            match j.status {
+                JobStatus::Queued | JobStatus::Running => {
+                    // Reset transient execution fields if previously running
+                    if j.status == JobStatus::Running {
+                        j.status = JobStatus::Queued;
+                        j.started_at = None;
+                        j.finished_at = None;
+                        j.result_status = None;
+                        j.result_raw = None;
+                        j.error = None;
+                    }
+                    // Persist the reset (or keep queued) state
+                    storage().lock().unwrap().update(j.clone());
+                    // Enqueue back for execution with original priority
+                    let _ = self.queue.push(j.route.clone(), j.id.clone(), j.priority);
+                }
+                _ => { /* Completed/Failed/Canceled: do not re-enqueue */ }
+            }
+        }
+        // Ensure dispatcher is running
+        Self::ensure_dispatcher();
+    }
     pub fn submit(&self, route: &str, mut params: HashMap<String, String>) -> ServerResult<String> {
         let id = Self::new_id();
         let priority_param = params.get("priority").cloned().or_else(|| params.get("prio").cloned());
@@ -44,7 +72,10 @@ impl JobManager {
 
     pub fn status(&self, id: &str) -> Option<Job> { storage().lock().unwrap().get(id) }
     pub fn list(&self) -> Vec<Job> { storage().lock().unwrap().list() }
-    pub fn cancel(&self, id: &str) -> bool { storage().lock().unwrap().cancel(id) }
+    pub fn cancel(&self, id: &str) -> CancelOutcome { storage().lock().unwrap().cancel(id) }
+
+    /// Expose jobs queue counts for metrics
+    pub fn queue_counts(&self) -> (usize, usize, usize, usize) { self.queue.snapshot_counts() }
 
     fn new_id() -> String {
         // timestamp-counter

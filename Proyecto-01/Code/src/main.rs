@@ -5,6 +5,7 @@ use http_server::handlers::basics;
 use http_server::handlers::{set_available_routes, set_data_dir};
 use http_server::utils::logging;
 use http_server::workers::init_global_worker_manager;
+use http_server::jobs::job_manager::job_manager;
 use std::env;
 
 fn main() -> ServerResult<()> {
@@ -59,6 +60,15 @@ fn main() -> ServerResult<()> {
                     }
                 }
             }
+        } else if args[i].starts_with("--timeout.") {
+            if let Some(rest) = args[i].strip_prefix("--timeout.") {
+                if let Some((key, val)) = rest.split_once('=') {
+                    if let Ok(ms) = val.parse::<u64>() {
+                        let route = if key.starts_with('/') { key.to_string() } else { format!("/{}", key) };
+                        config_builder = config_builder.timeout_for(route, ms);
+                    }
+                }
+            }
         }
         i += 1;
     }
@@ -83,6 +93,9 @@ fn main() -> ServerResult<()> {
         .route("/deletefile", basics::handle_deletefile)
         .route("/status", basics::handle_status)
         .route("/help", basics::handle_help)
+        .route("/sleep", http_server::handlers::handle_sleep)
+        .route("/simulate", http_server::handlers::handle_simulate)
+        .route("/loadtest", http_server::handlers::handle_loadtest)
         // CPU-bound endpoints
         .route("/isprime", http_server::handlers::handle_isprime)
         .route("/factor", http_server::handlers::handle_factor)
@@ -113,6 +126,9 @@ fn main() -> ServerResult<()> {
 
     // Publish data_dir for IO handlers
     set_data_dir(config.data_dir.to_string_lossy().to_string());
+
+    // Recover persisted jobs and re-enqueue queued/running ones
+    job_manager().recover_on_start();
 
     // Create and start server
     let mut server = HttpServer::new(config, router);

@@ -9,7 +9,10 @@ use crate::server::requests::HttpRequest;
 use crate::server::response::{HttpResponse, JsonResponseBuilder};
 use crate::utils::crypto;
 use crate::workers::worker_manager::worker_manager;
+use crate::workers::worker_types::WorkPriority;
 use std::time::{SystemTime, UNIX_EPOCH};
+use std::time::Duration;
+use std::thread;
 
 /// Handle /timestamp - Return current Unix timestamp
 pub fn handle_timestamp(_req: &HttpRequest) -> ServerResult<HttpResponse> {
@@ -262,6 +265,110 @@ pub fn handle_deletefile(req: &HttpRequest) -> ServerResult<HttpResponse> {
         .build();
 
     Ok(response)
+}
+
+/// Handle /sleep?seconds=s
+/// Offloads to IO pool; returns when the sleep finishes.
+pub fn handle_sleep(req: &HttpRequest) -> ServerResult<HttpResponse> {
+    let secs: u64 = req.parse_param("seconds")?;
+    if secs > 3600 {
+        return Err(ServerError::invalid_param("seconds", "maximum is 3600"));
+    }
+    let prio = WorkPriority::from_str(req.query_params.get("prio").map(|s| s.as_str()).unwrap_or("normal"));
+    let timeout = worker_manager().io_timeout();
+    let resp = worker_manager().submit_for_with_priority("/sleep", timeout, prio, move || {
+        let start = SystemTime::now();
+        thread::sleep(Duration::from_secs(secs));
+        let elapsed = start.elapsed().unwrap_or_default().as_millis();
+        JsonResponseBuilder::new(200)
+            .field_num("seconds", secs)
+            .field_num("elapsed_ms", elapsed)
+            .build()
+    })?;
+    Ok(resp)
+}
+
+/// Handle /simulate?seconds=s&task=name
+/// Simulates CPU work for s seconds by running computations in a loop.
+pub fn handle_simulate(req: &HttpRequest) -> ServerResult<HttpResponse> {
+    let secs: u64 = req.parse_param("seconds")?;
+    if secs == 0 || secs > 3600 {
+        return Err(ServerError::invalid_param("seconds", "1..=3600 allowed"));
+    }
+    let task: String = req.parse_param_or("task", String::from("cpu"))?;
+    let prio = WorkPriority::from_str(req.query_params.get("prio").map(|s| s.as_str()).unwrap_or("normal"));
+    let timeout = worker_manager().cpu_timeout();
+    let resp = worker_manager().submit_for_with_priority("/simulate", timeout, prio, move || {
+        let start = SystemTime::now();
+        let deadline = start + Duration::from_secs(secs);
+        let mut iterations: u64 = 0;
+        // Different micro-tasks; default to CPU primality checks
+        match task.as_str() {
+            "hash" => {
+                // Hash a growing buffer repeatedly
+                let mut buf: Vec<u8> = vec![0u8; 1024];
+                while SystemTime::now() < deadline {
+                    for i in 0..buf.len() { buf[i] = buf[i].wrapping_add(1); }
+                    let _h = crate::utils::crypto::sha256_hex(&buf);
+                    iterations += 1;
+                }
+            }
+            _ => {
+                // CPU: primality test on sequential numbers
+                let mut n: u64 = 1_000_003; // a prime-ish start
+                while SystemTime::now() < deadline {
+                    let _ = crate::algorithms::prime::is_prime_trial(n);
+                    n = n.wrapping_add(2);
+                    iterations += 1;
+                }
+            }
+        }
+        let elapsed = start.elapsed().unwrap_or_default().as_millis();
+        JsonResponseBuilder::new(200)
+            .field("task", task)
+            .field_num("seconds", secs)
+            .field_num("iterations", iterations)
+            .field_num("elapsed_ms", elapsed)
+            .build()
+    })?;
+    Ok(resp)
+}
+
+/// Handle /loadtest?tasks=n&sleep=x
+/// Submits n sleep tasks that each sleep x seconds, waits for all, and reports timing.
+pub fn handle_loadtest(req: &HttpRequest) -> ServerResult<HttpResponse> {
+    let tasks: usize = req.parse_param("tasks")?;
+    let sleep_secs: u64 = req.parse_param("sleep")?;
+    if tasks == 0 || tasks > 10000 { return Err(ServerError::invalid_param("tasks", "1..=10000")); }
+    if sleep_secs > 3600 { return Err(ServerError::invalid_param("sleep", "maximum is 3600")); }
+    let prio = WorkPriority::from_str(req.query_params.get("prio").map(|s| s.as_str()).unwrap_or("normal"));
+    let io_timeout = worker_manager().io_timeout();
+
+    // Offload orchestrator to avoid blocking the accept loop
+    let resp = worker_manager().submit_for_with_priority("/loadtest", io_timeout, prio, move || {
+        let start = SystemTime::now();
+        // Spawn task-submitters which will wait on the worker pool
+        let mut joiners = Vec::with_capacity(tasks);
+        for _ in 0..tasks {
+            let pr = prio; // copy
+            let handle = std::thread::spawn(move || {
+                // Each task sleeps on the IO route-specific pool
+                let _ = worker_manager().submit_for_with_priority("/loadtest.worker", io_timeout, pr, move || {
+                    thread::sleep(Duration::from_secs(sleep_secs));
+                    0u8
+                });
+            });
+            joiners.push(handle);
+        }
+        for h in joiners { let _ = h.join(); }
+        let elapsed = start.elapsed().unwrap_or_default().as_millis();
+        JsonResponseBuilder::new(200)
+            .field_num("tasks", tasks as u64)
+            .field_num("sleep_seconds", sleep_secs)
+            .field_num("elapsed_ms", elapsed)
+            .build()
+    })?;
+    Ok(resp)
 }
 
 #[cfg(test)]

@@ -89,6 +89,8 @@ impl WorkerPool {
     pub fn queue_len(&self) -> usize { self.queue.len() }
     pub fn queue_capacity(&self) -> usize { self.queue.capacity() }
     pub fn workers_count(&self) -> usize { self.workers.len() }
+
+    pub fn queue_len_per_prio(&self) -> (usize, usize, usize) { self.queue.len_per_priority() }
 }
 
 impl Drop for WorkerPool {

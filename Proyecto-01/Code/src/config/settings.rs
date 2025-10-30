@@ -68,6 +68,9 @@ pub struct TimeoutConfig {
 
     /// Connection write timeout
     pub write_timeout: Duration,
+
+    /// Optional per-route timeouts (overrides CPU/IO defaults when submitting tasks)
+    per_route_ms: HashMap<String, u64>,
 }
 
 impl Default for ServerConfig {
@@ -109,6 +112,7 @@ impl Default for TimeoutConfig {
             io_timeout: Duration::from_secs(120),
             read_timeout: Duration::from_secs(30),
             write_timeout: Duration::from_secs(30),
+            per_route_ms: HashMap::new(),
         }
     }
 }
@@ -220,6 +224,14 @@ impl ConfigBuilder {
         self
     }
 
+    /// Set per-route timeout override (milliseconds)
+    pub fn timeout_for(mut self, route: impl Into<String>, timeout: u64) -> Self {
+        let route = route.into();
+        let key = if route.starts_with('/') { route } else { format!("/{}", route) };
+        self.config.timeouts.per_route_ms.insert(key, timeout);
+        self
+    }
+
     /// Set max concurrent connections
     pub fn max_connections(mut self, max: usize) -> Self {
         self.config.max_connections = max;
@@ -258,6 +270,37 @@ impl ConfigBuilder {
 impl Default for ConfigBuilder {
     fn default() -> Self {
         Self::new()
+    }
+}
+
+impl TimeoutConfig {
+    /// Get a timeout for a specific route if configured
+    pub fn get_for_route(&self, route: &str) -> Option<Duration> {
+        self.per_route_ms.get(route).copied().map(Duration::from_millis)
+    }
+
+    /// Set a per-route timeout (milliseconds)
+    pub fn set_for_route(&mut self, route: impl Into<String>, timeout_ms: u64) {
+        self.per_route_ms.insert(route.into(), timeout_ms);
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn per_route_timeout_lookup() {
+        let mut t = TimeoutConfig::default();
+        t.set_for_route("/grep", 1500);
+        assert_eq!(t.get_for_route("/grep").unwrap().as_millis(), 1500);
+        assert!(t.get_for_route("/other").is_none());
+    }
+
+    #[test]
+    fn builder_sets_timeout_route() {
+        let cfg = ConfigBuilder::new().timeout_for("/isprime", 2500).build().unwrap();
+        assert_eq!(cfg.timeouts.get_for_route("/isprime").unwrap().as_millis(), 2500);
     }
 }
 

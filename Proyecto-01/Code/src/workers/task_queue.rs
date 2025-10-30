@@ -7,16 +7,11 @@ pub struct TaskQueue<T> {
 }
 
 struct Inner<T> {
-<<<<<<< HEAD
     high: VecDeque<T>,
     normal: VecDeque<T>,
     low: VecDeque<T>,
     capacity: usize,
     size: usize,
-=======
-    queue: VecDeque<T>,
-    capacity: usize,
->>>>>>> 3b0a5ce33d497ca984a7cc0bae834e04c8fc21e1
     closed: bool,
 }
 
@@ -84,5 +79,11 @@ impl<T> TaskQueue<T> {
     pub fn capacity(&self) -> usize {
         let inner = self.inner.lock().unwrap();
         inner.capacity
+    }
+
+    /// Per-priority queue lengths (high, normal, low)
+    pub fn len_per_priority(&self) -> (usize, usize, usize) {
+        let inner = self.inner.lock().unwrap();
+        (inner.high.len(), inner.normal.len(), inner.low.len())
     }
 }

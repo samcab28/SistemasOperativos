@@ -234,4 +234,16 @@ impl JobQueue {
         inner.closed = true;
         self.cv.notify_all();
     }
+
+    /// Snapshot counts across all routes by priority and total size
+    pub fn snapshot_counts(&self) -> (usize, usize, usize, usize) {
+        let inner = self.inner.lock().unwrap();
+        let mut high = 0usize; let mut normal = 0usize; let mut low = 0usize;
+        for (_route, queues) in inner.per_route.iter() {
+            high += queues.high.len();
+            normal += queues.normal.len();
+            low += queues.low.len();
+        }
+        (inner.size, high, normal, low)
+    }
 }

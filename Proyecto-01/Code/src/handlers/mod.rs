@@ -15,7 +15,7 @@ pub mod metrics;
 pub use basics::{
     handle_createfile, handle_deletefile, handle_fibonacci, handle_hash,
     handle_help, handle_random, handle_reverse, handle_status, handle_timestamp,
-    handle_toupper,
+    handle_toupper, handle_sleep, handle_simulate, handle_loadtest,
 };
 
 pub use handler_traits::QueryParamExt;

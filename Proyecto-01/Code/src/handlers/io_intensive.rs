@@ -12,6 +12,7 @@ use crate::utils::validation::validate_filename;
 use crate::io_operations::{file_processing, hashing, file_ops, compression};
 use crate::handlers::data_dir;
 use std::time::SystemTime;
+use crate::jobs::job_manager::job_manager;
 
 fn not_implemented(endpoint: &str) -> HttpResponse {
     JsonResponseBuilder::new(501)
@@ -22,6 +23,11 @@ fn not_implemented(endpoint: &str) -> HttpResponse {
 
 /// GET /sortfile?name=FILE&algo=merge|quick
 pub fn handle_sortfile(req: &HttpRequest) -> ServerResult<HttpResponse> {
+    if matches!(req.query_params.get("async").map(|v| v.as_str()), Some("1") | Some("true") ) {
+        let mut params = req.query_params.clone(); params.remove("async");
+        let id = job_manager().submit("/sortfile", params)?;
+        return Ok(JsonResponseBuilder::new(200).field("job_id", id).field("route", "/sortfile").build());
+    }
     let name = req.require_query_param("name")?;
     let algo: String = req.parse_param_or("algo", String::from("merge"))?;
     let name = name.to_string();
@@ -60,6 +66,11 @@ pub fn handle_sortfile(req: &HttpRequest) -> ServerResult<HttpResponse> {
 
 /// GET /wordcount?name=FILE
 pub fn handle_wordcount(req: &HttpRequest) -> ServerResult<HttpResponse> {
+    if matches!(req.query_params.get("async").map(|v| v.as_str()), Some("1") | Some("true") ) {
+        let mut params = req.query_params.clone(); params.remove("async");
+        let id = job_manager().submit("/wordcount", params)?;
+        return Ok(JsonResponseBuilder::new(200).field("job_id", id).field("route", "/wordcount").build());
+    }
     let name = req.require_query_param("name")?.to_string();
     validate_filename(&name)?;
     let path = format!("{}/{}", data_dir(), name);
@@ -91,6 +102,11 @@ pub fn handle_wordcount(req: &HttpRequest) -> ServerResult<HttpResponse> {
 
 /// GET /grep?name=FILE&pattern=REGEX
 pub fn handle_grep(req: &HttpRequest) -> ServerResult<HttpResponse> {
+    if matches!(req.query_params.get("async").map(|v| v.as_str()), Some("1") | Some("true") ) {
+        let mut params = req.query_params.clone(); params.remove("async");
+        let id = job_manager().submit("/grep", params)?;
+        return Ok(JsonResponseBuilder::new(200).field("job_id", id).field("route", "/grep").build());
+    }
     let name = req.require_query_param("name")?.to_string();
     validate_filename(&name)?;
     let pattern = req.require_query_param("pattern")?.to_string();
@@ -141,6 +157,11 @@ pub fn handle_grep(req: &HttpRequest) -> ServerResult<HttpResponse> {
 
 /// GET /compress?name=FILE&codec=gzip|xz
 pub fn handle_compress(req: &HttpRequest) -> ServerResult<HttpResponse> {
+    if matches!(req.query_params.get("async").map(|v| v.as_str()), Some("1") | Some("true") ) {
+        let mut params = req.query_params.clone(); params.remove("async");
+        let id = job_manager().submit("/compress", params)?;
+        return Ok(JsonResponseBuilder::new(200).field("job_id", id).field("route", "/compress").build());
+    }
     let name = req.require_query_param("name")?.to_string();
     let codec: String = req.parse_param_or("codec", String::from("gzip"))?;
     let impl_flag: String = req.parse_param_or("impl", String::from("auto"))?;
@@ -178,6 +199,11 @@ pub fn handle_compress(req: &HttpRequest) -> ServerResult<HttpResponse> {
 
 /// GET /hashfile?name=FILE&algo=sha256
 pub fn handle_hashfile(req: &HttpRequest) -> ServerResult<HttpResponse> {
+    if matches!(req.query_params.get("async").map(|v| v.as_str()), Some("1") | Some("true") ) {
+        let mut params = req.query_params.clone(); params.remove("async");
+        let id = job_manager().submit("/hashfile", params)?;
+        return Ok(JsonResponseBuilder::new(200).field("job_id", id).field("route", "/hashfile").build());
+    }
     let name = req.require_query_param("name")?.to_string();
     validate_filename(&name)?;
     let algo: String = req.parse_param_or("algo", String::from("sha256"))?;

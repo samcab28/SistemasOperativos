@@ -2,7 +2,8 @@ use std::collections::HashMap;
 
 use crate::error::{ServerError, ServerResult};
 use crate::jobs::job_manager::job_manager;
-use crate::jobs::job_types::JobStatus;
+use crate::jobs::job_storage::CancelOutcome;
+use crate::jobs::job_types::{JobStatus, now_ms};
 use crate::server::requests::HttpRequest;
 use crate::server::response::{HttpResponse, JsonResponseBuilder};
 
@@ -20,11 +21,14 @@ pub fn handle_job_submit(req: &HttpRequest) -> ServerResult<HttpResponse> {
 pub fn handle_job_status(req: &HttpRequest) -> ServerResult<HttpResponse> {
     let id = req.require_query_param("id")?;
     if let Some(j) = job_manager().status(id) {
+        let (progress, eta_ms) = estimate_progress_eta(&j);
         let mut b = JsonResponseBuilder::new(200)
             .field("id", j.id)
             .field("route", j.route)
             .field("status", format_status(&j.status))
-            .field_num("submitted_at", j.submitted_at);
+            .field_num("submitted_at", j.submitted_at)
+            .field_num("progress", progress)
+            .field_num("eta_ms", eta_ms);
         if let Some(s) = j.started_at { b = b.field_num("started_at", s); }
         if let Some(f) = j.finished_at { b = b.field_num("finished_at", f); }
         if let Some(rs) = j.result_status { b = b.field_num("result_status", rs as u64); }
@@ -49,9 +53,22 @@ pub fn handle_job_result(req: &HttpRequest) -> ServerResult<HttpResponse> {
 
 pub fn handle_job_cancel(req: &HttpRequest) -> ServerResult<HttpResponse> {
     let id = req.require_query_param("id")?;
-    let ok = job_manager().cancel(id);
-    let status = if ok { 200 } else { 404 };
-    Ok(JsonResponseBuilder::new(status).field("id", id).field_bool("canceled", ok).build())
+    match job_manager().cancel(id) {
+        CancelOutcome::Canceled => Ok(JsonResponseBuilder::new(200)
+            .field("id", id)
+            .field_bool("canceled", true)
+            .build()),
+        CancelOutcome::NotFound => Ok(JsonResponseBuilder::new(404)
+            .field("id", id)
+            .field_bool("canceled", false)
+            .field("error", "not_found")
+            .build()),
+        CancelOutcome::NotCancelable => Ok(JsonResponseBuilder::new(400)
+            .field("id", id)
+            .field_bool("canceled", false)
+            .field("error", "not_cancelable")
+            .build()),
+    }
 }
 
 pub fn handle_job_list(_req: &HttpRequest) -> ServerResult<HttpResponse> {
@@ -75,5 +92,37 @@ fn format_status(s: &JobStatus) -> &'static str {
         JobStatus::Done => "done",
         JobStatus::Failed => "failed",
         JobStatus::Canceled => "canceled",
+    }
+}
+
+fn estimate_progress_eta(j: &crate::jobs::job_types::Job) -> (u64, u64) {
+    match j.status {
+        JobStatus::Done => return (100, 0),
+        JobStatus::Failed | JobStatus::Canceled => return (100, 0),
+        _ => {}
+    }
+    // Try to estimate from a seconds-like parameter
+    let sec_value = j.params.get("seconds").or_else(|| j.params.get("sleep"));
+    if let Some(sv) = sec_value {
+        if let Ok(secs) = sv.parse::<u64>() {
+            let total_ms = secs.saturating_mul(1000);
+            if let Some(started) = j.started_at { // running
+                let now = now_ms();
+                let elapsed = now.saturating_sub(started) as u64;
+                if total_ms == 0 { return (0, 0); }
+                let pct = ((elapsed.saturating_mul(100)) / total_ms).min(99);
+                let eta = if elapsed >= total_ms { 0 } else { total_ms - elapsed };
+                return (pct, eta);
+            } else {
+                // queued, unknown ETA
+                return (0, 0);
+            }
+        }
+    }
+    // Fallback heuristics
+    match j.status {
+        JobStatus::Queued => (0, 0),
+        JobStatus::Running => (50, 0),
+        _ => (100, 0),
     }
 }

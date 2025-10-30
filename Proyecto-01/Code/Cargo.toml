@@ -5,11 +5,8 @@ edition = "2021"
 
 [dependencies]
 thiserror = "1.0"
-<<<<<<< HEAD
 flate2 = { version = "1.0", default-features = false, features = ["rust_backend"] }
 xz2 = "0.1"
-=======
->>>>>>> 3b0a5ce33d497ca984a7cc0bae834e04c8fc21e1
 
 [dev-dependencies]
 
@@ -19,8 +16,4 @@ path = "src/lib.rs"
 
 [[bin]]
 name = "http-server"
-<<<<<<< HEAD
 path = "src/main.rs"
-=======
-path = "src/main.rs"
->>>>>>> 3b0a5ce33d497ca984a7cc0bae834e04c8fc21e1
