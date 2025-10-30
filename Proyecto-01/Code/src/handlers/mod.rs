@@ -27,3 +27,15 @@ pub use cpu_intensive::{
 pub use io_intensive::{
     handle_compress, handle_grep, handle_hashfile, handle_sortfile, handle_wordcount,
 };
+
+// Expose a global list of available routes for dynamic /help
+use std::sync::OnceLock;
+static ROUTES: OnceLock<Vec<String>> = OnceLock::new();
+
+pub fn set_available_routes(routes: Vec<String>) {
+    let _ = ROUTES.set(routes);
+}
+
+pub fn available_routes() -> &'static [String] {
+    ROUTES.get().map(|v| v.as_slice()).unwrap_or(&[])
+}

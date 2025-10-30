@@ -11,7 +11,7 @@ use crate::utils::logging::{logger, LogLevel};
 use std::net::TcpListener;
 use std::sync::atomic::{AtomicBool, AtomicU64, Ordering};
 use std::sync::Arc;
-use std::time::SystemTime;
+use std::time::{Duration, SystemTime};
 use std::thread;
 
 /// HTTP Server
@@ -40,6 +40,11 @@ impl HttpServer {
         let listener = TcpListener::bind(self.config.bind_addr)
             .map_err(|e| ServerError::Config(format!("Failed to bind to {}: {}", self.config.bind_addr, e)))?;
 
+        // Non-blocking accept so we can honor shutdown without a wake-up connection
+        listener
+            .set_nonblocking(true)
+            .map_err(|e| ServerError::Config(format!("Failed to set nonblocking: {}", e)))?;
+
         self.running.store(true, Ordering::SeqCst);
 
         logger().info(&format!(
@@ -47,13 +52,14 @@ impl HttpServer {
             self.config.bind_addr
         ));
 
-        for stream in listener.incoming() {
+        // Manual accept loop to handle non-blocking listener
+        loop {
             if !self.running.load(Ordering::SeqCst) {
                 break;
             }
 
-            match stream {
-                Ok(stream) => {
+            match listener.accept() {
+                Ok((stream, _addr)) => {
                     // Clone data needed per-connection and handle in a new OS thread
                     let router = self.router.clone();
                     let config = self.config.clone();
@@ -90,7 +96,7 @@ impl HttpServer {
                                 &format!("{} {}", request.method.as_str(), request.path),
                             );
 
-                            let response = match router.handle(&request) {
+                            let mut response = match router.handle(&request) {
                                 Ok(resp) => resp.with_request_id(ctx.id()),
                                 Err(e) => {
                                     logger().log_request(
@@ -101,6 +107,11 @@ impl HttpServer {
                                     HttpResponse::from_error(&e).with_request_id(ctx.id())
                                 }
                             };
+
+                            // HEAD semantics: same headers, empty body
+                            if matches!(request.method, crate::server::requests::HttpMethod::Head) {
+                                response = response.into_head();
+                            }
 
                             connection.send_response(response)?;
 
@@ -116,11 +127,16 @@ impl HttpServer {
                         connections_served.fetch_add(1, Ordering::SeqCst);
                     });
                 }
+                Err(e) if e.kind() == std::io::ErrorKind::WouldBlock => {
+                    // No pending connections; avoid busy-spin
+                    std::thread::sleep(Duration::from_millis(10));
+                }
                 Err(e) => {
                     logger().log(
                         LogLevel::Error,
                         &format!("Failed to accept connection: {}", e),
                     );
+                    std::thread::sleep(Duration::from_millis(10));
                 }
             }
         }
@@ -128,7 +144,7 @@ impl HttpServer {
         Ok(())
     }
 
-    // Per-connection handling is moved into the thread closure in start()
+    // Per-connection handling is performed in the thread closure in start()
 
 
     /// Get server statistics

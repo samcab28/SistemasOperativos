@@ -110,6 +110,16 @@ impl HttpResponse {
         self.with_header("X-Worker-Pid", pid.to_string())
     }
 
+    /// Convert this response to a HEAD-compatible response: preserve
+    /// Content-Length for the original body, but clear the body bytes.
+    pub fn into_head(mut self) -> Self {
+        let len = self.body.len();
+        self.headers
+            .insert("Content-Length".to_string(), len.to_string());
+        self.body.clear();
+        self
+    }
+
     /// Build the complete HTTP response as bytes
     pub fn build(mut self) -> Vec<u8> {
         let mut response = Vec::new();

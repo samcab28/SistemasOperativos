@@ -4,6 +4,7 @@
 
 use crate::error::{ServerError, ServerResult};
 use crate::handlers::handler_traits::QueryParamExt;
+use crate::handlers::available_routes;
 use crate::server::requests::HttpRequest;
 use crate::server::response::{HttpResponse, JsonResponseBuilder};
 use crate::utils::crypto;
@@ -106,27 +107,19 @@ pub fn handle_random(req: &HttpRequest) -> ServerResult<HttpResponse> {
 
 /// Handle /help - List all available endpoints
 pub fn handle_help(_req: &HttpRequest) -> ServerResult<HttpResponse> {
-    let endpoints = vec![
-        "/timestamp - Get current Unix timestamp",
-        "/reverse?text=... - Reverse a string",
-        "/toupper?text=... - Convert to uppercase",
-        "/hash?text=... - Calculate SHA256 hash",
-        "/random?count=N&min=A&max=B - Generate random numbers",
-        "/fibonacci?num=N - Calculate Fibonacci number",
-        "/createfile?name=...&content=...&repeat=N - Create a file",
-        "/deletefile?name=... - Delete a file",
-        "/status - Get server status",
-        "/help - This help message",
-    ];
-
-    let endpoints_json = format!(
-        "[{}]",
-        endpoints
-            .iter()
-            .map(|s| format!(r#""{}""#, s))
-            .collect::<Vec<_>>()
-            .join(",")
-    );
+    let routes = available_routes();
+    let endpoints_json = if routes.is_empty() {
+        "[\"/help\",\"/status\"]".to_string()
+    } else {
+        format!(
+            "[{}]",
+            routes
+                .iter()
+                .map(|s| format!(r#""{}""#, s))
+                .collect::<Vec<_>>()
+                .join(",")
+        )
+    };
 
     let response = JsonResponseBuilder::new(200)
         .field("server", "HTTP/1.0 Server")
