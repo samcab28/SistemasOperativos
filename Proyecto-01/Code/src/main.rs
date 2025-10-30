@@ -2,6 +2,7 @@
 
 use http_server::{ConfigBuilder, HttpServer, Router, ServerResult};
 use http_server::handlers::basics;
+use http_server::handlers::set_available_routes;
 use http_server::utils::logging;
 use http_server::workers::init_global_worker_manager;
 use std::env;
@@ -56,6 +57,14 @@ fn main() -> ServerResult<()> {
         .route("/grep", http_server::handlers::handle_grep)
         .route("/compress", http_server::handlers::handle_compress)
         .route("/hashfile", http_server::handlers::handle_hashfile);
+
+    // Snapshot available routes for dynamic /help
+    let routes_list = router
+        .routes()
+        .into_iter()
+        .map(|s| s.to_string())
+        .collect();
+    set_available_routes(routes_list);
 
     // Create and start server
     let mut server = HttpServer::new(config, router);

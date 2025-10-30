@@ -3,11 +3,13 @@
 //! This file provides parameter parsing and worker offloading only.
 //! The underlying algorithms will be implemented in `crate::algorithms::*`.
 
-use crate::error::ServerResult;
+use crate::error::{ServerError, ServerResult};
 use crate::handlers::handler_traits::QueryParamExt;
 use crate::server::requests::HttpRequest;
 use crate::server::response::{HttpResponse, JsonResponseBuilder};
 use crate::workers::worker_manager::worker_manager;
+use crate::algorithms::prime;
+use std::time::SystemTime;
 
 fn not_implemented(endpoint: &str) -> HttpResponse {
     JsonResponseBuilder::new(501)
@@ -16,18 +18,27 @@ fn not_implemented(endpoint: &str) -> HttpResponse {
         .build()
 }
 
-/// GET /isprime?n=NUM[&algo=division|mr][&rounds=5]
+/// GET /isprime?n=NUM[&algo=division|mr][&rounds=6]
 pub fn handle_isprime(req: &HttpRequest) -> ServerResult<HttpResponse> {
     let n: u64 = req.parse_param("n")?;
-    let _algo: String = req.parse_param_or("algo", String::from("mr"))?;
-    let _rounds: u32 = req.parse_param_or("rounds", 5)?;
+    // Default to Miller–Rabin; allow algo=division
+    let algo: String = req.parse_param_or("algo", String::from("mr"))?;
+    let rounds: u32 = req.parse_param_or("rounds", 6)?;
 
-    // Offload placeholder to CPU pool (algorithms to be implemented)
     let resp = worker_manager().submit_cpu(move || {
-        JsonResponseBuilder::new(501)
+        let start = SystemTime::now();
+        let (algo_used, is_p) = match algo.to_lowercase().as_str() {
+            "division" => ("division", prime::is_prime_trial(n)),
+            _ => ("mr", prime::is_prime_mr(n, rounds)),
+        };
+        let elapsed = start.elapsed().unwrap_or_default().as_millis();
+
+        JsonResponseBuilder::new(200)
             .field_num("n", n)
-            .field("endpoint", "/isprime")
-            .field("status", "not_implemented")
+            .field("algo", algo_used)
+            .field_num("rounds", rounds)
+            .field_bool("is_prime", is_p)
+            .field_num("elapsed_ms", elapsed)
             .build()
     })?;
     Ok(resp)
@@ -37,10 +48,22 @@ pub fn handle_isprime(req: &HttpRequest) -> ServerResult<HttpResponse> {
 pub fn handle_factor(req: &HttpRequest) -> ServerResult<HttpResponse> {
     let n: u64 = req.parse_param("n")?;
     let resp = worker_manager().submit_cpu(move || {
-        JsonResponseBuilder::new(501)
+        let start = SystemTime::now();
+        let factors = prime::factor_trial(n);
+        let elapsed = start.elapsed().unwrap_or_default().as_millis();
+
+        // Build JSON array of objects: [{"p":2,"count":3}, ...]
+        let list = factors
+            .iter()
+            .map(|(p, c)| format!(r#"{{"p":{},"count":{}}}"#, p, c))
+            .collect::<Vec<_>>()
+            .join(",");
+        let json = format!("[{}]", list);
+
+        JsonResponseBuilder::new(200)
             .field_num("n", n)
-            .field("endpoint", "/factor")
-            .field("status", "not_implemented")
+            .field_raw("factors", json)
+            .field_num("elapsed_ms", elapsed)
             .build()
     })?;
     Ok(resp)
