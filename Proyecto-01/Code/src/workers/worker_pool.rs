@@ -24,7 +24,7 @@ impl WorkerPool {
         for i in 0..size {
             let queue = Arc::clone(&queue);
             let shutdown = Arc::clone(&shutdown);
-            let worker_name = format!("{}-{}", &name, i);
+            let _worker_name = format!("{}-{}", &name, i);
             let handle = thread::spawn(move || {
                 while !shutdown.load(Ordering::SeqCst) {
                     match queue.pop() {

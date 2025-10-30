@@ -2,3 +2,7 @@
 /entregas/Tarea01-BarrantesAnthony-CabreraSamir.zip filter=lfs diff=lfs merge=lfs -text
 /Tarea-02/Doc/VideoExplicativo.mp4 filter=lfs diff=lfs merge=lfs -text
 /entregas/Tarea02-BarrantesAnthony-CabreraSamir.zip filter=lfs diff=lfs merge=lfs -text
+/Proyecto-01/Code/data/data-sort-100mb.txt filter=lfs diff=lfs merge=lfs -text
+/Proyecto-01/Code/data/data-sort-100mb.txt.sorted filter=lfs diff=lfs merge=lfs -text
+/Proyecto-01/Code/data/data-sort-50mb.txt filter=lfs diff=lfs merge=lfs -text
+/Proyecto-01/Code/data/data-sort-50mb.txt.sorted filter=lfs diff=lfs merge=lfs -text

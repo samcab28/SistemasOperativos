@@ -39,3 +39,14 @@ pub fn set_available_routes(routes: Vec<String>) {
 pub fn available_routes() -> &'static [String] {
     ROUTES.get().map(|v| v.as_slice()).unwrap_or(&[])
 }
+
+// Data directory configured at startup
+static DATA_DIR: OnceLock<String> = OnceLock::new();
+
+pub fn set_data_dir(path: String) {
+    let _ = DATA_DIR.set(path);
+}
+
+pub fn data_dir() -> &'static str {
+    DATA_DIR.get().map(|s| s.as_str()).unwrap_or("./data")
+}
