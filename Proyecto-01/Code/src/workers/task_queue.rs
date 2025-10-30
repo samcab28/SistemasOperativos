@@ -7,11 +7,16 @@ pub struct TaskQueue<T> {
 }
 
 struct Inner<T> {
+<<<<<<< HEAD
     high: VecDeque<T>,
     normal: VecDeque<T>,
     low: VecDeque<T>,
     capacity: usize,
     size: usize,
+=======
+    queue: VecDeque<T>,
+    capacity: usize,
+>>>>>>> 3b0a5ce33d497ca984a7cc0bae834e04c8fc21e1
     closed: bool,
 }
 
