@@ -64,7 +64,7 @@ run_test "02-race-conditions.js" "Pruebas de Concurrencia"
 run_test "03-queue-overflow.js" "Pruebas de Cola"
 run_test "04-io-intensive.js" "Pruebas IO Intensivas"
 run_test "05-cpu-intensive.js" "Pruebas CPU Intensivas"
-run_test "06-load-ligth.js" "Carga Ligera"
+run_test "06-load-light.js" "Carga Ligera"
 run_test "07-load-medium.js" "Carga Media"
 run_test "08-load-heavy.js" "Carga Pesada"
 
