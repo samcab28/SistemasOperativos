@@ -40,12 +40,39 @@ export default function () {
 }
 
 export function handleSummary(data) {
-  const reqs = data.metrics.http_reqs.values.count;
-  const rate = data.metrics.http_reqs.values.rate;
-  const p50 = data.metrics.http_req_duration.values['p(50)'];
-  const p95 = data.metrics.http_req_duration.values['p(95)'];
-  const p99 = data.metrics.http_req_duration.values['p(99)'];
-  const failed = data.metrics.http_req_failed.values.rate * 100;
+  // Helper function to safely get metric values
+  const getMetricValue = (metricName, statName) => {
+    const metric = data.metrics[metricName];
+    if (!metric || !metric.values) return null;
+    
+    // K6 uses different names for statistics
+    const value = metric.values[statName];
+    if (value !== undefined) return value;
+    
+    // Fallback: check for alternative names
+    if (statName === 'p(50)') return metric.values['med'] || null;
+    if (statName === 'p(95)') return metric.values['p(95)'] || null;
+    if (statName === 'p(99)') return metric.values['p(99)'] || null;
+    
+    return null;
+  };
+
+  // Helper function to safely format durations
+  const formatDuration = (ms) => {
+    if (!ms && ms !== 0) return 'N/A';
+    return `${ms.toFixed(2)}ms`;
+  };
+
+  // Safely get metric values using optional chaining
+  const reqs = data.metrics.http_reqs?.values?.count || 0;
+  const rate = data.metrics.http_reqs?.values?.rate || 0;
+  
+  const p50 = getMetricValue('http_req_duration', 'med') || 
+              getMetricValue('http_req_duration', 'p(50)');
+  const p95 = getMetricValue('http_req_duration', 'p(95)');
+  const p99 = getMetricValue('http_req_duration', 'p(99)');
+  
+  const failed = (data.metrics.http_req_failed?.values?.rate || 0) * 100;
   
   console.log('\n========================================');
   console.log('  LOAD TEST - MEDIUM PROFILE');
@@ -54,9 +81,9 @@ export function handleSummary(data) {
   console.log(`Total requests: ${reqs}`);
   console.log(`Throughput: ${rate.toFixed(2)} req/s`);
   console.log('\nLatencies:');
-  console.log(`  p50: ${p50.toFixed(2)}ms`);
-  console.log(`  p95: ${p95.toFixed(2)}ms`);
-  console.log(`  p99: ${p99.toFixed(2)}ms`);
+  console.log(`  p50: ${formatDuration(p50)}`);
+  console.log(`  p95: ${formatDuration(p95)}`);
+  console.log(`  p99: ${formatDuration(p99)}`);
   console.log(`\nError rate: ${failed.toFixed(2)}%`);
   console.log('========================================\n');
   
