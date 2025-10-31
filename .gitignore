@@ -1,4 +1,7 @@
 
 *.o
 
+# Rust build artifacts
+Proyecto-01/Code/target/
+
 Tarea-02/Doc/mdpdf.log
