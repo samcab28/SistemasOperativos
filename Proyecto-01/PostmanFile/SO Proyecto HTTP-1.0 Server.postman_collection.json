@@ -1,9 +1,11 @@
 {
 	"info": {
-		"_postman_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-		"name": "HTTP/1.0 Server - Sprint 1",
+		"_postman_id": "cf5cb1f9-fc15-4a15-a266-485703ee2138",
+		"name": "SO Proyecto HTTP/1.0 Server",
 		"description": "Colección completa de endpoints para el servidor HTTP/1.0 implementado en Rust.\n\n**Sprint 1 - Fundamentos**\n- Endpoints básicos funcionando\n- Manejo de errores\n- Validación de parámetros\n- Sistema de logging con Request IDs\n\n**Base URL:** http://localhost:8080\n\n**Autor:** Proyecto Sistema Operativo 2024",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31493491",
+		"_collection_link": "https://deportec-2590.postman.co/workspace/My-Workspace~ac96581f-d652-476f-8541-7f0325d021ae/collection/31493491-cf5cb1f9-fc15-4a15-a266-485703ee2138?action=share&source=collection_link&creator=31493491"
 	},
 	"item": [
 		{
@@ -43,6 +45,120 @@
 							"port": "8080",
 							"path": [
 								"status"
+							]
+						},
+						"description": "Retorna información sobre el estado actual del servidor.\n\n**Response:**\n```json\n{\n  \"pid\": 12345,\n  \"uptime_seconds\": 3600,\n  \"status\": \"running\"\n}\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "Metrics - Metricas del Servidor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/metrics",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"metrics"
+							]
+						},
+						"description": "Retorna información sobre el estado actual del servidor.\n\n**Response:**\n```json\n{\n  \"pid\": 12345,\n  \"uptime_seconds\": 3600,\n  \"status\": \"running\"\n}\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "Sleep",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/sleep?seconds=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sleep"
+							],
+							"query": [
+								{
+									"key": "seconds",
+									"value": "2"
+								}
+							]
+						},
+						"description": "Retorna información sobre el estado actual del servidor.\n\n**Response:**\n```json\n{\n  \"pid\": 12345,\n  \"uptime_seconds\": 3600,\n  \"status\": \"running\"\n}\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "Simulate - Simular CPU por n segundos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/simulate?seconds=3&task=fibonacci&prio=high",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"simulate"
+							],
+							"query": [
+								{
+									"key": "seconds",
+									"value": "3"
+								},
+								{
+									"key": "task",
+									"value": "fibonacci"
+								},
+								{
+									"key": "prio",
+									"value": "high"
+								}
+							]
+						},
+						"description": "Retorna información sobre el estado actual del servidor.\n\n**Response:**\n```json\n{\n  \"pid\": 12345,\n  \"uptime_seconds\": 3600,\n  \"status\": \"running\"\n}\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "Load test - Carga simulada",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/loadtest?tasks=8&sleep=1&prio=low",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"loadtest"
+							],
+							"query": [
+								{
+									"key": "tasks",
+									"value": "8"
+								},
+								{
+									"key": "sleep",
+									"value": "1"
+								},
+								{
+									"key": "prio",
+									"value": "low"
+								}
 							]
 						},
 						"description": "Retorna información sobre el estado actual del servidor.\n\n**Response:**\n```json\n{\n  \"pid\": 12345,\n  \"uptime_seconds\": 3600,\n  \"status\": \"running\"\n}\n```"
@@ -238,7 +354,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/fibonacci?num=50",
+							"raw": "http://localhost:8080/fibonacci?num=90&prio=normal",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -250,8 +366,12 @@
 							"query": [
 								{
 									"key": "num",
-									"value": "50",
+									"value": "90",
 									"description": "Número grande para ver el tiempo"
+								},
+								{
+									"key": "prio",
+									"value": "normal"
 								}
 							]
 						},
@@ -271,7 +391,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/createfile?name=test.txt&content=HelloWorld&repeat=3",
+							"raw": "http://localhost:8080/createfile?name=test.txt&content=HelloWorld &repeat=1312",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -288,12 +408,12 @@
 								},
 								{
 									"key": "content",
-									"value": "HelloWorld",
+									"value": "HelloWorld ",
 									"description": "Contenido del archivo"
 								},
 								{
 									"key": "repeat",
-									"value": "3",
+									"value": "1312",
 									"description": "Veces a repetir el contenido (default: 1)"
 								}
 							]
@@ -368,6 +488,681 @@
 				}
 			],
 			"description": "Operaciones con archivos del sistema"
+		},
+		{
+			"name": "CPU-Bound",
+			"item": [
+				{
+					"name": "isPrime - Division",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/isprime?n=982451653&algo=division",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"isprime"
+							],
+							"query": [
+								{
+									"key": "n",
+									"value": "982451653",
+									"description": "Número a revisar"
+								},
+								{
+									"key": "algo",
+									"value": "division",
+									"description": "Algoritmo (Division o Miller-Rabin (mr))\n"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "isPrime - MillerRobin",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/isprime?n=982451653&algo=mr&rounds=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"isprime"
+							],
+							"query": [
+								{
+									"key": "n",
+									"value": "982451653"
+								},
+								{
+									"key": "algo",
+									"value": "mr"
+								},
+								{
+									"key": "rounds",
+									"value": "1",
+									"description": "Defaults to 5\n"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Factor - Factoriza",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/factor?n=218714821",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"factor"
+							],
+							"query": [
+								{
+									"key": "n",
+									"value": "218714821"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mandelbrot - Array 2D",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/mandelbrot?width=1024&height=768&max_iter=1000&dump=mandel.pgm",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"mandelbrot"
+							],
+							"query": [
+								{
+									"key": "width",
+									"value": "1024"
+								},
+								{
+									"key": "height",
+									"value": "768"
+								},
+								{
+									"key": "max_iter",
+									"value": "1000"
+								},
+								{
+									"key": "dump",
+									"value": "mandel.pgm"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MatrixMul - Multiplica matrices",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/matrixmul?size=128&seed=42",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"matrixmul"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "128"
+								},
+								{
+									"key": "seed",
+									"value": "42"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PiDigits - Spigot",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pi?digits=15&algo=spigot",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pi"
+							],
+							"query": [
+								{
+									"key": "digits",
+									"value": "15"
+								},
+								{
+									"key": "algo",
+									"value": "spigot"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PiDigits - Chudnovsky",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pi?digits=15&algo=chudnovsky",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pi"
+							],
+							"query": [
+								{
+									"key": "digits",
+									"value": "15"
+								},
+								{
+									"key": "algo",
+									"value": "chudnovsky"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "IO Bound",
+			"item": [
+				{
+					"name": "WordCount - Contar palabras",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/wordcount?name=grep.txt",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"wordcount"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "grep.txt"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Grep - Buscar patrones CS y sin overlap",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/grep?name=grep.txt&pattern=He",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"grep"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "grep.txt"
+								},
+								{
+									"key": "pattern",
+									"value": "He"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Grep - Buscar patrones CS y con overlap",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/grep?name=grep.txt&pattern=He&icase=1&overlap=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"grep"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "grep.txt"
+								},
+								{
+									"key": "pattern",
+									"value": "He"
+								},
+								{
+									"key": "icase",
+									"value": "1"
+								},
+								{
+									"key": "overlap",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Grep - Buscar patrones CI y con overlap",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/grep?name=grep.txt&pattern=He&icase=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"grep"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "grep.txt"
+								},
+								{
+									"key": "pattern",
+									"value": "He"
+								},
+								{
+									"key": "icase",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Hashfile - Aplicar SHA256",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/hashfile?name=test.txt&algo=sha256",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"hashfile"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "test.txt"
+								},
+								{
+									"key": "algo",
+									"value": "sha256"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Compress - Gzip NoLib",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/compress?name=grep.txt&codec=gzip&impl=pure",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"compress"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "grep.txt"
+								},
+								{
+									"key": "codec",
+									"value": "gzip"
+								},
+								{
+									"key": "impl",
+									"value": "pure"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Compress - Gzip Lib",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/compress?name=grep.txt&codec=gzip&impl=lib",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"compress"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "grep.txt"
+								},
+								{
+									"key": "codec",
+									"value": "gzip"
+								},
+								{
+									"key": "impl",
+									"value": "lib"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Compress - xz",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/compress?name=grep.txt&codec=xz&impl=lib",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"compress"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "grep.txt"
+								},
+								{
+									"key": "codec",
+									"value": "xz"
+								},
+								{
+									"key": "impl",
+									"value": "lib"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sortfile - Merge sort",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/sortfile?name=data-sort-100mb.txt&algo=merge",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sortfile"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "data-sort-100mb.txt"
+								},
+								{
+									"key": "algo",
+									"value": "merge"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sortfile - Quick sort",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/sortfile?name=data-sort-50mb.txt&algo=quick",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sortfile"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "data-sort-50mb.txt"
+								},
+								{
+									"key": "algo",
+									"value": "quick"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Jobs",
+			"item": [
+				{
+					"name": "Jobs - Submit 100MB",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/jobs/submit?route=/sortfile&name=data-test.txt&algo=quick&prio=high",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"jobs",
+								"submit"
+							],
+							"query": [
+								{
+									"key": "route",
+									"value": "/sortfile"
+								},
+								{
+									"key": "name",
+									"value": "data-test.txt"
+								},
+								{
+									"key": "algo",
+									"value": "quick"
+								},
+								{
+									"key": "prio",
+									"value": "high"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Jobs - Cancel",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/jobs/cancel?id=0000019a377d45c0-00000001",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"jobs",
+								"cancel"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "0000019a377d45c0-00000001"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Jobs - Check status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/jobs/status?id=0000019a378360fe-00000000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"jobs",
+								"status"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "0000019a378360fe-00000000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Jobs - Check result",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/jobs/result?id=0000019a378360fe-00000000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"jobs",
+								"result"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "0000019a378360fe-00000000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Jobs - Ver todos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/jobs/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"jobs",
+								"list"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "Tests de Errores",
