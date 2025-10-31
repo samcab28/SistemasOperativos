@@ -14,12 +14,7 @@ use crate::utils::validation::validate_filename;
 use std::time::SystemTime;
 use crate::jobs::job_manager::job_manager;
 
-fn not_implemented(endpoint: &str) -> HttpResponse {
-    JsonResponseBuilder::new(501)
-        .field("endpoint", endpoint)
-        .field("status", "not_implemented")
-        .build()
-}
+// (removed unused not_implemented helper)
 
 /// GET /isprime?n=NUM[&algo=division|mr][&rounds=6]
 pub fn handle_isprime(req: &HttpRequest) -> ServerResult<HttpResponse> {
@@ -35,7 +30,12 @@ pub fn handle_isprime(req: &HttpRequest) -> ServerResult<HttpResponse> {
     let algo: String = req.parse_param_or("algo", String::from("mr"))?;
     let rounds: u32 = req.parse_param_or("rounds", 6)?;
 
-    let prio = WorkPriority::from_str(req.query_params.get("prio").map(|s| s.as_str()).unwrap_or("normal"));
+    let prio = req
+        .query_params
+        .get("prio")
+        .map_or("normal", |s| s.as_str())
+        .parse()
+        .unwrap_or(WorkPriority::Normal);
     let timeout = worker_manager().cpu_timeout();
     let resp = worker_manager().submit_for_with_priority("/isprime", timeout, prio, move || {
         let start = SystemTime::now();
@@ -64,7 +64,12 @@ pub fn handle_factor(req: &HttpRequest) -> ServerResult<HttpResponse> {
         return Ok(JsonResponseBuilder::new(200).field("job_id", id).field("route", "/factor").build());
     }
     let n: u64 = req.parse_param("n")?;
-    let prio = WorkPriority::from_str(req.query_params.get("prio").map(|s| s.as_str()).unwrap_or("normal"));
+    let prio = req
+        .query_params
+        .get("prio")
+        .map_or("normal", |s| s.as_str())
+        .parse()
+        .unwrap_or(WorkPriority::Normal);
     let timeout = worker_manager().cpu_timeout();
     let resp = worker_manager().submit_for_with_priority("/factor", timeout, prio, move || {
         let start = SystemTime::now();
@@ -113,7 +118,12 @@ pub fn handle_pi(req: &HttpRequest) -> ServerResult<HttpResponse> {
         _ => return Err(ServerError::invalid_param("algo", "use spigot or chudnovsky")),
     }
 
-    let prio = WorkPriority::from_str(req.query_params.get("prio").map(|s| s.as_str()).unwrap_or("normal"));
+    let prio = req
+        .query_params
+        .get("prio")
+        .map_or("normal", |s| s.as_str())
+        .parse()
+        .unwrap_or(WorkPriority::Normal);
     let timeout = worker_manager().cpu_timeout();
     let resp = worker_manager().submit_for_with_priority("/pi", timeout, prio, move || {
         let start = SystemTime::now();
@@ -143,7 +153,12 @@ pub fn handle_mandelbrot(req: &HttpRequest) -> ServerResult<HttpResponse> {
     let height: u32 = req.parse_param("height")?;
     let max_iter: u32 = req.parse_param_or("max_iter", 1000)?;
     let dump: Option<String> = req.parse_param_optional("dump")?;
-    let prio = WorkPriority::from_str(req.query_params.get("prio").map(|s| s.as_str()).unwrap_or("normal"));
+    let prio = req
+        .query_params
+        .get("prio")
+        .map_or("normal", |s| s.as_str())
+        .parse()
+        .unwrap_or(WorkPriority::Normal);
     let timeout = worker_manager().cpu_timeout();
     let resp = worker_manager().submit_for_with_priority("/mandelbrot", timeout, prio, move || {
         let start = SystemTime::now();
@@ -233,7 +248,12 @@ pub fn handle_matrixmul(req: &HttpRequest) -> ServerResult<HttpResponse> {
     }
     let size: u32 = req.parse_param("size")?;
     let seed: u64 = req.parse_param_or("seed", 0)?;
-    let prio = WorkPriority::from_str(req.query_params.get("prio").map(|s| s.as_str()).unwrap_or("normal"));
+    let prio = req
+        .query_params
+        .get("prio")
+        .map_or("normal", |s| s.as_str())
+        .parse()
+        .unwrap_or(WorkPriority::Normal);
     let timeout = worker_manager().cpu_timeout();
     let resp = worker_manager().submit_for_with_priority("/matrixmul", timeout, prio, move || {
         let start = SystemTime::now();

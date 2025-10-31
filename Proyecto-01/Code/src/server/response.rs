@@ -227,17 +227,17 @@ impl JsonResponseBuilder {
     /// Build the HTTP response
     pub fn build(self) -> HttpResponse {
         let status_code = self.status_code;
-        let json = self.to_json_string();
+        let json = self.into_json_string();
         HttpResponse::new(status_code).with_json(json)
     }
 
     /// Build just the JSON string
     pub fn build_json(self) -> String {
-        self.to_json_string()
+        self.into_json_string()
     }
 
     /// Convert to JSON string (consumes self)
-    fn to_json_string(self) -> String {
+    fn into_json_string(self) -> String {
         if self.fields.is_empty() {
             return "{}".to_string();
         }

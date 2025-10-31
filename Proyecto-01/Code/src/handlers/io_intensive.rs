@@ -14,12 +14,7 @@ use crate::handlers::data_dir;
 use std::time::SystemTime;
 use crate::jobs::job_manager::job_manager;
 
-fn not_implemented(endpoint: &str) -> HttpResponse {
-    JsonResponseBuilder::new(501)
-        .field("endpoint", endpoint)
-        .field("status", "not_implemented")
-        .build()
-}
+// (removed unused not_implemented helper)
 
 /// GET /sortfile?name=FILE&algo=merge|quick
 pub fn handle_sortfile(req: &HttpRequest) -> ServerResult<HttpResponse> {
@@ -34,7 +29,12 @@ pub fn handle_sortfile(req: &HttpRequest) -> ServerResult<HttpResponse> {
     validate_filename(&name)?;
     let path = format!("{}/{}", data_dir(), name);
     let algo_clone = algo.clone();
-    let prio = WorkPriority::from_str(req.query_params.get("prio").map(|s| s.as_str()).unwrap_or("normal"));
+    let prio = req
+        .query_params
+        .get("prio")
+        .map_or("normal", |s| s.as_str())
+        .parse()
+        .unwrap_or(WorkPriority::Normal);
     let timeout = worker_manager().io_timeout();
     let resp = worker_manager().submit_for_with_priority("/sortfile", timeout, prio, move || {
         let res = match algo_clone.as_str() {
@@ -74,7 +74,12 @@ pub fn handle_wordcount(req: &HttpRequest) -> ServerResult<HttpResponse> {
     let name = req.require_query_param("name")?.to_string();
     validate_filename(&name)?;
     let path = format!("{}/{}", data_dir(), name);
-    let prio = WorkPriority::from_str(req.query_params.get("prio").map(|s| s.as_str()).unwrap_or("normal"));
+    let prio = req
+        .query_params
+        .get("prio")
+        .map_or("normal", |s| s.as_str())
+        .parse()
+        .unwrap_or(WorkPriority::Normal);
     let timeout = worker_manager().io_timeout();
     let resp = worker_manager().submit_for_with_priority("/wordcount", timeout, prio, move || {
         let start = SystemTime::now();
@@ -118,7 +123,12 @@ pub fn handle_grep(req: &HttpRequest) -> ServerResult<HttpResponse> {
     let icase = icase != 0;
     let overlap = overlap != 0;
     let path = format!("{}/{}", data_dir(), name);
-    let prio = WorkPriority::from_str(req.query_params.get("prio").map(|s| s.as_str()).unwrap_or("normal"));
+    let prio = req
+        .query_params
+        .get("prio")
+        .map_or("normal", |s| s.as_str())
+        .parse()
+        .unwrap_or(WorkPriority::Normal);
     let timeout = worker_manager().io_timeout();
     let resp = worker_manager().submit_for_with_priority("/grep", timeout, prio, move || {
         let start = SystemTime::now();
@@ -167,10 +177,15 @@ pub fn handle_compress(req: &HttpRequest) -> ServerResult<HttpResponse> {
     let impl_flag: String = req.parse_param_or("impl", String::from("auto"))?;
     validate_filename(&name)?;
     let path = format!("{}/{}", data_dir(), name);
-    let prio = WorkPriority::from_str(req.query_params.get("prio").map(|s| s.as_str()).unwrap_or("normal"));
+    let prio = req
+        .query_params
+        .get("prio")
+        .map_or("normal", |s| s.as_str())
+        .parse()
+        .unwrap_or(WorkPriority::Normal);
     let timeout = worker_manager().io_timeout();
     let resp = worker_manager().submit_for_with_priority("/compress", timeout, prio, move || {
-        let impl_hint = compression::ImplHint::from_str(&impl_flag);
+        let impl_hint = impl_flag.parse().unwrap_or(compression::ImplHint::Auto);
         let result = match codec.as_str() {
             "gzip" => compression::compress_gzip_select(&path, impl_hint),
             "xz" => compression::compress_xz_select(&path, impl_hint),
@@ -211,7 +226,12 @@ pub fn handle_hashfile(req: &HttpRequest) -> ServerResult<HttpResponse> {
         return Err(ServerError::invalid_param("algo", "only sha256 supported"));
     }
     let path = format!("{}/{}", data_dir(), name);
-    let prio = WorkPriority::from_str(req.query_params.get("prio").map(|s| s.as_str()).unwrap_or("normal"));
+    let prio = req
+        .query_params
+        .get("prio")
+        .map_or("normal", |s| s.as_str())
+        .parse()
+        .unwrap_or(WorkPriority::Normal);
     let timeout = worker_manager().io_timeout();
     let resp = worker_manager().submit_for_with_priority("/hashfile", timeout, prio, move || {
         let start = SystemTime::now();

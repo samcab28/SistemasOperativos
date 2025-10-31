@@ -1,6 +1,7 @@
 use std::fs::File;
 use std::io::{self, Read, Write, BufReader, BufWriter};
 use std::time::Instant;
+use std::str::FromStr;
 
 pub struct CompressMetrics {
     pub bytes_in: u64,
@@ -8,26 +9,28 @@ pub struct CompressMetrics {
     pub elapsed_ms: u128,
 }
 
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum ImplHint {
     Auto,
     Lib,
     Pure,
 }
 
-impl ImplHint {
-    pub fn from_str(s: &str) -> Self {
-        match s.to_lowercase().as_str() {
+impl FromStr for ImplHint {
+    type Err = ();
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        Ok(match s.to_lowercase().as_str() {
             "lib" => ImplHint::Lib,
             "pure" => ImplHint::Pure,
             _ => ImplHint::Auto,
-        }
+        })
     }
 }
 
 // CRC32 (IEEE) table
 fn crc32_init() -> [u32; 256] {
     let mut table = [0u32; 256];
-    for i in 0..256 {
+    for (i, slot) in table.iter_mut().enumerate() {
         let mut c = i as u32;
         for _ in 0..8 {
             if c & 1 != 0 {
@@ -36,7 +39,7 @@ fn crc32_init() -> [u32; 256] {
                 c >>= 1;
             }
         }
-        table[i] = c;
+        *slot = c;
     }
     table
 }
@@ -115,12 +118,12 @@ pub fn compress_gzip_select(input: &str, impl_hint: ImplHint) -> io::Result<(Str
     }
 }
 
-pub fn compress_xz_select(_input: &str, _impl_hint: ImplHint) -> io::Result<(String, CompressMetrics)> {
-    let out_path = format!("{}.xz", _input);
-    match _impl_hint {
-        ImplHint::Pure => Err(io::Error::new(io::ErrorKind::Other, "xz pure impl not available")),
+pub fn compress_xz_select(input: &str, impl_hint: ImplHint) -> io::Result<(String, CompressMetrics)> {
+    let out_path = format!("{}.xz", input);
+    match impl_hint {
+        ImplHint::Pure => Err(io::Error::other("xz pure impl not available")),
         ImplHint::Lib | ImplHint::Auto => {
-            let m = compress_xz_lib(_input, &out_path)?;
+            let m = compress_xz_lib(input, &out_path)?;
             Ok((out_path, m))
         }
     }

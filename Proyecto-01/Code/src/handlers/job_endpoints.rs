@@ -111,7 +111,7 @@ fn estimate_progress_eta(j: &crate::jobs::job_types::Job) -> (u64, u64) {
                 let elapsed = now.saturating_sub(started) as u64;
                 if total_ms == 0 { return (0, 0); }
                 let pct = ((elapsed.saturating_mul(100)) / total_ms).min(99);
-                let eta = if elapsed >= total_ms { 0 } else { total_ms - elapsed };
+                let eta = total_ms.saturating_sub(elapsed);
                 return (pct, eta);
             } else {
                 // queued, unknown ETA

@@ -1,4 +1,5 @@
 use std::time::Duration;
+use std::str::FromStr;
 
 #[derive(Clone, Debug)]
 pub struct CpuWorkerConfig {
@@ -14,12 +15,13 @@ pub enum WorkPriority {
     High,
 }
 
-impl WorkPriority {
-    pub fn from_str(s: &str) -> Self {
-        match s.to_lowercase().as_str() {
+impl FromStr for WorkPriority {
+    type Err = ();
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        Ok(match s.to_lowercase().as_str() {
             "high" => WorkPriority::High,
             "low" => WorkPriority::Low,
             _ => WorkPriority::Normal,
-        }
+        })
     }
 }

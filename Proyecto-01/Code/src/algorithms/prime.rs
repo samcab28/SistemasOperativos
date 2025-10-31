@@ -12,14 +12,14 @@ pub fn is_prime_trial(n: u64) -> bool {
     if n == 2 || n == 3 {
         return true;
     }
-    if n % 2 == 0 {
+    if n.is_multiple_of(2) {
         return false;
     }
 
     // Check odd divisors up to sqrt(n)
     let mut d: u64 = 3;
     while d.saturating_mul(d) <= n {
-        if n % d == 0 {
+        if n.is_multiple_of(d) {
             return false;
         }
         d += 2;
@@ -63,12 +63,12 @@ pub fn is_prime_mr(n: u64, rounds: u32) -> bool {
     // Handle small primes and even
     for &p in [2u64,3,5,7,11,13,17,19,23,29,31,37].iter() {
         if n == p { return true; }
-        if n % p == 0 { return n == p; }
+        if n.is_multiple_of(p) { return n == p; }
     }
     // write n-1 = d * 2^s with d odd
     let mut d = n - 1;
     let mut s: u32 = 0;
-    while d % 2 == 0 { d /= 2; s += 1; }
+    while d.is_multiple_of(2) { d /= 2; s += 1; }
 
     let r = rounds.min(MR_BASES_64.len() as u32) as usize;
     for &a in MR_BASES_64.iter().take(r) {
@@ -88,7 +88,7 @@ pub fn factor_trial(mut n: u64) -> Vec<(u64, u32)> {
 
     // Factor out powers of 2
     let mut count: u32 = 0;
-    while n % 2 == 0 {
+    while n.is_multiple_of(2) {
         n /= 2;
         count += 1;
     }
@@ -99,9 +99,9 @@ pub fn factor_trial(mut n: u64) -> Vec<(u64, u32)> {
     // Factor odd divisors
     let mut d: u64 = 3;
     while d.saturating_mul(d) <= n {
-        if n % d == 0 {
+        if n.is_multiple_of(d) {
             let mut c: u32 = 0;
-            while n % d == 0 {
+            while n.is_multiple_of(d) {
                 n /= d;
                 c += 1;
             }

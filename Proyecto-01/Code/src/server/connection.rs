@@ -40,14 +40,14 @@ impl Connection {
     pub fn set_read_timeout(&mut self, timeout: Duration) -> ServerResult<()> {
         self.stream
             .set_read_timeout(Some(timeout))
-            .map_err(|e| ServerError::Io(e))
+            .map_err(ServerError::Io)
     }
 
     /// Set write timeout for the connection
     pub fn set_write_timeout(&mut self, timeout: Duration) -> ServerResult<()> {
         self.stream
             .set_write_timeout(Some(timeout))
-            .map_err(|e| ServerError::Io(e))
+            .map_err(ServerError::Io)
     }
 
     /// Get the request context

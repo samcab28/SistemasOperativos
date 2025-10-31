@@ -122,8 +122,7 @@ impl Logger {
 
         let client = ctx
             .client_addr
-            .as_ref()
-            .map(|s| s.as_str())
+            .as_deref()
             .unwrap_or("unknown");
 
         let full_message = format!("[{}] {} - {}", ctx.request_id, client, message);

@@ -131,6 +131,12 @@ impl Sha256 {
     }
 }
 
+impl Default for Sha256 {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 pub fn sha256_file_hex(path: &str) -> IoResult<String> {
     let mut file = File::open(path)?;
     let mut hasher = Sha256::new();

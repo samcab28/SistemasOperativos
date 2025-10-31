@@ -6,9 +6,7 @@ pub mod handler_traits;
 // CPU/IO intensive handlers (skeletons provided)
 pub mod cpu_intensive;
 pub mod io_intensive;
-#[allow(dead_code)]
 pub mod job_endpoints;
-#[allow(dead_code)]
 pub mod metrics;
 
 // Re-export handler functions

@@ -5,6 +5,7 @@
 
 use crate::error::{ServerError, ServerResult};
 use std::collections::HashMap;
+use std::str::FromStr;
 use std::io::{BufRead, BufReader, Read};
 
 /// HTTP method
@@ -14,17 +15,20 @@ pub enum HttpMethod {
     Head,
 }
 
-impl HttpMethod {
+impl FromStr for HttpMethod {
+    type Err = ServerError;
     /// Parse method from string
-    pub fn from_str(s: &str) -> ServerResult<Self> {
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
         match s.to_uppercase().as_str() {
             "GET" => Ok(HttpMethod::Get),
             "HEAD" => Ok(HttpMethod::Head),
             method => Err(ServerError::MethodNotAllowed(method.to_string())),
         }
     }
+}
 
-    /// Convert to string
+impl HttpMethod {
+    /// Convert to static string form
     pub fn as_str(&self) -> &'static str {
         match self {
             HttpMethod::Get => "GET",
@@ -96,7 +100,7 @@ impl HttpRequest {
             )));
         }
 
-        let method = HttpMethod::from_str(parts[0])?;
+        let method = parts[0].parse::<HttpMethod>()?;
         let (path, query_params) = Self::parse_uri(parts[1])?;
         let version = parts[2].to_string();
 
@@ -158,9 +162,9 @@ impl HttpRequest {
                     let hex: String = chars.by_ref().take(2).collect();
 
                     if hex.len() != 2 {
-                        return Err(ServerError::InvalidHttp(format!(
-                            "Invalid URL encoding: incomplete escape sequence"
-                        )));
+                        return Err(ServerError::InvalidHttp(
+                            "Invalid URL encoding: incomplete escape sequence".to_string(),
+                        ));
                     }
 
                     let byte = u8::from_str_radix(&hex, 16).map_err(|_| {

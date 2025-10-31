@@ -75,6 +75,11 @@ impl<T> TaskQueue<T> {
         inner.size
     }
 
+    /// Check whether the queue is empty
+    pub fn is_empty(&self) -> bool {
+        self.len() == 0
+    }
+
     /// Queue capacity
     pub fn capacity(&self) -> usize {
         let inner = self.inner.lock().unwrap();

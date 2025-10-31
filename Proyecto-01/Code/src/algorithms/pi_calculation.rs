@@ -45,7 +45,7 @@ pub fn pi_spigot_string(digits: u32) -> String {
                 digits_out.push(1);
                 have_predigit = true;
             }
-            for _ in 0..nines { digits_out.push(0); }
+            digits_out.extend(std::iter::repeat(0).take(nines));
             predigit = 0;
             nines = 0;
         } else {
@@ -55,7 +55,7 @@ pub fn pi_spigot_string(digits: u32) -> String {
                 have_predigit = true;
             }
             predigit = q;
-            for _ in 0..nines { digits_out.push(9); }
+            digits_out.extend(std::iter::repeat(9).take(nines));
             nines = 0;
         }
     }

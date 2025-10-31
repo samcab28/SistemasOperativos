@@ -82,9 +82,7 @@ impl PriorityTracker {
             if *rr > pos {
                 *rr -= 1;
             }
-            if list.is_empty() {
-                *rr = 0;
-            } else if *rr >= list.len() {
+            if list.is_empty() || *rr >= list.len() {
                 *rr = 0;
             }
         }

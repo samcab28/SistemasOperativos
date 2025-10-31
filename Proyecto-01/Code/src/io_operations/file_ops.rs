@@ -37,7 +37,7 @@ pub fn mergesort_file_external(input: &str) -> io::Result<(String, SortMetrics)>
         if n == 0 {
             // flush last chunk
             if !chunk.is_empty() {
-                runs.push(write_sorted_run(parent, &mut chunk)?);
+                runs.push(write_sorted_run(parent, &mut chunk[..])?);
                 chunk.clear();
             }
             break;
@@ -54,7 +54,7 @@ pub fn mergesort_file_external(input: &str) -> io::Result<(String, SortMetrics)>
             }
         }
         if chunk_bytes >= chunk_limit_bytes {
-            runs.push(write_sorted_run(parent, &mut chunk)?);
+            runs.push(write_sorted_run(parent, &mut chunk[..])?);
             chunk.clear();
             chunk_bytes = 0;
         }
@@ -94,7 +94,7 @@ fn derive_sorted_path(input: &Path) -> PathBuf {
     PathBuf::from(s)
 }
 
-fn write_sorted_run(dir: &Path, chunk: &mut Vec<i64>) -> io::Result<PathBuf> {
+fn write_sorted_run(dir: &Path, chunk: &mut [i64]) -> io::Result<PathBuf> {
     chunk.sort_unstable();
     let mut path = dir.to_path_buf();
     let fname = format!("run-{}.tmp", nano_time());

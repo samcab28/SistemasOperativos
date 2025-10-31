@@ -253,7 +253,7 @@ pub fn handle_deletefile(req: &HttpRequest) -> ServerResult<HttpResponse> {
     let file_path = format!("./data/{}", name);
 
     if !std::path::Path::new(&file_path).exists() {
-        return Err(ServerError::not_found(&format!("File not found: {}", name)));
+        return Err(ServerError::not_found(format!("File not found: {}", name)));
     }
 
     std::fs::remove_file(&file_path)
@@ -274,7 +274,12 @@ pub fn handle_sleep(req: &HttpRequest) -> ServerResult<HttpResponse> {
     if secs > 3600 {
         return Err(ServerError::invalid_param("seconds", "maximum is 3600"));
     }
-    let prio = WorkPriority::from_str(req.query_params.get("prio").map(|s| s.as_str()).unwrap_or("normal"));
+    let prio = req
+        .query_params
+        .get("prio")
+        .map_or("normal", |s| s.as_str())
+        .parse()
+        .unwrap_or(WorkPriority::Normal);
     let timeout = worker_manager().io_timeout();
     let resp = worker_manager().submit_for_with_priority("/sleep", timeout, prio, move || {
         let start = SystemTime::now();
@@ -296,7 +301,12 @@ pub fn handle_simulate(req: &HttpRequest) -> ServerResult<HttpResponse> {
         return Err(ServerError::invalid_param("seconds", "1..=3600 allowed"));
     }
     let task: String = req.parse_param_or("task", String::from("cpu"))?;
-    let prio = WorkPriority::from_str(req.query_params.get("prio").map(|s| s.as_str()).unwrap_or("normal"));
+    let prio = req
+        .query_params
+        .get("prio")
+        .map_or("normal", |s| s.as_str())
+        .parse()
+        .unwrap_or(WorkPriority::Normal);
     let timeout = worker_manager().cpu_timeout();
     let resp = worker_manager().submit_for_with_priority("/simulate", timeout, prio, move || {
         let start = SystemTime::now();
@@ -308,7 +318,7 @@ pub fn handle_simulate(req: &HttpRequest) -> ServerResult<HttpResponse> {
                 // Hash a growing buffer repeatedly
                 let mut buf: Vec<u8> = vec![0u8; 1024];
                 while SystemTime::now() < deadline {
-                    for i in 0..buf.len() { buf[i] = buf[i].wrapping_add(1); }
+                    for b in &mut buf { *b = b.wrapping_add(1); }
                     let _h = crate::utils::crypto::sha256_hex(&buf);
                     iterations += 1;
                 }
@@ -341,7 +351,12 @@ pub fn handle_loadtest(req: &HttpRequest) -> ServerResult<HttpResponse> {
     let sleep_secs: u64 = req.parse_param("sleep")?;
     if tasks == 0 || tasks > 10000 { return Err(ServerError::invalid_param("tasks", "1..=10000")); }
     if sleep_secs > 3600 { return Err(ServerError::invalid_param("sleep", "maximum is 3600")); }
-    let prio = WorkPriority::from_str(req.query_params.get("prio").map(|s| s.as_str()).unwrap_or("normal"));
+    let prio = req
+        .query_params
+        .get("prio")
+        .map_or("normal", |s| s.as_str())
+        .parse()
+        .unwrap_or(WorkPriority::Normal);
     let io_timeout = worker_manager().io_timeout();
 
     // Offload orchestrator to avoid blocking the accept loop
