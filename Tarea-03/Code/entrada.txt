@@ -1,0 +1,18 @@
+# Simulación de fragmentación
+ALLOC A 100
+ALLOC B 200
+FREE A
+ALLOC C 50
+PRINT
+
+# Simulación de fuga de memoria (no se libera D)
+ALLOC D 300
+ALLOC E 400
+FREE E
+PRINT
+
+# Pruebas de REALLOC (crece y reduce)
+REALLOC B 260
+PRINT
+REALLOC C 30
+PRINT
