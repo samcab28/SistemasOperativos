@@ -6,7 +6,7 @@
 /* ---------- Inicialización ---------- */
 
 void init_memsim(MemSim *ms, FitStrategy s, size_t pool_size) {
-    ms->pool = (uint8_t*)xmalloc(pool_size); // usa calloc internamente
+    ms->pool = (uint8_t*)xmalloc(pool_size);
     ms->pool_size = pool_size;
     ms->strat = s;
     ms->vars = NULL;
@@ -23,15 +23,12 @@ void expand_pool(MemSim *ms, size_t extra_bytes) {
     ms->pool = newpool;
     ms->pool_size += extra_bytes;
 
-    // Buscar el último bloque en la lista
     BlockHeader *last = ms->blocks;
     while (last && last->next) last = last->next;
 
-    // Si el último bloque es libre, lo agrandamos
     if (last && last->free) {
         last->size += extra_bytes;
     } else {
-        // Si no, creamos un nuevo bloque libre al final
         BlockHeader *b = new_block(old_size, extra_bytes, 1);
         insert_after(last, b);
     }
@@ -93,12 +90,10 @@ static BlockHeader* do_alloc(MemSim *ms, const char *var, size_t size) {
     BlockHeader *hole = pick_block(ms, size);
 
     if (!hole) {
-        // Si no hay espacio, expandimos el pool usando realloc
-        size_t extra = size * 2; // crece dinámicamente (puedes ajustar el factor)
+        size_t extra = size * 2;
         printf("[WARN] Sin espacio: expandiendo pool en +%zu bytes...\n", extra);
         expand_pool(ms, extra);
 
-        // volver a intentar
         hole = pick_block(ms, size);
         if (!hole) return NULL;
     }
@@ -142,16 +137,32 @@ static BlockHeader* do_realloc(MemSim *ms, const char *var, size_t newsize) {
         return b;
     }
 
-    // si no hay espacio contiguo → intentar expandir el pool
+    // SOLUCIÓN: Liberar el bloque ANTES de intentar alojar de nuevo
     printf("[WARN] REALLOC no encontró espacio contiguo; expandiendo pool...\n");
     expand_pool(ms, grow * 2);
 
-    BlockHeader *nb = do_alloc(ms, var, newsize);
+    // Buscar nuevo espacio manualmente sin usar do_alloc (evita conflicto de nombres)
+    BlockHeader *hole = pick_block(ms, newsize);
+    if (!hole) {
+        printf("[ERROR] Incluso después de expandir, no hay espacio para REALLOC\n");
+        return NULL;
+    }
+
+    BlockHeader *nb = alloc_from_block(ms, hole, newsize);
     if (!nb) return NULL;
 
+    // Copiar datos viejos al nuevo bloque
+    size_t copy_size = (b->size < newsize) ? b->size : newsize;
+    memcpy(ms->pool + nb->offset, ms->pool + b->offset, copy_size);
+    fill_with_name(ms->pool + nb->offset, nb->size, var);
+
+    // Actualizar el mapeo ANTES de liberar el bloque viejo
     v->block = nb;
+
+    // Liberar el bloque viejo
     b->free = 1;
     try_coalesce(ms, b);
+
     return nb;
 }
 
