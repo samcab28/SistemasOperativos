@@ -1,0 +1,6 @@
+{"timestamp":"2024-01-01T00:00:01Z","service":"auth","level":"error","message":"failed login user=1"}
+{"timestamp":"2024-01-01T00:00:03Z","service":"auth","level":"error","message":"failed login user=2"}
+{"timestamp":"2024-01-01T00:00:05Z","service":"billing","level":"warn","message":"retry payment order=42"}
+{"timestamp":"2024-01-01T00:00:08Z","service":"billing","level":"error","message":"timeout contacting db"}
+{"timestamp":"2024-01-01T00:00:12Z","service":"auth","level":"error","message":"failed login user=5"}
+{"timestamp":"2024-01-01T00:00:14Z","service":"billing","level":"error","message":"timeout contacting db"}

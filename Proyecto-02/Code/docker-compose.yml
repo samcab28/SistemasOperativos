@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  master:
+    image: rust:1.78
+    working_dir: /app
+    command: bash -c "cargo run -p master"
+    volumes:
+      - ./:/app
+    ports:
+      - "8080:8080"
+    environment:
+      - RUST_LOG=info
+
+  worker:
+    image: rust:1.78
+    working_dir: /app
+    depends_on:
+      - master
+    command: bash -c "cargo run -p worker -- --worker-id worker-compose --bind 0.0.0.0:9001 --advertise-url http://worker:9001 --master-url http://master:8080 --slots 2"
+    volumes:
+      - ./:/app
+    environment:
+      - RUST_LOG=info

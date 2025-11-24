@@ -1,0 +1,96 @@
+{
+  "topologies": {
+    "543c67c5-0ea3-4472-acd8-0f4a16aea858": {
+      "spec": {
+        "name": "log-window-count",
+        "description": "Cuenta mensajes ERROR/WARN por servicio en ventanas de 10s",
+        "operators": [
+          {
+            "id": "normalize_level",
+            "kind": {
+              "type": "map",
+              "field": "level",
+              "transform": {
+                "kind": "to_upper"
+              }
+            },
+            "config": {}
+          },
+          {
+            "id": "filter_errors",
+            "kind": {
+              "type": "filter",
+              "field": "level",
+              "predicate": {
+                "kind": "equals",
+                "value": "ERROR"
+              }
+            },
+            "config": {}
+          },
+          {
+            "id": "key_by_service",
+            "kind": {
+              "type": "key_by",
+              "field": "service"
+            },
+            "config": {}
+          },
+          {
+            "id": "window_count",
+            "kind": {
+              "type": "window_aggregate",
+              "window": {
+                "length_ms": 10000,
+                "slide_ms": null,
+                "checkpoint_interval_ms": 15000
+              },
+              "aggregator": {
+                "type": "count"
+              },
+              "key_field": "service",
+              "value_field": null
+            },
+            "config": {}
+          },
+          {
+            "id": "sink",
+            "kind": {
+              "type": "sink_log"
+            },
+            "config": {}
+          }
+        ],
+        "edges": [
+          {
+            "from": "normalize_level",
+            "to": "filter_errors"
+          },
+          {
+            "from": "filter_errors",
+            "to": "key_by_service"
+          },
+          {
+            "from": "key_by_service",
+            "to": "window_count"
+          },
+          {
+            "from": "window_count",
+            "to": "sink"
+          }
+        ],
+        "parallelism": 1
+      },
+      "status": "Running",
+      "worker_id": "worker-1",
+      "metrics": {
+        "events_ingested": 6,
+        "events_emitted": 6,
+        "last_checkpoint": "2025-11-23T22:57:51.864033500Z",
+        "windows_open": 0
+      },
+      "attempt": 0,
+      "last_error": null
+    }
+  }
+}

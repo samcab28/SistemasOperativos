@@ -1,0 +1,51 @@
+{
+  "name": "log-window-count",
+  "description": "Cuenta mensajes ERROR/WARN por servicio en ventanas de 10s",
+  "parallelism": 1,
+  "operators": [
+    {
+      "id": "normalize_level",
+      "kind": {
+        "type": "map",
+        "field": "level",
+        "transform": { "kind": "to_upper" }
+      }
+    },
+    {
+      "id": "filter_errors",
+      "kind": {
+        "type": "filter",
+        "field": "level",
+        "predicate": { "kind": "equals", "value": "ERROR" }
+      }
+    },
+    {
+      "id": "key_by_service",
+      "kind": { "type": "key_by", "field": "service" }
+    },
+    {
+      "id": "window_count",
+      "kind": {
+        "type": "window_aggregate",
+        "key_field": "service",
+        "value_field": null,
+        "window": {
+          "length_ms": 10000,
+          "slide_ms": null,
+          "checkpoint_interval_ms": 15000
+        },
+        "aggregator": { "type": "count" }
+      }
+    },
+    {
+      "id": "sink",
+      "kind": { "type": "sink_log" }
+    }
+  ],
+  "edges": [
+    { "from": "normalize_level", "to": "filter_errors" },
+    { "from": "filter_errors", "to": "key_by_service" },
+    { "from": "key_by_service", "to": "window_count" },
+    { "from": "window_count", "to": "sink" }
+  ]
+}
