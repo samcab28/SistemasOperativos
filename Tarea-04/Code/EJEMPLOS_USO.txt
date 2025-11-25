@@ -1,0 +1,342 @@
+========================================
+SISTEMA DE ARCHIVOS SIMPLE - EJEMPLOS DE USO Y PRUEBAS
+========================================
+
+Este documento contiene ejemplos detallados de uso del sistema de archivos
+y casos de prueba que demuestran todas las funcionalidades implementadas.
+
+========================================
+CASO 1: OPERACIONES BÁSICAS
+========================================
+
+Descripción: Crear un archivo, escribir datos, leer y eliminar
+
+Comandos:
+---------
+> CREATE archivo1.txt 1000
+> WRITE archivo1.txt 0 "Hola, mundo"
+> READ archivo1.txt 0 11
+> LIST
+> DELETE archivo1.txt
+> LIST
+
+Salida Esperada:
+----------------
+Archivo 'archivo1.txt' creado exitosamente (1000 bytes)
+Datos escritos exitosamente en 'archivo1.txt'
+Salida: "Hola, mundo"
+Archivos en el sistema:
+Nombre                         Tamaño
+----------------------------------------
+archivo1.txt                     1000 bytes
+Archivo 'archivo1.txt' eliminado exitosamente
+(no hay archivos)
+
+========================================
+CASO 2: MÚLTIPLES ARCHIVOS
+========================================
+
+Descripción: Crear y gestionar múltiples archivos simultáneamente
+
+Comandos:
+---------
+> CREATE documento1.txt 500
+> CREATE documento2.txt 1000
+> CREATE documento3.txt 1500
+> WRITE documento1.txt 0 "Contenido del primer documento"
+> WRITE documento2.txt 0 "Contenido del segundo documento"
+> WRITE documento3.txt 0 "Contenido del tercer documento"
+> LIST
+> READ documento2.txt 0 31
+> DELETE documento1.txt
+> LIST
+
+Salida Esperada:
+----------------
+Archivo 'documento1.txt' creado exitosamente (500 bytes)
+Archivo 'documento2.txt' creado exitosamente (1000 bytes)
+Archivo 'documento3.txt' creado exitosamente (1500 bytes)
+Datos escritos exitosamente en 'documento1.txt'
+Datos escritos exitosamente en 'documento2.txt'
+Datos escritos exitosamente en 'documento3.txt'
+Archivos en el sistema:
+Nombre                         Tamaño
+----------------------------------------
+documento1.txt                    500 bytes
+documento2.txt                   1000 bytes
+documento3.txt                   1500 bytes
+Salida: "Contenido del segundo documento"
+Archivo 'documento1.txt' eliminado exitosamente
+Archivos en el sistema:
+Nombre                         Tamaño
+----------------------------------------
+documento2.txt                   1000 bytes
+documento3.txt                   1500 bytes
+
+========================================
+CASO 3: ESCRITURA Y LECTURA CON OFFSETS
+========================================
+
+Descripción: Escribir y leer datos en diferentes posiciones del archivo
+
+Comandos:
+---------
+> CREATE datos.txt 200
+> WRITE datos.txt 0 "Inicio"
+> WRITE datos.txt 50 "Medio"
+> WRITE datos.txt 100 "Final"
+> READ datos.txt 0 10
+> READ datos.txt 50 10
+> READ datos.txt 100 10
+> LIST
+
+Salida Esperada:
+----------------
+Archivo 'datos.txt' creado exitosamente (200 bytes)
+Datos escritos exitosamente en 'datos.txt'
+Datos escritos exitosamente en 'datos.txt'
+Datos escritos exitosamente en 'datos.txt'
+Salida: "Inicio"
+Salida: "Medio"
+Salida: "Final"
+Archivos en el sistema:
+Nombre                         Tamaño
+----------------------------------------
+datos.txt                        200 bytes
+
+========================================
+CASO 4: MANEJO DE ERRORES - ARCHIVO DUPLICADO
+========================================
+
+Descripción: Intentar crear un archivo que ya existe
+
+Comandos:
+---------
+> CREATE duplicado.txt 500
+> CREATE duplicado.txt 600
+> LIST
+
+Salida Esperada:
+----------------
+Archivo 'duplicado.txt' creado exitosamente (500 bytes)
+Error: El archivo ya existe
+Archivos en el sistema:
+Nombre                         Tamaño
+----------------------------------------
+duplicado.txt                    500 bytes
+
+========================================
+CASO 5: MANEJO DE ERRORES - ARCHIVO NO ENCONTRADO
+========================================
+
+Descripción: Operaciones sobre archivos inexistentes
+
+Comandos:
+---------
+> READ noexiste.txt 0 10
+> WRITE noexiste.txt 0 "Datos"
+> DELETE noexiste.txt
+
+Salida Esperada:
+----------------
+Error: Archivo no encontrado
+Error: Archivo no encontrado
+Error: Archivo no encontrado
+
+========================================
+CASO 6: MANEJO DE ERRORES - OFFSET INVÁLIDO
+========================================
+
+Descripción: Intentar leer/escribir fuera de los límites del archivo
+
+Comandos:
+---------
+> CREATE limite.txt 100
+> WRITE limite.txt 150 "Fuera de límite"
+> READ limite.txt 150 10
+
+Salida Esperada:
+----------------
+Archivo 'limite.txt' creado exitosamente (100 bytes)
+Error: Offset inválido
+Error: Offset inválido
+
+========================================
+CASO 7: ARCHIVO GRANDE
+========================================
+
+Descripción: Crear y manipular un archivo de tamaño considerable
+
+Comandos:
+---------
+> CREATE grande.txt 50000
+> WRITE grande.txt 0 "Este es un archivo grande con mucho contenido"
+> WRITE grande.txt 25000 "Contenido en la mitad del archivo"
+> READ grande.txt 0 46
+> READ grande.txt 25000 33
+> LIST
+> DELETE grande.txt
+
+Salida Esperada:
+----------------
+Archivo 'grande.txt' creado exitosamente (50000 bytes)
+Datos escritos exitosamente en 'grande.txt'
+Datos escritos exitosamente en 'grande.txt'
+Salida: "Este es un archivo grande con mucho contenido"
+Salida: "Contenido en la mitad del archivo"
+Archivos en el sistema:
+Nombre                         Tamaño
+----------------------------------------
+grande.txt                    50000 bytes
+Archivo 'grande.txt' eliminado exitosamente
+
+========================================
+CASO 8: TEXTO MULTILÍNEA
+========================================
+
+Descripción: Escribir y leer texto con múltiples líneas
+
+Comandos:
+---------
+> CREATE texto.txt 500
+> WRITE texto.txt 0 "Primera linea"
+> WRITE texto.txt 14 "Segunda linea"
+> WRITE texto.txt 28 "Tercera linea"
+> READ texto.txt 0 41
+> LIST
+
+Salida Esperada:
+----------------
+Archivo 'texto.txt' creado exitosamente (500 bytes)
+Datos escritos exitosamente en 'texto.txt'
+Datos escritos exitosamente en 'texto.txt'
+Datos escritos exitosamente en 'texto.txt'
+Salida: "Primera lineaSegunda lineaTercera linea"
+Archivos en el sistema:
+Nombre                         Tamaño
+----------------------------------------
+texto.txt                        500 bytes
+
+========================================
+CASO 9: PRUEBA DE CAPACIDAD
+========================================
+
+Descripción: Crear múltiples archivos para probar límites del sistema
+
+Comandos:
+---------
+> CREATE file01.txt 1000
+> CREATE file02.txt 1000
+> CREATE file03.txt 1000
+> CREATE file04.txt 1000
+> CREATE file05.txt 1000
+> CREATE file06.txt 1000
+> CREATE file07.txt 1000
+> CREATE file08.txt 1000
+> CREATE file09.txt 1000
+> CREATE file10.txt 1000
+> LIST
+> DELETE file05.txt
+> DELETE file06.txt
+> LIST
+
+Salida Esperada:
+----------------
+[10 mensajes de creación exitosa]
+Archivos en el sistema:
+Nombre                         Tamaño
+----------------------------------------
+[10 archivos listados]
+Archivo 'file05.txt' eliminado exitosamente
+Archivo 'file06.txt' eliminado exitosamente
+Archivos en el sistema:
+Nombre                         Tamaño
+----------------------------------------
+[8 archivos listados]
+
+========================================
+CASO 10: TAMAÑOS INVÁLIDOS
+========================================
+
+Descripción: Intentar crear archivos con tamaños no válidos
+
+Comandos:
+---------
+> CREATE invalido1.txt 0
+> CREATE invalido2.txt -100
+
+Salida Esperada:
+----------------
+Error: Tamaño inválido
+Error: Tamaño inválido
+
+========================================
+CASO 11: SOBRESCRITURA DE DATOS
+========================================
+
+Descripción: Sobrescribir datos existentes en un archivo
+
+Comandos:
+---------
+> CREATE sobrescribir.txt 100
+> WRITE sobrescribir.txt 0 "Datos originales"
+> READ sobrescribir.txt 0 16
+> WRITE sobrescribir.txt 0 "Nuevos datos"
+> READ sobrescribir.txt 0 12
+
+Salida Esperada:
+----------------
+Archivo 'sobrescribir.txt' creado exitosamente (100 bytes)
+Datos escritos exitosamente en 'sobrescribir.txt'
+Salida: "Datos originales"
+Datos escritos exitosamente en 'sobrescribir.txt'
+Salida: "Nuevos datos"
+
+========================================
+CASO 12: NOMBRES DE ARCHIVO LARGOS
+========================================
+
+Descripción: Probar con nombres de archivo de diferentes longitudes
+
+Comandos:
+---------
+> CREATE a.txt 100
+> CREATE archivo_con_nombre_muy_largo_para_probar_limites.txt 200
+> LIST
+
+Salida Esperada:
+----------------
+Archivo 'a.txt' creado exitosamente (100 bytes)
+Archivo 'archivo_con_nombre_muy_largo_para_probar_limites.txt' creado exitosamente (200 bytes)
+Archivos en el sistema:
+Nombre                         Tamaño
+----------------------------------------
+a.txt                            100 bytes
+archivo_con_nombre_muy_largo_para_probar_limites.txt                        200 bytes
+
+========================================
+NOTAS SOBRE LAS PRUEBAS
+========================================
+
+1. Todos los comandos deben ejecutarse en el orden mostrado
+2. La salida puede variar ligeramente en formato, pero el contenido debe coincidir
+3. Los errores son esperados y demuestran el manejo robusto del sistema
+4. Para ejecutar las pruebas automáticas: make test
+5. Para pruebas manuales: make run
+
+========================================
+VERIFICACIÓN DE FUNCIONALIDAD
+========================================
+
+✓ CREATE: Crea archivos con nombre y tamaño especificados
+✓ WRITE: Escribe datos en posiciones específicas
+✓ READ: Lee datos desde cualquier posición
+✓ DELETE: Elimina archivos y libera espacio
+✓ LIST: Muestra todos los archivos con sus tamaños
+✓ Manejo de errores: Valida todas las operaciones
+✓ Gestión de bloques: Asigna y libera bloques correctamente
+✓ Múltiples archivos: Soporta operaciones concurrentes
+
+========================================
+FIN DE EJEMPLOS Y PRUEBAS
+========================================
