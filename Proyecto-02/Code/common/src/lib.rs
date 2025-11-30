@@ -8,6 +8,7 @@ pub type OperatorId = String;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TopologySpec {
+    // Declarative topology description shared between master and workers.
     pub name: String,
     pub description: Option<String>,
     pub operators: Vec<OperatorSpec>,
@@ -22,6 +23,7 @@ fn default_parallelism() -> usize {
 
 impl TopologySpec {
     pub fn operator_map(&self) -> HashMap<&str, &OperatorSpec> {
+        // Handy lookup table for quickly resolving operator ids.
         self.operators.iter().map(|op| (op.id.as_str(), op)).collect()
     }
 }
@@ -43,6 +45,7 @@ pub struct EdgeSpec {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(tag = "type", rename_all = "snake_case")]
 pub enum OperatorKind {
+    // Each variant models an operator node the worker can execute.
     Map(MapSpec),
     Filter(FilterSpec),
     FlatMap(FlatMapSpec),
@@ -97,6 +100,7 @@ pub struct KeyBySpec {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct WindowAggregateSpec {
+    // Window definition plus the aggregation to run for every key.
     pub window: WindowSpec,
     pub aggregator: AggregationSpec,
     pub key_field: String,
@@ -125,6 +129,7 @@ pub enum AggregationSpec {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct EventPayload {
+    // Inbound event delivered by clients; worker will enrich with keys/aggregates.
     pub timestamp: DateTime<Utc>,
     pub data: Value,
 }
@@ -149,6 +154,7 @@ pub struct WorkerRegisterResponse {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct WorkerHeartbeat {
+    // Periodic metrics ping from worker to master.
     pub worker_id: String,
     pub metrics: WorkerMetrics,
 }
@@ -159,6 +165,7 @@ pub struct WorkerMetrics {
     pub mem_bytes: u64,
     pub active_topologies: usize,
     pub queue_depth: usize,
+    pub throughput_eps: f64,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -190,6 +197,7 @@ pub struct TopologyStatus {
     pub worker_id: Option<String>,
     pub metrics: TopologyMetrics,
     pub last_error: Option<String>,
+    pub attempt: u32,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, Default)]

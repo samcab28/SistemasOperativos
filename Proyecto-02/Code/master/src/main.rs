@@ -13,6 +13,7 @@ use axum::{
     routing::{get, post},
     Json, Router,
 };
+
 use chrono::Utc;
 use parking_lot::{Mutex, RwLock};
 use reqwest::Client;
@@ -38,6 +39,7 @@ struct StateInner {
     client: Client,
     workers: RwLock<HashMap<String, WorkerRecord>>,
     topologies: RwLock<HashMap<Uuid, TopologyRecord>>,
+    // Cursor to keep round-robin worker selection deterministic across calls.
     rr_cursor: Mutex<usize>,
     state_path: PathBuf,
 }
@@ -48,6 +50,7 @@ impl AppState {
         if let Some(dir) = state_path.parent() {
             let _ = std::fs::create_dir_all(dir);
         }
+        // On boot, reload persisted topologies to avoid losing submitted work.
         let topologies = load_persisted_state(&state_path);
         Self {
             inner: Arc::new(StateInner {
@@ -63,15 +66,33 @@ impl AppState {
     fn select_worker(&self) -> Option<WorkerRecord> {
         // Pick a non-down worker in round-robin order.
         let workers = self.inner.workers.read();
-        let available: Vec<_> = workers.values().filter(|w| !w.is_down).cloned().collect();
-        if available.is_empty() {
+        // Prefer workers under capacity (active topologies < slots) and lowest load ratio.
+        let mut candidates: Vec<_> = workers
+            .values()
+            .filter(|w| !w.is_down)
+            .map(|w| {
+                let active = w.topologies.len();
+                let load_ratio = (active as f64) / (w.slots as f64).max(1.0);
+                (load_ratio, active, w.clone())
+            })
+            .collect();
+        if candidates.is_empty() {
             return None;
         }
+        candidates.sort_by(|a, b| a.0.partial_cmp(&b.0).unwrap_or(std::cmp::Ordering::Equal));
+        // If all are full, fall back to round-robin to spread the pain.
+        let under_capacity: Vec<_> = candidates
+            .iter()
+            .filter(|(_, active, w)| *active < w.slots)
+            .cloned()
+            .collect();
+        if !under_capacity.is_empty() {
+            return Some(under_capacity[0].2.clone());
+        }
         let mut cursor = self.inner.rr_cursor.lock();
-        let idx = *cursor % available.len();
-        let worker = available.get(idx).cloned();
-        *cursor = (idx + 1) % available.len();
-        worker
+        let idx = *cursor % candidates.len();
+        *cursor = (idx + 1) % candidates.len();
+        Some(candidates[idx].2.clone())
     }
 
     fn get_worker(&self, worker_id: &str) -> Option<WorkerRecord> {
@@ -129,6 +150,7 @@ impl AppState {
     }
 
     fn persist_state(&self) -> Result<(), AppError> {
+        // Serialize current topology map so restarts can resume from disk.
         let snapshot = PersistedState {
             topologies: self.inner.topologies.read().clone(),
         };
@@ -174,6 +196,7 @@ struct TopologyRecord {
     metrics: TopologyMetrics,
     attempt: u32,
     last_error: Option<String>,
+    last_dispatch_error: Option<String>,
 }
 
 impl TopologyRecord {
@@ -185,6 +208,7 @@ impl TopologyRecord {
             metrics: TopologyMetrics::default(),
             attempt: 0,
             last_error: None,
+            last_dispatch_error: None,
         }
     }
 }
@@ -289,6 +313,7 @@ async fn mark_worker_down(state: &AppState, worker_id: &str) {
 }
 
 async fn reschedule_topology(state: &AppState, topology_id: Uuid) -> Result<(), AppError> {
+    // Reset status and hand the topology to another available worker.
     {
         let mut topologies = state.inner.topologies.write();
         let entry = topologies
@@ -345,13 +370,24 @@ async fn submit_topology(
         topologies.insert(topology_id, TopologyRecord::new(spec.clone()));
     }
 
-    let worker = state
-        .select_worker()
-        .ok_or_else(|| anyhow::anyhow!("No workers registered"))?;
-
-    deploy_topology_to_worker(&state, worker, topology_id).await?;
+    assign_topology(&state, topology_id).await?;
 
     Ok(Json(TopologySubmitResponse { topology_id }))
+}
+
+async fn assign_topology(state: &AppState, topology_id: Uuid) -> Result<(), AppError> {
+    let worker = state
+        .select_worker()
+        .ok_or_else(|| anyhow::anyhow!("No workers registered or available"))?;
+    if let Err(err) = deploy_topology_to_worker(state, worker, topology_id).await {
+        // Try another worker if possible.
+        if let Some(alt_worker) = state.select_worker() {
+            deploy_topology_to_worker(state, alt_worker, topology_id).await?;
+            return Ok(());
+        }
+        return Err(err);
+    }
+    Ok(())
 }
 
 async fn deploy_topology_to_worker(
@@ -373,7 +409,19 @@ async fn deploy_topology_to_worker(
         attempt,
     };
 
-    state.dispatch_topology(&worker, &deployment).await?;
+    state
+        .dispatch_topology(&worker, &deployment)
+        .await
+        .map_err(|e| {
+            let mut topologies = state.inner.topologies.write();
+            if let Some(entry) = topologies.get_mut(&topology_id) {
+                entry.last_dispatch_error = Some(e.0.to_string());
+                entry.attempt += 1;
+                entry.status = TopologyStatusKind::Accepted;
+                entry.worker_id = None;
+            }
+            e
+        })?;
 
     {
         let mut workers = state.inner.workers.write();
@@ -386,7 +434,10 @@ async fn deploy_topology_to_worker(
     if let Some(entry) = topologies.get_mut(&topology_id) {
         entry.status = TopologyStatusKind::Running;
         entry.worker_id = Some(worker.worker_id.clone());
+        entry.last_dispatch_error = None;
     }
+    drop(topologies);
+    state.persist_state()?;
     Ok(())
 }
 
@@ -406,6 +457,7 @@ async fn get_topology(
         worker_id: record.worker_id.clone(),
         metrics: record.metrics.clone(),
         last_error: record.last_error.clone(),
+        attempt: record.attempt,
     };
     Ok(Json(status))
 }
@@ -461,6 +513,7 @@ async fn list_topologies(State(state): State<AppState>) -> Result<Json<Vec<Topol
             worker_id: record.worker_id.clone(),
             metrics: record.metrics.clone(),
             last_error: record.last_error.clone(),
+            attempt: record.attempt,
         });
     }
     Ok(Json(statuses))
@@ -526,6 +579,7 @@ async fn metrics(State(state): State<AppState>) -> Result<Json<MasterMetrics>, A
             worker_id: record.worker_id.clone(),
             metrics: record.metrics.clone(),
             last_error: record.last_error.clone(),
+            attempt: record.attempt,
         })
         .collect();
 

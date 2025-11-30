@@ -16,15 +16,18 @@ use common::{
     TopologySpec, TransformFn, WindowAggregateSpec,
 };
 
+// Minimal in-process stream pipeline; executes operators sequentially on a single task.
 pub struct PipelineEngine {
     topology_id: Uuid,
     operators: Vec<OperatorNode>,
     _spec: TopologySpec,
+    attempt: u32,
 }
 
 impl PipelineEngine {
     pub fn new(
         topology_id: Uuid,
+        attempt: u32,
         spec: TopologySpec,
         state_dir: &Path,
     ) -> anyhow::Result<Self> {
@@ -42,6 +45,7 @@ impl PipelineEngine {
                 OperatorKind::KeyBy(key_by) => OperatorNode::Key(KeyByOperator::new(key_by.clone())),
                 OperatorKind::WindowAggregate(window) => OperatorNode::Window(WindowOperator::new(
                     topology_id,
+                    attempt,
                     operator.id.clone(),
                     window.clone(),
                     state_dir,
@@ -54,6 +58,7 @@ impl PipelineEngine {
             topology_id,
             operators,
             _spec: spec,
+            attempt,
         })
     }
 
@@ -82,6 +87,7 @@ impl PipelineEngine {
 }
 
 #[derive(Clone, Debug)]
+// Unified internal representation; upstream payloads get converted before processing.
 pub struct StreamingEvent {
     pub timestamp: DateTime<Utc>,
     pub key: Option<String>,
@@ -287,6 +293,7 @@ impl KeyByOperator {
     }
 }
 
+// Maintains sliding/tumbling windows and persists checkpoints.
 struct WindowOperator {
     spec: WindowAggregateSpec,
     windows: HashMap<WindowKey, WindowState>,
@@ -300,12 +307,16 @@ type WindowKey = (String, i64);
 impl WindowOperator {
     fn new(
         topology_id: Uuid,
+        attempt: u32,
         operator_id: String,
         spec: WindowAggregateSpec,
         state_dir: &Path,
     ) -> anyhow::Result<Self> {
         // Prepare per-operator checkpoint directory.
-        let checkpoint_dir = state_dir.join(topology_id.to_string()).join(operator_id);
+        let checkpoint_dir = state_dir
+            .join(topology_id.to_string())
+            .join(format!("attempt-{}", attempt))
+            .join(operator_id);
         std::fs::create_dir_all(&checkpoint_dir)?;
         let mut op = Self {
             spec,
@@ -406,6 +417,7 @@ impl WindowOperator {
     }
 
     fn load_latest_checkpoint(&mut self) -> anyhow::Result<()> {
+        // On startup, reload the most recent snapshot to avoid losing in-flight windows.
         let mut latest: Option<PathBuf> = None;
         if let Ok(entries) = std::fs::read_dir(&self.checkpoint_dir) {
             for entry in entries.flatten() {
@@ -509,6 +521,7 @@ impl WindowState {
     }
 
     fn into_event(self, aggregator: &AggregationSpec, now: DateTime<Utc>) -> StreamingEvent {
+        // Emit window boundaries plus aggregate summary for downstream operators.
         let mut data = Map::new();
         let window_start = DateTime::<Utc>::from_timestamp_millis(self.start_ms)
             .unwrap_or(now)
@@ -583,7 +596,7 @@ mod tests {
             config: Default::default(),
         }]);
         let mut engine =
-            PipelineEngine::new(Uuid::new_v4(), spec, temp_state_dir().as_path()).unwrap();
+            PipelineEngine::new(Uuid::new_v4(), 0, spec, temp_state_dir().as_path()).unwrap();
         let payload = EventPayload {
             timestamp: Utc::now(),
             data: json!({"value": "ok", "other": 1}),
@@ -639,7 +652,7 @@ mod tests {
             parallelism: 1,
         };
         let mut engine =
-            PipelineEngine::new(Uuid::new_v4(), spec, temp_state_dir().as_path()).unwrap();
+            PipelineEngine::new(Uuid::new_v4(), 0, spec, temp_state_dir().as_path()).unwrap();
         for i in 0..3 {
             let payload = EventPayload {
                 timestamp: DateTime::from_timestamp(1 + i, 0).unwrap(),

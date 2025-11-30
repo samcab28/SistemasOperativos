@@ -1,0 +1,22 @@
+{
+  "name": "sum-demo",
+  "operators": [
+    { "id": "key", "kind": { "type": "key_by", "field": "service" } },
+    {
+      "id": "win",
+      "kind": {
+        "type": "window_aggregate",
+        "window": { "length_ms": 10000, "slide_ms": null, "checkpoint_interval_ms": 2000 },
+        "aggregator": { "type": "sum" },
+        "key_field": "service",
+        "value_field": "value"
+      }
+    },
+    { "id": "sink", "kind": { "type": "sink_log" } }
+  ],
+  "edges": [
+    { "from": "key", "to": "win" },
+    { "from": "win", "to": "sink" }
+  ],
+  "parallelism": 1
+}

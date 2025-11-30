@@ -23,10 +23,14 @@ struct Cli {
 #[derive(Subcommand)]
 enum Command {
     SubmitTopology {
-        #[arg(value_name = "FILE", help = "Ruta al archivo JSON con la topología")]
+        #[arg(value_name = "FILE", help = "Ruta al archivo JSON con la topologia")]
         path: PathBuf,
     },
     Status {
+        #[arg(value_name = "ID")]
+        id: Uuid,
+    },
+    CancelTopology {
         #[arg(value_name = "ID")]
         id: Uuid,
     },
@@ -46,6 +50,7 @@ async fn main() -> anyhow::Result<()> {
     match cli.command {
         Command::SubmitTopology { path } => submit_topology(&client, &cli.master_url, path).await?,
         Command::Status { id } => get_status(&client, &cli.master_url, id).await?,
+        Command::CancelTopology { id } => cancel_topology(&client, &cli.master_url, id).await?,
         Command::Ingest { id, file } => ingest_events(&client, &cli.master_url, id, file).await?,
     }
 
@@ -57,7 +62,6 @@ async fn submit_topology(
     master_url: &str,
     path: PathBuf,
 ) -> anyhow::Result<()> {
-    // Lee el spec de topología y lo envía al master.
     let spec: TopologySpec = serde_json::from_reader(
         File::open(&path).with_context(|| format!("No se puede abrir {:?}", path))?,
     )?;
@@ -69,12 +73,11 @@ async fn submit_topology(
         .error_for_status()?
         .json()
         .await?;
-    println!("Topología creada: {}", res.topology_id);
+    println!("Topologia creada: {}", res.topology_id);
     Ok(())
 }
 
 async fn get_status(client: &Client, master_url: &str, id: Uuid) -> anyhow::Result<()> {
-    // Consulta estado/métricas de la topología.
     let status: common::TopologyStatus = client
         .get(format!("{}/api/v1/topologies/{}", master_url, id))
         .send()
@@ -86,13 +89,22 @@ async fn get_status(client: &Client, master_url: &str, id: Uuid) -> anyhow::Resu
     Ok(())
 }
 
+async fn cancel_topology(client: &Client, master_url: &str, id: Uuid) -> anyhow::Result<()> {
+    client
+        .post(format!("{}/api/v1/topologies/{}/cancel", master_url, id))
+        .send()
+        .await?
+        .error_for_status()?;
+    println!("Topologia {} cancelada", id);
+    Ok(())
+}
+
 async fn ingest_events(
     client: &Client,
     master_url: &str,
     id: Uuid,
     file: Option<PathBuf>,
 ) -> anyhow::Result<()> {
-    // Envía un lote de eventos JSONL al master para que los reenvíe al worker.
     let events = read_events(file)?;
     if events.is_empty() {
         return Err(anyhow!("No hay eventos para enviar"));

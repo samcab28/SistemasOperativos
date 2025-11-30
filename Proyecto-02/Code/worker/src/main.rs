@@ -4,6 +4,7 @@ use std::{
     path::PathBuf,
     sync::{
         atomic::{AtomicUsize, Ordering},
+        atomic::{AtomicU64},
         Arc,
     },
     time::Duration,
@@ -54,6 +55,7 @@ struct Args {
 }
 
 #[derive(Clone)]
+// Shared state consumed by HTTP handlers and background tasks.
 struct WorkerState {
     worker_id: String,
     master_url: String,
@@ -64,13 +66,37 @@ struct WorkerState {
     bind: SocketAddr,
     advertise_url: Option<String>,
     system: Arc<parking_lot::Mutex<System>>,
+    throughput_state: Arc<parking_lot::Mutex<ThroughputSnapshot>>,
 }
 
 #[derive(Clone)]
+// Handle to a running topology: channel to push events plus small metadata.
 struct TopologyRuntime {
     spec: common::TopologySpec,
     tx: tokio::sync::mpsc::Sender<StreamingEvent>,
     pending: Arc<AtomicUsize>,
+    processed: Arc<AtomicU64>,
+    attempt: u32,
+}
+
+struct ThroughputSnapshot {
+    total: u64,
+    instant: std::time::Instant,
+}
+
+impl ThroughputSnapshot {
+    fn new() -> Self {
+        Self {
+            total: 0,
+            instant: std::time::Instant::now(),
+        }
+    }
+}
+
+impl Default for ThroughputSnapshot {
+    fn default() -> Self {
+        Self::new()
+    }
 }
 
 impl WorkerState {
@@ -85,6 +111,7 @@ impl WorkerState {
             bind: args.bind,
             advertise_url: args.advertise_url.clone(),
             system: Arc::new(parking_lot::Mutex::new(System::new_all())),
+            throughput_state: Arc::new(parking_lot::Mutex::new(ThroughputSnapshot::default())),
         }
     }
 
@@ -98,18 +125,27 @@ impl WorkerState {
         &self,
         topology_id: Uuid,
         spec: common::TopologySpec,
+        attempt: u32,
     ) -> anyhow::Result<()> {
         // Create channels and spawn the pipeline task for this topology.
         let (tx, rx) = tokio::sync::mpsc::channel(2048);
         let pending = Arc::new(AtomicUsize::new(0));
-        let engine = PipelineEngine::new(topology_id, spec.clone(), &self.state_dir)?;
-        tokio::spawn(run_pipeline(engine, rx, pending.clone()));
+        let processed = Arc::new(AtomicU64::new(0));
+        let engine = PipelineEngine::new(topology_id, attempt, spec.clone(), &self.state_dir)?;
+        tokio::spawn(run_pipeline(
+            engine,
+            rx,
+            pending.clone(),
+            processed.clone(),
+        ));
         self.topologies.write().insert(
             topology_id,
             TopologyRuntime {
                 spec,
                 tx,
                 pending,
+                processed,
+                attempt,
             },
         );
         Ok(())
@@ -168,6 +204,19 @@ impl WorkerState {
             .values()
             .map(|rt| rt.pending.load(Ordering::Relaxed))
             .sum();
+        let processed_total: u64 = topologies
+            .values()
+            .map(|rt| rt.processed.load(Ordering::Relaxed))
+            .sum();
+        let throughput_eps = {
+            let mut snap = self.throughput_state.lock();
+            let now = std::time::Instant::now();
+            let delta_events = processed_total.saturating_sub(snap.total);
+            let delta_secs = (now.duration_since(snap.instant).as_secs_f64()).max(1e-3);
+            snap.total = processed_total;
+            snap.instant = now;
+            delta_events as f64 / delta_secs
+        };
         let mut sys = self.system.lock();
         sys.refresh_cpu_all();
         sys.refresh_memory();
@@ -183,6 +232,7 @@ impl WorkerState {
             mem_bytes,
             active_topologies: active,
             queue_depth,
+            throughput_eps,
         }
     }
 
@@ -195,6 +245,7 @@ async fn run_pipeline(
     mut engine: PipelineEngine,
     mut rx: tokio::sync::mpsc::Receiver<StreamingEvent>,
     pending: Arc<AtomicUsize>,
+    processed: Arc<AtomicU64>,
 ) {
     // Core loop: receive events from channel and process through operators.
     while let Some(event) = rx.recv().await {
@@ -202,6 +253,7 @@ async fn run_pipeline(
             error!("Pipeline error: {}", err);
         }
         pending.fetch_sub(1, Ordering::SeqCst);
+        processed.fetch_add(1, Ordering::SeqCst);
     }
     engine.shutdown().await;
 }
@@ -295,7 +347,7 @@ async fn deploy_topology(
         "Deploying topology {} ({})",
         deployment.topology_id, deployment.spec.name
     );
-    state.attach_runtime(deployment.topology_id, deployment.spec)?;
+    state.attach_runtime(deployment.topology_id, deployment.spec, deployment.attempt)?;
     Ok(StatusCode::CREATED)
 }
 
