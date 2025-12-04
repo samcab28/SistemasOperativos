@@ -99,16 +99,19 @@ make ci
 ### Opción 1: Usando Make
 
 1. **Compilar todo**
+
    ```bash
    make build
    ```
 
 2. **Levantar el master**
+
    ```bash
    make run-master
    ```
 
 3. **Levantar worker(s)** (en otra terminal)
+
    ```bash
    make run-worker
    # O para levantar un segundo worker:
@@ -116,21 +119,25 @@ make ci
    ```
 
 4. **Enviar una topología**
+
    ```bash
    make submit TOPOLOGY=docs/examples/log_topology.json
    ```
 
 5. **Consultar estado**
+
    ```bash
    make status TOPOLOGY_ID=<id>
    ```
 
 6. **Inyectar eventos**
+
    ```bash
    make ingest TOPOLOGY_ID=<id> FILE=docs/examples/logs.jsonl
    ```
 
 7. **Ver métricas**
+
    ```bash
    make metrics
    ```
@@ -143,16 +150,19 @@ make ci
 ### Opción 2: Usando cargo directamente
 
 1. **Compilar todo**
+
    ```bash
    cargo build --workspace
    ```
 
 2. **Levantar el master**
+
    ```bash
    cargo run -p master
    ```
 
 3. **Levantar al menos un worker**
+
    ```bash
    cargo run -p worker -- \
      --worker-id worker-1 \
@@ -161,9 +171,11 @@ make ci
      --slots 2 \
      --advertise-url http://127.0.0.1:9001
    ```
+
    > Si `bind` usa `0.0.0.0` o una IP privada, especifica `--advertise-url` con la URL accesible para el master.
 
 4. **Enviar una topología**
+
    ```bash
    cargo run -p client -- \
      --master-url http://127.0.0.1:8080 \
@@ -171,17 +183,20 @@ make ci
    ```
 
 5. **Consultar estado**
+
    ```bash
    cargo run -p client -- --master-url http://127.0.0.1:8080 status <TOPOLOGY_ID>
    ```
 
 6. **Inyectar eventos (JSONL con timestamp RFC3339)**
+
    ```bash
    cargo run -p client -- --master-url http://127.0.0.1:8080 ingest <TOPOLOGY_ID> \
      --file docs/examples/logs.jsonl
    ```
 
 7. **Cancelar o listar topologías**
+
    ```bash
    # listar todas
    curl http://127.0.0.1:8080/api/v1/topologies
@@ -219,3 +234,7 @@ Levanta `master` + `worker`. Usa el CLI desde el host para enviar topologías o 
 ## Documentación
 
 Consulta `docs/ARCHITECTURE.md` para el diseño detallado, mensajes y protocolos, y `docs/examples/` para topologías y datasets mínimos. Cada módulo incluye comentarios y logs estructurados vía `tracing`.
+
+## Benchmarking
+
+Consulta tests/benchmark/Report.md para detalles sobre los resultados de las pruebas de benchmarking realizadas en el sistema.

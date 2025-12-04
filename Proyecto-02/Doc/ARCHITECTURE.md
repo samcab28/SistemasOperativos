@@ -96,24 +96,24 @@ Este proyecto implementa un motor de procesamiento de eventos en tiempo real com
 
 #### API Pública del Master (puerto 8080)
 
-| Endpoint | Método | Descripción |
-|----------|--------|-------------|
-| `/api/v1/workers/register` | POST | Registro inicial de workers |
-| `/api/v1/workers/:id/heartbeat` | POST | Heartbeat periódico con métricas |
-| `/api/v1/topologies` | POST | Envío de nueva topología |
-| `/api/v1/topologies` | GET | Listar todas las topologías |
-| `/api/v1/topologies/:id` | GET | Estado de topología específica |
-| `/api/v1/topologies/:id/cancel` | POST | Cancelar topología en ejecución |
-| `/api/v1/ingest` | POST | Inyectar lote de eventos |
-| `/api/v1/metrics` | GET | Métricas globales del sistema |
+| Endpoint                        | Método | Descripción                      |
+| ------------------------------- | ------ | -------------------------------- |
+| `/api/v1/workers/register`      | POST   | Registro inicial de workers      |
+| `/api/v1/workers/:id/heartbeat` | POST   | Heartbeat periódico con métricas |
+| `/api/v1/topologies`            | POST   | Envío de nueva topología         |
+| `/api/v1/topologies`            | GET    | Listar todas las topologías      |
+| `/api/v1/topologies/:id`        | GET    | Estado de topología específica   |
+| `/api/v1/topologies/:id/cancel` | POST   | Cancelar topología en ejecución  |
+| `/api/v1/ingest`                | POST   | Inyectar lote de eventos         |
+| `/api/v1/metrics`               | GET    | Métricas globales del sistema    |
 
 #### API Interna de Workers (puerto 9001+)
 
-| Endpoint | Método | Descripción |
-|----------|--------|-------------|
-| `/internal/topologies` | POST | Recibir despliegue de topología |
-| `/internal/ingest` | POST | Recibir lote de eventos para procesar |
-| `/internal/teardown` | POST | Detener y limpiar topología |
+| Endpoint               | Método | Descripción                           |
+| ---------------------- | ------ | ------------------------------------- |
+| `/internal/topologies` | POST   | Recibir despliegue de topología       |
+| `/internal/ingest`     | POST   | Recibir lote de eventos para procesar |
+| `/internal/teardown`   | POST   | Detener y limpiar topología           |
 
 ---
 
@@ -168,6 +168,7 @@ struct TopologyRecord {
 **Tolerancia a Fallos**:
 
 El master ejecuta un watchdog que cada 3 segundos:
+
 1. Identifica workers sin heartbeat por más de 6 segundos
 2. Marca el worker como `DOWN`
 3. Recupera todas las topologías asignadas al worker caído
@@ -478,6 +479,7 @@ curl -X POST http://localhost:8080/api/v1/topologies/<id>/cancel
 ```
 
 Al cancelar:
+
 1. El estado cambia a `Canceled`
 2. Se envía mensaje de teardown al worker
 3. El worker detiene el pipeline y libera recursos
@@ -740,6 +742,7 @@ docker-compose down
 ```
 
 El `docker-compose.yml` levanta:
+
 - 1 master en puerto 8080
 - 2 workers en puertos 9001-9002
 - Volúmenes para persistencia de estado
@@ -965,19 +968,19 @@ async fn map_operator_transforms_field() {
         }),
         config: Default::default(),
     }]);
-    
+
     let mut engine = PipelineEngine::new(
         Uuid::new_v4(), 0, spec, temp_state_dir().as_path()
     ).unwrap();
-    
+
     let payload = EventPayload {
         timestamp: Utc::now(),
         data: json!({"value": "test", "other": 1}),
     };
-    
+
     engine.process(StreamingEvent::try_from(payload).unwrap())
         .await.unwrap();
-    
+
     // Verificar transformación a mayúsculas
 }
 ```
@@ -1022,7 +1025,7 @@ async fn window_operator_emits_counts() {
             config: Default::default(),
         },
     ];
-    
+
     // Procesar eventos y verificar agregación
 }
 ```
@@ -1160,6 +1163,7 @@ Prueba de estrés con alta concurrencia:
 Los tests de carga demuestran rendimiento satisfactorio bajo alta concurrencia:
 
 **Load Test Results**:
+
 ```
 scenarios: (100.00%) 1 scenario, 10 max VUs, 3m0s max duration
 default: Up to 10 looping VUs for 2m30s over 5 stages
@@ -1178,6 +1182,7 @@ topology_submit_success........: 100.00% ✓ 633    ✗ 0
 ```
 
 **Throughput Test Results**:
+
 ```
 scenarios: (100.00%) 1 scenario, 5 max VUs, 1m30s max duration
 default: Up to 5 looping VUs for 1m20s over 3 stages
@@ -1257,33 +1262,37 @@ Prueba de capacidad máxima del sistema:
 
 En hardware moderno (4 cores, 8GB RAM):
 
-| Métrica | Valor Esperado | Observado |
-|---------|----------------|-----------|
-| Throughput sostenido | 5,000-10,000 eps | 6,675 eps |
-| Latencia p95 (ingesta) | < 500ms | 210ms |
-| Latencia p99 (ingesta) | < 1000ms | 320ms |
-| CPU por worker (carga alta) | < 60% | 45% |
-| Memoria por worker | < 200MB | 150MB |
-| Tasa de fallos | 0% | 0% |
+| Métrica                     | Valor Esperado   | Observado |
+| --------------------------- | ---------------- | --------- |
+| Throughput sostenido        | 5,000-10,000 eps | 6,675 eps |
+| Latencia p95 (ingesta)      | < 500ms          | 210ms     |
+| Latencia p99 (ingesta)      | < 1000ms         | 320ms     |
+| CPU por worker (carga alta) | < 60%            | 45%       |
+| Memoria por worker          | < 200MB          | 150MB     |
+| Tasa de fallos              | 0%               | 0%        |
 
 ### Optimizaciones Implementadas
 
 **1. Concurrencia Asíncrona**:
+
 - Uso de Tokio para I/O no bloqueante
 - Canales asíncronos (`mpsc`) para comunicación entre componentes
 - Tasks independientes por topología para paralelismo
 
 **2. Gestión de Memoria**:
+
 - Checkpointing incremental (solo ventanas activas)
 - Buffers de tamaño fijo (2048 eventos por canal)
 - Reciclaje automático de recursos al cerrar topologías
 
 **3. Procesamiento Eficiente**:
+
 - Evitar clonación innecesaria de eventos
 - Procesamiento en lotes para reducir overhead de red
 - Operadores stateless optimizados (map, filter) sin allocations extra
 
 **4. Planificación Inteligente**:
+
 - Algoritmo load-aware que considera `active_topologies/slots`
 - Fallback a round-robin cuando todos los workers están saturados
 - Re-balance automático al registrar nuevos workers
@@ -1355,6 +1364,7 @@ Siempre usar `key_by` antes de `window_aggregate`:
 **4. Evitar Ventanas Excesivamente Grandes**:
 
 Ventanas de varias horas pueden consumir memoria significativa. Considerar:
+
 - Usar ventanas más pequeñas con post-agregación
 - Aumentar frecuencia de checkpoint
 - Monitorear `queue_depth` en métricas
@@ -1496,11 +1506,17 @@ state/
 **Pérdida de Datos**:
 
 El sistema garantiza:
+
 - Eventos persistidos en checkpoints no se pierden
 - Eventos en tránsito (en canales) pueden perderse en fallo abrupto
 - Window state se recupera hasta el último checkpoint (intervalo configurable)
 
 Para garantizar entrega exacta-una-vez, se requeriría:
+
 - Message queue externo (Kafka, RabbitMQ)
 - Transactional checkpointing
 - Event deduplication
+
+# Disclaimer
+
+- Se hizo uso de inteligencia artificial para asistir en la redacción y generación de partes de este documento técnico. De igual manera, se utilizó como ayuda para el proceso de desarrollo y debugging del código fuente del proyecto.

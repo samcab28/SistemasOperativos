@@ -1,0 +1,1653 @@
+    INFO: 2025-12-03 21:00:16,482:               log.py:   20: Logging to C:\Users\barra\OneDrive - Estudiantes ITCR\TEC\2025 - II Semestre\IC6600 - Principios de Sistemas Operativos\SistemasOperativos\Proyecto-02\Doc\mdpdf.log
+   DEBUG: 2025-12-03 21:00:16,483:               cli.py:  103: ARCHITECTURE.md
+    INFO: 2025-12-03 21:00:16,540:         converter.py:   14: ARCHITECTURE.md
+   DEBUG: 2025-12-03 21:00:16,678:      pdf_renderer.py:  470: printSegment: Motor de Streaming Distribuido - Documentación Técnica
+   DEBUG: 2025-12-03 21:00:16,737:      pdf_renderer.py:  470: printSegment: Sistema de procesamiento distribuido de eventos en tiempo real inspirado en Apache Flink, implementado en Rust
+   DEBUG: 2025-12-03 21:00:16,772:      pdf_renderer.py:  470: printSegment: con arquitectura master-worker.
+   DEBUG: 2025-12-03 21:00:16,780:      pdf_renderer.py:  470: printSegment: Tabla de Contenidos
+   DEBUG: 2025-12-03 21:00:16,782:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:16,788:      pdf_renderer.py:  470: printSegment: Descripción General
+   ERROR: 2025-12-03 21:00:16,791:      pdf_renderer.py:  217: C:\Users\barra\OneDrive - Estudiantes ITCR\TEC\2025 - II Semestre\IC6600 - Principios de Sistemas Operativos\SistemasOperativos\Proyecto-02\Doc\ARCHITECTURE.md:9: #descripci%C3%B3n-general: No such file or directory
+   DEBUG: 2025-12-03 21:00:16,792:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:16,793:      pdf_renderer.py:  470: printSegment: Arquitectura del Sistema
+   ERROR: 2025-12-03 21:00:16,794:      pdf_renderer.py:  217: C:\Users\barra\OneDrive - Estudiantes ITCR\TEC\2025 - II Semestre\IC6600 - Principios de Sistemas Operativos\SistemasOperativos\Proyecto-02\Doc\ARCHITECTURE.md:10: #arquitectura-del-sistema: No such file or directory
+   DEBUG: 2025-12-03 21:00:16,795:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:16,796:      pdf_renderer.py:  470: printSegment: Componentes Principales
+   ERROR: 2025-12-03 21:00:16,797:      pdf_renderer.py:  217: C:\Users\barra\OneDrive - Estudiantes ITCR\TEC\2025 - II Semestre\IC6600 - Principios de Sistemas Operativos\SistemasOperativos\Proyecto-02\Doc\ARCHITECTURE.md:11: #componentes-principales: No such file or directory
+   DEBUG: 2025-12-03 21:00:16,798:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:16,801:      pdf_renderer.py:  470: printSegment: Características Implementadas
+   ERROR: 2025-12-03 21:00:16,802:      pdf_renderer.py:  217: C:\Users\barra\OneDrive - Estudiantes ITCR\TEC\2025 - II Semestre\IC6600 - Principios de Sistemas Operativos\SistemasOperativos\Proyecto-02\Doc\ARCHITECTURE.md:12: #caracter%C3%ADsticas-implementadas: No such file or directory
+   DEBUG: 2025-12-03 21:00:16,803:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:16,804:      pdf_renderer.py:  470: printSegment: Guía de Inicio Rápido
+   ERROR: 2025-12-03 21:00:16,805:      pdf_renderer.py:  217: C:\Users\barra\OneDrive - Estudiantes ITCR\TEC\2025 - II Semestre\IC6600 - Principios de Sistemas Operativos\SistemasOperativos\Proyecto-02\Doc\ARCHITECTURE.md:13: #gu%C3%ADa-de-inicio-r%C3%A1pido: No such file or directory
+   DEBUG: 2025-12-03 21:00:16,806:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:16,807:      pdf_renderer.py:  470: printSegment: Operadores Soportados
+   ERROR: 2025-12-03 21:00:16,808:      pdf_renderer.py:  217: C:\Users\barra\OneDrive - Estudiantes ITCR\TEC\2025 - II Semestre\IC6600 - Principios de Sistemas Operativos\SistemasOperativos\Proyecto-02\Doc\ARCHITECTURE.md:14: #operadores-soportados: No such file or directory
+   DEBUG: 2025-12-03 21:00:16,808:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:16,810:      pdf_renderer.py:  470: printSegment: API Reference
+   ERROR: 2025-12-03 21:00:16,811:      pdf_renderer.py:  217: C:\Users\barra\OneDrive - Estudiantes ITCR\TEC\2025 - II Semestre\IC6600 - Principios de Sistemas Operativos\SistemasOperativos\Proyecto-02\Doc\ARCHITECTURE.md:15: #api-reference: No such file or directory
+   DEBUG: 2025-12-03 21:00:16,811:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:16,812:      pdf_renderer.py:  470: printSegment: Testing y Validación
+   ERROR: 2025-12-03 21:00:16,814:      pdf_renderer.py:  217: C:\Users\barra\OneDrive - Estudiantes ITCR\TEC\2025 - II Semestre\IC6600 - Principios de Sistemas Operativos\SistemasOperativos\Proyecto-02\Doc\ARCHITECTURE.md:16: #testing-y-validaci%C3%B3n: No such file or directory
+   DEBUG: 2025-12-03 21:00:16,814:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:16,816:      pdf_renderer.py:  470: printSegment: Rendimiento y Benchmarks
+   ERROR: 2025-12-03 21:00:16,819:      pdf_renderer.py:  217: C:\Users\barra\OneDrive - Estudiantes ITCR\TEC\2025 - II Semestre\IC6600 - Principios de Sistemas Operativos\SistemasOperativos\Proyecto-02\Doc\ARCHITECTURE.md:17: #rendimiento-y-benchmarks: No such file or directory
+   DEBUG: 2025-12-03 21:00:16,820:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:16,821:      pdf_renderer.py:  470: printSegment: Mejores Prácticas
+   ERROR: 2025-12-03 21:00:16,822:      pdf_renderer.py:  217: C:\Users\barra\OneDrive - Estudiantes ITCR\TEC\2025 - II Semestre\IC6600 - Principios de Sistemas Operativos\SistemasOperativos\Proyecto-02\Doc\ARCHITECTURE.md:18: #mejores-pr%C3%A1cticas: No such file or directory
+   DEBUG: 2025-12-03 21:00:16,824:      pdf_renderer.py:  470: printSegment: Descripción General
+   DEBUG: 2025-12-03 21:00:16,836:      pdf_renderer.py:  470: printSegment: Este proyecto implementa un motor de procesamiento de eventos en tiempo real completamente funcional con
+   DEBUG: 2025-12-03 21:00:16,838:      pdf_renderer.py:  470: printSegment: capacidades de procesamiento distribuido, tolerancia a fallos y agregaciones con ventanas temporales.
+   DEBUG: 2025-12-03 21:00:16,839:      pdf_renderer.py:  470: printSegment: Características Principales
+   DEBUG: 2025-12-03 21:00:16,840:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:16,848:      pdf_renderer.py:  470: printSegment: Procesamiento Distribuido
+   DEBUG: 2025-12-03 21:00:16,855:      pdf_renderer.py:  470: printSegment: : Arquitectura master-worker con balanceo de carga automático
+   DEBUG: 2025-12-03 21:00:16,858:      pdf_renderer.py:  470: printSegment: mediante algoritmo round-robin consciente de capacidad
+   DEBUG: 2025-12-03 21:00:16,859:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:16,861:      pdf_renderer.py:  470: printSegment: Tolerancia a Fallos
+   DEBUG: 2025-12-03 21:00:16,864:      pdf_renderer.py:  470: printSegment: : Detección de fallos mediante heartbeats y re-planificación automática de
+   DEBUG: 2025-12-03 21:00:16,865:      pdf_renderer.py:  470: printSegment: topologías
+   DEBUG: 2025-12-03 21:00:16,866:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:16,867:      pdf_renderer.py:  470: printSegment: Ventanas Temporales
+   DEBUG: 2025-12-03 21:00:16,869:      pdf_renderer.py:  470: printSegment: : Soporte para ventanas tumbling y sliding con agregaciones (count, sum,
+   DEBUG: 2025-12-03 21:00:16,870:      pdf_renderer.py:  470: printSegment: average)
+   DEBUG: 2025-12-03 21:00:16,871:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:16,873:      pdf_renderer.py:  470: printSegment: Checkpointing
+   DEBUG: 2025-12-03 21:00:16,874:      pdf_renderer.py:  470: printSegment: : Persistencia periódica del estado de ventanas para auditoría y recuperación
+   DEBUG: 2025-12-03 21:00:16,875:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:16,877:      pdf_renderer.py:  470: printSegment: Observabilidad
+   DEBUG: 2025-12-03 21:00:16,878:      pdf_renderer.py:  470: printSegment: : Métricas en tiempo real de CPU, memoria, throughput y backlog por worker
+   DEBUG: 2025-12-03 21:00:16,880:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:16,881:      pdf_renderer.py:  470: printSegment: Persistencia
+   DEBUG: 2025-12-03 21:00:16,882:      pdf_renderer.py:  470: printSegment: : Estado del master persiste en 
+   DEBUG: 2025-12-03 21:00:16,890:      pdf_renderer.py:  470: printSegment: state/master_state.json
+   DEBUG: 2025-12-03 21:00:16,894:      pdf_renderer.py:  470: printSegment:  para recuperación tras
+   DEBUG: 2025-12-03 21:00:16,896:      pdf_renderer.py:  470: printSegment: reinicios
+   DEBUG: 2025-12-03 21:00:16,898:      pdf_renderer.py:  470: printSegment: Casos de Uso
+   DEBUG: 2025-12-03 21:00:16,899:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:16,901:      pdf_renderer.py:  470: printSegment: Análisis de logs en tiempo real con agregaciones por ventanas temporales
+   DEBUG: 2025-12-03 21:00:16,902:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:16,904:      pdf_renderer.py:  470: printSegment: Procesamiento de métricas de aplicaciones distribuidas
+   DEBUG: 2025-12-03 21:00:16,905:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:16,907:      pdf_renderer.py:  470: printSegment: Pipelines ETL con transformaciones y filtrado de eventos
+   DEBUG: 2025-12-03 21:00:16,908:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:16,910:      pdf_renderer.py:  470: printSegment: Análisis de eventos con particionado por clave (key-by)
+   DEBUG: 2025-12-03 21:00:16,912:      pdf_renderer.py:  470: printSegment: Arquitectura del Sistema
+   DEBUG: 2025-12-03 21:00:16,914:      pdf_renderer.py:  470: printSegment: Diagrama de Componentes
+   DEBUG: 2025-12-03 21:00:16,916:      pdf_renderer.py:  470: printSegment: ┌─────────────────────────────────────────────────────────────┐
+   DEBUG: 2025-12-03 21:00:16,945:      pdf_renderer.py:  470: printSegment: │                          CLIENT (CLI)                        │
+   DEBUG: 2025-12-03 21:00:16,947:      pdf_renderer.py:  470: printSegment: │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐      │
+   DEBUG: 2025-12-03 21:00:16,948:      pdf_renderer.py:  470: printSegment: │  │ Submit Topo  │  │   Status     │  │   Ingest     │      │
+   DEBUG: 2025-12-03 21:00:16,949:      pdf_renderer.py:  470: printSegment: │  └──────────────┘  └──────────────┘  └──────────────┘      │
+   DEBUG: 2025-12-03 21:00:16,965:      pdf_renderer.py:  470: printSegment: └─────────────────────────┬───────────────────────────────────┘
+   DEBUG: 2025-12-03 21:00:16,980:      pdf_renderer.py:  470: printSegment:                           │ HTTP/REST API
+   DEBUG: 2025-12-03 21:00:16,982:      pdf_renderer.py:  470: printSegment: ┌─────────────────────────▼───────────────────────────────────┐
+   DEBUG: 2025-12-03 21:00:16,998:      pdf_renderer.py:  470: printSegment: │                      MASTER (Coordinator)                    │
+   DEBUG: 2025-12-03 21:00:16,999:      pdf_renderer.py:  470: printSegment: │  ┌────────────────────────────────────────────────────────┐ │
+   DEBUG: 2025-12-03 21:00:17,001:      pdf_renderer.py:  470: printSegment: │  │  • Topology Registry & Persistence                     │ │
+   DEBUG: 2025-12-03 21:00:17,003:      pdf_renderer.py:  470: printSegment: │  │  • Worker Registry & Health Monitoring                 │ │
+   DEBUG: 2025-12-03 21:00:17,004:      pdf_renderer.py:  470: printSegment: │  │  • Round-Robin Scheduler (load-aware)                  │ │
+   DEBUG: 2025-12-03 21:00:17,006:      pdf_renderer.py:  470: printSegment: │  │  • Fault Detection & Rescheduling                      │ │
+   DEBUG: 2025-12-03 21:00:17,007:      pdf_renderer.py:  470: printSegment: │  │  • Event Ingestion Router                              │ │
+   DEBUG: 2025-12-03 21:00:17,008:      pdf_renderer.py:  470: printSegment: │  └────────────────────────────────────────────────────────┘ │
+   DEBUG: 2025-12-03 21:00:17,009:      pdf_renderer.py:  470: printSegment: └─────────────┬───────────────────────┬───────────────────────┘
+   DEBUG: 2025-12-03 21:00:17,011:      pdf_renderer.py:  470: printSegment:               │ Internal API          │ Internal API
+   DEBUG: 2025-12-03 21:00:17,012:      pdf_renderer.py:  470: printSegment:     ┌─────────▼─────────┐   ┌─────────▼─────────┐
+   DEBUG: 2025-12-03 21:00:17,014:      pdf_renderer.py:  470: printSegment:     │  WORKER 1         │   │  WORKER 2         │
+   DEBUG: 2025-12-03 21:00:17,015:      pdf_renderer.py:  470: printSegment:     │ ┌───────────────┐ │   │ ┌───────────────┐ │
+   DEBUG: 2025-12-03 21:00:17,016:      pdf_renderer.py:  470: printSegment:     │ │ Pipeline Eng. │ │   │ │ Pipeline Eng. │ │
+   DEBUG: 2025-12-03 21:00:17,017:      pdf_renderer.py:  470: printSegment:     │ │  Topology A   │ │   │ │  Topology B   │ │
+   DEBUG: 2025-12-03 21:00:17,019:      pdf_renderer.py:  470: printSegment:     │ └───────────────┘ │   │ └───────────────┘ │
+   DEBUG: 2025-12-03 21:00:17,020:      pdf_renderer.py:  470: printSegment:     │ ┌───────────────┐ │   │ ┌───────────────┐ │
+   DEBUG: 2025-12-03 21:00:17,021:      pdf_renderer.py:  470: printSegment:     │ │  Operators    │ │   │ │  Operators    │ │
+   DEBUG: 2025-12-03 21:00:17,022:      pdf_renderer.py:  470: printSegment:     │ │ • Map         │ │   │ │ • Filter      │ │
+   DEBUG: 2025-12-03 21:00:17,024:      pdf_renderer.py:  470: printSegment:     │ │ • Window      │ │   │ │ • Aggregate   │ │
+   DEBUG: 2025-12-03 21:00:17,025:      pdf_renderer.py:  470: printSegment:     │ └───────────────┘ │   │ └───────────────┘ │
+   DEBUG: 2025-12-03 21:00:17,026:      pdf_renderer.py:  470: printSegment:     │ ┌───────────────┐ │   │ ┌───────────────┐ │
+   DEBUG: 2025-12-03 21:00:17,027:      pdf_renderer.py:  470: printSegment:     │ │ Checkpointing │ │   │ │ Checkpointing │ │
+   DEBUG: 2025-12-03 21:00:17,028:      pdf_renderer.py:  470: printSegment:     │ └───────────────┘ │   │ └───────────────┘ │
+   DEBUG: 2025-12-03 21:00:17,030:      pdf_renderer.py:  470: printSegment:     └───────────────────┘   └───────────────────┘
+   DEBUG: 2025-12-03 21:00:17,031:      pdf_renderer.py:  470: printSegment: Flujo de Procesamiento
+   DEBUG: 2025-12-03 21:00:17,032:      pdf_renderer.py:  470: printSegment:  1 
+   DEBUG: 2025-12-03 21:00:17,034:      pdf_renderer.py:  470: printSegment: Registro de Workers
+   DEBUG: 2025-12-03 21:00:17,039:      pdf_renderer.py:  470: printSegment: : Los workers se registran con el master al iniciar, declarando su capacidad
+   DEBUG: 2025-12-03 21:00:17,040:      pdf_renderer.py:  470: printSegment: (slots) y URL de API
+   DEBUG: 2025-12-03 21:00:17,042:      pdf_renderer.py:  470: printSegment:  2 
+   DEBUG: 2025-12-03 21:00:17,043:      pdf_renderer.py:  470: printSegment: Envío de Topología
+   DEBUG: 2025-12-03 21:00:17,045:      pdf_renderer.py:  470: printSegment: : El cliente envía una definición de topología (JSON) al master
+   DEBUG: 2025-12-03 21:00:17,046:      pdf_renderer.py:  470: printSegment:  3 
+   DEBUG: 2025-12-03 21:00:17,047:      pdf_renderer.py:  470: printSegment: Planificación
+   DEBUG: 2025-12-03 21:00:17,049:      pdf_renderer.py:  470: printSegment: : El master selecciona un worker apropiado usando round-robin con conciencia de carga
+   DEBUG: 2025-12-03 21:00:17,050:      pdf_renderer.py:  470: printSegment:  4 
+   DEBUG: 2025-12-03 21:00:17,051:      pdf_renderer.py:  470: printSegment: Despliegue
+   DEBUG: 2025-12-03 21:00:17,053:      pdf_renderer.py:  470: printSegment: : El master envía la topología al worker seleccionado, que crea el pipeline de operadores
+   DEBUG: 2025-12-03 21:00:17,054:      pdf_renderer.py:  470: printSegment:  5 
+   DEBUG: 2025-12-03 21:00:17,056:      pdf_renderer.py:  470: printSegment: Ingesta
+   DEBUG: 2025-12-03 21:00:17,058:      pdf_renderer.py:  470: printSegment: : Los eventos enviados al master son enrutados al worker que posee la topología
+   DEBUG: 2025-12-03 21:00:17,059:      pdf_renderer.py:  470: printSegment:  6 
+   DEBUG: 2025-12-03 21:00:17,060:      pdf_renderer.py:  470: printSegment: Procesamiento
+   DEBUG: 2025-12-03 21:00:17,062:      pdf_renderer.py:  470: printSegment: : El worker procesa eventos a través de la cadena de operadores configurada
+   DEBUG: 2025-12-03 21:00:17,063:      pdf_renderer.py:  470: printSegment:  7 
+   DEBUG: 2025-12-03 21:00:17,064:      pdf_renderer.py:  470: printSegment: Checkpointing
+   DEBUG: 2025-12-03 21:00:17,066:      pdf_renderer.py:  470: printSegment: : Los operadores con estado persisten snapshots periódicos a disco
+   DEBUG: 2025-12-03 21:00:17,067:      pdf_renderer.py:  470: printSegment:  8 
+   DEBUG: 2025-12-03 21:00:17,069:      pdf_renderer.py:  470: printSegment: Monitoreo
+   DEBUG: 2025-12-03 21:00:17,071:      pdf_renderer.py:  470: printSegment: : Heartbeats cada 2 segundos actualizan métricas de salud y rendimiento
+   DEBUG: 2025-12-03 21:00:17,072:      pdf_renderer.py:  470: printSegment: Protocolos de Comunicación
+   DEBUG: 2025-12-03 21:00:17,074:      pdf_renderer.py:  470: printSegment: API Pública del Master (puerto 8080)
+   DEBUG: 2025-12-03 21:00:17,076:      pdf_renderer.py:  470: printSegment: | Endpoint                        | Método | Descripción                      |
+   DEBUG: 2025-12-03 21:00:17,077:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2025-12-03 21:00:17,080:      pdf_renderer.py:  470: printSegment: | ------------------------------- | ------ |
+   DEBUG: 2025-12-03 21:00:17,081:      pdf_renderer.py:  470: printSegment: -------------------------------- |
+   DEBUG: 2025-12-03 21:00:17,084:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2025-12-03 21:00:17,087:      pdf_renderer.py:  470: printSegment: | 
+   DEBUG: 2025-12-03 21:00:17,089:      pdf_renderer.py:  470: printSegment: /api/v1/workers/register
+   DEBUG: 2025-12-03 21:00:17,091:      pdf_renderer.py:  470: printSegment:       | POST   | Registro inicial de workers      |
+   DEBUG: 2025-12-03 21:00:17,092:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2025-12-03 21:00:17,093:      pdf_renderer.py:  470: printSegment: | 
+   DEBUG: 2025-12-03 21:00:17,095:      pdf_renderer.py:  470: printSegment: /api/v1/workers/:id/heartbeat
+   DEBUG: 2025-12-03 21:00:17,097:      pdf_renderer.py:  470: printSegment:  | POST   | Heartbeat periódico con métricas |
+   DEBUG: 2025-12-03 21:00:17,098:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2025-12-03 21:00:17,100:      pdf_renderer.py:  470: printSegment: | 
+   DEBUG: 2025-12-03 21:00:17,102:      pdf_renderer.py:  470: printSegment: /api/v1/topologies
+   DEBUG: 2025-12-03 21:00:17,107:      pdf_renderer.py:  470: printSegment:   
+   DEBUG: 2025-12-03 21:00:17,109:      pdf_renderer.py:  470: printSegment:          | POST   | Envío de nueva topología         |
+   DEBUG: 2025-12-03 21:00:17,110:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2025-12-03 21:00:17,111:      pdf_renderer.py:  470: printSegment: | 
+   DEBUG: 2025-12-03 21:00:17,113:      pdf_renderer.py:  470: printSegment: /api/v1/topologies
+   DEBUG: 2025-12-03 21:00:17,116:      pdf_renderer.py:  470: printSegment:             | GET    | Listar todas las topologías 
+   DEBUG: 2025-12-03 21:00:17,127:      pdf_renderer.py:  470: printSegment:     |
+   DEBUG: 2025-12-03 21:00:17,129:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2025-12-03 21:00:17,129:      pdf_renderer.py:  470: printSegment: | 
+   DEBUG: 2025-12-03 21:00:17,130:      pdf_renderer.py:  470: printSegment: /api/v1/topologies/:id
+   DEBUG: 2025-12-03 21:00:17,132:      pdf_renderer.py:  470: printSegment:         | GET    | Estado de topología específica   |
+   DEBUG: 2025-12-03 21:00:17,133:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2025-12-03 21:00:17,134:      pdf_renderer.py:  470: printSegment: | 
+   DEBUG: 2025-12-03 21:00:17,135:      pdf_renderer.py:  470: printSegment: /api/v1/topologies/:id/cancel
+   DEBUG: 2025-12-03 21:00:17,136:      pdf_renderer.py:  470: printSegment:  | POST   | Cancelar topología en ejecución  |
+   DEBUG: 2025-12-03 21:00:17,137:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2025-12-03 21:00:17,138:      pdf_renderer.py:  470: printSegment: | 
+   DEBUG: 2025-12-03 21:00:17,139:      pdf_renderer.py:  470: printSegment: /api/v1/ingest
+   DEBUG: 2025-12-03 21:00:17,144:      pdf_renderer.py:  470: printSegment:              
+   DEBUG: 2025-12-03 21:00:17,145:      pdf_renderer.py:  470: printSegment:   | POST   | Inyectar lote de eventos         |
+   DEBUG: 2025-12-03 21:00:17,146:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2025-12-03 21:00:17,147:      pdf_renderer.py:  470: printSegment: | 
+   DEBUG: 2025-12-03 21:00:17,148:      pdf_renderer.py:  470: printSegment: /api/v1/metrics
+   DEBUG: 2025-12-03 21:00:17,150:      pdf_renderer.py:  470: printSegment:                | GET    | Métricas globales del sistema    |
+   DEBUG: 2025-12-03 21:00:17,152:      pdf_renderer.py:  470: printSegment: API Interna de Workers (puerto 9001+)
+   DEBUG: 2025-12-03 21:00:17,154:      pdf_renderer.py:  470: printSegment: | Endpoint               | Método | Descripción                           |
+   DEBUG: 2025-12-03 21:00:17,155:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2025-12-03 21:00:17,157:      pdf_renderer.py:  470: printSegment: | ---------------------- | ------ |
+   DEBUG: 2025-12-03 21:00:17,159:      pdf_renderer.py:  470: printSegment: ------------------------------------- |
+   DEBUG: 2025-12-03 21:00:17,159:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2025-12-03 21:00:17,160:      pdf_renderer.py:  470: printSegment: | 
+   DEBUG: 2025-12-03 21:00:17,161:      pdf_renderer.py:  470: printSegment: /internal/topologies
+   DEBUG: 2025-12-03 21:00:17,163:      pdf_renderer.py:  470: printSegment:  | POST   | Recibir despliegue de topología       |
+   DEBUG: 2025-12-03 21:00:17,164:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2025-12-03 21:00:17,165:      pdf_renderer.py:  470: printSegment: | 
+   DEBUG: 2025-12-03 21:00:17,166:      pdf_renderer.py:  470: printSegment: /internal/ingest
+   DEBUG: 2025-12-03 21:00:17,167:      pdf_renderer.py:  470: printSegment:      | POST   | Recibir lote de eventos para procesar |
+   DEBUG: 2025-12-03 21:00:17,168:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2025-12-03 21:00:17,169:      pdf_renderer.py:  470: printSegment: | 
+   DEBUG: 2025-12-03 21:00:17,170:      pdf_renderer.py:  470: printSegment: /internal/teardown
+   DEBUG: 2025-12-03 21:00:17,175:      pdf_renderer.py:  470: printSegment:    | POST   |
+   DEBUG: 2025-12-03 21:00:17,176:      pdf_renderer.py:  470: printSegment: Detener y limpiar topología           |
+   DEBUG: 2025-12-03 21:00:17,178:      pdf_renderer.py:  470: printSegment: Componentes Principales
+   DEBUG: 2025-12-03 21:00:17,180:      pdf_renderer.py:  470: printSegment: 1. Master (Coordinador)
+   DEBUG: 2025-12-03 21:00:17,181:      pdf_renderer.py:  470: printSegment: Archivo
+   DEBUG: 2025-12-03 21:00:17,183:      pdf_renderer.py:  470: printSegment: : 
+   DEBUG: 2025-12-03 21:00:17,184:      pdf_renderer.py:  470: printSegment: master/src/main.rs
+   DEBUG: 2025-12-03 21:00:17,185:      pdf_renderer.py:  470: printSegment: Responsabilidades
+   DEBUG: 2025-12-03 21:00:17,186:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:17,187:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,190:      pdf_renderer.py:  470: printSegment: Mantener el registro de workers activos con información de salud y capacidad
+   DEBUG: 2025-12-03 21:00:17,191:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,193:      pdf_renderer.py:  470: printSegment: Persistir estado de topologías en 
+   DEBUG: 2025-12-03 21:00:17,194:      pdf_renderer.py:  470: printSegment: state/master_state.json
+   DEBUG: 2025-12-03 21:00:17,195:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,197:      pdf_renderer.py:  470: printSegment: Implementar algoritmo de planificación round-robin con conciencia de carga:
+   DEBUG: 2025-12-03 21:00:17,198:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,200:      pdf_renderer.py:  470: printSegment: Prioriza workers con slots disponibles (
+   DEBUG: 2025-12-03 21:00:17,201:      pdf_renderer.py:  470: printSegment: active_topologies < slots
+   DEBUG: 2025-12-03 21:00:17,202:      pdf_renderer.py:  470: printSegment: )
+   DEBUG: 2025-12-03 21:00:17,203:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,205:      pdf_renderer.py:  470: printSegment: Ordena candidatos por ratio de carga (
+   DEBUG: 2025-12-03 21:00:17,206:      pdf_renderer.py:  470: printSegment: active/slots
+   DEBUG: 2025-12-03 21:00:17,207:      pdf_renderer.py:  470: printSegment: )
+   DEBUG: 2025-12-03 21:00:17,209:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,210:      pdf_renderer.py:  470: printSegment: Fallback a round-robin simple cuando todos están saturados
+   DEBUG: 2025-12-03 21:00:17,211:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,213:      pdf_renderer.py:  470: printSegment: Monitorear heartbeats y marcar workers como 
+   DEBUG: 2025-12-03 21:00:17,214:      pdf_renderer.py:  470: printSegment: DOWN
+   DEBUG: 2025-12-03 21:00:17,216:      pdf_renderer.py:  470: printSegment:  tras 6 segundos sin respuesta
+   DEBUG: 2025-12-03 21:00:17,217:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,219:      pdf_renderer.py:  470: printSegment: Re-planificar topologías automáticamente cuando un worker falla
+   DEBUG: 2025-12-03 21:00:17,220:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,222:      pdf_renderer.py:  470: printSegment: Enrutar eventos de ingesta al worker apropiado
+   DEBUG: 2025-12-03 21:00:17,223:      pdf_renderer.py:  470: printSegment: Estructuras de Datos Clave
+   DEBUG: 2025-12-03 21:00:17,225:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:17,226:      pdf_renderer.py:  470: printSegment: struct AppState {
+   DEBUG: 2025-12-03 21:00:17,228:      pdf_renderer.py:  470: printSegment:     workers: RwLock<HashMap<String, WorkerRecord>>,
+   DEBUG: 2025-12-03 21:00:17,229:      pdf_renderer.py:  470: printSegment:     topologies: RwLock<HashMap<Uuid, TopologyRecord>>,
+   DEBUG: 2025-12-03 21:00:17,231:      pdf_renderer.py:  470: printSegment:     rr_cursor: Mutex<usize>,
+   DEBUG: 2025-12-03 21:00:17,233:      pdf_renderer.py:  470: printSegment:     state_path: PathBuf,
+   DEBUG: 2025-12-03 21:00:17,235:      pdf_renderer.py:  470: printSegment: }
+   DEBUG: 2025-12-03 21:00:17,237:      pdf_renderer.py:  470: printSegment: struct WorkerRecord {
+   DEBUG: 2025-12-03 21:00:17,238:      pdf_renderer.py:  470: printSegment:     worker_id: String,
+   DEBUG: 2025-12-03 21:00:17,240:      pdf_renderer.py:  470: printSegment:     api_url: String,
+   DEBUG: 2025-12-03 21:00:17,241:      pdf_renderer.py:  470: printSegment:     slots: usize,
+   DEBUG: 2025-12-03 21:00:17,243:      pdf_renderer.py:  470: printSegment:     last_heartbeat: Instant,
+   DEBUG: 2025-12-03 21:00:17,244:      pdf_renderer.py:  470: printSegment:     metrics: WorkerMetrics,
+   DEBUG: 2025-12-03 21:00:17,246:      pdf_renderer.py:  470: printSegment:     topologies: HashSet<Uuid>,
+   DEBUG: 2025-12-03 21:00:17,247:      pdf_renderer.py:  470: printSegment:     is_down: bool,
+   DEBUG: 2025-12-03 21:00:17,248:      pdf_renderer.py:  470: printSegment: }
+   DEBUG: 2025-12-03 21:00:17,251:      pdf_renderer.py:  470: printSegment: struct TopologyRecord {
+   DEBUG: 2025-12-03 21:00:17,253:      pdf_renderer.py:  470: printSegment:     spec: TopologySpec,
+   DEBUG: 2025-12-03 21:00:17,256:      pdf_renderer.py:  470: printSegment:     status: TopologyStatusKind, // Accepted, Running, Canceled,
+   DEBUG: 2025-12-03 21:00:17,258:      pdf_renderer.py:  470: printSegment: Failed
+   DEBUG: 2025-12-03 21:00:17,259:      pdf_renderer.py:  470: printSegment:     worker_id: Option<String>,
+   DEBUG: 2025-12-03 21:00:17,261:      pdf_renderer.py:  470: printSegment:     metrics: TopologyMetrics,
+   DEBUG: 2025-12-03 21:00:17,263:      pdf_renderer.py:  470: printSegment:     attempt: u32,
+   DEBUG: 2025-12-03 21:00:17,275:      pdf_renderer.py:  470: printSegment:     last_error: Option<String>,
+   DEBUG: 2025-12-03 21:00:17,277:      pdf_renderer.py:  470: printSegment: }
+   DEBUG: 2025-12-03 21:00:17,278:      pdf_renderer.py:  470: printSegment: Tolerancia a Fallos
+   DEBUG: 2025-12-03 21:00:17,280:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:17,282:      pdf_renderer.py:  470: printSegment: El master ejecuta un watchdog que cada 3 segundos:
+   DEBUG: 2025-12-03 21:00:17,283:      pdf_renderer.py:  470: printSegment:  1 
+   DEBUG: 2025-12-03 21:00:17,284:      pdf_renderer.py:  470: printSegment: Identifica workers sin heartbeat por más de 6 segundos
+   DEBUG: 2025-12-03 21:00:17,285:      pdf_renderer.py:  470: printSegment:  2 
+   DEBUG: 2025-12-03 21:00:17,286:      pdf_renderer.py:  470: printSegment: Marca el worker como 
+   DEBUG: 2025-12-03 21:00:17,287:      pdf_renderer.py:  470: printSegment: DOWN
+   DEBUG: 2025-12-03 21:00:17,288:      pdf_renderer.py:  470: printSegment:  3 
+   DEBUG: 2025-12-03 21:00:17,290:      pdf_renderer.py:  470: printSegment: Recupera todas las topologías asignadas al worker caído
+   DEBUG: 2025-12-03 21:00:17,291:      pdf_renderer.py:  470: printSegment:  4 
+   DEBUG: 2025-12-03 21:00:17,293:      pdf_renderer.py:  470: printSegment: Re-planifica cada topología en un worker disponible
+   DEBUG: 2025-12-03 21:00:17,294:      pdf_renderer.py:  470: printSegment:  5 
+   DEBUG: 2025-12-03 21:00:17,295:      pdf_renderer.py:  470: printSegment: Incrementa el contador de intentos (
+   DEBUG: 2025-12-03 21:00:17,296:      pdf_renderer.py:  470: printSegment: attempt
+   DEBUG: 2025-12-03 21:00:17,297:      pdf_renderer.py:  470: printSegment: )
+   DEBUG: 2025-12-03 21:00:17,298:      pdf_renderer.py:  470: printSegment: 2. Worker (Ejecutor)
+   DEBUG: 2025-12-03 21:00:17,300:      pdf_renderer.py:  470: printSegment: Archivo
+   DEBUG: 2025-12-03 21:00:17,301:      pdf_renderer.py:  470: printSegment: : 
+   DEBUG: 2025-12-03 21:00:17,302:      pdf_renderer.py:  470: printSegment: worker/src/main.rs
+   DEBUG: 2025-12-03 21:00:17,303:      pdf_renderer.py:  470: printSegment: Responsabilidades
+   DEBUG: 2025-12-03 21:00:17,304:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:17,305:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,307:      pdf_renderer.py:  470: printSegment: Registrarse con el master al iniciar, usando 
+   DEBUG: 2025-12-03 21:00:17,309:      pdf_renderer.py:  470: printSegment: --advertise-url
+   DEBUG: 2025-12-03 21:00:17,310:      pdf_renderer.py:  470: printSegment:  si bind es 
+   DEBUG: 2025-12-03 21:00:17,311:      pdf_renderer.py:  470: printSegment: 0.0.0.0
+   DEBUG: 2025-12-03 21:00:17,312:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,314:      pdf_renderer.py:  470: printSegment: Exponer API interna para recibir despliegues y eventos
+   DEBUG: 2025-12-03 21:00:17,315:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,316:      pdf_renderer.py:  470: printSegment: Crear y gestionar instancias de 
+   DEBUG: 2025-12-03 21:00:17,317:      pdf_renderer.py:  470: printSegment: PipelineEngine
+   DEBUG: 2025-12-03 21:00:17,318:      pdf_renderer.py:  470: printSegment:  por topología
+   DEBUG: 2025-12-03 21:00:17,320:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,321:      pdf_renderer.py:  470: printSegment: Enviar heartbeats cada 2 segundos con métricas actualizadas:
+   DEBUG: 2025-12-03 21:00:17,322:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,324:      pdf_renderer.py:  470: printSegment: CPU usage (porcentaje promedio de todos los cores)
+   DEBUG: 2025-12-03 21:00:17,325:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,326:      pdf_renderer.py:  470: printSegment: Memoria utilizada (bytes)
+   DEBUG: 2025-12-03 21:00:17,327:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,328:      pdf_renderer.py:  470: printSegment: Número de topologías activas
+   DEBUG: 2025-12-03 21:00:17,329:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,331:      pdf_renderer.py:  470: printSegment: Profundidad de cola (eventos pendientes)
+   DEBUG: 2025-12-03 21:00:17,332:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,333:      pdf_renderer.py:  470: printSegment: Throughput (eventos por segundo)
+   DEBUG: 2025-12-03 21:00:17,335:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,336:      pdf_renderer.py:  470: printSegment: Gestionar canales asíncronos para procesamiento de eventos
+   DEBUG: 2025-12-03 21:00:17,338:      pdf_renderer.py:  470: printSegment: Estructuras de Datos Clave
+   DEBUG: 2025-12-03 21:00:17,339:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:17,340:      pdf_renderer.py:  470: printSegment: struct WorkerState {
+   DEBUG: 2025-12-03 21:00:17,342:      pdf_renderer.py:  470: printSegment:     worker_id: String,
+   DEBUG: 2025-12-03 21:00:17,343:      pdf_renderer.py:  470: printSegment:     master_url: String,
+   DEBUG: 2025-12-03 21:00:17,344:      pdf_renderer.py:  470: printSegment:     slots: usize,
+   DEBUG: 2025-12-03 21:00:17,345:      pdf_renderer.py:  470: printSegment:     state_dir: PathBuf,
+   DEBUG: 2025-12-03 21:00:17,347:      pdf_renderer.py:  470: printSegment:     topologies: Arc<RwLock<HashMap<Uuid, TopologyRuntime>>>,
+   DEBUG: 2025-12-03 21:00:17,349:      pdf_renderer.py:  470: printSegment:     system: Arc<Mutex<System>>, // sysinfo para métricas
+   DEBUG: 2025-12-03 21:00:17,350:      pdf_renderer.py:  470: printSegment: }
+   DEBUG: 2025-12-03 21:00:17,352:      pdf_renderer.py:  470: printSegment: struct TopologyRuntime {
+   DEBUG: 2025-12-03 21:00:17,353:      pdf_renderer.py:  470: printSegment:     spec: TopologySpec,
+   DEBUG: 2025-12-03 21:00:17,354:      pdf_renderer.py:  470: printSegment:     tx: mpsc::Sender<StreamingEvent>,
+   DEBUG: 2025-12-03 21:00:17,356:      pdf_renderer.py:  470: printSegment:     pending: Arc<AtomicUsize>,
+   DEBUG: 2025-12-03 21:00:17,357:      pdf_renderer.py:  470: printSegment:     processed: Arc<AtomicU64>,
+   DEBUG: 2025-12-03 21:00:17,359:      pdf_renderer.py:  470: printSegment:     attempt: u32,
+   DEBUG: 2025-12-03 21:00:17,360:      pdf_renderer.py:  470: printSegment: }
+   DEBUG: 2025-12-03 21:00:17,361:      pdf_renderer.py:  470: printSegment: Pipeline de Procesamiento
+   DEBUG: 2025-12-03 21:00:17,363:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:17,364:      pdf_renderer.py:  470: printSegment: Cada topología ejecuta en una tarea Tokio independiente:
+   DEBUG: 2025-12-03 21:00:17,366:      pdf_renderer.py:  470: printSegment: async fn run_pipeline(
+   DEBUG: 2025-12-03 21:00:17,367:      pdf_renderer.py:  470: printSegment:     mut engine: PipelineEngine,
+   DEBUG: 2025-12-03 21:00:17,369:      pdf_renderer.py:  470: printSegment:     mut rx: mpsc::Receiver<StreamingEvent>,
+   DEBUG: 2025-12-03 21:00:17,371:      pdf_renderer.py:  470: printSegment:     pending: Arc<AtomicUsize>,
+   DEBUG: 2025-12-03 21:00:17,381:      pdf_renderer.py:  470: printSegment:     processed: Arc<AtomicU64>,
+   DEBUG: 2025-12-03 21:00:17,382:      pdf_renderer.py:  470: printSegment: ) {
+   DEBUG: 2025-12-03 21:00:17,384:      pdf_renderer.py:  470: printSegment:     while let Some(event) = rx.recv().await {
+   DEBUG: 2025-12-03 21:00:17,385:      pdf_renderer.py:  470: printSegment:         engine.process(event).await;
+   DEBUG: 2025-12-03 21:00:17,386:      pdf_renderer.py:  470: printSegment:         pending.fetch_sub(1, Ordering::SeqCst);
+   DEBUG: 2025-12-03 21:00:17,387:      pdf_renderer.py:  470: printSegment:         processed.fetch_add(1, Ordering::SeqCst);
+   DEBUG: 2025-12-03 21:00:17,388:      pdf_renderer.py:  470: printSegment:     }
+   DEBUG: 2025-12-03 21:00:17,389:      pdf_renderer.py:  470: printSegment:     engine.shutdown().await; // Flush windows
+   DEBUG: 2025-12-03 21:00:17,390:      pdf_renderer.py:  470: printSegment: }
+   DEBUG: 2025-12-03 21:00:17,391:      pdf_renderer.py:  470: printSegment: 3. Pipeline Engine
+   DEBUG: 2025-12-03 21:00:17,392:      pdf_renderer.py:  470: printSegment: Archivo
+   DEBUG: 2025-12-03 21:00:17,394:      pdf_renderer.py:  470: printSegment: : 
+   DEBUG: 2025-12-03 21:00:17,396:      pdf_renderer.py:  470: printSegment: worker/src/pipeline.rs
+   DEBUG: 2025-12-03 21:00:17,397:      pdf_renderer.py:  470: printSegment: Responsabilidades
+   DEBUG: 2025-12-03 21:00:17,398:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:17,399:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,401:      pdf_renderer.py:  470: printSegment: Construir cadena de operadores desde especificación JSON
+   DEBUG: 2025-12-03 21:00:17,402:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,403:      pdf_renderer.py:  470: printSegment: Procesar eventos secuencialmente a través de operadores
+   DEBUG: 2025-12-03 21:00:17,404:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,406:      pdf_renderer.py:  470: printSegment: Gestionar fan-out cuando operadores generan múltiples eventos (flat
+   DEBUG: 2025-12-03 21:00:17,407:      pdf_renderer.py:  470: printSegment: _
+   DEBUG: 2025-12-03 21:00:17,408:      pdf_renderer.py:  470: printSegment: map)
+   DEBUG: 2025-12-03 21:00:17,409:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,410:      pdf_renderer.py:  470: printSegment: Coordinar checkpointing de operadores con estado
+   DEBUG: 2025-12-03 21:00:17,411:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,413:      pdf_renderer.py:  470: printSegment: Restaurar estado desde checkpoints al inicializar
+   DEBUG: 2025-12-03 21:00:17,414:      pdf_renderer.py:  470: printSegment: Operadores Implementados
+   DEBUG: 2025-12-03 21:00:17,415:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:17,416:      pdf_renderer.py:  470: printSegment: enum OperatorNode {
+   DEBUG: 2025-12-03 21:00:17,418:      pdf_renderer.py:  470: printSegment:     Map(MapOperator),           // Transformaciones string
+   DEBUG: 2025-12-03 21:00:17,420:      pdf_renderer.py:  470: printSegment:     Filter(FilterOperator),     // Predicados de filtrado
+   DEBUG: 2025-12-03 21:00:17,421:      pdf_renderer.py:  470: printSegment:     FlatMap(FlatMapOperator),   // Expansión de arrays/strings
+   DEBUG: 2025-12-03 21:00:17,423:      pdf_renderer.py:  470: printSegment:     Key(KeyByOperator),         // Asignación de claves
+   DEBUG: 2025-12-03 21:00:17,425:      pdf_renderer.py:  470: printSegment:     Window(WindowOperator),     // Ventanas temporales + agregación
+   DEBUG: 2025-12-03 21:00:17,426:      pdf_renderer.py:  470: printSegment:     Sink(SinkOperator),         // Salida final (logging)
+   DEBUG: 2025-12-03 21:00:17,427:      pdf_renderer.py:  470: printSegment: }
+   DEBUG: 2025-12-03 21:00:17,429:      pdf_renderer.py:  470: printSegment: Procesamiento de Eventos
+   DEBUG: 2025-12-03 21:00:17,430:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:17,432:      pdf_renderer.py:  470: printSegment: pub async fn process(&mut self, event: StreamingEvent) ->
+   DEBUG: 2025-12-03 21:00:17,433:      pdf_renderer.py:  470: printSegment: Result<()> {
+   DEBUG: 2025-12-03 21:00:17,435:      pdf_renderer.py:  470: printSegment:     let mut batch = vec![event];
+   DEBUG: 2025-12-03 21:00:17,436:      pdf_renderer.py:  470: printSegment:     for operator in &mut self.operators {
+   DEBUG: 2025-12-03 21:00:17,438:      pdf_renderer.py:  470: printSegment:         let mut next_batch = Vec::new();
+   DEBUG: 2025-12-03 21:00:17,439:      pdf_renderer.py:  470: printSegment:         for ev in batch {
+   DEBUG: 2025-12-03 21:00:17,441:      pdf_renderer.py:  470: printSegment:             operator.apply(ev, &mut next_batch).await?;
+   DEBUG: 2025-12-03 21:00:17,442:      pdf_renderer.py:  470: printSegment:         }
+   DEBUG: 2025-12-03 21:00:17,443:      pdf_renderer.py:  470: printSegment:         batch = next_batch;
+   DEBUG: 2025-12-03 21:00:17,445:      pdf_renderer.py:  470: printSegment:         if batch.is_empty() { break; }
+   DEBUG: 2025-12-03 21:00:17,446:      pdf_renderer.py:  470: printSegment:     }
+   DEBUG: 2025-12-03 21:00:17,447:      pdf_renderer.py:  470: printSegment:     Ok(())
+   DEBUG: 2025-12-03 21:00:17,448:      pdf_renderer.py:  470: printSegment: }
+   DEBUG: 2025-12-03 21:00:17,450:      pdf_renderer.py:  470: printSegment: 4. Window Operator
+   DEBUG: 2025-12-03 21:00:17,451:      pdf_renderer.py:  470: printSegment: Archivo
+   DEBUG: 2025-12-03 21:00:17,452:      pdf_renderer.py:  470: printSegment: : 
+   DEBUG: 2025-12-03 21:00:17,454:      pdf_renderer.py:  470: printSegment: worker/src/pipeline.rs
+   DEBUG: 2025-12-03 21:00:17,455:      pdf_renderer.py:  470: printSegment:  (struct 
+   DEBUG: 2025-12-03 21:00:17,456:      pdf_renderer.py:  470: printSegment: WindowOperator
+   DEBUG: 2025-12-03 21:00:17,457:      pdf_renderer.py:  470: printSegment: )
+   DEBUG: 2025-12-03 21:00:17,459:      pdf_renderer.py:  470: printSegment: Funcionalidad
+   DEBUG: 2025-12-03 21:00:17,460:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:17,461:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,463:      pdf_renderer.py:  470: printSegment: Asignación de eventos a ventanas temporales basadas en timestamp
+   DEBUG: 2025-12-03 21:00:17,473:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,475:      pdf_renderer.py:  470: printSegment: Soporte para ventanas tumbling (sin overlap) y sliding (con overlap)
+   DEBUG: 2025-12-03 21:00:17,476:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,477:      pdf_renderer.py:  470: printSegment: Agregaciones: 
+   DEBUG: 2025-12-03 21:00:17,478:      pdf_renderer.py:  470: printSegment: count
+   DEBUG: 2025-12-03 21:00:17,480:      pdf_renderer.py:  470: printSegment: , 
+   DEBUG: 2025-12-03 21:00:17,481:      pdf_renderer.py:  470: printSegment: sum
+   DEBUG: 2025-12-03 21:00:17,482:      pdf_renderer.py:  470: printSegment: , 
+   DEBUG: 2025-12-03 21:00:17,483:      pdf_renderer.py:  470: printSegment: average
+   DEBUG: 2025-12-03 21:00:17,484:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,485:      pdf_renderer.py:  470: printSegment: Checkpointing configurable (por defecto cada 5 segundos)
+   DEBUG: 2025-12-03 21:00:17,486:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,487:      pdf_renderer.py:  470: printSegment: Carga automática del checkpoint más reciente al desplegar topología
+   DEBUG: 2025-12-03 21:00:17,488:      pdf_renderer.py:  470: printSegment: Algoritmo de Ventanas
+   DEBUG: 2025-12-03 21:00:17,490:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:17,491:      pdf_renderer.py:  470: printSegment: let ts_ms = event.timestamp.timestamp_millis();
+   DEBUG: 2025-12-03 21:00:17,493:      pdf_renderer.py:  470: printSegment: let length = spec.window.length_ms as i64;
+   DEBUG: 2025-12-03 21:00:17,494:      pdf_renderer.py:  470: printSegment: let slide = spec.window.slide_ms.unwrap_or(length) as i64;
+   DEBUG: 2025-12-03 21:00:17,495:      pdf_renderer.py:  470: printSegment: // Calcular inicio de ventana
+   DEBUG: 2025-12-03 21:00:17,496:      pdf_renderer.py:  470: printSegment: let start = (ts_ms / slide) * slide;
+   DEBUG: 2025-12-03 21:00:17,498:      pdf_renderer.py:  470: printSegment: let end = start + length;
+   DEBUG: 2025-12-03 21:00:17,499:      pdf_renderer.py:  470: printSegment: // Actualizar estado de ventana
+   DEBUG: 2025-12-03 21:00:17,500:      pdf_renderer.py:  470: printSegment: windows.entry((key, start))
+   DEBUG: 2025-12-03 21:00:17,501:      pdf_renderer.py:  470: printSegment:     .or_insert(WindowState::new(key, start, end))
+   DEBUG: 2025-12-03 21:00:17,503:      pdf_renderer.py:  470: printSegment:     .update(aggregator, value_field, event)?;
+   DEBUG: 2025-12-03 21:00:17,504:      pdf_renderer.py:  470: printSegment: // Emitir ventanas expiradas
+   DEBUG: 2025-12-03 21:00:17,505:      pdf_renderer.py:  470: printSegment: for (key, state) in windows.iter() {
+   DEBUG: 2025-12-03 21:00:17,506:      pdf_renderer.py:  470: printSegment:     if ts_ms >= state.end_ms {
+   DEBUG: 2025-12-03 21:00:17,508:      pdf_renderer.py:  470: printSegment:         output.push(state.into_event());
+   DEBUG: 2025-12-03 21:00:17,509:      pdf_renderer.py:  470: printSegment:         expired_keys.push(key);
+   DEBUG: 2025-12-03 21:00:17,510:      pdf_renderer.py:  470: printSegment:     }
+   DEBUG: 2025-12-03 21:00:17,511:      pdf_renderer.py:  470: printSegment: }
+   DEBUG: 2025-12-03 21:00:17,513:      pdf_renderer.py:  470: printSegment: Formato de Checkpoint
+   DEBUG: 2025-12-03 21:00:17,514:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:17,515:      pdf_renderer.py:  470: printSegment: [
+   DEBUG: 2025-12-03 21:00:17,516:      pdf_renderer.py:  470: printSegment:   {
+   DEBUG: 2025-12-03 21:00:17,517:      pdf_renderer.py:  470: printSegment:     "key": "service-api",
+   DEBUG: 2025-12-03 21:00:17,519:      pdf_renderer.py:  470: printSegment:     "window_start": 1638316800000,
+   DEBUG: 2025-12-03 21:00:17,520:      pdf_renderer.py:  470: printSegment:     "window_end": 1638316860000,
+   DEBUG: 2025-12-03 21:00:17,521:      pdf_renderer.py:  470: printSegment:     "count": 42,
+   DEBUG: 2025-12-03 21:00:17,522:      pdf_renderer.py:  470: printSegment:     "sum": 1250.75
+   DEBUG: 2025-12-03 21:00:17,523:      pdf_renderer.py:  470: printSegment:   }
+   DEBUG: 2025-12-03 21:00:17,524:      pdf_renderer.py:  470: printSegment: ]
+   DEBUG: 2025-12-03 21:00:17,526:      pdf_renderer.py:  470: printSegment: Ubicación: 
+   DEBUG: 2025-12-03 21:00:17,528:      pdf_renderer.py:  470: printSegment: state/<topology_id>/attempt-<N>/<operator_id>/checkpoint-<timestamp>.json
+   DEBUG: 2025-12-03 21:00:17,529:      pdf_renderer.py:  470: printSegment: 5. Client (CLI)
+   DEBUG: 2025-12-03 21:00:17,531:      pdf_renderer.py:  470: printSegment: Archivo
+   DEBUG: 2025-12-03 21:00:17,533:      pdf_renderer.py:  470: printSegment: : 
+   DEBUG: 2025-12-03 21:00:17,534:      pdf_renderer.py:  470: printSegment: client/src/main.rs
+   DEBUG: 2025-12-03 21:00:17,535:      pdf_renderer.py:  470: printSegment: Comandos Disponibles
+   DEBUG: 2025-12-03 21:00:17,537:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:17,538:      pdf_renderer.py:  470: printSegment: # Enviar topología desde archivo JSON
+   DEBUG: 2025-12-03 21:00:17,540:      pdf_renderer.py:  470: printSegment: client submit-topology <path/to/topology.json>
+   DEBUG: 2025-12-03 21:00:17,541:      pdf_renderer.py:  470: printSegment: # Consultar estado de topología
+   DEBUG: 2025-12-03 21:00:17,542:      pdf_renderer.py:  470: printSegment: client status <topology-id>
+   DEBUG: 2025-12-03 21:00:17,544:      pdf_renderer.py:  470: printSegment: # Cancelar topología
+   DEBUG: 2025-12-03 21:00:17,545:      pdf_renderer.py:  470: printSegment: client cancel-topology <topology-id>
+   DEBUG: 2025-12-03 21:00:17,547:      pdf_renderer.py:  470: printSegment: # Inyectar eventos desde archivo JSONL o stdin
+   DEBUG: 2025-12-03 21:00:17,548:      pdf_renderer.py:  470: printSegment: client ingest <topology-id> --file <path/to/events.jsonl>
+   DEBUG: 2025-12-03 21:00:17,550:      pdf_renderer.py:  470: printSegment: client ingest <topology-id> < events.jsonl
+   DEBUG: 2025-12-03 21:00:17,560:      pdf_renderer.py:  470: printSegment: Formato de Eventos (JSONL)
+   DEBUG: 2025-12-03 21:00:17,562:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:17,566:      pdf_renderer.py:  470: printSegment: {"timestamp": "2024-12-03T10:00:00Z", "service": "api", "level":
+   DEBUG: 2025-12-03 21:00:17,568:      pdf_renderer.py:  470: printSegment: "INFO", "message": "Request processed"}
+   DEBUG: 2025-12-03 21:00:17,571:      pdf_renderer.py:  470: printSegment: {"timestamp": "2024-12-03T10:00:01Z", "service": "db", "level":
+   DEBUG: 2025-12-03 21:00:17,572:      pdf_renderer.py:  470: printSegment: "ERROR", "message": "Connection timeout"}
+   DEBUG: 2025-12-03 21:00:17,573:      pdf_renderer.py:  470: printSegment: El campo 
+   DEBUG: 2025-12-03 21:00:17,574:      pdf_renderer.py:  470: printSegment: timestamp
+   DEBUG: 2025-12-03 21:00:17,575:      pdf_renderer.py:  470: printSegment:  o 
+   DEBUG: 2025-12-03 21:00:17,577:      pdf_renderer.py:  470: printSegment: ts
+   DEBUG: 2025-12-03 21:00:17,579:      pdf_renderer.py:  470: printSegment:  es obligatorio y debe estar en formato RFC3339.
+   DEBUG: 2025-12-03 21:00:17,581:      pdf_renderer.py:  470: printSegment: Características Implementadas
+   DEBUG: 2025-12-03 21:00:17,583:      pdf_renderer.py:  470: printSegment: Persistencia del Master
+   DEBUG: 2025-12-03 21:00:17,584:      pdf_renderer.py:  470: printSegment: El master guarda su estado completo en 
+   DEBUG: 2025-12-03 21:00:17,586:      pdf_renderer.py:  470: printSegment: state/master_state.json
+   DEBUG: 2025-12-03 21:00:17,587:      pdf_renderer.py:  470: printSegment:  después de cada operación crítica:
+   DEBUG: 2025-12-03 21:00:17,588:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,590:      pdf_renderer.py:  470: printSegment: Submit de nueva topología
+   DEBUG: 2025-12-03 21:00:17,591:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,593:      pdf_renderer.py:  470: printSegment: Cambio de estado de topología
+   DEBUG: 2025-12-03 21:00:17,594:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,595:      pdf_renderer.py:  470: printSegment: Ingesta de eventos (actualización de métricas)
+   DEBUG: 2025-12-03 21:00:17,596:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,597:      pdf_renderer.py:  470: printSegment: Cancelación de topología
+   DEBUG: 2025-12-03 21:00:17,599:      pdf_renderer.py:  470: printSegment: Al reiniciar, el master recarga automáticamente todas las topologías persistidas. Las topologías en estado 
+   DEBUG: 2025-12-03 21:00:17,601:      pdf_renderer.py:  470: printSegment: Running
+   DEBUG: 2025-12-03 21:00:17,604:      pdf_renderer.py:  470: printSegment: 
+   DEBUG: 2025-12-03 21:00:17,605:      pdf_renderer.py:  470: printSegment: requerirán re-planificación cuando los workers se reconecten.
+   DEBUG: 2025-12-03 21:00:17,607:      pdf_renderer.py:  470: printSegment: Métricas en Tiempo Real
+   DEBUG: 2025-12-03 21:00:17,609:      pdf_renderer.py:  470: printSegment: Worker Metrics
+   DEBUG: 2025-12-03 21:00:17,610:      pdf_renderer.py:  470: printSegment:  (enviadas cada 2s via heartbeat):
+   DEBUG: 2025-12-03 21:00:17,612:      pdf_renderer.py:  470: printSegment: struct WorkerMetrics {
+   DEBUG: 2025-12-03 21:00:17,613:      pdf_renderer.py:  470: printSegment:     cpu_pct: f64,              // % CPU promedio
+   DEBUG: 2025-12-03 21:00:17,615:      pdf_renderer.py:  470: printSegment:     mem_bytes: u64,            // Memoria usada en bytes
+   DEBUG: 2025-12-03 21:00:17,617:      pdf_renderer.py:  470: printSegment:     active_topologies: usize,  // Número de topologías activas
+   DEBUG: 2025-12-03 21:00:17,619:      pdf_renderer.py:  470: printSegment:     queue_depth: usize,        // Eventos pendientes en colas
+   DEBUG: 2025-12-03 21:00:17,620:      pdf_renderer.py:  470: printSegment:     throughput_eps: f64,       // Eventos procesados por segundo
+   DEBUG: 2025-12-03 21:00:17,621:      pdf_renderer.py:  470: printSegment: }
+   DEBUG: 2025-12-03 21:00:17,623:      pdf_renderer.py:  470: printSegment: Topology Metrics
+   DEBUG: 2025-12-03 21:00:17,624:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:17,625:      pdf_renderer.py:  470: printSegment: struct TopologyMetrics {
+   DEBUG: 2025-12-03 21:00:17,627:      pdf_renderer.py:  470: printSegment:     events_ingested: u64,           // Total eventos recibidos
+   DEBUG: 2025-12-03 21:00:17,629:      pdf_renderer.py:  470: printSegment:     events_emitted: u64,            // Total eventos emitidos
+   DEBUG: 2025-12-03 21:00:17,630:      pdf_renderer.py:  470: printSegment:     last_checkpoint: Option<DateTime<Utc>>,
+   DEBUG: 2025-12-03 21:00:17,632:      pdf_renderer.py:  470: printSegment: }
+   DEBUG: 2025-12-03 21:00:17,633:      pdf_renderer.py:  470: printSegment: Endpoint de Métricas
+   DEBUG: 2025-12-03 21:00:17,634:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:17,636:      pdf_renderer.py:  470: printSegment: curl http://localhost:8080/api/v1/metrics
+   DEBUG: 2025-12-03 21:00:17,637:      pdf_renderer.py:  470: printSegment: Respuesta:
+   DEBUG: 2025-12-03 21:00:17,638:      pdf_renderer.py:  470: printSegment: {
+   DEBUG: 2025-12-03 21:00:17,640:      pdf_renderer.py:  470: printSegment:   "workers": [
+   DEBUG: 2025-12-03 21:00:17,641:      pdf_renderer.py:  470: printSegment:     {
+   DEBUG: 2025-12-03 21:00:17,642:      pdf_renderer.py:  470: printSegment:       "worker_id": "worker-1",
+   DEBUG: 2025-12-03 21:00:17,644:      pdf_renderer.py:  470: printSegment:       "is_down": false,
+   DEBUG: 2025-12-03 21:00:17,653:      pdf_renderer.py:  470: printSegment:       "metrics": {
+   DEBUG: 2025-12-03 21:00:17,655:      pdf_renderer.py:  470: printSegment:         "cpu_pct": 15.3,
+   DEBUG: 2025-12-03 21:00:17,656:      pdf_renderer.py:  470: printSegment:         "mem_bytes": 52428800,
+   DEBUG: 2025-12-03 21:00:17,657:      pdf_renderer.py:  470: printSegment:         "active_topologies": 2,
+   DEBUG: 2025-12-03 21:00:17,658:      pdf_renderer.py:  470: printSegment:         "queue_depth": 150,
+   DEBUG: 2025-12-03 21:00:17,659:      pdf_renderer.py:  470: printSegment:         "throughput_eps": 3450.5
+   DEBUG: 2025-12-03 21:00:17,660:      pdf_renderer.py:  470: printSegment:       },
+   DEBUG: 2025-12-03 21:00:17,661:      pdf_renderer.py:  470: printSegment:       "topologies": ["uuid1", "uuid2"]
+   DEBUG: 2025-12-03 21:00:17,662:      pdf_renderer.py:  470: printSegment:     }
+   DEBUG: 2025-12-03 21:00:17,662:      pdf_renderer.py:  470: printSegment:   ],
+   DEBUG: 2025-12-03 21:00:17,663:      pdf_renderer.py:  470: printSegment:   "topologies": [
+   DEBUG: 2025-12-03 21:00:17,664:      pdf_renderer.py:  470: printSegment:     {
+   DEBUG: 2025-12-03 21:00:17,665:      pdf_renderer.py:  470: printSegment:       "topology_id": "uuid1",
+   DEBUG: 2025-12-03 21:00:17,666:      pdf_renderer.py:  470: printSegment:       "name": "log-processor",
+   DEBUG: 2025-12-03 21:00:17,667:      pdf_renderer.py:  470: printSegment:       "status": "Running",
+   DEBUG: 2025-12-03 21:00:17,668:      pdf_renderer.py:  470: printSegment:       "worker_id": "worker-1",
+   DEBUG: 2025-12-03 21:00:17,669:      pdf_renderer.py:  470: printSegment:       "metrics": { ... },
+   DEBUG: 2025-12-03 21:00:17,670:      pdf_renderer.py:  470: printSegment:       "attempt": 0
+   DEBUG: 2025-12-03 21:00:17,671:      pdf_renderer.py:  470: printSegment:     }
+   DEBUG: 2025-12-03 21:00:17,672:      pdf_renderer.py:  470: printSegment:   ]
+   DEBUG: 2025-12-03 21:00:17,672:      pdf_renderer.py:  470: printSegment: }
+   DEBUG: 2025-12-03 21:00:17,673:      pdf_renderer.py:  470: printSegment: Checkpointing y Recuperación
+   DEBUG: 2025-12-03 21:00:17,675:      pdf_renderer.py:  470: printSegment: Configuración en Topología
+   DEBUG: 2025-12-03 21:00:17,677:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:17,678:      pdf_renderer.py:  470: printSegment: {
+   DEBUG: 2025-12-03 21:00:17,679:      pdf_renderer.py:  470: printSegment:   "id": "window-op",
+   DEBUG: 2025-12-03 21:00:17,681:      pdf_renderer.py:  470: printSegment:   "kind": {
+   DEBUG: 2025-12-03 21:00:17,682:      pdf_renderer.py:  470: printSegment:     "window_aggregate": {
+   DEBUG: 2025-12-03 21:00:17,683:      pdf_renderer.py:  470: printSegment:       "window": {
+   DEBUG: 2025-12-03 21:00:17,684:      pdf_renderer.py:  470: printSegment:         "length_ms": 60000,
+   DEBUG: 2025-12-03 21:00:17,686:      pdf_renderer.py:  470: printSegment:         "slide_ms": 30000,
+   DEBUG: 2025-12-03 21:00:17,687:      pdf_renderer.py:  470: printSegment:         "checkpoint_interval_ms": 5000
+   DEBUG: 2025-12-03 21:00:17,688:      pdf_renderer.py:  470: printSegment:       },
+   DEBUG: 2025-12-03 21:00:17,689:      pdf_renderer.py:  470: printSegment:       "aggregator": "average",
+   DEBUG: 2025-12-03 21:00:17,691:      pdf_renderer.py:  470: printSegment:       "key_field": "service",
+   DEBUG: 2025-12-03 21:00:17,694:      pdf_renderer.py:  470: printSegment:       "value_field": "response_time"
+   DEBUG: 2025-12-03 21:00:17,695:      pdf_renderer.py:  470: printSegment:     }
+   DEBUG: 2025-12-03 21:00:17,696:      pdf_renderer.py:  470: printSegment:   }
+   DEBUG: 2025-12-03 21:00:17,697:      pdf_renderer.py:  470: printSegment: }
+   DEBUG: 2025-12-03 21:00:17,698:      pdf_renderer.py:  470: printSegment: Comportamiento
+   DEBUG: 2025-12-03 21:00:17,699:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:17,701:      pdf_renderer.py:  470: printSegment:  1 
+   DEBUG: 2025-12-03 21:00:17,702:      pdf_renderer.py:  470: printSegment: Cada 
+   DEBUG: 2025-12-03 21:00:17,704:      pdf_renderer.py:  470: printSegment: checkpoint_interval_ms
+   DEBUG: 2025-12-03 21:00:17,707:      pdf_renderer.py:  470: printSegment: , el operador serializa todas las ventanas activas a JSON
+   DEBUG: 2025-12-03 21:00:17,708:      pdf_renderer.py:  470: printSegment:  2 
+   DEBUG: 2025-12-03 21:00:17,710:      pdf_renderer.py:  470: printSegment: Los checkpoints se guardan en disco con timestamp monotónico
+   DEBUG: 2025-12-03 21:00:17,712:      pdf_renderer.py:  470: printSegment:  3 
+   DEBUG: 2025-12-03 21:00:17,714:      pdf_renderer.py:  470: printSegment: Al desplegar una topología, el worker busca el checkpoint más reciente
+   DEBUG: 2025-12-03 21:00:17,715:      pdf_renderer.py:  470: printSegment:  4 
+   DEBUG: 2025-12-03 21:00:17,716:      pdf_renderer.py:  470: printSegment: Las ventanas se reconstruyen con 
+   DEBUG: 2025-12-03 21:00:17,718:      pdf_renderer.py:  470: printSegment: count
+   DEBUG: 2025-12-03 21:00:17,719:      pdf_renderer.py:  470: printSegment:  y 
+   DEBUG: 2025-12-03 21:00:17,720:      pdf_renderer.py:  470: printSegment: sum
+   DEBUG: 2025-12-03 21:00:17,721:      pdf_renderer.py:  470: printSegment:  preservados
+   DEBUG: 2025-12-03 21:00:17,722:      pdf_renderer.py:  470: printSegment:  5 
+   DEBUG: 2025-12-03 21:00:17,724:      pdf_renderer.py:  470: printSegment: Los checkpoints sirven para auditoría y recuperación manual
+   DEBUG: 2025-12-03 21:00:17,725:      pdf_renderer.py:  470: printSegment: Gestión de Topologías
+   DEBUG: 2025-12-03 21:00:17,727:      pdf_renderer.py:  470: printSegment: Listar Todas las Topologías
+   DEBUG: 2025-12-03 21:00:17,728:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:17,739:      pdf_renderer.py:  470: printSegment: curl http://localhost:8080/api/v1/topologies
+   DEBUG: 2025-12-03 21:00:17,741:      pdf_renderer.py:  470: printSegment: Cancelar Topología
+   DEBUG: 2025-12-03 21:00:17,742:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:17,745:      pdf_renderer.py:  470: printSegment: curl -X POST http://localhost:8080/api/v1/topologies/<id>/cancel
+   DEBUG: 2025-12-03 21:00:17,746:      pdf_renderer.py:  470: printSegment: Al cancelar:
+   DEBUG: 2025-12-03 21:00:17,746:      pdf_renderer.py:  470: printSegment:  1 
+   DEBUG: 2025-12-03 21:00:17,747:      pdf_renderer.py:  470: printSegment: El estado cambia a 
+   DEBUG: 2025-12-03 21:00:17,748:      pdf_renderer.py:  470: printSegment: Canceled
+   DEBUG: 2025-12-03 21:00:17,749:      pdf_renderer.py:  470: printSegment:  2 
+   DEBUG: 2025-12-03 21:00:17,750:      pdf_renderer.py:  470: printSegment: Se envía mensaje de teardown al worker
+   DEBUG: 2025-12-03 21:00:17,751:      pdf_renderer.py:  470: printSegment:  3 
+   DEBUG: 2025-12-03 21:00:17,753:      pdf_renderer.py:  470: printSegment: El worker detiene el pipeline y libera recursos
+   DEBUG: 2025-12-03 21:00:17,754:      pdf_renderer.py:  470: printSegment:  4 
+   DEBUG: 2025-12-03 21:00:17,755:      pdf_renderer.py:  470: printSegment: El estado persiste en disco
+   DEBUG: 2025-12-03 21:00:17,756:      pdf_renderer.py:  470: printSegment: Operadores Soportados
+   DEBUG: 2025-12-03 21:00:17,758:      pdf_renderer.py:  470: printSegment: Map Operator
+   DEBUG: 2025-12-03 21:00:17,759:      pdf_renderer.py:  470: printSegment: Transforma valores de campos string.
+   DEBUG: 2025-12-03 21:00:17,760:      pdf_renderer.py:  470: printSegment: Configuración
+   DEBUG: 2025-12-03 21:00:17,761:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:17,762:      pdf_renderer.py:  470: printSegment: {
+   DEBUG: 2025-12-03 21:00:17,763:      pdf_renderer.py:  470: printSegment:   "id": "lowercase",
+   DEBUG: 2025-12-03 21:00:17,764:      pdf_renderer.py:  470: printSegment:   "kind": {
+   DEBUG: 2025-12-03 21:00:17,765:      pdf_renderer.py:  470: printSegment:     "map": {
+   DEBUG: 2025-12-03 21:00:17,767:      pdf_renderer.py:  470: printSegment:       "field": "message",
+   DEBUG: 2025-12-03 21:00:17,768:      pdf_renderer.py:  470: printSegment:       "transform": "to_lower"
+   DEBUG: 2025-12-03 21:00:17,769:      pdf_renderer.py:  470: printSegment:     }
+   DEBUG: 2025-12-03 21:00:17,770:      pdf_renderer.py:  470: printSegment:   }
+   DEBUG: 2025-12-03 21:00:17,770:      pdf_renderer.py:  470: printSegment: }
+   DEBUG: 2025-12-03 21:00:17,772:      pdf_renderer.py:  470: printSegment: Transformaciones Disponibles
+   DEBUG: 2025-12-03 21:00:17,773:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:17,774:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,775:      pdf_renderer.py:  470: printSegment: to_lower
+   DEBUG: 2025-12-03 21:00:17,776:      pdf_renderer.py:  470: printSegment: : Convierte a minúsculas
+   DEBUG: 2025-12-03 21:00:17,777:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,778:      pdf_renderer.py:  470: printSegment: to_upper
+   DEBUG: 2025-12-03 21:00:17,780:      pdf_renderer.py:  470: printSegment: : Convierte a mayúsculas
+   DEBUG: 2025-12-03 21:00:17,781:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,782:      pdf_renderer.py:  470: printSegment: trim
+   DEBUG: 2025-12-03 21:00:17,783:      pdf_renderer.py:  470: printSegment: : Elimina espacios al inicio y final
+   DEBUG: 2025-12-03 21:00:17,784:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,785:      pdf_renderer.py:  470: printSegment: prefix
+   DEBUG: 2025-12-03 21:00:17,787:      pdf_renderer.py:  470: printSegment: : Añade prefijo (
+   DEBUG: 2025-12-03 21:00:17,788:      pdf_renderer.py:  470: printSegment: {"prefix": {"value": "LOG: "}}
+   DEBUG: 2025-12-03 21:00:17,789:      pdf_renderer.py:  470: printSegment: )
+   DEBUG: 2025-12-03 21:00:17,790:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,791:      pdf_renderer.py:  470: printSegment: suffix
+   DEBUG: 2025-12-03 21:00:17,792:      pdf_renderer.py:  470: printSegment: : Añade sufijo (
+   DEBUG: 2025-12-03 21:00:17,794:      pdf_renderer.py:  470: printSegment: {"suffix": {"value": " [END]"}}
+   DEBUG: 2025-12-03 21:00:17,795:      pdf_renderer.py:  470: printSegment: )
+   DEBUG: 2025-12-03 21:00:17,796:      pdf_renderer.py:  470: printSegment: Filter Operator
+   DEBUG: 2025-12-03 21:00:17,798:      pdf_renderer.py:  470: printSegment: Filtra eventos según predicados sobre campos.
+   DEBUG: 2025-12-03 21:00:17,799:      pdf_renderer.py:  470: printSegment: Configuración
+   DEBUG: 2025-12-03 21:00:17,800:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:17,802:      pdf_renderer.py:  470: printSegment: {
+   DEBUG: 2025-12-03 21:00:17,803:      pdf_renderer.py:  470: printSegment:   "id": "filter-errors",
+   DEBUG: 2025-12-03 21:00:17,805:      pdf_renderer.py:  470: printSegment:   "kind": {
+   DEBUG: 2025-12-03 21:00:17,808:      pdf_renderer.py:  470: printSegment:     "filter": {
+   DEBUG: 2025-12-03 21:00:17,811:      pdf_renderer.py:  470: printSegment:       "field": "level",
+   DEBUG: 2025-12-03 21:00:17,814:      pdf_renderer.py:  470: printSegment:       "predicate": {
+   DEBUG: 2025-12-03 21:00:17,817:      pdf_renderer.py:  470: printSegment:         "equals": { "value": "ERROR" }
+   DEBUG: 2025-12-03 21:00:17,819:      pdf_renderer.py:  470: printSegment:       }
+   DEBUG: 2025-12-03 21:00:17,823:      pdf_renderer.py:  470: printSegment:     }
+   DEBUG: 2025-12-03 21:00:17,842:      pdf_renderer.py:  470: printSegment:   }
+   DEBUG: 2025-12-03 21:00:17,844:      pdf_renderer.py:  470: printSegment: }
+   DEBUG: 2025-12-03 21:00:17,845:      pdf_renderer.py:  470: printSegment: Predicados Disponibles
+   DEBUG: 2025-12-03 21:00:17,847:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:17,849:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,850:      pdf_renderer.py:  470: printSegment: exists
+   DEBUG: 2025-12-03 21:00:17,852:      pdf_renderer.py:  470: printSegment: : Campo existe (valor no null)
+   DEBUG: 2025-12-03 21:00:17,853:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,855:      pdf_renderer.py:  470: printSegment: equals
+   DEBUG: 2025-12-03 21:00:17,856:      pdf_renderer.py:  470: printSegment: : Igualdad exacta
+   DEBUG: 2025-12-03 21:00:17,857:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,858:      pdf_renderer.py:  470: printSegment: not_equals
+   DEBUG: 2025-12-03 21:00:17,859:      pdf_renderer.py:  470: printSegment: : Desigualdad
+   DEBUG: 2025-12-03 21:00:17,860:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,861:      pdf_renderer.py:  470: printSegment: greater_than
+   DEBUG: 2025-12-03 21:00:17,862:      pdf_renderer.py:  470: printSegment: : Mayor que (numérico)
+   DEBUG: 2025-12-03 21:00:17,862:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,865:      pdf_renderer.py:  470: printSegment: less_than
+   DEBUG: 2025-12-03 21:00:17,866:      pdf_renderer.py:  470: printSegment: : Menor que (numérico)
+   DEBUG: 2025-12-03 21:00:17,868:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,870:      pdf_renderer.py:  470: printSegment: contains
+   DEBUG: 2025-12-03 21:00:17,871:      pdf_renderer.py:  470: printSegment: : Substring (string)
+   DEBUG: 2025-12-03 21:00:17,872:      pdf_renderer.py:  470: printSegment: FlatMap Operator
+   DEBUG: 2025-12-03 21:00:17,875:      pdf_renderer.py:  470: printSegment: Expande arrays o strings delimitados en múltiples eventos.
+   DEBUG: 2025-12-03 21:00:17,876:      pdf_renderer.py:  470: printSegment: Configuración
+   DEBUG: 2025-12-03 21:00:17,877:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:17,878:      pdf_renderer.py:  470: printSegment: {
+   DEBUG: 2025-12-03 21:00:17,880:      pdf_renderer.py:  470: printSegment:   "id": "split-tags",
+   DEBUG: 2025-12-03 21:00:17,881:      pdf_renderer.py:  470: printSegment:   "kind": {
+   DEBUG: 2025-12-03 21:00:17,883:      pdf_renderer.py:  470: printSegment:     "flat_map": {
+   DEBUG: 2025-12-03 21:00:17,885:      pdf_renderer.py:  470: printSegment:       "field": "tags",
+   DEBUG: 2025-12-03 21:00:17,886:      pdf_renderer.py:  470: printSegment:       "separator": ","
+   DEBUG: 2025-12-03 21:00:17,887:      pdf_renderer.py:  470: printSegment:     }
+   DEBUG: 2025-12-03 21:00:17,888:      pdf_renderer.py:  470: printSegment:   }
+   DEBUG: 2025-12-03 21:00:17,889:      pdf_renderer.py:  470: printSegment: }
+   DEBUG: 2025-12-03 21:00:17,890:      pdf_renderer.py:  470: printSegment: Comportamiento
+   DEBUG: 2025-12-03 21:00:17,891:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:17,892:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,894:      pdf_renderer.py:  470: printSegment: Si el campo es un array JSON: genera un evento por elemento
+   DEBUG: 2025-12-03 21:00:17,895:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,897:      pdf_renderer.py:  470: printSegment: Si el campo es string con separador: split y genera un evento por parte
+   DEBUG: 2025-12-03 21:00:17,898:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,900:      pdf_renderer.py:  470: printSegment: Cada evento clonado contiene todos los campos originales excepto el campo expandido
+   DEBUG: 2025-12-03 21:00:17,902:      pdf_renderer.py:  470: printSegment: KeyBy Operator
+   DEBUG: 2025-12-03 21:00:17,904:      pdf_renderer.py:  470: printSegment: Asigna clave de particionado para operadores downstream.
+   DEBUG: 2025-12-03 21:00:17,905:      pdf_renderer.py:  470: printSegment: Configuración
+   DEBUG: 2025-12-03 21:00:17,906:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:17,907:      pdf_renderer.py:  470: printSegment: {
+   DEBUG: 2025-12-03 21:00:17,908:      pdf_renderer.py:  470: printSegment:   "id": "key-by-service",
+   DEBUG: 2025-12-03 21:00:17,909:      pdf_renderer.py:  470: printSegment:   "kind": {
+   DEBUG: 2025-12-03 21:00:17,911:      pdf_renderer.py:  470: printSegment:     "key_by": {
+   DEBUG: 2025-12-03 21:00:17,912:      pdf_renderer.py:  470: printSegment:       "field": "service"
+   DEBUG: 2025-12-03 21:00:17,914:      pdf_renderer.py:  470: printSegment:     }
+   DEBUG: 2025-12-03 21:00:17,915:      pdf_renderer.py:  470: printSegment:   }
+   DEBUG: 2025-12-03 21:00:17,916:      pdf_renderer.py:  470: printSegment: }
+   DEBUG: 2025-12-03 21:00:17,917:      pdf_renderer.py:  470: printSegment: Efecto
+   DEBUG: 2025-12-03 21:00:17,918:      pdf_renderer.py:  470: printSegment: : Establece 
+   DEBUG: 2025-12-03 21:00:17,920:      pdf_renderer.py:  470: printSegment: event.key
+   DEBUG: 2025-12-03 21:00:17,921:      pdf_renderer.py:  470: printSegment:  usado por window aggregations para agrupar eventos.
+   DEBUG: 2025-12-03 21:00:17,923:      pdf_renderer.py:  470: printSegment: Window Aggregate Operator
+   DEBUG: 2025-12-03 21:00:17,924:      pdf_renderer.py:  470: printSegment: Ventanas temporales con agregaciones.
+   DEBUG: 2025-12-03 21:00:17,925:      pdf_renderer.py:  470: printSegment: Configuración
+   DEBUG: 2025-12-03 21:00:17,927:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:17,936:      pdf_renderer.py:  470: printSegment: {
+   DEBUG: 2025-12-03 21:00:17,938:      pdf_renderer.py:  470: printSegment:   "id": "window-agg",
+   DEBUG: 2025-12-03 21:00:17,939:      pdf_renderer.py:  470: printSegment:   "kind": {
+   DEBUG: 2025-12-03 21:00:17,940:      pdf_renderer.py:  470: printSegment:     "window_aggregate": {
+   DEBUG: 2025-12-03 21:00:17,941:      pdf_renderer.py:  470: printSegment:       "window": {
+   DEBUG: 2025-12-03 21:00:17,942:      pdf_renderer.py:  470: printSegment:         "length_ms": 60000,
+   DEBUG: 2025-12-03 21:00:17,943:      pdf_renderer.py:  470: printSegment:         "slide_ms": 30000,
+   DEBUG: 2025-12-03 21:00:17,945:      pdf_renderer.py:  470: printSegment:         "checkpoint_interval_ms": 5000
+   DEBUG: 2025-12-03 21:00:17,946:      pdf_renderer.py:  470: printSegment:       },
+   DEBUG: 2025-12-03 21:00:17,947:      pdf_renderer.py:  470: printSegment:       "aggregator": "count",
+   DEBUG: 2025-12-03 21:00:17,948:      pdf_renderer.py:  470: printSegment:       "key_field": "service",
+   DEBUG: 2025-12-03 21:00:17,949:      pdf_renderer.py:  470: printSegment:       "value_field": null
+   DEBUG: 2025-12-03 21:00:17,950:      pdf_renderer.py:  470: printSegment:     }
+   DEBUG: 2025-12-03 21:00:17,950:      pdf_renderer.py:  470: printSegment:   }
+   DEBUG: 2025-12-03 21:00:17,951:      pdf_renderer.py:  470: printSegment: }
+   DEBUG: 2025-12-03 21:00:17,952:      pdf_renderer.py:  470: printSegment: Parámetros
+   DEBUG: 2025-12-03 21:00:17,953:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:17,955:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,956:      pdf_renderer.py:  470: printSegment: length_ms
+   DEBUG: 2025-12-03 21:00:17,958:      pdf_renderer.py:  470: printSegment: : Duración de la ventana en milisegundos
+   DEBUG: 2025-12-03 21:00:17,959:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,960:      pdf_renderer.py:  470: printSegment: slide_ms
+   DEBUG: 2025-12-03 21:00:17,961:      pdf_renderer.py:  470: printSegment: : Intervalo de deslizamiento (opcional, por defecto = length
+   DEBUG: 2025-12-03 21:00:17,962:      pdf_renderer.py:  470: printSegment: _
+   DEBUG: 2025-12-03 21:00:17,963:      pdf_renderer.py:  470: printSegment: ms para tumbling)
+   DEBUG: 2025-12-03 21:00:17,964:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,966:      pdf_renderer.py:  470: printSegment: checkpoint_interval_ms
+   DEBUG: 2025-12-03 21:00:17,967:      pdf_renderer.py:  470: printSegment: : Frecuencia de persistencia
+   DEBUG: 2025-12-03 21:00:17,968:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,969:      pdf_renderer.py:  470: printSegment: aggregator
+   DEBUG: 2025-12-03 21:00:17,970:      pdf_renderer.py:  470: printSegment: : 
+   DEBUG: 2025-12-03 21:00:17,971:      pdf_renderer.py:  470: printSegment: count
+   DEBUG: 2025-12-03 21:00:17,972:      pdf_renderer.py:  470: printSegment: , 
+   DEBUG: 2025-12-03 21:00:17,973:      pdf_renderer.py:  470: printSegment: sum
+   DEBUG: 2025-12-03 21:00:17,974:      pdf_renderer.py:  470: printSegment: , o 
+   DEBUG: 2025-12-03 21:00:17,975:      pdf_renderer.py:  470: printSegment: average
+   DEBUG: 2025-12-03 21:00:17,976:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,977:      pdf_renderer.py:  470: printSegment: key_field
+   DEBUG: 2025-12-03 21:00:17,978:      pdf_renderer.py:  470: printSegment: : Campo usado como clave de agrupación
+   DEBUG: 2025-12-03 21:00:17,979:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:17,980:      pdf_renderer.py:  470: printSegment: value_field
+   DEBUG: 2025-12-03 21:00:17,981:      pdf_renderer.py:  470: printSegment: : Campo numérico para 
+   DEBUG: 2025-12-03 21:00:17,982:      pdf_renderer.py:  470: printSegment: sum
+   DEBUG: 2025-12-03 21:00:17,983:      pdf_renderer.py:  470: printSegment: /
+   DEBUG: 2025-12-03 21:00:17,984:      pdf_renderer.py:  470: printSegment: average
+   DEBUG: 2025-12-03 21:00:17,985:      pdf_renderer.py:  470: printSegment:  (null para 
+   DEBUG: 2025-12-03 21:00:17,987:      pdf_renderer.py:  470: printSegment: count
+   DEBUG: 2025-12-03 21:00:17,989:      pdf_renderer.py:  470: printSegment: )
+   DEBUG: 2025-12-03 21:00:17,990:      pdf_renderer.py:  470: printSegment: Evento de Salida
+   DEBUG: 2025-12-03 21:00:17,991:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:17,992:      pdf_renderer.py:  470: printSegment: {
+   DEBUG: 2025-12-03 21:00:17,993:      pdf_renderer.py:  470: printSegment:   "window_start": "2024-12-03T10:00:00Z",
+   DEBUG: 2025-12-03 21:00:17,995:      pdf_renderer.py:  470: printSegment:   "window_end": "2024-12-03T10:01:00Z",
+   DEBUG: 2025-12-03 21:00:17,996:      pdf_renderer.py:  470: printSegment:   "count": 42,
+   DEBUG: 2025-12-03 21:00:17,998:      pdf_renderer.py:  470: printSegment:   "sum": 1250.75,
+   DEBUG: 2025-12-03 21:00:17,999:      pdf_renderer.py:  470: printSegment:   "aggregate": 29.78
+   DEBUG: 2025-12-03 21:00:18,000:      pdf_renderer.py:  470: printSegment: }
+   DEBUG: 2025-12-03 21:00:18,002:      pdf_renderer.py:  470: printSegment: Sink Log Operator
+   DEBUG: 2025-12-03 21:00:18,004:      pdf_renderer.py:  470: printSegment: Operador terminal que registra eventos vía logging estructurado.
+   DEBUG: 2025-12-03 21:00:18,005:      pdf_renderer.py:  470: printSegment: Configuración
+   DEBUG: 2025-12-03 21:00:18,006:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:18,007:      pdf_renderer.py:  470: printSegment: {
+   DEBUG: 2025-12-03 21:00:18,009:      pdf_renderer.py:  470: printSegment:   "id": "sink",
+   DEBUG: 2025-12-03 21:00:18,010:      pdf_renderer.py:  470: printSegment:   "kind": "sink_log"
+   DEBUG: 2025-12-03 21:00:18,011:      pdf_renderer.py:  470: printSegment: }
+   DEBUG: 2025-12-03 21:00:18,012:      pdf_renderer.py:  470: printSegment: Los eventos se emiten con nivel 
+   DEBUG: 2025-12-03 21:00:18,013:      pdf_renderer.py:  470: printSegment: DEBUG
+   DEBUG: 2025-12-03 21:00:18,015:      pdf_renderer.py:  470: printSegment:  usando 
+   DEBUG: 2025-12-03 21:00:18,016:      pdf_renderer.py:  470: printSegment: tracing
+   DEBUG: 2025-12-03 21:00:18,017:      pdf_renderer.py:  470: printSegment: .
+   DEBUG: 2025-12-03 21:00:18,021:      pdf_renderer.py:  470: printSegment: Guía de Inicio Rápido
+   DEBUG: 2025-12-03 21:00:18,022:      pdf_renderer.py:  470: printSegment: Requisitos
+   DEBUG: 2025-12-03 21:00:18,024:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,025:      pdf_renderer.py:  470: printSegment: Rust 1.78 o superior
+   DEBUG: 2025-12-03 21:00:18,036:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,037:      pdf_renderer.py:  470: printSegment: Make (opcional, para comandos simplificados)
+   DEBUG: 2025-12-03 21:00:18,039:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,040:      pdf_renderer.py:  470: printSegment: Docker y Docker Compose (opcional, para despliegue containerizado)
+   DEBUG: 2025-12-03 21:00:18,042:      pdf_renderer.py:  470: printSegment: Compilación
+   DEBUG: 2025-12-03 21:00:18,043:      pdf_renderer.py:  470: printSegment: # Clonar repositorio
+   DEBUG: 2025-12-03 21:00:18,045:      pdf_renderer.py:  470: printSegment: git clone <repository-url>
+   DEBUG: 2025-12-03 21:00:18,046:      pdf_renderer.py:  470: printSegment: cd streaming-engine
+   DEBUG: 2025-12-03 21:00:18,047:      pdf_renderer.py:  470: printSegment: # Compilar workspace completo
+   DEBUG: 2025-12-03 21:00:18,049:      pdf_renderer.py:  470: printSegment: cargo build --workspace --release
+   DEBUG: 2025-12-03 21:00:18,050:      pdf_renderer.py:  470: printSegment: # O usando Make
+   DEBUG: 2025-12-03 21:00:18,051:      pdf_renderer.py:  470: printSegment: make build-release
+   DEBUG: 2025-12-03 21:00:18,053:      pdf_renderer.py:  470: printSegment: Ejecución Local
+   DEBUG: 2025-12-03 21:00:18,054:      pdf_renderer.py:  470: printSegment: Opción 1: Usando Make
+   DEBUG: 2025-12-03 21:00:18,056:      pdf_renderer.py:  470: printSegment: # Terminal 1: Iniciar master
+   DEBUG: 2025-12-03 21:00:18,057:      pdf_renderer.py:  470: printSegment: make run-master
+   DEBUG: 2025-12-03 21:00:18,058:      pdf_renderer.py:  470: printSegment: # Terminal 2: Iniciar primer worker
+   DEBUG: 2025-12-03 21:00:18,059:      pdf_renderer.py:  470: printSegment: make run-worker
+   DEBUG: 2025-12-03 21:00:18,061:      pdf_renderer.py:  470: printSegment: # Terminal 3: Iniciar segundo worker (opcional)
+   DEBUG: 2025-12-03 21:00:18,062:      pdf_renderer.py:  470: printSegment: make run-worker-2
+   DEBUG: 2025-12-03 21:00:18,063:      pdf_renderer.py:  470: printSegment: # Terminal 4: Enviar topología ejemplo
+   DEBUG: 2025-12-03 21:00:18,065:      pdf_renderer.py:  470: printSegment: make submit TOPOLOGY=docs/examples/log_topology.json
+   DEBUG: 2025-12-03 21:00:18,066:      pdf_renderer.py:  470: printSegment: # Inyectar eventos
+   DEBUG: 2025-12-03 21:00:18,068:      pdf_renderer.py:  470: printSegment: make ingest TOPOLOGY_ID=<id-from-submit>
+   DEBUG: 2025-12-03 21:00:18,069:      pdf_renderer.py:  470: printSegment: FILE=docs/examples/logs.jsonl
+   DEBUG: 2025-12-03 21:00:18,070:      pdf_renderer.py:  470: printSegment: # Ver métricas
+   DEBUG: 2025-12-03 21:00:18,071:      pdf_renderer.py:  470: printSegment: make metrics
+   DEBUG: 2025-12-03 21:00:18,072:      pdf_renderer.py:  470: printSegment: # Consultar estado
+   DEBUG: 2025-12-03 21:00:18,073:      pdf_renderer.py:  470: printSegment: make status TOPOLOGY_ID=<id>
+   DEBUG: 2025-12-03 21:00:18,075:      pdf_renderer.py:  470: printSegment: # Cancelar topología
+   DEBUG: 2025-12-03 21:00:18,076:      pdf_renderer.py:  470: printSegment: make cancel TOPOLOGY_ID=<id>
+   DEBUG: 2025-12-03 21:00:18,077:      pdf_renderer.py:  470: printSegment: Opción 2: Usando cargo directamente
+   DEBUG: 2025-12-03 21:00:18,079:      pdf_renderer.py:  470: printSegment: # Iniciar master
+   DEBUG: 2025-12-03 21:00:18,080:      pdf_renderer.py:  470: printSegment: cargo run --release -p master
+   DEBUG: 2025-12-03 21:00:18,081:      pdf_renderer.py:  470: printSegment: # Iniciar worker (otra terminal)
+   DEBUG: 2025-12-03 21:00:18,083:      pdf_renderer.py:  470: printSegment: cargo run --release -p worker -- \
+   DEBUG: 2025-12-03 21:00:18,084:      pdf_renderer.py:  470: printSegment:   --worker-id worker-1 \
+   DEBUG: 2025-12-03 21:00:18,085:      pdf_renderer.py:  470: printSegment:   --bind 127.0.0.1:9001 \
+   DEBUG: 2025-12-03 21:00:18,087:      pdf_renderer.py:  470: printSegment:   --master-url http://127.0.0.1:8080 \
+   DEBUG: 2025-12-03 21:00:18,088:      pdf_renderer.py:  470: printSegment:   --slots 4 \
+   DEBUG: 2025-12-03 21:00:18,089:      pdf_renderer.py:  470: printSegment:   --advertise-url http://127.0.0.1:9001
+   DEBUG: 2025-12-03 21:00:18,090:      pdf_renderer.py:  470: printSegment: # Enviar topología
+   DEBUG: 2025-12-03 21:00:18,092:      pdf_renderer.py:  470: printSegment: cargo run --release -p client -- \
+   DEBUG: 2025-12-03 21:00:18,093:      pdf_renderer.py:  470: printSegment:   --master-url http://127.0.0.1:8080 \
+   DEBUG: 2025-12-03 21:00:18,095:      pdf_renderer.py:  470: printSegment:   submit-topology docs/examples/log_topology.json
+   DEBUG: 2025-12-03 21:00:18,096:      pdf_renderer.py:  470: printSegment: # Ingerir eventos
+   DEBUG: 2025-12-03 21:00:18,098:      pdf_renderer.py:  470: printSegment: cargo run --release -p client -- \
+   DEBUG: 2025-12-03 21:00:18,099:      pdf_renderer.py:  470: printSegment:   --master-url http://127.0.0.1:8080 \
+   DEBUG: 2025-12-03 21:00:18,101:      pdf_renderer.py:  470: printSegment:   ingest <TOPOLOGY_ID> --file docs/examples/logs.jsonl
+   DEBUG: 2025-12-03 21:00:18,111:      pdf_renderer.py:  470: printSegment: Despliegue con Docker Compose
+   DEBUG: 2025-12-03 21:00:18,113:      pdf_renderer.py:  470: printSegment: # Construir imágenes e iniciar servicios
+   DEBUG: 2025-12-03 21:00:18,114:      pdf_renderer.py:  470: printSegment: docker-compose up --build
+   DEBUG: 2025-12-03 21:00:18,116:      pdf_renderer.py:  470: printSegment: # Enviar topología desde host
+   DEBUG: 2025-12-03 21:00:18,117:      pdf_renderer.py:  470: printSegment: cargo run -p client -- \
+   DEBUG: 2025-12-03 21:00:18,118:      pdf_renderer.py:  470: printSegment:   --master-url http://localhost:8080 \
+   DEBUG: 2025-12-03 21:00:18,119:      pdf_renderer.py:  470: printSegment:   submit-topology docs/examples/log_topology.json
+   DEBUG: 2025-12-03 21:00:18,120:      pdf_renderer.py:  470: printSegment: # Detener servicios
+   DEBUG: 2025-12-03 21:00:18,121:      pdf_renderer.py:  470: printSegment: docker-compose down
+   DEBUG: 2025-12-03 21:00:18,122:      pdf_renderer.py:  470: printSegment: El 
+   DEBUG: 2025-12-03 21:00:18,123:      pdf_renderer.py:  470: printSegment: docker-compose.yml
+   DEBUG: 2025-12-03 21:00:18,124:      pdf_renderer.py:  470: printSegment:  levanta:
+   DEBUG: 2025-12-03 21:00:18,125:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,127:      pdf_renderer.py:  470: printSegment: 1 master en puerto 8080
+   DEBUG: 2025-12-03 21:00:18,128:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,129:      pdf_renderer.py:  470: printSegment: 2 workers en puertos 9001-9002
+   DEBUG: 2025-12-03 21:00:18,130:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,131:      pdf_renderer.py:  470: printSegment: Volúmenes para persistencia de estado
+   DEBUG: 2025-12-03 21:00:18,133:      pdf_renderer.py:  470: printSegment: API Reference
+   DEBUG: 2025-12-03 21:00:18,135:      pdf_renderer.py:  470: printSegment: POST /api/v1/workers/register
+   DEBUG: 2025-12-03 21:00:18,136:      pdf_renderer.py:  470: printSegment: Registra un nuevo worker con el master.
+   DEBUG: 2025-12-03 21:00:18,137:      pdf_renderer.py:  470: printSegment: Request Body
+   DEBUG: 2025-12-03 21:00:18,139:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:18,140:      pdf_renderer.py:  470: printSegment: {
+   DEBUG: 2025-12-03 21:00:18,141:      pdf_renderer.py:  470: printSegment:   "worker_id": "worker-1",
+   DEBUG: 2025-12-03 21:00:18,143:      pdf_renderer.py:  470: printSegment:   "api_url": "http://10.0.1.50:9001",
+   DEBUG: 2025-12-03 21:00:18,144:      pdf_renderer.py:  470: printSegment:   "slots": 4
+   DEBUG: 2025-12-03 21:00:18,145:      pdf_renderer.py:  470: printSegment: }
+   DEBUG: 2025-12-03 21:00:18,146:      pdf_renderer.py:  470: printSegment: Response
+   DEBUG: 2025-12-03 21:00:18,147:      pdf_renderer.py:  470: printSegment: : 
+   DEBUG: 2025-12-03 21:00:18,148:      pdf_renderer.py:  470: printSegment: 200 OK
+   DEBUG: 2025-12-03 21:00:18,149:      pdf_renderer.py:  470: printSegment: {
+   DEBUG: 2025-12-03 21:00:18,150:      pdf_renderer.py:  470: printSegment:   "accepted": true
+   DEBUG: 2025-12-03 21:00:18,151:      pdf_renderer.py:  470: printSegment: }
+   DEBUG: 2025-12-03 21:00:18,152:      pdf_renderer.py:  470: printSegment: POST /api/v1/workers/:worker
+   DEBUG: 2025-12-03 21:00:18,153:      pdf_renderer.py:  470: printSegment: _
+   DEBUG: 2025-12-03 21:00:18,154:      pdf_renderer.py:  470: printSegment: id/heartbeat
+   DEBUG: 2025-12-03 21:00:18,156:      pdf_renderer.py:  470: printSegment: Heartbeat periódico con métricas actualizadas.
+   DEBUG: 2025-12-03 21:00:18,157:      pdf_renderer.py:  470: printSegment: Request Body
+   DEBUG: 2025-12-03 21:00:18,158:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:18,160:      pdf_renderer.py:  470: printSegment: {
+   DEBUG: 2025-12-03 21:00:18,161:      pdf_renderer.py:  470: printSegment:   "worker_id": "worker-1",
+   DEBUG: 2025-12-03 21:00:18,162:      pdf_renderer.py:  470: printSegment:   "metrics": {
+   DEBUG: 2025-12-03 21:00:18,163:      pdf_renderer.py:  470: printSegment:     "cpu_pct": 23.5,
+   DEBUG: 2025-12-03 21:00:18,165:      pdf_renderer.py:  470: printSegment:     "mem_bytes": 157286400,
+   DEBUG: 2025-12-03 21:00:18,166:      pdf_renderer.py:  470: printSegment:     "active_topologies": 3,
+   DEBUG: 2025-12-03 21:00:18,167:      pdf_renderer.py:  470: printSegment:     "queue_depth": 87,
+   DEBUG: 2025-12-03 21:00:18,168:      pdf_renderer.py:  470: printSegment:     "throughput_eps": 2340.2
+   DEBUG: 2025-12-03 21:00:18,169:      pdf_renderer.py:  470: printSegment:   }
+   DEBUG: 2025-12-03 21:00:18,170:      pdf_renderer.py:  470: printSegment: }
+   DEBUG: 2025-12-03 21:00:18,179:      pdf_renderer.py:  470: printSegment: Response
+   DEBUG: 2025-12-03 21:00:18,181:      pdf_renderer.py:  470: printSegment: : 
+   DEBUG: 2025-12-03 21:00:18,182:      pdf_renderer.py:  470: printSegment: 204 No Content
+   DEBUG: 2025-12-03 21:00:18,184:      pdf_renderer.py:  470: printSegment: POST /api/v1/topologies
+   DEBUG: 2025-12-03 21:00:18,186:      pdf_renderer.py:  470: printSegment: Envía una nueva topología para ejecución.
+   DEBUG: 2025-12-03 21:00:18,187:      pdf_renderer.py:  470: printSegment: Request Body
+   DEBUG: 2025-12-03 21:00:18,188:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:18,188:      pdf_renderer.py:  470: printSegment: {
+   DEBUG: 2025-12-03 21:00:18,190:      pdf_renderer.py:  470: printSegment:   "name": "log-processor",
+   DEBUG: 2025-12-03 21:00:18,191:      pdf_renderer.py:  470: printSegment:   "description": "Procesa y agrega logs por servicio",
+   DEBUG: 2025-12-03 21:00:18,192:      pdf_renderer.py:  470: printSegment:   "operators": [ ... ],
+   DEBUG: 2025-12-03 21:00:18,193:      pdf_renderer.py:  470: printSegment:   "edges": [ ... ],
+   DEBUG: 2025-12-03 21:00:18,194:      pdf_renderer.py:  470: printSegment:   "parallelism": 1
+   DEBUG: 2025-12-03 21:00:18,195:      pdf_renderer.py:  470: printSegment: }
+   DEBUG: 2025-12-03 21:00:18,196:      pdf_renderer.py:  470: printSegment: Response
+   DEBUG: 2025-12-03 21:00:18,197:      pdf_renderer.py:  470: printSegment: : 
+   DEBUG: 2025-12-03 21:00:18,198:      pdf_renderer.py:  470: printSegment: 200 OK
+   DEBUG: 2025-12-03 21:00:18,199:      pdf_renderer.py:  470: printSegment: {
+   DEBUG: 2025-12-03 21:00:18,200:      pdf_renderer.py:  470: printSegment:   "topology_id": "550e8400-e29b-41d4-a716-446655440000"
+   DEBUG: 2025-12-03 21:00:18,201:      pdf_renderer.py:  470: printSegment: }
+   DEBUG: 2025-12-03 21:00:18,202:      pdf_renderer.py:  470: printSegment: GET /api/v1/topologies
+   DEBUG: 2025-12-03 21:00:18,204:      pdf_renderer.py:  470: printSegment: Lista todas las topologías registradas.
+   DEBUG: 2025-12-03 21:00:18,205:      pdf_renderer.py:  470: printSegment: Response
+   DEBUG: 2025-12-03 21:00:18,206:      pdf_renderer.py:  470: printSegment: : 
+   DEBUG: 2025-12-03 21:00:18,207:      pdf_renderer.py:  470: printSegment: 200 OK
+   DEBUG: 2025-12-03 21:00:18,208:      pdf_renderer.py:  470: printSegment: [
+   DEBUG: 2025-12-03 21:00:18,209:      pdf_renderer.py:  470: printSegment:   {
+   DEBUG: 2025-12-03 21:00:18,210:      pdf_renderer.py:  470: printSegment:     "topology_id": "uuid",
+   DEBUG: 2025-12-03 21:00:18,212:      pdf_renderer.py:  470: printSegment:     "name": "log-processor",
+   DEBUG: 2025-12-03 21:00:18,213:      pdf_renderer.py:  470: printSegment:     "status": "Running",
+   DEBUG: 2025-12-03 21:00:18,214:      pdf_renderer.py:  470: printSegment:     "worker_id": "worker-1",
+   DEBUG: 2025-12-03 21:00:18,215:      pdf_renderer.py:  470: printSegment:     "metrics": {
+   DEBUG: 2025-12-03 21:00:18,216:      pdf_renderer.py:  470: printSegment:       "events_ingested": 15420,
+   DEBUG: 2025-12-03 21:00:18,217:      pdf_renderer.py:  470: printSegment:       "events_emitted": 15420,
+   DEBUG: 2025-12-03 21:00:18,219:      pdf_renderer.py:  470: printSegment:       "last_checkpoint": "2024-12-03T10:15:30Z"
+   DEBUG: 2025-12-03 21:00:18,220:      pdf_renderer.py:  470: printSegment:     },
+   DEBUG: 2025-12-03 21:00:18,221:      pdf_renderer.py:  470: printSegment:     "last_error": null,
+   DEBUG: 2025-12-03 21:00:18,222:      pdf_renderer.py:  470: printSegment:     "attempt": 0
+   DEBUG: 2025-12-03 21:00:18,223:      pdf_renderer.py:  470: printSegment:   }
+   DEBUG: 2025-12-03 21:00:18,224:      pdf_renderer.py:  470: printSegment: ]
+   DEBUG: 2025-12-03 21:00:18,225:      pdf_renderer.py:  470: printSegment: GET /api/v1/topologies/:id
+   DEBUG: 2025-12-03 21:00:18,227:      pdf_renderer.py:  470: printSegment: Obtiene estado detallado de una topología específica.
+   DEBUG: 2025-12-03 21:00:18,228:      pdf_renderer.py:  470: printSegment: Response
+   DEBUG: 2025-12-03 21:00:18,229:      pdf_renderer.py:  470: printSegment: : 
+   DEBUG: 2025-12-03 21:00:18,230:      pdf_renderer.py:  470: printSegment: 200 OK
+   DEBUG: 2025-12-03 21:00:18,231:      pdf_renderer.py:  470: printSegment: {
+   DEBUG: 2025-12-03 21:00:18,233:      pdf_renderer.py:  470: printSegment:   "topology_id": "uuid",
+   DEBUG: 2025-12-03 21:00:18,234:      pdf_renderer.py:  470: printSegment:   "name": "log-processor",
+   DEBUG: 2025-12-03 21:00:18,235:      pdf_renderer.py:  470: printSegment:   "status": "Running",
+   DEBUG: 2025-12-03 21:00:18,237:      pdf_renderer.py:  470: printSegment:   "worker_id": "worker-1",
+   DEBUG: 2025-12-03 21:00:18,246:      pdf_renderer.py:  470: printSegment:   "metrics": { ... },
+   DEBUG: 2025-12-03 21:00:18,247:      pdf_renderer.py:  470: printSegment:   "last_error": null,
+   DEBUG: 2025-12-03 21:00:18,248:      pdf_renderer.py:  470: printSegment:   "attempt": 0
+   DEBUG: 2025-12-03 21:00:18,249:      pdf_renderer.py:  470: printSegment: }
+   DEBUG: 2025-12-03 21:00:18,250:      pdf_renderer.py:  470: printSegment: Estados Posibles
+   DEBUG: 2025-12-03 21:00:18,251:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:18,253:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,254:      pdf_renderer.py:  470: printSegment: Accepted
+   DEBUG: 2025-12-03 21:00:18,255:      pdf_renderer.py:  470: printSegment: : Topología aceptada, pendiente de despliegue
+   DEBUG: 2025-12-03 21:00:18,256:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,257:      pdf_renderer.py:  470: printSegment: Running
+   DEBUG: 2025-12-03 21:00:18,258:      pdf_renderer.py:  470: printSegment: : Ejecutándose en worker
+   DEBUG: 2025-12-03 21:00:18,259:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,260:      pdf_renderer.py:  470: printSegment: Canceled
+   DEBUG: 2025-12-03 21:00:18,261:      pdf_renderer.py:  470: printSegment: : Cancelada por usuario
+   DEBUG: 2025-12-03 21:00:18,262:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,263:      pdf_renderer.py:  470: printSegment: Failed
+   DEBUG: 2025-12-03 21:00:18,264:      pdf_renderer.py:  470: printSegment: : Falló el despliegue o ejecución
+   DEBUG: 2025-12-03 21:00:18,265:      pdf_renderer.py:  470: printSegment: POST /api/v1/topologies/:id/cancel
+   DEBUG: 2025-12-03 21:00:18,267:      pdf_renderer.py:  470: printSegment: Cancela una topología en ejecución.
+   DEBUG: 2025-12-03 21:00:18,269:      pdf_renderer.py:  470: printSegment: Response
+   DEBUG: 2025-12-03 21:00:18,270:      pdf_renderer.py:  470: printSegment: : 
+   DEBUG: 2025-12-03 21:00:18,271:      pdf_renderer.py:  470: printSegment: 204 No Content
+   DEBUG: 2025-12-03 21:00:18,272:      pdf_renderer.py:  470: printSegment: POST /api/v1/ingest
+   DEBUG: 2025-12-03 21:00:18,273:      pdf_renderer.py:  470: printSegment: Inyecta lote de eventos a una topología.
+   DEBUG: 2025-12-03 21:00:18,274:      pdf_renderer.py:  470: printSegment: Request Body
+   DEBUG: 2025-12-03 21:00:18,275:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:18,276:      pdf_renderer.py:  470: printSegment: {
+   DEBUG: 2025-12-03 21:00:18,277:      pdf_renderer.py:  470: printSegment:   "topology_id": "uuid",
+   DEBUG: 2025-12-03 21:00:18,278:      pdf_renderer.py:  470: printSegment:   "events": [
+   DEBUG: 2025-12-03 21:00:18,279:      pdf_renderer.py:  470: printSegment:     {
+   DEBUG: 2025-12-03 21:00:18,281:      pdf_renderer.py:  470: printSegment:       "timestamp": "2024-12-03T10:00:00Z",
+   DEBUG: 2025-12-03 21:00:18,282:      pdf_renderer.py:  470: printSegment:       "data": {
+   DEBUG: 2025-12-03 21:00:18,283:      pdf_renderer.py:  470: printSegment:         "service": "api",
+   DEBUG: 2025-12-03 21:00:18,284:      pdf_renderer.py:  470: printSegment:         "level": "INFO",
+   DEBUG: 2025-12-03 21:00:18,286:      pdf_renderer.py:  470: printSegment:         "message": "Request processed"
+   DEBUG: 2025-12-03 21:00:18,287:      pdf_renderer.py:  470: printSegment:       }
+   DEBUG: 2025-12-03 21:00:18,288:      pdf_renderer.py:  470: printSegment:     }
+   DEBUG: 2025-12-03 21:00:18,289:      pdf_renderer.py:  470: printSegment:   ]
+   DEBUG: 2025-12-03 21:00:18,290:      pdf_renderer.py:  470: printSegment: }
+   DEBUG: 2025-12-03 21:00:18,291:      pdf_renderer.py:  470: printSegment: Response
+   DEBUG: 2025-12-03 21:00:18,292:      pdf_renderer.py:  470: printSegment: : 
+   DEBUG: 2025-12-03 21:00:18,293:      pdf_renderer.py:  470: printSegment: 202 Accepted
+   DEBUG: 2025-12-03 21:00:18,294:      pdf_renderer.py:  470: printSegment: GET /api/v1/metrics
+   DEBUG: 2025-12-03 21:00:18,296:      pdf_renderer.py:  470: printSegment: Obtiene snapshot de métricas globales del sistema.
+   DEBUG: 2025-12-03 21:00:18,297:      pdf_renderer.py:  470: printSegment: Response
+   DEBUG: 2025-12-03 21:00:18,298:      pdf_renderer.py:  470: printSegment: : 
+   DEBUG: 2025-12-03 21:00:18,299:      pdf_renderer.py:  470: printSegment: 200 OK
+   DEBUG: 2025-12-03 21:00:18,300:      pdf_renderer.py:  470: printSegment: {
+   DEBUG: 2025-12-03 21:00:18,301:      pdf_renderer.py:  470: printSegment:   "workers": [
+   DEBUG: 2025-12-03 21:00:18,302:      pdf_renderer.py:  470: printSegment:     {
+   DEBUG: 2025-12-03 21:00:18,303:      pdf_renderer.py:  470: printSegment:       "worker_id": "worker-1",
+   DEBUG: 2025-12-03 21:00:18,305:      pdf_renderer.py:  470: printSegment:       "is_down": false,
+   DEBUG: 2025-12-03 21:00:18,306:      pdf_renderer.py:  470: printSegment:       "metrics": { ... },
+   DEBUG: 2025-12-03 21:00:18,307:      pdf_renderer.py:  470: printSegment:       "topologies": ["uuid1", "uuid2"]
+   DEBUG: 2025-12-03 21:00:18,308:      pdf_renderer.py:  470: printSegment:     }
+   DEBUG: 2025-12-03 21:00:18,309:      pdf_renderer.py:  470: printSegment:   ],
+   DEBUG: 2025-12-03 21:00:18,311:      pdf_renderer.py:  470: printSegment:   "topologies": [ ... ]
+   DEBUG: 2025-12-03 21:00:18,320:      pdf_renderer.py:  470: printSegment: }
+   DEBUG: 2025-12-03 21:00:18,322:      pdf_renderer.py:  470: printSegment: Testing y Validación
+   DEBUG: 2025-12-03 21:00:18,325:      pdf_renderer.py:  470: printSegment: El proyecto incluye una suite completa de pruebas automatizadas en múltiples niveles.
+   DEBUG: 2025-12-03 21:00:18,326:      pdf_renderer.py:  470: printSegment: Estructura de Pruebas
+   DEBUG: 2025-12-03 21:00:18,327:      pdf_renderer.py:  470: printSegment: tests/
+   DEBUG: 2025-12-03 21:00:18,329:      pdf_renderer.py:  470: printSegment: ├── e2e_test.rs              # Pruebas end-to-end del sistema
+   DEBUG: 2025-12-03 21:00:18,330:      pdf_renderer.py:  470: printSegment: completo
+   DEBUG: 2025-12-03 21:00:18,332:      pdf_renderer.py:  470: printSegment: ├── load_test.js             # Pruebas de carga con k6
+   DEBUG: 2025-12-03 21:00:18,334:      pdf_renderer.py:  470: printSegment: └── throughput_test.js       # Prueba de estrés de alto rendimiento
+   DEBUG: 2025-12-03 21:00:18,335:      pdf_renderer.py:  470: printSegment: Ejecutar Suite Completa
+   DEBUG: 2025-12-03 21:00:18,336:      pdf_renderer.py:  470: printSegment: # Formato + lint + tests unitarios e integración
+   DEBUG: 2025-12-03 21:00:18,337:      pdf_renderer.py:  470: printSegment: make ci
+   DEBUG: 2025-12-03 21:00:18,339:      pdf_renderer.py:  470: printSegment: # Suite completa (requiere servicios corriendo)
+   DEBUG: 2025-12-03 21:00:18,340:      pdf_renderer.py:  470: printSegment: make test-all
+   DEBUG: 2025-12-03 21:00:18,341:      pdf_renderer.py:  470: printSegment: # Tests unitarios solamente
+   DEBUG: 2025-12-03 21:00:18,342:      pdf_renderer.py:  470: printSegment: make test-unit
+   DEBUG: 2025-12-03 21:00:18,343:      pdf_renderer.py:  470: printSegment: # Tests de integración
+   DEBUG: 2025-12-03 21:00:18,344:      pdf_renderer.py:  470: printSegment: make test-integration
+   DEBUG: 2025-12-03 21:00:18,345:      pdf_renderer.py:  470: printSegment: # Tests end-to-end (requiere master + worker corriendo)
+   DEBUG: 2025-12-03 21:00:18,346:      pdf_renderer.py:  470: printSegment: make test-e2e
+   DEBUG: 2025-12-03 21:00:18,348:      pdf_renderer.py:  470: printSegment: Tests Unitarios
+   DEBUG: 2025-12-03 21:00:18,350:      pdf_renderer.py:  470: printSegment: Los tests unitarios validan la lógica de operadores individuales y componentes aislados.
+   DEBUG: 2025-12-03 21:00:18,352:      pdf_renderer.py:  470: printSegment: Ejemplo: MapOperator
+   DEBUG: 2025-12-03 21:00:18,354:      pdf_renderer.py:  470: printSegment: #[tokio::test]
+   DEBUG: 2025-12-03 21:00:18,355:      pdf_renderer.py:  470: printSegment: async fn map_operator_transforms_field() {
+   DEBUG: 2025-12-03 21:00:18,357:      pdf_renderer.py:  470: printSegment:     let spec = build_spec(vec![OperatorSpec {
+   DEBUG: 2025-12-03 21:00:18,358:      pdf_renderer.py:  470: printSegment:         id: "map".into(),
+   DEBUG: 2025-12-03 21:00:18,359:      pdf_renderer.py:  470: printSegment:         kind: OperatorKind::Map(MapSpec {
+   DEBUG: 2025-12-03 21:00:18,360:      pdf_renderer.py:  470: printSegment:             field: "value".into(),
+   DEBUG: 2025-12-03 21:00:18,362:      pdf_renderer.py:  470: printSegment:             transform: TransformFn::ToUpper,
+   DEBUG: 2025-12-03 21:00:18,363:      pdf_renderer.py:  470: printSegment:         }),
+   DEBUG: 2025-12-03 21:00:18,365:      pdf_renderer.py:  470: printSegment:         config: Default::default(),
+   DEBUG: 2025-12-03 21:00:18,366:      pdf_renderer.py:  470: printSegment:     }]);
+   DEBUG: 2025-12-03 21:00:18,368:      pdf_renderer.py:  470: printSegment:     let mut engine = PipelineEngine::new(
+   DEBUG: 2025-12-03 21:00:18,369:      pdf_renderer.py:  470: printSegment:         Uuid::new_v4(), 0, spec, temp_state_dir().as_path()
+   DEBUG: 2025-12-03 21:00:18,370:      pdf_renderer.py:  470: printSegment:     ).unwrap();
+   DEBUG: 2025-12-03 21:00:18,372:      pdf_renderer.py:  470: printSegment:     let payload = EventPayload {
+   DEBUG: 2025-12-03 21:00:18,373:      pdf_renderer.py:  470: printSegment:         timestamp: Utc::now(),
+   DEBUG: 2025-12-03 21:00:18,375:      pdf_renderer.py:  470: printSegment:         data: json!({"value": "test", "other": 1}),
+   DEBUG: 2025-12-03 21:00:18,376:      pdf_renderer.py:  470: printSegment:     };
+   DEBUG: 2025-12-03 21:00:18,378:      pdf_renderer.py:  470: printSegment:     engine.process(StreamingEvent::try_from(payload).unwrap())
+   DEBUG: 2025-12-03 21:00:18,379:      pdf_renderer.py:  470: printSegment:         .await.unwrap();
+   DEBUG: 2025-12-03 21:00:18,389:      pdf_renderer.py:  470: printSegment:     // Verificar transformación a mayúsculas
+   DEBUG: 2025-12-03 21:00:18,390:      pdf_renderer.py:  470: printSegment: }
+   DEBUG: 2025-12-03 21:00:18,391:      pdf_renderer.py:  470: printSegment: Ejecutar
+   DEBUG: 2025-12-03 21:00:18,393:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:18,394:      pdf_renderer.py:  470: printSegment: cargo test -p worker
+   DEBUG: 2025-12-03 21:00:18,395:      pdf_renderer.py:  470: printSegment: cargo test -p master
+   DEBUG: 2025-12-03 21:00:18,396:      pdf_renderer.py:  470: printSegment: cargo test -p common
+   DEBUG: 2025-12-03 21:00:18,397:      pdf_renderer.py:  470: printSegment: Tests de Integración
+   DEBUG: 2025-12-03 21:00:18,400:      pdf_renderer.py:  470: printSegment: Validan interacciones entre componentes (operadores, checkpointing, serialización).
+   DEBUG: 2025-12-03 21:00:18,401:      pdf_renderer.py:  470: printSegment: Ejemplo: WindowOperator con Checkpointing
+   DEBUG: 2025-12-03 21:00:18,402:      pdf_renderer.py:  470: printSegment: #[tokio::test]
+   DEBUG: 2025-12-03 21:00:18,403:      pdf_renderer.py:  470: printSegment: async fn window_operator_emits_counts() {
+   DEBUG: 2025-12-03 21:00:18,405:      pdf_renderer.py:  470: printSegment:     let operators = vec![
+   DEBUG: 2025-12-03 21:00:18,406:      pdf_renderer.py:  470: printSegment:         OperatorSpec {
+   DEBUG: 2025-12-03 21:00:18,407:      pdf_renderer.py:  470: printSegment:             id: "key".into(),
+   DEBUG: 2025-12-03 21:00:18,408:      pdf_renderer.py:  470: printSegment:             kind: OperatorKind::KeyBy(KeyBySpec {
+   DEBUG: 2025-12-03 21:00:18,410:      pdf_renderer.py:  470: printSegment:                 field: "service".into(),
+   DEBUG: 2025-12-03 21:00:18,411:      pdf_renderer.py:  470: printSegment:             }),
+   DEBUG: 2025-12-03 21:00:18,412:      pdf_renderer.py:  470: printSegment:             config: Default::default(),
+   DEBUG: 2025-12-03 21:00:18,413:      pdf_renderer.py:  470: printSegment:         },
+   DEBUG: 2025-12-03 21:00:18,414:      pdf_renderer.py:  470: printSegment:         OperatorSpec {
+   DEBUG: 2025-12-03 21:00:18,416:      pdf_renderer.py:  470: printSegment:             id: "window".into(),
+   DEBUG: 2025-12-03 21:00:18,418:      pdf_renderer.py:  470: printSegment:             kind: OperatorKind::WindowAggregate(WindowAggregateSpec
+   DEBUG: 2025-12-03 21:00:18,419:      pdf_renderer.py:  470: printSegment: {
+   DEBUG: 2025-12-03 21:00:18,420:      pdf_renderer.py:  470: printSegment:                 window: WindowSpec {
+   DEBUG: 2025-12-03 21:00:18,421:      pdf_renderer.py:  470: printSegment:                     length_ms: 1000,
+   DEBUG: 2025-12-03 21:00:18,423:      pdf_renderer.py:  470: printSegment:                     slide_ms: None,
+   DEBUG: 2025-12-03 21:00:18,424:      pdf_renderer.py:  470: printSegment:                     checkpoint_interval_ms: 5000,
+   DEBUG: 2025-12-03 21:00:18,426:      pdf_renderer.py:  470: printSegment:                 },
+   DEBUG: 2025-12-03 21:00:18,427:      pdf_renderer.py:  470: printSegment:                 aggregator: AggregationSpec::Count,
+   DEBUG: 2025-12-03 21:00:18,429:      pdf_renderer.py:  470: printSegment:                 key_field: "service".into(),
+   DEBUG: 2025-12-03 21:00:18,430:      pdf_renderer.py:  470: printSegment:                 value_field: None,
+   DEBUG: 2025-12-03 21:00:18,431:      pdf_renderer.py:  470: printSegment:             }),
+   DEBUG: 2025-12-03 21:00:18,433:      pdf_renderer.py:  470: printSegment:             config: Default::default(),
+   DEBUG: 2025-12-03 21:00:18,434:      pdf_renderer.py:  470: printSegment:         },
+   DEBUG: 2025-12-03 21:00:18,435:      pdf_renderer.py:  470: printSegment:     ];
+   DEBUG: 2025-12-03 21:00:18,436:      pdf_renderer.py:  470: printSegment:     // Procesar eventos y verificar agregación
+   DEBUG: 2025-12-03 21:00:18,437:      pdf_renderer.py:  470: printSegment: }
+   DEBUG: 2025-12-03 21:00:18,438:      pdf_renderer.py:  470: printSegment: Resultados de Tests de Integración
+   DEBUG: 2025-12-03 21:00:18,439:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:18,441:      pdf_renderer.py:  470: printSegment: Todos los tests de integración pasan satisfactoriamente:
+   DEBUG: 2025-12-03 21:00:18,442:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,444:      pdf_renderer.py:  470: printSegment: Operadores individuales (map, filter, flat
+   DEBUG: 2025-12-03 21:00:18,445:      pdf_renderer.py:  470: printSegment: _
+   DEBUG: 2025-12-03 21:00:18,446:      pdf_renderer.py:  470: printSegment: map)
+   DEBUG: 2025-12-03 21:00:18,448:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,449:      pdf_renderer.py:  470: printSegment: Checkpoint persistence y recovery
+   DEBUG: 2025-12-03 21:00:18,450:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,452:      pdf_renderer.py:  470: printSegment: Pipeline completo con múltiples operadores
+   DEBUG: 2025-12-03 21:00:18,453:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,455:      pdf_renderer.py:  470: printSegment: Window aggregations con tumbling y sliding
+   DEBUG: 2025-12-03 21:00:18,456:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,458:      pdf_renderer.py:  470: printSegment: Serialización/deserialización de modelos
+   DEBUG: 2025-12-03 21:00:18,459:      pdf_renderer.py:  470: printSegment: running 8 tests
+   DEBUG: 2025-12-03 21:00:18,461:      pdf_renderer.py:  470: printSegment: test operators_test::map_operator_transforms ... ok
+   DEBUG: 2025-12-03 21:00:18,471:      pdf_renderer.py:  470: printSegment: test operators_test::filter_drops_non_matching ... ok
+   DEBUG: 2025-12-03 21:00:18,473:      pdf_renderer.py:  470: printSegment: test operators_test::flatmap_expands_arrays ... ok
+   DEBUG: 2025-12-03 21:00:18,474:      pdf_renderer.py:  470: printSegment: test checkpoint_test::window_persists_state ... ok
+   DEBUG: 2025-12-03 21:00:18,475:      pdf_renderer.py:  470: printSegment: test checkpoint_test::window_restores_from_checkpoint ... ok
+   DEBUG: 2025-12-03 21:00:18,477:      pdf_renderer.py:  470: printSegment: test pipeline_test::full_pipeline_execution ... ok
+   DEBUG: 2025-12-03 21:00:18,478:      pdf_renderer.py:  470: printSegment: test window_test::tumbling_windows_aggregate ... ok
+   DEBUG: 2025-12-03 21:00:18,479:      pdf_renderer.py:  470: printSegment: test window_test::sliding_windows_overlap ... ok
+   DEBUG: 2025-12-03 21:00:18,481:      pdf_renderer.py:  470: printSegment: test result: ok. 8 passed; 0 failed
+   DEBUG: 2025-12-03 21:00:18,482:      pdf_renderer.py:  470: printSegment: Tests End-to-End
+   DEBUG: 2025-12-03 21:00:18,484:      pdf_renderer.py:  470: printSegment: Validan el flujo completo: submit topology → deploy → ingest → process → query status.
+   DEBUG: 2025-12-03 21:00:18,499:      pdf_renderer.py:  470: printSegment: Configuración
+   DEBUG: 2025-12-03 21:00:18,501:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:18,502:      pdf_renderer.py:  470: printSegment: # Terminal 1
+   DEBUG: 2025-12-03 21:00:18,503:      pdf_renderer.py:  470: printSegment: make run-master
+   DEBUG: 2025-12-03 21:00:18,504:      pdf_renderer.py:  470: printSegment: # Terminal 2
+   DEBUG: 2025-12-03 21:00:18,505:      pdf_renderer.py:  470: printSegment: make run-worker
+   DEBUG: 2025-12-03 21:00:18,506:      pdf_renderer.py:  470: printSegment: # Terminal 3
+   DEBUG: 2025-12-03 21:00:18,507:      pdf_renderer.py:  470: printSegment: make test-e2e
+   DEBUG: 2025-12-03 21:00:18,508:      pdf_renderer.py:  470: printSegment: Escenarios Cubiertos
+   DEBUG: 2025-12-03 21:00:18,509:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:18,510:      pdf_renderer.py:  470: printSegment:  1 
+   DEBUG: 2025-12-03 21:00:18,511:      pdf_renderer.py:  470: printSegment: Submit y Deploy
+   DEBUG: 2025-12-03 21:00:18,513:      pdf_renderer.py:  470: printSegment: : Envío de topología y verificación de estado 
+   DEBUG: 2025-12-03 21:00:18,514:      pdf_renderer.py:  470: printSegment: Running
+   DEBUG: 2025-12-03 21:00:18,515:      pdf_renderer.py:  470: printSegment:  2 
+   DEBUG: 2025-12-03 21:00:18,516:      pdf_renderer.py:  470: printSegment: Ingesta y Procesamiento
+   DEBUG: 2025-12-03 21:00:18,518:      pdf_renderer.py:  470: printSegment: : Inyección de eventos y verificación de métricas
+   DEBUG: 2025-12-03 21:00:18,519:      pdf_renderer.py:  470: printSegment:  3 
+   DEBUG: 2025-12-03 21:00:18,520:      pdf_renderer.py:  470: printSegment: Tolerancia a Fallos
+   DEBUG: 2025-12-03 21:00:18,522:      pdf_renderer.py:  470: printSegment: : Simular caída de worker y verificar re-planificación
+   DEBUG: 2025-12-03 21:00:18,523:      pdf_renderer.py:  470: printSegment:  4 
+   DEBUG: 2025-12-03 21:00:18,524:      pdf_renderer.py:  470: printSegment: Cancelación
+   DEBUG: 2025-12-03 21:00:18,525:      pdf_renderer.py:  470: printSegment: : Cancelar topología y verificar estado 
+   DEBUG: 2025-12-03 21:00:18,526:      pdf_renderer.py:  470: printSegment: Canceled
+   DEBUG: 2025-12-03 21:00:18,527:      pdf_renderer.py:  470: printSegment:  5 
+   DEBUG: 2025-12-03 21:00:18,529:      pdf_renderer.py:  470: printSegment: Métricas
+   DEBUG: 2025-12-03 21:00:18,530:      pdf_renderer.py:  470: printSegment: : Consultar endpoint de métricas y validar estructura
+   DEBUG: 2025-12-03 21:00:18,532:      pdf_renderer.py:  470: printSegment: Resultados de Tests E2E
+   DEBUG: 2025-12-03 21:00:18,533:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:18,534:      pdf_renderer.py:  470: printSegment: Todos los tests end-to-end pasan satisfactoriamente:
+   DEBUG: 2025-12-03 21:00:18,535:      pdf_renderer.py:  470: printSegment: running 5 tests
+   DEBUG: 2025-12-03 21:00:18,537:      pdf_renderer.py:  470: printSegment: test e2e::test_submit_and_deploy ... ok (1.2s)
+   DEBUG: 2025-12-03 21:00:18,538:      pdf_renderer.py:  470: printSegment: test e2e::test_ingest_and_process ... ok (2.5s)
+   DEBUG: 2025-12-03 21:00:18,540:      pdf_renderer.py:  470: printSegment: test e2e::test_fault_tolerance ... ok (8.3s)
+   DEBUG: 2025-12-03 21:00:18,541:      pdf_renderer.py:  470: printSegment: test e2e::test_cancel_topology ... ok (1.1s)
+   DEBUG: 2025-12-03 21:00:18,543:      pdf_renderer.py:  470: printSegment: test e2e::test_metrics_endpoint ... ok (0.8s)
+   DEBUG: 2025-12-03 21:00:18,544:      pdf_renderer.py:  470: printSegment: test result: ok. 5 passed; 0 failed
+   DEBUG: 2025-12-03 21:00:18,546:      pdf_renderer.py:  470: printSegment: Tests de Carga con k6
+   DEBUG: 2025-12-03 21:00:18,547:      pdf_renderer.py:  470: printSegment: Instalación de k6
+   DEBUG: 2025-12-03 21:00:18,548:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:18,550:      pdf_renderer.py:  470: printSegment: # macOS
+   DEBUG: 2025-12-03 21:00:18,551:      pdf_renderer.py:  470: printSegment: brew install k6
+   DEBUG: 2025-12-03 21:00:18,552:      pdf_renderer.py:  470: printSegment: # Ubuntu/Debian
+   DEBUG: 2025-12-03 21:00:18,554:      pdf_renderer.py:  470: printSegment: sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 \
+   DEBUG: 2025-12-03 21:00:18,555:      pdf_renderer.py:  470: printSegment:   --recv-keys C5AD17C747E3415A3642D57D77C6C491D6AC1D69
+   DEBUG: 2025-12-03 21:00:18,557:      pdf_renderer.py:  470: printSegment: echo "deb https://dl.k6.io/deb stable main" | \
+   DEBUG: 2025-12-03 21:00:18,558:      pdf_renderer.py:  470: printSegment:   sudo tee /etc/apt/sources.list.d/k6.list
+   DEBUG: 2025-12-03 21:00:18,560:      pdf_renderer.py:  470: printSegment: sudo apt-get update
+   DEBUG: 2025-12-03 21:00:18,561:      pdf_renderer.py:  470: printSegment: sudo apt-get install k6
+   DEBUG: 2025-12-03 21:00:18,563:      pdf_renderer.py:  470: printSegment: # Windows
+   DEBUG: 2025-12-03 21:00:18,572:      pdf_renderer.py:  470: printSegment: choco install k6
+   DEBUG: 2025-12-03 21:00:18,574:      pdf_renderer.py:  470: printSegment: Ejecutar Pruebas de Carga
+   DEBUG: 2025-12-03 21:00:18,576:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:18,577:      pdf_renderer.py:  470: printSegment: # Prueba básica de carga incremental
+   DEBUG: 2025-12-03 21:00:18,578:      pdf_renderer.py:  470: printSegment: k6 run tests/load_test.js
+   DEBUG: 2025-12-03 21:00:18,580:      pdf_renderer.py:  470: printSegment: # Prueba de alto rendimiento (60s, 5 VUs, objetivo 5000+ eps)
+   DEBUG: 2025-12-03 21:00:18,581:      pdf_renderer.py:  470: printSegment: k6 run tests/throughput_test.js
+   DEBUG: 2025-12-03 21:00:18,582:      pdf_renderer.py:  470: printSegment: # Configuración personalizada
+   DEBUG: 2025-12-03 21:00:18,584:      pdf_renderer.py:  470: printSegment: k6 run --vus 10 --duration 120s tests/load_test.js
+   DEBUG: 2025-12-03 21:00:18,585:      pdf_renderer.py:  470: printSegment: Escenarios Implementados
+   DEBUG: 2025-12-03 21:00:18,586:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:18,587:      pdf_renderer.py:  470: printSegment: 1. Load Test (
+   DEBUG: 2025-12-03 21:00:18,588:      pdf_renderer.py:  470: printSegment: load_test.js
+   DEBUG: 2025-12-03 21:00:18,589:      pdf_renderer.py:  470: printSegment: )
+   DEBUG: 2025-12-03 21:00:18,590:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:18,591:      pdf_renderer.py:  470: printSegment: Incremento gradual de carga para identificar puntos de saturación:
+   DEBUG: 2025-12-03 21:00:18,592:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,594:      pdf_renderer.py:  470: printSegment: Fase 1: Warmup (10s, 1 VU)
+   DEBUG: 2025-12-03 21:00:18,595:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,596:      pdf_renderer.py:  470: printSegment: Fase 2: Ramp-up (30s, 1→5 VUs)
+   DEBUG: 2025-12-03 21:00:18,597:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,598:      pdf_renderer.py:  470: printSegment: Fase 3: Steady (60s, 5 VUs)
+   DEBUG: 2025-12-03 21:00:18,599:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,600:      pdf_renderer.py:  470: printSegment: Fase 4: Peak (30s, 10 VUs)
+   DEBUG: 2025-12-03 21:00:18,601:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,603:      pdf_renderer.py:  470: printSegment: Fase 5: Cooldown (20s, 10→1 VUs)
+   DEBUG: 2025-12-03 21:00:18,604:      pdf_renderer.py:  470: printSegment: 2. Throughput Test (
+   DEBUG: 2025-12-03 21:00:18,605:      pdf_renderer.py:  470: printSegment: throughput_test.js
+   DEBUG: 2025-12-03 21:00:18,606:      pdf_renderer.py:  470: printSegment: )
+   DEBUG: 2025-12-03 21:00:18,607:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:18,608:      pdf_renderer.py:  470: printSegment: Prueba de estrés con alta concurrencia:
+   DEBUG: 2025-12-03 21:00:18,609:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,611:      pdf_renderer.py:  470: printSegment: Fase 1: Ramp-up (10s, 1→5 VUs)
+   DEBUG: 2025-12-03 21:00:18,612:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,613:      pdf_renderer.py:  470: printSegment: Fase 2: Sustained load (60s, 5 VUs)
+   DEBUG: 2025-12-03 21:00:18,614:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,616:      pdf_renderer.py:  470: printSegment: Fase 3: Ramp-down (10s, 5→1 VUs)
+   DEBUG: 2025-12-03 21:00:18,617:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,618:      pdf_renderer.py:  470: printSegment: Batch size: 100 eventos por request
+   DEBUG: 2025-12-03 21:00:18,619:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,621:      pdf_renderer.py:  470: printSegment: Objetivo: >5000 eventos/segundo
+   DEBUG: 2025-12-03 21:00:18,622:      pdf_renderer.py:  470: printSegment: Métricas Monitoreadas
+   DEBUG: 2025-12-03 21:00:18,623:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:18,624:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,625:      pdf_renderer.py:  470: printSegment: http_req_duration
+   DEBUG: 2025-12-03 21:00:18,627:      pdf_renderer.py:  470: printSegment: : Latencia de requests (p50, p95, p99)
+   DEBUG: 2025-12-03 21:00:18,628:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,629:      pdf_renderer.py:  470: printSegment: http_req_failed
+   DEBUG: 2025-12-03 21:00:18,630:      pdf_renderer.py:  470: printSegment: : Tasa de fallos
+   DEBUG: 2025-12-03 21:00:18,631:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,633:      pdf_renderer.py:  470: printSegment: topology_submit_success
+   DEBUG: 2025-12-03 21:00:18,634:      pdf_renderer.py:  470: printSegment: : % éxito en submit
+   DEBUG: 2025-12-03 21:00:18,635:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,637:      pdf_renderer.py:  470: printSegment: ingest_success
+   DEBUG: 2025-12-03 21:00:18,638:      pdf_renderer.py:  470: printSegment: : % éxito en ingesta
+   DEBUG: 2025-12-03 21:00:18,639:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,640:      pdf_renderer.py:  470: printSegment: events_processed
+   DEBUG: 2025-12-03 21:00:18,642:      pdf_renderer.py:  470: printSegment: : Total de eventos procesados
+   DEBUG: 2025-12-03 21:00:18,643:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,644:      pdf_renderer.py:  470: printSegment: throughput_eps
+   DEBUG: 2025-12-03 21:00:18,645:      pdf_renderer.py:  470: printSegment: : Eventos por segundo
+   DEBUG: 2025-12-03 21:00:18,647:      pdf_renderer.py:  470: printSegment: Resultados de Tests de Carga
+   DEBUG: 2025-12-03 21:00:18,648:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:18,650:      pdf_renderer.py:  470: printSegment: Los tests de carga demuestran rendimiento satisfactorio bajo alta concurrencia:
+   DEBUG: 2025-12-03 21:00:18,651:      pdf_renderer.py:  470: printSegment: Load Test Results
+   DEBUG: 2025-12-03 21:00:18,653:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:18,655:      pdf_renderer.py:  470: printSegment: scenarios: (100.00%) 1 scenario, 10 max VUs, 3m0s max duration
+   DEBUG: 2025-12-03 21:00:18,656:      pdf_renderer.py:  470: printSegment: default: Up to 10 looping VUs for 2m30s over 5 stages
+   DEBUG: 2025-12-03 21:00:18,658:      pdf_renderer.py:  470: printSegment: ✓ topology submission successful
+   DEBUG: 2025-12-03 21:00:18,674:      pdf_renderer.py:  470: printSegment: ✓ ingestion accepted
+   DEBUG: 2025-12-03 21:00:18,676:      pdf_renderer.py:  470: printSegment: ✓ status retrieved
+   DEBUG: 2025-12-03 21:00:18,678:      pdf_renderer.py:  470: printSegment: checks.........................: 100.00% ✓ 4523   ✗ 0
+   DEBUG: 2025-12-03 21:00:18,694:      pdf_renderer.py:  470: printSegment: events_processed...............: 226150  1507/s
+   DEBUG: 2025-12-03 21:00:18,696:      pdf_renderer.py:  470: printSegment: http_req_duration..............: avg=45ms  p95=120ms  p99=180ms
+   DEBUG: 2025-12-03 21:00:18,698:      pdf_renderer.py:  470: printSegment: http_req_failed................: 0.00%   ✓ 0      ✗ 4523
+   DEBUG: 2025-12-03 21:00:18,700:      pdf_renderer.py:  470: printSegment: ingest_success.................: 100.00% ✓ 3890   ✗ 0
+   DEBUG: 2025-12-03 21:00:18,701:      pdf_renderer.py:  470: printSegment: throughput_eps.................: 1507.67 avg
+   DEBUG: 2025-12-03 21:00:18,713:      pdf_renderer.py:  470: printSegment: topology_submit_success........: 100.00% ✓ 633    ✗ 0
+   DEBUG: 2025-12-03 21:00:18,715:      pdf_renderer.py:  470: printSegment: Throughput Test Results
+   DEBUG: 2025-12-03 21:00:18,716:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:18,718:      pdf_renderer.py:  470: printSegment: scenarios: (100.00%) 1 scenario, 5 max VUs, 1m30s max duration
+   DEBUG: 2025-12-03 21:00:18,720:      pdf_renderer.py:  470: printSegment: default: Up to 5 looping VUs for 1m20s over 3 stages
+   DEBUG: 2025-12-03 21:00:18,722:      pdf_renderer.py:  470: printSegment: ✓ topology submission successful
+   DEBUG: 2025-12-03 21:00:18,723:      pdf_renderer.py:  470: printSegment: ✓ ingestion accepted (batch of 100)
+   DEBUG: 2025-12-03 21:00:18,724:      pdf_renderer.py:  470: printSegment: checks.........................: 100.00% ✓ 892    ✗ 0
+   DEBUG: 2025-12-03 21:00:18,726:      pdf_renderer.py:  470: printSegment: events_processed...............: 534000  6675/s
+   DEBUG: 2025-12-03 21:00:18,727:      pdf_renderer.py:  470: printSegment: http_req_duration..............: avg=89ms  p95=210ms  p99=320ms
+   DEBUG: 2025-12-03 21:00:18,729:      pdf_renderer.py:  470: printSegment: http_req_failed................: 0.00%   ✓ 0      ✗ 892
+   DEBUG: 2025-12-03 21:00:18,731:      pdf_renderer.py:  470: printSegment: ingest_success.................: 100.00% ✓ 800    ✗ 0
+   DEBUG: 2025-12-03 21:00:18,734:      pdf_renderer.py:  470: printSegment: throughput_eps.................: 6675.00 avg
+   DEBUG: 2025-12-03 21:00:18,737:      pdf_renderer.py:  470: printSegment: Conclusiones
+   DEBUG: 2025-12-03 21:00:18,739:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:18,741:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,745:      pdf_renderer.py:  470: printSegment: El sistema mantiene 0% de fallos bajo carga sostenida
+   DEBUG: 2025-12-03 21:00:18,746:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,749:      pdf_renderer.py:  470: printSegment: Latencia p95 permanece bajo 210ms incluso con 5 VUs concurrentes
+   DEBUG: 2025-12-03 21:00:18,750:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,753:      pdf_renderer.py:  470: printSegment: Throughput alcanza 6675 eps con batches de 100 eventos
+   DEBUG: 2025-12-03 21:00:18,754:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,756:      pdf_renderer.py:  470: printSegment: El sistema es estable durante pruebas de 2.5 minutos con picos de 10 VUs
+   DEBUG: 2025-12-03 21:00:18,758:      pdf_renderer.py:  470: printSegment: Rendimiento y Benchmarks
+   DEBUG: 2025-12-03 21:00:18,760:      pdf_renderer.py:  470: printSegment: Suite de Benchmarking
+   DEBUG: 2025-12-03 21:00:18,763:      pdf_renderer.py:  470: printSegment: El proyecto incluye un sistema completo de benchmarking automatizado que evalúa el rendimiento en múltiples
+   DEBUG: 2025-12-03 21:00:18,765:      pdf_renderer.py:  470: printSegment: escenarios realistas.
+   DEBUG: 2025-12-03 21:00:18,766:      pdf_renderer.py:  470: printSegment: Ejecutar Benchmarks
+   DEBUG: 2025-12-03 21:00:18,767:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:18,768:      pdf_renderer.py:  470: printSegment: # Suite completa de benchmarks
+   DEBUG: 2025-12-03 21:00:18,770:      pdf_renderer.py:  470: printSegment: make benchmark
+   DEBUG: 2025-12-03 21:00:18,771:      pdf_renderer.py:  470: printSegment: # O manualmente
+   DEBUG: 2025-12-03 21:00:18,772:      pdf_renderer.py:  470: printSegment: ./scripts/benchmark.sh
+   DEBUG: 2025-12-03 21:00:18,773:      pdf_renderer.py:  470: printSegment: Proceso de Benchmarking
+   DEBUG: 2025-12-03 21:00:18,774:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:18,776:      pdf_renderer.py:  470: printSegment:  1 
+   DEBUG: 2025-12-03 21:00:18,777:      pdf_renderer.py:  470: printSegment: Compilar binarios de release (
+   DEBUG: 2025-12-03 21:00:18,778:      pdf_renderer.py:  470: printSegment: --release
+   DEBUG: 2025-12-03 21:00:18,779:      pdf_renderer.py:  470: printSegment: )
+   DEBUG: 2025-12-03 21:00:18,780:      pdf_renderer.py:  470: printSegment:  2 
+   DEBUG: 2025-12-03 21:00:18,782:      pdf_renderer.py:  470: printSegment: Iniciar master + 2 workers
+   DEBUG: 2025-12-03 21:00:18,783:      pdf_renderer.py:  470: printSegment:  3 
+   DEBUG: 2025-12-03 21:00:18,784:      pdf_renderer.py:  470: printSegment: Ejecutar 3 escenarios de prueba con k6
+   DEBUG: 2025-12-03 21:00:18,786:      pdf_renderer.py:  470: printSegment:  4 
+   DEBUG: 2025-12-03 21:00:18,787:      pdf_renderer.py:  470: printSegment: Recopilar métricas de sistema (CPU, memoria)
+   DEBUG: 2025-12-03 21:00:18,789:      pdf_renderer.py:  470: printSegment:  5 
+   DEBUG: 2025-12-03 21:00:18,790:      pdf_renderer.py:  470: printSegment: Generar reporte en 
+   DEBUG: 2025-12-03 21:00:18,791:      pdf_renderer.py:  470: printSegment: benchmarks/REPORT.md
+   DEBUG: 2025-12-03 21:00:18,792:      pdf_renderer.py:  470: printSegment:  6 
+   DEBUG: 2025-12-03 21:00:18,794:      pdf_renderer.py:  470: printSegment: Cleanup automático de procesos
+   DEBUG: 2025-12-03 21:00:18,796:      pdf_renderer.py:  470: printSegment: Escenarios de Benchmark
+   DEBUG: 2025-12-03 21:00:18,797:      pdf_renderer.py:  470: printSegment: 1. Single Topology Performance (30s)
+   DEBUG: 2025-12-03 21:00:18,798:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:18,800:      pdf_renderer.py:  470: printSegment: Mide el rendimiento de un pipeline individual bajo carga constante:
+   DEBUG: 2025-12-03 21:00:18,802:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,803:      pdf_renderer.py:  470: printSegment: Configuración: 1 topología, 1 VU, batches de 50 eventos
+   DEBUG: 2025-12-03 21:00:18,805:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,806:      pdf_renderer.py:  470: printSegment: Objetivo: Establecer baseline de throughput por topología
+   DEBUG: 2025-12-03 21:00:18,808:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,809:      pdf_renderer.py:  470: printSegment: Métricas clave: Events/s, latencia p95/p99
+   DEBUG: 2025-12-03 21:00:18,820:      pdf_renderer.py:  470: printSegment: 2. Multi-Topology Load Distribution (30s)
+   DEBUG: 2025-12-03 21:00:18,822:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:18,823:      pdf_renderer.py:  470: printSegment: Evalúa el balanceo de carga del scheduler:
+   DEBUG: 2025-12-03 21:00:18,824:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,826:      pdf_renderer.py:  470: printSegment: Configuración: 5 topologías, 5 VUs concurrentes
+   DEBUG: 2025-12-03 21:00:18,827:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,828:      pdf_renderer.py:  470: printSegment: Objetivo: Validar distribución equitativa entre workers
+   DEBUG: 2025-12-03 21:00:18,829:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,830:      pdf_renderer.py:  470: printSegment: Métricas clave: Distribución de topologías, CPU por worker
+   DEBUG: 2025-12-03 21:00:18,832:      pdf_renderer.py:  470: printSegment: 3. High Throughput Stress Test (60s)
+   DEBUG: 2025-12-03 21:00:18,833:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:18,835:      pdf_renderer.py:  470: printSegment: Prueba de capacidad máxima del sistema:
+   DEBUG: 2025-12-03 21:00:18,836:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,837:      pdf_renderer.py:  470: printSegment: Configuración: 1 topología, 5 VUs, batches de 100 eventos
+   DEBUG: 2025-12-03 21:00:18,838:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,839:      pdf_renderer.py:  470: printSegment: Objetivo: Identificar límites de throughput
+   DEBUG: 2025-12-03 21:00:18,840:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,842:      pdf_renderer.py:  470: printSegment: Métricas clave: Peak events/s, degradación de latencia
+   DEBUG: 2025-12-03 21:00:18,843:      pdf_renderer.py:  470: printSegment: Resultados Esperados
+   DEBUG: 2025-12-03 21:00:18,845:      pdf_renderer.py:  470: printSegment: En hardware moderno (4 cores, 8GB RAM):
+   DEBUG: 2025-12-03 21:00:18,846:      pdf_renderer.py:  470: printSegment: | Métrica                     | Valor Esperado   | Observado |
+   DEBUG: 2025-12-03 21:00:18,847:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2025-12-03 21:00:18,849:      pdf_renderer.py:  470: printSegment: | --------------------------- | ---------------- | --------- |
+   DEBUG: 2025-12-03 21:00:18,850:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2025-12-03 21:00:18,854:      pdf_renderer.py:  470: printSegment: | Throughput
+   DEBUG: 2025-12-03 21:00:18,856:      pdf_renderer.py:  470: printSegment: sostenido        | 5,000-10,000 eps | 6,675 eps |
+   DEBUG: 2025-12-03 21:00:18,857:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2025-12-03 21:00:18,858:      pdf_renderer.py:  470: printSegment: | Latencia p95 (ingesta)      | 
+   DEBUG: 2025-12-03 21:00:18,859:      pdf_renderer.py:  470: printSegment: <
+   DEBUG: 2025-12-03 21:00:18,860:      pdf_renderer.py:  470: printSegment:  500ms          | 210ms     |
+   DEBUG: 2025-12-03 21:00:18,861:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2025-12-03 21:00:18,864:      pdf_renderer.py:  470: printSegment: | Latencia p99
+   DEBUG: 2025-12-03 21:00:18,865:      pdf_renderer.py:  470: printSegment: (ingesta)      | 
+   DEBUG: 2025-12-03 21:00:18,866:      pdf_renderer.py:  470: printSegment: <
+   DEBUG: 2025-12-03 21:00:18,868:      pdf_renderer.py:  470: printSegment:  1000ms         | 320ms     |
+   DEBUG: 2025-12-03 21:00:18,869:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2025-12-03 21:00:18,870:      pdf_renderer.py:  470: printSegment: | CPU por worker (carga alta) | 
+   DEBUG: 2025-12-03 21:00:18,871:      pdf_renderer.py:  470: printSegment: <
+   DEBUG: 2025-12-03 21:00:18,872:      pdf_renderer.py:  470: printSegment:  60%            | 45%       |
+   DEBUG: 2025-12-03 21:00:18,873:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2025-12-03 21:00:18,876:      pdf_renderer.py:  470: printSegment: | Memoria por
+   DEBUG: 2025-12-03 21:00:18,877:      pdf_renderer.py:  470: printSegment: worker          | 
+   DEBUG: 2025-12-03 21:00:18,878:      pdf_renderer.py:  470: printSegment: <
+   DEBUG: 2025-12-03 21:00:18,880:      pdf_renderer.py:  470: printSegment:  200MB          | 150MB     |
+   DEBUG: 2025-12-03 21:00:18,881:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2025-12-03 21:00:18,882:      pdf_renderer.py:  470: printSegment: | Tasa de fallos              | 0%               | 0%        |
+   DEBUG: 2025-12-03 21:00:18,884:      pdf_renderer.py:  470: printSegment: Optimizaciones Implementadas
+   DEBUG: 2025-12-03 21:00:18,885:      pdf_renderer.py:  470: printSegment: 1. Concurrencia Asíncrona
+   DEBUG: 2025-12-03 21:00:18,887:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:18,888:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,889:      pdf_renderer.py:  470: printSegment: Uso de Tokio para I/O no bloqueante
+   DEBUG: 2025-12-03 21:00:18,890:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,892:      pdf_renderer.py:  470: printSegment: Canales asíncronos (
+   DEBUG: 2025-12-03 21:00:18,893:      pdf_renderer.py:  470: printSegment: mpsc
+   DEBUG: 2025-12-03 21:00:18,895:      pdf_renderer.py:  470: printSegment: ) para comunicación entre componentes
+   DEBUG: 2025-12-03 21:00:18,896:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,898:      pdf_renderer.py:  470: printSegment: Tasks independientes por topología para paralelismo
+   DEBUG: 2025-12-03 21:00:18,900:      pdf_renderer.py:  470: printSegment: 2. Gestión de Memoria
+   DEBUG: 2025-12-03 21:00:18,901:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:18,902:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,904:      pdf_renderer.py:  470: printSegment: Checkpointing incremental (solo ventanas activas)
+   DEBUG: 2025-12-03 21:00:18,905:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,907:      pdf_renderer.py:  470: printSegment: Buffers de tamaño fijo (2048 eventos por canal)
+   DEBUG: 2025-12-03 21:00:18,908:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,910:      pdf_renderer.py:  470: printSegment: Reciclaje automático de recursos al cerrar topologías
+   DEBUG: 2025-12-03 21:00:18,911:      pdf_renderer.py:  470: printSegment: 3. Procesamiento Eficiente
+   DEBUG: 2025-12-03 21:00:18,913:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:18,914:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,916:      pdf_renderer.py:  470: printSegment: Evitar clonación innecesaria de eventos
+   DEBUG: 2025-12-03 21:00:18,917:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,919:      pdf_renderer.py:  470: printSegment: Procesamiento en lotes para reducir overhead de red
+   DEBUG: 2025-12-03 21:00:18,920:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,922:      pdf_renderer.py:  470: printSegment: Operadores stateless optimizados (map, filter) sin allocations extra
+   DEBUG: 2025-12-03 21:00:18,923:      pdf_renderer.py:  470: printSegment: 4. Planificación Inteligente
+   DEBUG: 2025-12-03 21:00:18,925:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:18,926:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,928:      pdf_renderer.py:  470: printSegment: Algoritmo load-aware que considera 
+   DEBUG: 2025-12-03 21:00:18,929:      pdf_renderer.py:  470: printSegment: active_topologies/slots
+   DEBUG: 2025-12-03 21:00:18,931:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,933:      pdf_renderer.py:  470: printSegment: Fallback a round-robin cuando todos los workers están saturados
+   DEBUG: 2025-12-03 21:00:18,934:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:18,936:      pdf_renderer.py:  470: printSegment: Re-balance automático al registrar nuevos workers
+   DEBUG: 2025-12-03 21:00:18,937:      pdf_renderer.py:  470: printSegment: Perfilado y Monitoreo
+   DEBUG: 2025-12-03 21:00:18,939:      pdf_renderer.py:  470: printSegment: Habilitar Logging Detallado
+   DEBUG: 2025-12-03 21:00:18,941:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:18,943:      pdf_renderer.py:  470: printSegment: RUST_LOG=debug cargo run -p worker
+   DEBUG: 2025-12-03 21:00:18,954:      pdf_renderer.py:  470: printSegment: Métricas en Tiempo Real
+   DEBUG: 2025-12-03 21:00:18,956:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:18,958:      pdf_renderer.py:  470: printSegment: # Polling cada 5 segundos
+   DEBUG: 2025-12-03 21:00:18,960:      pdf_renderer.py:  470: printSegment: watch -n 5 'curl -s http://localhost:8080/api/v1/metrics | jq'
+   DEBUG: 2025-12-03 21:00:18,961:      pdf_renderer.py:  470: printSegment: Análisis de Checkpoints
+   DEBUG: 2025-12-03 21:00:18,962:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:18,963:      pdf_renderer.py:  470: printSegment: # Ver checkpoints de una topología
+   DEBUG: 2025-12-03 21:00:18,964:      pdf_renderer.py:  470: printSegment: ls -lh state/<topology-id>/attempt-0/<operator-id>/
+   DEBUG: 2025-12-03 21:00:18,965:      pdf_renderer.py:  470: printSegment: # Inspeccionar último checkpoint
+   DEBUG: 2025-12-03 21:00:18,967:      pdf_renderer.py:  470: printSegment: cat state/<topology-id>/attempt-0/<operator-id>/checkpoint-*.json |
+   DEBUG: 2025-12-03 21:00:18,968:      pdf_renderer.py:  470: printSegment: jq
+   DEBUG: 2025-12-03 21:00:18,970:      pdf_renderer.py:  470: printSegment: Mejores Prácticas
+   DEBUG: 2025-12-03 21:00:18,972:      pdf_renderer.py:  470: printSegment: Diseño de Topologías
+   DEBUG: 2025-12-03 21:00:18,973:      pdf_renderer.py:  470: printSegment: 1. Ordenar Operadores por Selectividad
+   DEBUG: 2025-12-03 21:00:18,974:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:18,976:      pdf_renderer.py:  470: printSegment: Colocar filtros al principio para reducir volumen temprano:
+   DEBUG: 2025-12-03 21:00:18,977:      pdf_renderer.py:  470: printSegment: {
+   DEBUG: 2025-12-03 21:00:18,978:      pdf_renderer.py:  470: printSegment:   "operators": [
+   DEBUG: 2025-12-03 21:00:18,980:      pdf_renderer.py:  470: printSegment:     {"id": "filter-errors", "kind": {"filter": ...}},
+   DEBUG: 2025-12-03 21:00:18,982:      pdf_renderer.py:  470: printSegment:     {"id": "map-lowercase", "kind": {"map": ...}},
+   DEBUG: 2025-12-03 21:00:18,983:      pdf_renderer.py:  470: printSegment:     {"id": "window-agg", "kind": {"window_aggregate": ...}}
+   DEBUG: 2025-12-03 21:00:18,984:      pdf_renderer.py:  470: printSegment:   ]
+   DEBUG: 2025-12-03 21:00:18,985:      pdf_renderer.py:  470: printSegment: }
+   DEBUG: 2025-12-03 21:00:18,987:      pdf_renderer.py:  470: printSegment: 2. Particionar con KeyBy Antes de Windows
+   DEBUG: 2025-12-03 21:00:18,988:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:18,989:      pdf_renderer.py:  470: printSegment: Siempre usar 
+   DEBUG: 2025-12-03 21:00:18,990:      pdf_renderer.py:  470: printSegment: key_by
+   DEBUG: 2025-12-03 21:00:18,991:      pdf_renderer.py:  470: printSegment:  antes de 
+   DEBUG: 2025-12-03 21:00:18,992:      pdf_renderer.py:  470: printSegment: window_aggregate
+   DEBUG: 2025-12-03 21:00:18,993:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:18,994:      pdf_renderer.py:  470: printSegment: {
+   DEBUG: 2025-12-03 21:00:18,996:      pdf_renderer.py:  470: printSegment:   "operators": [
+   DEBUG: 2025-12-03 21:00:18,997:      pdf_renderer.py:  470: printSegment:     {"id": "key", "kind": {"key_by": {"field": "user_id"}}},
+   DEBUG: 2025-12-03 21:00:18,999:      pdf_renderer.py:  470: printSegment:     {"id": "window", "kind": {"window_aggregate": {...}}}
+   DEBUG: 2025-12-03 21:00:19,000:      pdf_renderer.py:  470: printSegment:   ]
+   DEBUG: 2025-12-03 21:00:19,001:      pdf_renderer.py:  470: printSegment: }
+   DEBUG: 2025-12-03 21:00:19,003:      pdf_renderer.py:  470: printSegment: 3. Configurar Checkpointing Apropiado
+   DEBUG: 2025-12-03 21:00:19,004:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:19,005:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:19,007:      pdf_renderer.py:  470: printSegment: Windows de corta duración (
+   DEBUG: 2025-12-03 21:00:19,008:      pdf_renderer.py:  470: printSegment: <
+   DEBUG: 2025-12-03 21:00:19,010:      pdf_renderer.py:  470: printSegment:  1 min): checkpoint cada 5-10s
+   DEBUG: 2025-12-03 21:00:19,011:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:19,013:      pdf_renderer.py:  470: printSegment: Windows de larga duración (> 5 min): checkpoint cada 30-60s
+   DEBUG: 2025-12-03 21:00:19,014:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:19,016:      pdf_renderer.py:  470: printSegment: Balancear overhead de I/O vs. datos perdidos en fallo
+   DEBUG: 2025-12-03 21:00:19,018:      pdf_renderer.py:  470: printSegment: 4. Evitar Ventanas Excesivamente Grandes
+   DEBUG: 2025-12-03 21:00:19,019:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:19,021:      pdf_renderer.py:  470: printSegment: Ventanas de varias horas pueden consumir memoria significativa. Considerar:
+   DEBUG: 2025-12-03 21:00:19,022:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:19,024:      pdf_renderer.py:  470: printSegment: Usar ventanas más pequeñas con post-agregación
+   DEBUG: 2025-12-03 21:00:19,025:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:19,027:      pdf_renderer.py:  470: printSegment: Aumentar frecuencia de checkpoint
+   DEBUG: 2025-12-03 21:00:19,028:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:19,029:      pdf_renderer.py:  470: printSegment: Monitorear 
+   DEBUG: 2025-12-03 21:00:19,031:      pdf_renderer.py:  470: printSegment: queue_depth
+   DEBUG: 2025-12-03 21:00:19,032:      pdf_renderer.py:  470: printSegment:  en métricas
+   DEBUG: 2025-12-03 21:00:19,034:      pdf_renderer.py:  470: printSegment: Operación en Producción
+   DEBUG: 2025-12-03 21:00:19,044:      pdf_renderer.py:  470: printSegment: 1. Dimensionar Workers Apropiadamente
+   DEBUG: 2025-12-03 21:00:19,046:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:19,048:      pdf_renderer.py:  470: printSegment: # Workers con alta capacidad para topologías complejas
+   DEBUG: 2025-12-03 21:00:19,050:      pdf_renderer.py:  470: printSegment: --slots 8
+   DEBUG: 2025-12-03 21:00:19,052:      pdf_renderer.py:  470: printSegment: # Workers especializados para topologías simples
+   DEBUG: 2025-12-03 21:00:19,052:      pdf_renderer.py:  470: printSegment: --slots 4
+   DEBUG: 2025-12-03 21:00:19,054:      pdf_renderer.py:  470: printSegment: 2. Monitorear Métricas Críticas
+   DEBUG: 2025-12-03 21:00:19,055:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:19,056:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:19,057:      pdf_renderer.py:  470: printSegment: queue_depth
+   DEBUG: 2025-12-03 21:00:19,058:      pdf_renderer.py:  470: printSegment: : Si crece constantemente, el sistema está saturado
+   DEBUG: 2025-12-03 21:00:19,059:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:19,060:      pdf_renderer.py:  470: printSegment: throughput_eps
+   DEBUG: 2025-12-03 21:00:19,062:      pdf_renderer.py:  470: printSegment: : Debe mantenerse estable bajo carga constante
+   DEBUG: 2025-12-03 21:00:19,062:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:19,064:      pdf_renderer.py:  470: printSegment: cpu_pct
+   DEBUG: 2025-12-03 21:00:19,065:      pdf_renderer.py:  470: printSegment: : Valores >80% indican necesidad de escalar
+   DEBUG: 2025-12-03 21:00:19,066:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:19,068:      pdf_renderer.py:  470: printSegment: attempt
+   DEBUG: 2025-12-03 21:00:19,069:      pdf_renderer.py:  470: printSegment: : Valores >0 indican fallos recientes
+   DEBUG: 2025-12-03 21:00:19,070:      pdf_renderer.py:  470: printSegment: 3. Backup de Estado Periódico
+   DEBUG: 2025-12-03 21:00:19,071:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:19,073:      pdf_renderer.py:  470: printSegment: # Backup del estado del master
+   DEBUG: 2025-12-03 21:00:19,074:      pdf_renderer.py:  470: printSegment: cp state/master_state.json backups/master_state_$(date
+   DEBUG: 2025-12-03 21:00:19,076:      pdf_renderer.py:  470: printSegment: +%Y%m%d_%H%M%S).json
+   DEBUG: 2025-12-03 21:00:19,077:      pdf_renderer.py:  470: printSegment: # Backup de checkpoints de workers
+   DEBUG: 2025-12-03 21:00:19,079:      pdf_renderer.py:  470: printSegment: tar -czf backups/worker_state_$(date +%Y%m%d_%H%M%S).tar.gz state/
+   DEBUG: 2025-12-03 21:00:19,081:      pdf_renderer.py:  470: printSegment: 4. Rotación de Logs y Checkpoints
+   DEBUG: 2025-12-03 21:00:19,083:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:19,084:      pdf_renderer.py:  470: printSegment: Los checkpoints se acumulan indefinidamente. Implementar rotación:
+   DEBUG: 2025-12-03 21:00:19,086:      pdf_renderer.py:  470: printSegment: # Mantener solo los últimos 10 checkpoints por operador
+   DEBUG: 2025-12-03 21:00:19,090:      pdf_renderer.py:  470: printSegment: find state/ -name "checkpoint-*.json" | sort -r | tail -n +11 |
+   DEBUG: 2025-12-03 21:00:19,091:      pdf_renderer.py:  470: printSegment: xargs rm -f
+   DEBUG: 2025-12-03 21:00:19,093:      pdf_renderer.py:  470: printSegment: 5. Restart Graceful
+   DEBUG: 2025-12-03 21:00:19,094:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:19,096:      pdf_renderer.py:  470: printSegment: Para actualizar el sistema sin perder estado:
+   DEBUG: 2025-12-03 21:00:19,097:      pdf_renderer.py:  470: printSegment:  1 
+   DEBUG: 2025-12-03 21:00:19,099:      pdf_renderer.py:  470: printSegment: Cancelar topologías activas (
+   DEBUG: 2025-12-03 21:00:19,100:      pdf_renderer.py:  470: printSegment: POST /topologies/:id/cancel
+   DEBUG: 2025-12-03 21:00:19,101:      pdf_renderer.py:  470: printSegment: )
+   DEBUG: 2025-12-03 21:00:19,102:      pdf_renderer.py:  470: printSegment:  2 
+   DEBUG: 2025-12-03 21:00:19,104:      pdf_renderer.py:  470: printSegment: Detener workers (Ctrl+C, esperan a terminar pipelines)
+   DEBUG: 2025-12-03 21:00:19,105:      pdf_renderer.py:  470: printSegment:  3 
+   DEBUG: 2025-12-03 21:00:19,107:      pdf_renderer.py:  470: printSegment: Detener master (Ctrl+C, persiste estado)
+   DEBUG: 2025-12-03 21:00:19,108:      pdf_renderer.py:  470: printSegment:  4 
+   DEBUG: 2025-12-03 21:00:19,109:      pdf_renderer.py:  470: printSegment: Actualizar binarios
+   DEBUG: 2025-12-03 21:00:19,110:      pdf_renderer.py:  470: printSegment:  5 
+   DEBUG: 2025-12-03 21:00:19,113:      pdf_renderer.py:  470: printSegment: Reiniciar master (recarga desde 
+   DEBUG: 2025-12-03 21:00:19,115:      pdf_renderer.py:  470: printSegment: master_state.json
+   DEBUG: 2025-12-03 21:00:19,116:      pdf_renderer.py:  470: printSegment: )
+   DEBUG: 2025-12-03 21:00:19,117:      pdf_renderer.py:  470: printSegment:  6 
+   DEBUG: 2025-12-03 21:00:19,119:      pdf_renderer.py:  470: printSegment: Reiniciar workers (se re-registran automáticamente)
+   DEBUG: 2025-12-03 21:00:19,120:      pdf_renderer.py:  470: printSegment:  7 
+   DEBUG: 2025-12-03 21:00:19,122:      pdf_renderer.py:  470: printSegment: Re-enviar topologías (el estado se restaurará desde checkpoints)
+   DEBUG: 2025-12-03 21:00:19,124:      pdf_renderer.py:  470: printSegment: Depuración de Problemas
+   DEBUG: 2025-12-03 21:00:19,127:      pdf_renderer.py:  470: printSegment: Topología en estado Accepted pero nunca Running
+   DEBUG: 2025-12-03 21:00:19,129:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:19,130:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:19,132:      pdf_renderer.py:  470: printSegment: Verificar que al menos un worker esté registrado: 
+   DEBUG: 2025-12-03 21:00:19,133:      pdf_renderer.py:  470: printSegment: GET /api/v1/metrics
+   DEBUG: 2025-12-03 21:00:19,134:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:19,136:      pdf_renderer.py:  470: printSegment: Revisar logs del master para errores de dispatch
+   DEBUG: 2025-12-03 21:00:19,137:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:19,139:      pdf_renderer.py:  470: printSegment: Verificar conectividad de red entre master y workers
+   DEBUG: 2025-12-03 21:00:19,141:      pdf_renderer.py:  470: printSegment: Eventos no se procesan (queue
+   DEBUG: 2025-12-03 21:00:19,142:      pdf_renderer.py:  470: printSegment: _
+   DEBUG: 2025-12-03 21:00:19,143:      pdf_renderer.py:  470: printSegment: depth crece)
+   DEBUG: 2025-12-03 21:00:19,144:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:19,146:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:19,148:      pdf_renderer.py:  470: printSegment: Verificar logs del worker para errores en operadores
+   DEBUG: 2025-12-03 21:00:19,150:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:19,152:      pdf_renderer.py:  470: printSegment: Revisar que los eventos tengan el campo 
+   DEBUG: 2025-12-03 21:00:19,153:      pdf_renderer.py:  470: printSegment: timestamp
+   DEBUG: 2025-12-03 21:00:19,155:      pdf_renderer.py:  470: printSegment:  requerido
+   DEBUG: 2025-12-03 21:00:19,156:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:19,158:      pdf_renderer.py:  470: printSegment: Aumentar 
+   DEBUG: 2025-12-03 21:00:19,160:      pdf_renderer.py:  470: printSegment: checkpoint_interval_ms
+   DEBUG: 2025-12-03 21:00:19,161:      pdf_renderer.py:  470: printSegment:  para reducir overhead de I/O
+   DEBUG: 2025-12-03 21:00:19,163:      pdf_renderer.py:  470: printSegment: Worker marcado como DOWN incorrectamente
+   DEBUG: 2025-12-03 21:00:19,164:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:19,175:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:19,177:      pdf_renderer.py:  470: printSegment: Verificar latencia de red entre worker y master
+   DEBUG: 2025-12-03 21:00:19,179:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:19,180:      pdf_renderer.py:  470: printSegment: Aumentar timeout de heartbeat en 
+   DEBUG: 2025-12-03 21:00:19,182:      pdf_renderer.py:  470: printSegment: spawn_watchdog
+   DEBUG: 2025-12-03 21:00:19,184:      pdf_renderer.py:  470: printSegment:  si la red es inestable
+   DEBUG: 2025-12-03 21:00:19,185:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:19,186:      pdf_renderer.py:  470: printSegment: Revisar carga de CPU del worker (>90% puede causar retrasos)
+   DEBUG: 2025-12-03 21:00:19,187:      pdf_renderer.py:  470: printSegment: Checkpoints no se restauran al re-desplegar
+   DEBUG: 2025-12-03 21:00:19,189:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:19,190:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:19,192:      pdf_renderer.py:  470: printSegment: Verificar que el 
+   DEBUG: 2025-12-03 21:00:19,193:      pdf_renderer.py:  470: printSegment: attempt
+   DEBUG: 2025-12-03 21:00:19,194:      pdf_renderer.py:  470: printSegment:  number coincida con el directorio en disco
+   DEBUG: 2025-12-03 21:00:19,195:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:19,196:      pdf_renderer.py:  470: printSegment: Revisar permisos de archivos en 
+   DEBUG: 2025-12-03 21:00:19,197:      pdf_renderer.py:  470: printSegment: state/
+   DEBUG: 2025-12-03 21:00:19,198:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:19,200:      pdf_renderer.py:  470: printSegment: Inspeccionar logs del worker al inicializar 
+   DEBUG: 2025-12-03 21:00:19,201:      pdf_renderer.py:  470: printSegment: WindowOperator
+   DEBUG: 2025-12-03 21:00:19,203:      pdf_renderer.py:  470: printSegment: Arquitectura de Persistencia
+   DEBUG: 2025-12-03 21:00:19,205:      pdf_renderer.py:  470: printSegment: Estructura de Directorios
+   DEBUG: 2025-12-03 21:00:19,207:      pdf_renderer.py:  470: printSegment: state/
+   DEBUG: 2025-12-03 21:00:19,209:      pdf_renderer.py:  470: printSegment: ├── master_state.json                    # Estado del master
+   DEBUG: 2025-12-03 21:00:19,210:      pdf_renderer.py:  470: printSegment: └── <topology-id>/
+   DEBUG: 2025-12-03 21:00:19,211:      pdf_renderer.py:  470: printSegment:     └── attempt-<N>/
+   DEBUG: 2025-12-03 21:00:19,213:      pdf_renderer.py:  470: printSegment:         └── <operator-id>/
+   DEBUG: 2025-12-03 21:00:19,215:      pdf_renderer.py:  470: printSegment:             ├── checkpoint-1701612000000.json
+   DEBUG: 2025-12-03 21:00:19,217:      pdf_renderer.py:  470: printSegment:             ├── checkpoint-1701612005000.json
+   DEBUG: 2025-12-03 21:00:19,218:      pdf_renderer.py:  470: printSegment:             └── checkpoint-1701612010000.json
+   DEBUG: 2025-12-03 21:00:19,220:      pdf_renderer.py:  470: printSegment: Formato de Estado del Master
+   DEBUG: 2025-12-03 21:00:19,221:      pdf_renderer.py:  470: printSegment: state/master_state.json
+   DEBUG: 2025-12-03 21:00:19,222:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:19,223:      pdf_renderer.py:  470: printSegment: {
+   DEBUG: 2025-12-03 21:00:19,224:      pdf_renderer.py:  470: printSegment:   "topologies": {
+   DEBUG: 2025-12-03 21:00:19,226:      pdf_renderer.py:  470: printSegment:     "550e8400-e29b-41d4-a716-446655440000": {
+   DEBUG: 2025-12-03 21:00:19,227:      pdf_renderer.py:  470: printSegment:       "spec": { ... },
+   DEBUG: 2025-12-03 21:00:19,228:      pdf_renderer.py:  470: printSegment:       "status": "Running",
+   DEBUG: 2025-12-03 21:00:19,230:      pdf_renderer.py:  470: printSegment:       "worker_id": "worker-1",
+   DEBUG: 2025-12-03 21:00:19,231:      pdf_renderer.py:  470: printSegment:       "metrics": {
+   DEBUG: 2025-12-03 21:00:19,232:      pdf_renderer.py:  470: printSegment:         "events_ingested": 15420,
+   DEBUG: 2025-12-03 21:00:19,233:      pdf_renderer.py:  470: printSegment:         "events_emitted": 15420,
+   DEBUG: 2025-12-03 21:00:19,235:      pdf_renderer.py:  470: printSegment:         "last_checkpoint": "2024-12-03T10:15:30Z"
+   DEBUG: 2025-12-03 21:00:19,237:      pdf_renderer.py:  470: printSegment:       },
+   DEBUG: 2025-12-03 21:00:19,238:      pdf_renderer.py:  470: printSegment:       "attempt": 0,
+   DEBUG: 2025-12-03 21:00:19,239:      pdf_renderer.py:  470: printSegment:       "last_error": null,
+   DEBUG: 2025-12-03 21:00:19,241:      pdf_renderer.py:  470: printSegment:       "last_dispatch_error": null
+   DEBUG: 2025-12-03 21:00:19,242:      pdf_renderer.py:  470: printSegment:     }
+   DEBUG: 2025-12-03 21:00:19,243:      pdf_renderer.py:  470: printSegment:   }
+   DEBUG: 2025-12-03 21:00:19,244:      pdf_renderer.py:  470: printSegment: }
+   DEBUG: 2025-12-03 21:00:19,246:      pdf_renderer.py:  470: printSegment: Recuperación ante Fallos
+   DEBUG: 2025-12-03 21:00:19,247:      pdf_renderer.py:  470: printSegment: Fallo de Worker
+   DEBUG: 2025-12-03 21:00:19,248:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:19,250:      pdf_renderer.py:  470: printSegment:  1 
+   DEBUG: 2025-12-03 21:00:19,251:      pdf_renderer.py:  470: printSegment: Master detecta falta de heartbeat (6s sin respuesta)
+   DEBUG: 2025-12-03 21:00:19,252:      pdf_renderer.py:  470: printSegment:  2 
+   DEBUG: 2025-12-03 21:00:19,254:      pdf_renderer.py:  470: printSegment: Worker marcado como 
+   DEBUG: 2025-12-03 21:00:19,255:      pdf_renderer.py:  470: printSegment: is_down: true
+   DEBUG: 2025-12-03 21:00:19,256:      pdf_renderer.py:  470: printSegment:  3 
+   DEBUG: 2025-12-03 21:00:19,258:      pdf_renderer.py:  470: printSegment: Todas las topologías del worker se re-planifican automáticamente
+   DEBUG: 2025-12-03 21:00:19,268:      pdf_renderer.py:  470: printSegment:  4 
+   DEBUG: 2025-12-03 21:00:19,269:      pdf_renderer.py:  470: printSegment: Nuevo worker recibe 
+   DEBUG: 2025-12-03 21:00:19,270:      pdf_renderer.py:  470: printSegment: TopologyDeployment
+   DEBUG: 2025-12-03 21:00:19,272:      pdf_renderer.py:  470: printSegment:  con 
+   DEBUG: 2025-12-03 21:00:19,273:      pdf_renderer.py:  470: printSegment: attempt++
+   DEBUG: 2025-12-03 21:00:19,273:      pdf_renderer.py:  470: printSegment:  5 
+   DEBUG: 2025-12-03 21:00:19,275:      pdf_renderer.py:  470: printSegment: Worker crea nuevo pipeline y restaura desde último checkpoint
+   DEBUG: 2025-12-03 21:00:19,276:      pdf_renderer.py:  470: printSegment: Fallo de Master
+   DEBUG: 2025-12-03 21:00:19,277:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:19,278:      pdf_renderer.py:  470: printSegment:  1 
+   DEBUG: 2025-12-03 21:00:19,279:      pdf_renderer.py:  470: printSegment: Estado se recarga desde 
+   DEBUG: 2025-12-03 21:00:19,280:      pdf_renderer.py:  470: printSegment: master_state.json
+   DEBUG: 2025-12-03 21:00:19,281:      pdf_renderer.py:  470: printSegment:  al reiniciar
+   DEBUG: 2025-12-03 21:00:19,282:      pdf_renderer.py:  470: printSegment:  2 
+   DEBUG: 2025-12-03 21:00:19,283:      pdf_renderer.py:  470: printSegment: Topologías en estado 
+   DEBUG: 2025-12-03 21:00:19,284:      pdf_renderer.py:  470: printSegment: Running
+   DEBUG: 2025-12-03 21:00:19,285:      pdf_renderer.py:  470: printSegment:  requieren re-conexión de workers
+   DEBUG: 2025-12-03 21:00:19,286:      pdf_renderer.py:  470: printSegment:  3 
+   DEBUG: 2025-12-03 21:00:19,287:      pdf_renderer.py:  470: printSegment: Workers se re-registran automáticamente al reconectar
+   DEBUG: 2025-12-03 21:00:19,288:      pdf_renderer.py:  470: printSegment:  4 
+   DEBUG: 2025-12-03 21:00:19,289:      pdf_renderer.py:  470: printSegment: Master marca topologías huérfanas como 
+   DEBUG: 2025-12-03 21:00:19,290:      pdf_renderer.py:  470: printSegment: Accepted
+   DEBUG: 2025-12-03 21:00:19,291:      pdf_renderer.py:  470: printSegment:  y las re-planifica
+   DEBUG: 2025-12-03 21:00:19,292:      pdf_renderer.py:  470: printSegment: Pérdida de Datos
+   DEBUG: 2025-12-03 21:00:19,293:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2025-12-03 21:00:19,294:      pdf_renderer.py:  470: printSegment: El sistema garantiza:
+   DEBUG: 2025-12-03 21:00:19,295:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:19,297:      pdf_renderer.py:  470: printSegment: Eventos persistidos en checkpoints no se pierden
+   DEBUG: 2025-12-03 21:00:19,298:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:19,300:      pdf_renderer.py:  470: printSegment: Eventos en tránsito (en canales) pueden perderse en fallo abrupto
+   DEBUG: 2025-12-03 21:00:19,301:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:19,303:      pdf_renderer.py:  470: printSegment: Window state se recupera hasta el último checkpoint (intervalo configurable)
+   DEBUG: 2025-12-03 21:00:19,305:      pdf_renderer.py:  470: printSegment: Para garantizar entrega exacta-una-vez, se requeriría:
+   DEBUG: 2025-12-03 21:00:19,307:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:19,309:      pdf_renderer.py:  470: printSegment: Message queue externo (Kafka, RabbitMQ)
+   DEBUG: 2025-12-03 21:00:19,310:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:19,312:      pdf_renderer.py:  470: printSegment: Transactional checkpointing
+   DEBUG: 2025-12-03 21:00:19,313:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:19,314:      pdf_renderer.py:  470: printSegment: Event deduplication
+   DEBUG: 2025-12-03 21:00:19,315:      pdf_renderer.py:  470: printSegment: Disclaimer
+   DEBUG: 2025-12-03 21:00:19,317:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2025-12-03 21:00:19,337:      pdf_renderer.py:  470: printSegment: Se hizo uso de inteligencia artificial para asistir en la redacción y generación de partes de este
+   DEBUG: 2025-12-03 21:00:19,343:      pdf_renderer.py:  470: printSegment: documento técnico. De igual manera, se utilizó como ayuda para el proceso de desarrollo y debugging
+   DEBUG: 2025-12-03 21:00:19,344:      pdf_renderer.py:  470: printSegment: del código fuente del proyecto.
+   DEBUG: 2025-12-03 21:00:19,354:      pdf_renderer.py:   53: 0, [1, 'Motor de Streaming Distribuido - Documentación Técnica', 1, 68.0]
+   DEBUG: 2025-12-03 21:00:19,354:      pdf_renderer.py:   53: 1, [2, 'Tabla de Contenidos', 1, 148.0]
+   DEBUG: 2025-12-03 21:00:19,354:      pdf_renderer.py:   53: 2, [2, 'Descripción General', 1, 325.6]
+   DEBUG: 2025-12-03 21:00:19,355:      pdf_renderer.py:   53: 3, [3, 'Características Principales', 1, 388.8]
+   DEBUG: 2025-12-03 21:00:19,355:      pdf_renderer.py:   53: 4, [3, 'Casos de Uso', 1, 549.6]
+   DEBUG: 2025-12-03 21:00:19,355:      pdf_renderer.py:   53: 5, [2, 'Arquitectura del Sistema', 1, 650.8]
+   DEBUG: 2025-12-03 21:00:19,355:      pdf_renderer.py:   53: 6, [3, 'Diagrama de Componentes', 1, 683.9999999999999]
+   DEBUG: 2025-12-03 21:00:19,355:      pdf_renderer.py:   53: 7, [3, 'Flujo de Procesamiento', 2, 476.4]
+   DEBUG: 2025-12-03 21:00:19,355:      pdf_renderer.py:   53: 8, [3, 'Protocolos de Comunicación', 2, 625.1999999999999]
+   DEBUG: 2025-12-03 21:00:19,355:      pdf_renderer.py:   53: 9, [4, 'API Pública del Master (puerto 8080)', 2, 653.5999999999999]
+   DEBUG: 2025-12-03 21:00:19,355:      pdf_renderer.py:   53: 10, [4, 'API Interna de Workers (puerto 9001+)', 3, 122.0]
+   DEBUG: 2025-12-03 21:00:19,355:      pdf_renderer.py:   53: 11, [2, 'Componentes Principales', 3, 212.8]
+   DEBUG: 2025-12-03 21:00:19,355:      pdf_renderer.py:   53: 12, [3, '1. Master (Coordinador)', 3, 246.0]
+   DEBUG: 2025-12-03 21:00:19,355:      pdf_renderer.py:   53: 13, [3, '2. Worker (Ejecutor)', 4, 224.4]
+   DEBUG: 2025-12-03 21:00:19,355:      pdf_renderer.py:   53: 14, [3, '3. Pipeline Engine', 5, 200.4]
+   DEBUG: 2025-12-03 21:00:19,355:      pdf_renderer.py:   53: 15, [3, '4. Window Operator', 5, 649.1999999999999]
+   DEBUG: 2025-12-03 21:00:19,355:      pdf_renderer.py:   53: 16, [3, '5. Client (CLI)', 6, 542.4]
+   DEBUG: 2025-12-03 21:00:19,355:      pdf_renderer.py:   53: 17, [2, 'Características Implementadas', 7, 194.8]
+   DEBUG: 2025-12-03 21:00:19,355:      pdf_renderer.py:   53: 18, [3, 'Persistencia del Master', 7, 228.00000000000003]
+   DEBUG: 2025-12-03 21:00:19,355:      pdf_renderer.py:   53: 19, [3, 'Métricas en Tiempo Real', 7, 364.8]
+   DEBUG: 2025-12-03 21:00:19,355:      pdf_renderer.py:   53: 20, [3, 'Checkpointing y Recuperación', 8, 344.4]
+   DEBUG: 2025-12-03 21:00:19,355:      pdf_renderer.py:   53: 21, [3, 'Gestión de Topologías', 8, 673.1999999999999]
+   DEBUG: 2025-12-03 21:00:19,355:      pdf_renderer.py:   53: 22, [2, 'Operadores Soportados', 9, 236.8]
+   DEBUG: 2025-12-03 21:00:19,356:      pdf_renderer.py:   53: 23, [3, 'Map Operator', 9, 270.0]
+   DEBUG: 2025-12-03 21:00:19,356:      pdf_renderer.py:   53: 24, [3, 'Filter Operator', 9, 544.8]
+   DEBUG: 2025-12-03 21:00:19,356:      pdf_renderer.py:   53: 25, [3, 'FlatMap Operator', 10, 218.4]
+   DEBUG: 2025-12-03 21:00:19,356:      pdf_renderer.py:   53: 26, [3, 'KeyBy Operator', 10, 469.2]
+   DEBUG: 2025-12-03 21:00:19,356:      pdf_renderer.py:   53: 27, [3, 'Window Aggregate Operator', 10, 659.9999999999999]
+   DEBUG: 2025-12-03 21:00:19,356:      pdf_renderer.py:   53: 28, [3, 'Sink Log Operator', 11, 494.4]
+   DEBUG: 2025-12-03 21:00:19,356:      pdf_renderer.py:   53: 29, [2, 'Guía de Inicio Rápido', 11, 649.5999999999999]
+   DEBUG: 2025-12-03 21:00:19,356:      pdf_renderer.py:   53: 30, [3, 'Requisitos', 11, 682.7999999999998]
+   DEBUG: 2025-12-03 21:00:19,356:      pdf_renderer.py:   53: 31, [3, 'Compilación', 12, 116.4]
+   DEBUG: 2025-12-03 21:00:19,356:      pdf_renderer.py:   53: 32, [3, 'Ejecución Local', 12, 241.20000000000002]
+   DEBUG: 2025-12-03 21:00:19,356:      pdf_renderer.py:   53: 33, [3, 'Despliegue con Docker Compose', 13, 92.4]
+   DEBUG: 2025-12-03 21:00:19,356:      pdf_renderer.py:   53: 34, [2, 'API Reference', 13, 307.6]
+   DEBUG: 2025-12-03 21:00:19,356:      pdf_renderer.py:   53: 35, [3, 'POST /api/v1/workers/register', 13, 340.8]
+   DEBUG: 2025-12-03 21:00:19,356:      pdf_renderer.py:   53: 36, [3, 'POST /api/v1/workers/:worker', 13, 543.6]
+   DEBUG: 2025-12-03 21:00:19,356:      pdf_renderer.py:   53: 37, [3, 'POST /api/v1/topologies', 14, 110.4]
+   DEBUG: 2025-12-03 21:00:19,356:      pdf_renderer.py:   53: 38, [3, 'GET /api/v1/topologies', 14, 337.2]
+   DEBUG: 2025-12-03 21:00:19,356:      pdf_renderer.py:   53: 39, [3, 'GET /api/v1/topologies/:id', 14, 593.9999999999999]
+   DEBUG: 2025-12-03 21:00:19,356:      pdf_renderer.py:   53: 40, [3, 'POST /api/v1/topologies/:id/cancel', 15, 218.4]
+   DEBUG: 2025-12-03 21:00:19,356:      pdf_renderer.py:   53: 41, [3, 'POST /api/v1/ingest', 15, 283.2]
+   DEBUG: 2025-12-03 21:00:19,357:      pdf_renderer.py:   53: 42, [3, 'GET /api/v1/metrics', 15, 533.9999999999999]
+   DEBUG: 2025-12-03 21:00:19,357:      pdf_renderer.py:   53: 43, [2, 'Testing y Validación', 16, 116.80000000000001]
+   DEBUG: 2025-12-03 21:00:19,357:      pdf_renderer.py:   53: 44, [3, 'Estructura de Pruebas', 16, 168.00000000000003]
+   DEBUG: 2025-12-03 21:00:19,357:      pdf_renderer.py:   53: 45, [3, 'Ejecutar Suite Completa', 16, 268.8]
+   DEBUG: 2025-12-03 21:00:19,357:      pdf_renderer.py:   53: 46, [3, 'Tests Unitarios', 16, 429.59999999999997]
+   DEBUG: 2025-12-03 21:00:19,357:      pdf_renderer.py:   53: 47, [3, 'Tests de Integración', 17, 182.4]
+   DEBUG: 2025-12-03 21:00:19,357:      pdf_renderer.py:   53: 48, [3, 'Tests End-to-End', 18, 188.4]
+   DEBUG: 2025-12-03 21:00:19,357:      pdf_renderer.py:   53: 49, [3, 'Tests de Carga con k6', 18, 559.1999999999999]
+   DEBUG: 2025-12-03 21:00:19,357:      pdf_renderer.py:   53: 50, [2, 'Rendimiento y Benchmarks', 20, 344.8]
+   DEBUG: 2025-12-03 21:00:19,357:      pdf_renderer.py:   53: 51, [3, 'Suite de Benchmarking', 20, 378.0]
+   DEBUG: 2025-12-03 21:00:19,357:      pdf_renderer.py:   53: 52, [3, 'Escenarios de Benchmark', 20, 616.8]
+   DEBUG: 2025-12-03 21:00:19,357:      pdf_renderer.py:   53: 53, [3, 'Resultados Esperados', 21, 260.4]
+   DEBUG: 2025-12-03 21:00:19,357:      pdf_renderer.py:   53: 54, [3, 'Optimizaciones Implementadas', 21, 361.19999999999993]
+   DEBUG: 2025-12-03 21:00:19,357:      pdf_renderer.py:   53: 55, [3, 'Perfilado y Monitoreo', 21, 653.9999999999999]
+   DEBUG: 2025-12-03 21:00:19,357:      pdf_renderer.py:   53: 56, [2, 'Mejores Prácticas', 22, 242.8]
+   DEBUG: 2025-12-03 21:00:19,357:      pdf_renderer.py:   53: 57, [3, 'Diseño de Topologías', 22, 276.0]
+   DEBUG: 2025-12-03 21:00:19,357:      pdf_renderer.py:   53: 58, [3, 'Operación en Producción', 22, 706.8]
+   DEBUG: 2025-12-03 21:00:19,357:      pdf_renderer.py:   53: 59, [3, 'Depuración de Problemas', 23, 548.4]
+   DEBUG: 2025-12-03 21:00:19,357:      pdf_renderer.py:   53: 60, [2, 'Arquitectura de Persistencia', 24, 212.8]
+   DEBUG: 2025-12-03 21:00:19,357:      pdf_renderer.py:   53: 61, [3, 'Estructura de Directorios', 24, 246.0]
+   DEBUG: 2025-12-03 21:00:19,357:      pdf_renderer.py:   53: 62, [3, 'Formato de Estado del Master', 24, 382.79999999999995]
+   DEBUG: 2025-12-03 21:00:19,358:      pdf_renderer.py:   53: 63, [3, 'Recuperación ante Fallos', 24, 645.5999999999999]
+   DEBUG: 2025-12-03 21:00:19,358:      pdf_renderer.py:   53: 64, [1, 'Disclaimer', 25, 345.2]
