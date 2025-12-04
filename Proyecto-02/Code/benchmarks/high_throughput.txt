@@ -1,0 +1,247 @@
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+     execution: local
+        script: tests/throughput_test.js
+        output: -
+
+     scenarios: (100.00%) 1 scenario, 5 max VUs, 1m30s max duration (incl. graceful stop):
+              * high_throughput: 5 looping VUs for 1m0s (gracefulStop: 30s)
+
+
+Run               [ 100% ] setup()
+high_throughput   [   0% ]
+
+Run               [ 100% ] setup()
+high_throughput   [   0% ]
+
+Run               [ 100% ] setup()
+high_throughput   [   0% ]
+
+running (0m04.0s), 5/5 VUs, 31 complete and 0 interrupted iterations
+high_throughput   [   2% ] 5 VUs  0m01.0s/1m0s
+
+running (0m05.0s), 5/5 VUs, 71 complete and 0 interrupted iterations
+high_throughput   [   3% ] 5 VUs  0m02.0s/1m0s
+
+running (0m06.0s), 5/5 VUs, 89 complete and 0 interrupted iterations
+high_throughput   [   5% ] 5 VUs  0m03.0s/1m0s
+
+running (0m07.0s), 5/5 VUs, 126 complete and 0 interrupted iterations
+high_throughput   [   7% ] 5 VUs  0m04.0s/1m0s
+
+running (0m08.0s), 5/5 VUs, 167 complete and 0 interrupted iterations
+high_throughput   [   8% ] 5 VUs  0m05.0s/1m0s
+
+running (0m09.0s), 5/5 VUs, 203 complete and 0 interrupted iterations
+high_throughput   [  10% ] 5 VUs  0m06.0s/1m0s
+
+running (0m10.0s), 5/5 VUs, 243 complete and 0 interrupted iterations
+high_throughput   [  12% ] 5 VUs  0m07.0s/1m0s
+
+running (0m11.0s), 5/5 VUs, 285 complete and 0 interrupted iterations
+high_throughput   [  13% ] 5 VUs  0m08.0s/1m0s
+
+running (0m12.0s), 5/5 VUs, 321 complete and 0 interrupted iterations
+high_throughput   [  15% ] 5 VUs  0m09.0s/1m0s
+
+running (0m13.0s), 5/5 VUs, 357 complete and 0 interrupted iterations
+high_throughput   [  17% ] 5 VUs  0m10.0s/1m0s
+
+running (0m14.0s), 5/5 VUs, 398 complete and 0 interrupted iterations
+high_throughput   [  18% ] 5 VUs  0m11.0s/1m0s
+
+running (0m15.0s), 5/5 VUs, 438 complete and 0 interrupted iterations
+high_throughput   [  20% ] 5 VUs  0m12.0s/1m0s
+
+running (0m16.0s), 5/5 VUs, 475 complete and 0 interrupted iterations
+high_throughput   [  22% ] 5 VUs  0m13.0s/1m0s
+
+running (0m17.0s), 5/5 VUs, 511 complete and 0 interrupted iterations
+high_throughput   [  23% ] 5 VUs  0m14.0s/1m0s
+
+running (0m18.0s), 5/5 VUs, 546 complete and 0 interrupted iterations
+high_throughput   [  25% ] 5 VUs  0m15.0s/1m0s
+
+running (0m19.0s), 5/5 VUs, 579 complete and 0 interrupted iterations
+high_throughput   [  27% ] 5 VUs  0m16.0s/1m0s
+
+running (0m20.0s), 5/5 VUs, 620 complete and 0 interrupted iterations
+high_throughput   [  28% ] 5 VUs  0m17.0s/1m0s
+
+running (0m21.0s), 5/5 VUs, 652 complete and 0 interrupted iterations
+high_throughput   [  30% ] 5 VUs  0m18.0s/1m0s
+
+running (0m22.0s), 5/5 VUs, 683 complete and 0 interrupted iterations
+high_throughput   [  32% ] 5 VUs  0m19.0s/1m0s
+
+running (0m23.0s), 5/5 VUs, 723 complete and 0 interrupted iterations
+high_throughput   [  33% ] 5 VUs  0m20.0s/1m0s
+
+running (0m24.0s), 5/5 VUs, 763 complete and 0 interrupted iterations
+high_throughput   [  35% ] 5 VUs  0m21.0s/1m0s
+
+running (0m25.0s), 5/5 VUs, 806 complete and 0 interrupted iterations
+high_throughput   [  37% ] 5 VUs  0m22.0s/1m0s
+
+running (0m26.0s), 5/5 VUs, 833 complete and 0 interrupted iterations
+high_throughput   [  38% ] 5 VUs  0m23.0s/1m0s
+
+running (0m27.0s), 5/5 VUs, 853 complete and 0 interrupted iterations
+high_throughput   [  40% ] 5 VUs  0m24.0s/1m0s
+
+running (0m28.0s), 5/5 VUs, 894 complete and 0 interrupted iterations
+high_throughput   [  42% ] 5 VUs  0m25.0s/1m0s
+
+running (0m29.0s), 5/5 VUs, 925 complete and 0 interrupted iterations
+high_throughput   [  43% ] 5 VUs  0m26.0s/1m0s
+
+running (0m30.0s), 5/5 VUs, 967 complete and 0 interrupted iterations
+high_throughput   [  45% ] 5 VUs  0m27.0s/1m0s
+
+running (0m31.0s), 5/5 VUs, 1010 complete and 0 interrupted iterations
+high_throughput   [  47% ] 5 VUs  0m28.0s/1m0s
+
+running (0m32.0s), 5/5 VUs, 1038 complete and 0 interrupted iterations
+high_throughput   [  48% ] 5 VUs  0m29.0s/1m0s
+
+running (0m33.0s), 5/5 VUs, 1071 complete and 0 interrupted iterations
+high_throughput   [  50% ] 5 VUs  0m30.0s/1m0s
+
+running (0m34.0s), 5/5 VUs, 1109 complete and 0 interrupted iterations
+high_throughput   [  52% ] 5 VUs  0m31.0s/1m0s
+
+running (0m35.0s), 5/5 VUs, 1131 complete and 0 interrupted iterations
+high_throughput   [  53% ] 5 VUs  0m32.0s/1m0s
+
+running (0m36.0s), 5/5 VUs, 1171 complete and 0 interrupted iterations
+high_throughput   [  55% ] 5 VUs  0m33.0s/1m0s
+
+running (0m37.0s), 5/5 VUs, 1197 complete and 0 interrupted iterations
+high_throughput   [  57% ] 5 VUs  0m34.0s/1m0s
+
+running (0m38.0s), 5/5 VUs, 1219 complete and 0 interrupted iterations
+high_throughput   [  58% ] 5 VUs  0m35.0s/1m0s
+
+running (0m39.0s), 5/5 VUs, 1245 complete and 0 interrupted iterations
+high_throughput   [  60% ] 5 VUs  0m36.0s/1m0s
+
+running (0m40.0s), 5/5 VUs, 1273 complete and 0 interrupted iterations
+high_throughput   [  62% ] 5 VUs  0m37.0s/1m0s
+
+running (0m41.0s), 5/5 VUs, 1299 complete and 0 interrupted iterations
+high_throughput   [  63% ] 5 VUs  0m38.0s/1m0s
+
+running (0m42.0s), 5/5 VUs, 1325 complete and 0 interrupted iterations
+high_throughput   [  65% ] 5 VUs  0m39.0s/1m0s
+
+running (0m43.0s), 5/5 VUs, 1358 complete and 0 interrupted iterations
+high_throughput   [  67% ] 5 VUs  0m40.0s/1m0s
+
+running (0m44.0s), 5/5 VUs, 1388 complete and 0 interrupted iterations
+high_throughput   [  68% ] 5 VUs  0m41.0s/1m0s
+
+running (0m45.0s), 5/5 VUs, 1409 complete and 0 interrupted iterations
+high_throughput   [  70% ] 5 VUs  0m42.0s/1m0s
+
+running (0m46.0s), 5/5 VUs, 1427 complete and 0 interrupted iterations
+high_throughput   [  72% ] 5 VUs  0m43.0s/1m0s
+
+running (0m47.0s), 5/5 VUs, 1439 complete and 0 interrupted iterations
+high_throughput   [  73% ] 5 VUs  0m44.0s/1m0s
+
+running (0m48.0s), 5/5 VUs, 1453 complete and 0 interrupted iterations
+high_throughput   [  75% ] 5 VUs  0m45.0s/1m0s
+
+running (0m49.0s), 5/5 VUs, 1467 complete and 0 interrupted iterations
+high_throughput   [  77% ] 5 VUs  0m46.0s/1m0s
+
+running (0m50.0s), 5/5 VUs, 1484 complete and 0 interrupted iterations
+high_throughput   [  78% ] 5 VUs  0m47.0s/1m0s
+
+running (0m51.0s), 5/5 VUs, 1511 complete and 0 interrupted iterations
+high_throughput   [  80% ] 5 VUs  0m48.0s/1m0s
+
+running (0m52.0s), 5/5 VUs, 1533 complete and 0 interrupted iterations
+high_throughput   [  82% ] 5 VUs  0m49.0s/1m0s
+
+running (0m53.0s), 5/5 VUs, 1552 complete and 0 interrupted iterations
+high_throughput   [  83% ] 5 VUs  0m50.0s/1m0s
+
+running (0m54.0s), 5/5 VUs, 1579 complete and 0 interrupted iterations
+high_throughput   [  85% ] 5 VUs  0m51.0s/1m0s
+
+running (0m55.0s), 5/5 VUs, 1609 complete and 0 interrupted iterations
+high_throughput   [  87% ] 5 VUs  0m52.0s/1m0s
+
+running (0m56.0s), 5/5 VUs, 1645 complete and 0 interrupted iterations
+high_throughput   [  88% ] 5 VUs  0m53.0s/1m0s
+
+running (0m57.0s), 5/5 VUs, 1670 complete and 0 interrupted iterations
+high_throughput   [  90% ] 5 VUs  0m54.0s/1m0s
+
+running (0m58.0s), 5/5 VUs, 1692 complete and 0 interrupted iterations
+high_throughput   [  92% ] 5 VUs  0m55.0s/1m0s
+
+running (0m59.0s), 5/5 VUs, 1730 complete and 0 interrupted iterations
+high_throughput   [  93% ] 5 VUs  0m56.0s/1m0s
+
+running (1m00.0s), 5/5 VUs, 1758 complete and 0 interrupted iterations
+high_throughput   [  95% ] 5 VUs  0m57.0s/1m0s
+
+running (1m01.0s), 5/5 VUs, 1774 complete and 0 interrupted iterations
+high_throughput   [  97% ] 5 VUs  0m58.0s/1m0s
+
+running (1m02.0s), 5/5 VUs, 1810 complete and 0 interrupted iterations
+high_throughput   [  98% ] 5 VUs  0m59.0s/1m0s
+
+running (1m03.0s), 5/5 VUs, 1847 complete and 0 interrupted iterations
+high_throughput   [ 100% ] 5 VUs  1m00.0s/1m0s
+
+
+  █ THRESHOLDS 
+
+    batch_latency_ms
+    ✓ 'p(95)<1000' p(95)=264.4
+
+    events_processed
+    ✓ 'count>5000' count=185300
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 1853    29.103058/s
+    checks_succeeded...: 100.00% 1853 out of 1853
+    checks_failed......: 0.00%   0 out of 1853
+
+    ✓ ingest successful
+
+    CUSTOM
+    batch_latency_ms...............: avg=60.425796 min=14       med=27       max=747      p(90)=165.2    p(95)=264.4   
+    events_processed...............: 185300 2910.305812/s
+
+    HTTP
+    http_req_duration..............: avg=58.91ms   min=13.11ms  med=25.83ms  max=746.6ms  p(90)=160.54ms p(95)=261.14ms
+      { expected_response:true }...: avg=58.91ms   min=13.11ms  med=25.83ms  max=746.6ms  p(90)=160.54ms p(95)=261.14ms
+    http_req_failed................: 0.00%  0 out of 1856
+    http_reqs......................: 1856   29.150176/s
+
+    EXECUTION
+    iteration_duration.............: avg=162.61ms  min=114.52ms med=128.49ms max=848.54ms p(90)=270.13ms p(95)=366.36ms
+    iterations.....................: 1853   29.103058/s
+    vus............................: 5      min=0         max=5
+    vus_max........................: 5      min=5         max=5
+
+    NETWORK
+    data_received..................: 730 kB 12 kB/s
+    data_sent......................: 30 MB  465 kB/s
+
+
+
+
+running (1m03.7s), 0/5 VUs, 1853 complete and 0 interrupted iterations
+high_throughput ✓ [ 100% ] 5 VUs  1m0s

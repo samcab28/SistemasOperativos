@@ -1,0 +1,72 @@
+[
+  {
+    "count": 1810,
+    "key": "service-1",
+    "sum": 0.0,
+    "window_end": 1764807600000,
+    "window_start": 1764807540000
+  },
+  {
+    "count": 1811,
+    "key": "service-0",
+    "sum": 0.0,
+    "window_end": 1764807600000,
+    "window_start": 1764807540000
+  },
+  {
+    "count": 1810,
+    "key": "service-7",
+    "sum": 0.0,
+    "window_end": 1764807600000,
+    "window_start": 1764807540000
+  },
+  {
+    "count": 1810,
+    "key": "service-8",
+    "sum": 0.0,
+    "window_end": 1764807600000,
+    "window_start": 1764807540000
+  },
+  {
+    "count": 1810,
+    "key": "service-2",
+    "sum": 0.0,
+    "window_end": 1764807600000,
+    "window_start": 1764807540000
+  },
+  {
+    "count": 1810,
+    "key": "service-3",
+    "sum": 0.0,
+    "window_end": 1764807600000,
+    "window_start": 1764807540000
+  },
+  {
+    "count": 1810,
+    "key": "service-4",
+    "sum": 0.0,
+    "window_end": 1764807600000,
+    "window_start": 1764807540000
+  },
+  {
+    "count": 1810,
+    "key": "service-5",
+    "sum": 0.0,
+    "window_end": 1764807600000,
+    "window_start": 1764807540000
+  },
+  {
+    "count": 1810,
+    "key": "service-9",
+    "sum": 0.0,
+    "window_end": 1764807600000,
+    "window_start": 1764807540000
+  },
+  {
+    "count": 1810,
+    "key": "service-6",
+    "sum": 0.0,
+    "window_end": 1764807600000,
+    "window_start": 1764807540000
+  }
+]

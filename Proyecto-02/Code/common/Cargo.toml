@@ -3,6 +3,10 @@ name = "common"
 version = "0.1.0"
 edition = "2021"
 
+[[test]]
+name = "e2e_test"
+path = "../tests/e2e_test.rs" 
+
 [dependencies]
 anyhow = { workspace = true }
 chrono = { workspace = true }
@@ -10,3 +14,9 @@ serde = { workspace = true }
 serde_json = { workspace = true }
 thiserror = { workspace = true }
 uuid = { workspace = true }
+
+[dev-dependencies]
+tokio = { workspace = true }
+reqwest = { workspace = true }
+uuid = { workspace = true }
+serde_json = { workspace = true }

@@ -1,0 +1,102 @@
+[2m2025-12-04T00:19:14.014911Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Worker listening on 127.0.0.1:9001
+[2m2025-12-04T00:19:16.842811Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Deploying topology 4120aeae-1f85-43cf-bd6a-14b2c6f42429 (throughput-test)
+[2m2025-12-04T00:19:50.084456Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Tearing down topology 4120aeae-1f85-43cf-bd6a-14b2c6f42429
+[2m2025-12-04T00:19:50.084545Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Flushed window for topology 4120aeae-1f85-43cf-bd6a-14b2c6f42429 [3mkey[0m[2m=[0mSome("service-1")
+[2m2025-12-04T00:19:50.084567Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Flushed window for topology 4120aeae-1f85-43cf-bd6a-14b2c6f42429 [3mkey[0m[2m=[0mSome("service-0")
+[2m2025-12-04T00:19:50.084580Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Flushed window for topology 4120aeae-1f85-43cf-bd6a-14b2c6f42429 [3mkey[0m[2m=[0mSome("service-7")
+[2m2025-12-04T00:19:50.084594Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Flushed window for topology 4120aeae-1f85-43cf-bd6a-14b2c6f42429 [3mkey[0m[2m=[0mSome("service-8")
+[2m2025-12-04T00:19:50.084609Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Flushed window for topology 4120aeae-1f85-43cf-bd6a-14b2c6f42429 [3mkey[0m[2m=[0mSome("service-2")
+[2m2025-12-04T00:19:50.084622Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Flushed window for topology 4120aeae-1f85-43cf-bd6a-14b2c6f42429 [3mkey[0m[2m=[0mSome("service-3")
+[2m2025-12-04T00:19:50.084634Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Flushed window for topology 4120aeae-1f85-43cf-bd6a-14b2c6f42429 [3mkey[0m[2m=[0mSome("service-4")
+[2m2025-12-04T00:19:50.084646Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Flushed window for topology 4120aeae-1f85-43cf-bd6a-14b2c6f42429 [3mkey[0m[2m=[0mSome("service-5")
+[2m2025-12-04T00:19:50.084659Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Flushed window for topology 4120aeae-1f85-43cf-bd6a-14b2c6f42429 [3mkey[0m[2m=[0mSome("service-9")
+[2m2025-12-04T00:19:50.084671Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Flushed window for topology 4120aeae-1f85-43cf-bd6a-14b2c6f42429 [3mkey[0m[2m=[0mSome("service-6")
+[2m2025-12-04T00:19:50.084683Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Topology 4120aeae-1f85-43cf-bd6a-14b2c6f42429 pipeline stopped
+[2m2025-12-04T00:19:55.460054Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Deploying topology a99e0cbb-a55c-4ca7-b659-35b2b41b6c7b (load-test-topology)
+[2m2025-12-04T00:19:55.460663Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Deploying topology 0e8925c7-2bd9-4967-95a3-a27ee323462c (load-test-topology)
+[2m2025-12-04T00:19:55.461858Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Deploying topology 3630b1b5-a144-49dc-ace5-94f2e6d75b3c (load-test-topology)
+[2m2025-12-04T00:19:55.462026Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Deploying topology 54887f73-10cc-41c6-bfa0-43cb4fb225ea (load-test-topology)
+[2m2025-12-04T00:19:55.462132Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Deploying topology 7edec1f4-e710-4a50-84a1-ebbf355c5921 (load-test-topology)
+[2m2025-12-04T00:19:58.521673Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Tearing down topology 0e8925c7-2bd9-4967-95a3-a27ee323462c
+[2m2025-12-04T00:19:58.521803Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Topology 0e8925c7-2bd9-4967-95a3-a27ee323462c pipeline stopped
+[2m2025-12-04T00:19:58.553431Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Tearing down topology 54887f73-10cc-41c6-bfa0-43cb4fb225ea
+[2m2025-12-04T00:19:58.553514Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Topology 54887f73-10cc-41c6-bfa0-43cb4fb225ea pipeline stopped
+[2m2025-12-04T00:19:58.572387Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Tearing down topology 7edec1f4-e710-4a50-84a1-ebbf355c5921
+[2m2025-12-04T00:19:58.572463Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Topology 7edec1f4-e710-4a50-84a1-ebbf355c5921 pipeline stopped
+[2m2025-12-04T00:19:58.591754Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Tearing down topology 3630b1b5-a144-49dc-ace5-94f2e6d75b3c
+[2m2025-12-04T00:19:58.591754Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Tearing down topology a99e0cbb-a55c-4ca7-b659-35b2b41b6c7b
+[2m2025-12-04T00:19:58.591854Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Topology 3630b1b5-a144-49dc-ace5-94f2e6d75b3c pipeline stopped
+[2m2025-12-04T00:19:58.591880Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Topology a99e0cbb-a55c-4ca7-b659-35b2b41b6c7b pipeline stopped
+[2m2025-12-04T00:19:59.545160Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Deploying topology da27f3ba-303b-45d0-ab31-6575773a1f52 (load-test-topology)
+[2m2025-12-04T00:19:59.594526Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Deploying topology bf83567e-18b6-4982-bbe8-38388f184f84 (load-test-topology)
+[2m2025-12-04T00:19:59.642935Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Deploying topology a39de045-46b8-40dc-9142-b5dd0f0fac98 (load-test-topology)
+[2m2025-12-04T00:20:02.835851Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Tearing down topology da27f3ba-303b-45d0-ab31-6575773a1f52
+[2m2025-12-04T00:20:02.836113Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Topology da27f3ba-303b-45d0-ab31-6575773a1f52 pipeline stopped
+[2m2025-12-04T00:20:02.883638Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Tearing down topology a39de045-46b8-40dc-9142-b5dd0f0fac98
+[2m2025-12-04T00:20:02.883796Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Topology a39de045-46b8-40dc-9142-b5dd0f0fac98 pipeline stopped
+[2m2025-12-04T00:20:02.905558Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Tearing down topology bf83567e-18b6-4982-bbe8-38388f184f84
+[2m2025-12-04T00:20:02.905665Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Topology bf83567e-18b6-4982-bbe8-38388f184f84 pipeline stopped
+[2m2025-12-04T00:20:03.854676Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Deploying topology 92919271-d8e2-42ac-81b7-951645e8d08f (load-test-topology)
+[2m2025-12-04T00:20:03.938979Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Deploying topology eda07859-484a-48d8-95ba-13ef0091efc4 (load-test-topology)
+[2m2025-12-04T00:20:03.938979Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Deploying topology b8d08a2b-c295-49a0-9ed8-0f12dd33b43e (load-test-topology)
+[2m2025-12-04T00:20:03.939408Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Deploying topology e294e894-6acc-406b-b620-705ed3c71045 (load-test-topology)
+[2m2025-12-04T00:20:06.931204Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Tearing down topology 92919271-d8e2-42ac-81b7-951645e8d08f
+[2m2025-12-04T00:20:06.931421Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Topology 92919271-d8e2-42ac-81b7-951645e8d08f pipeline stopped
+[2m2025-12-04T00:20:07.004562Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Tearing down topology b8d08a2b-c295-49a0-9ed8-0f12dd33b43e
+[2m2025-12-04T00:20:07.004767Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Topology b8d08a2b-c295-49a0-9ed8-0f12dd33b43e pipeline stopped
+[2m2025-12-04T00:20:07.073800Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Tearing down topology eda07859-484a-48d8-95ba-13ef0091efc4
+[2m2025-12-04T00:20:07.074516Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Topology eda07859-484a-48d8-95ba-13ef0091efc4 pipeline stopped
+[2m2025-12-04T00:20:07.074721Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Tearing down topology e294e894-6acc-406b-b620-705ed3c71045
+[2m2025-12-04T00:20:07.074876Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Topology e294e894-6acc-406b-b620-705ed3c71045 pipeline stopped
+[2m2025-12-04T00:20:07.967102Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Deploying topology 5a0b907f-7068-428d-b7bc-550587f6e1c6 (load-test-topology)
+[2m2025-12-04T00:20:08.075980Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Deploying topology 61d57939-ec95-4b13-ad4f-e120bbefd81c (load-test-topology)
+[2m2025-12-04T00:20:11.004421Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Tearing down topology 5a0b907f-7068-428d-b7bc-550587f6e1c6
+[2m2025-12-04T00:20:11.004632Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Topology 5a0b907f-7068-428d-b7bc-550587f6e1c6 pipeline stopped
+[2m2025-12-04T00:20:11.128681Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Tearing down topology 61d57939-ec95-4b13-ad4f-e120bbefd81c
+[2m2025-12-04T00:20:11.128919Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Topology 61d57939-ec95-4b13-ad4f-e120bbefd81c pipeline stopped
+[2m2025-12-04T00:20:12.045909Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Deploying topology 5127d5af-bb38-4d1e-87d8-5c6e83e08892 (load-test-topology)
+[2m2025-12-04T00:20:12.162332Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Deploying topology 77712570-d3c0-454c-aca0-9223cf2b6c57 (load-test-topology)
+[2m2025-12-04T00:20:12.220148Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Deploying topology b1ff9e19-2163-4ea5-9078-86f49d3053b3 (load-test-topology)
+[2m2025-12-04T00:20:15.082747Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Tearing down topology 5127d5af-bb38-4d1e-87d8-5c6e83e08892
+[2m2025-12-04T00:20:15.082963Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Topology 5127d5af-bb38-4d1e-87d8-5c6e83e08892 pipeline stopped
+[2m2025-12-04T00:20:15.235214Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Tearing down topology 77712570-d3c0-454c-aca0-9223cf2b6c57
+[2m2025-12-04T00:20:15.235399Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Topology 77712570-d3c0-454c-aca0-9223cf2b6c57 pipeline stopped
+[2m2025-12-04T00:20:15.271542Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Tearing down topology b1ff9e19-2163-4ea5-9078-86f49d3053b3
+[2m2025-12-04T00:20:15.271669Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Topology b1ff9e19-2163-4ea5-9078-86f49d3053b3 pipeline stopped
+[2m2025-12-04T00:20:16.102157Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Deploying topology dd38ca10-d45c-46dd-b353-142a52d84f58 (load-test-topology)
+[2m2025-12-04T00:20:16.326254Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Deploying topology 99e4b814-90dc-4786-bde9-971cd7d85ef0 (load-test-topology)
+[2m2025-12-04T00:20:16.326599Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Deploying topology 0776e30e-8563-41b5-900e-ff42874a5892 (load-test-topology)
+[2m2025-12-04T00:20:16.326678Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Deploying topology f71bd500-df8e-4784-a028-38bac5f303cb (load-test-topology)
+[2m2025-12-04T00:20:19.161899Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Tearing down topology dd38ca10-d45c-46dd-b353-142a52d84f58
+[2m2025-12-04T00:20:19.162130Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Topology dd38ca10-d45c-46dd-b353-142a52d84f58 pipeline stopped
+[2m2025-12-04T00:20:19.403292Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Tearing down topology 99e4b814-90dc-4786-bde9-971cd7d85ef0
+[2m2025-12-04T00:20:19.403371Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Topology 99e4b814-90dc-4786-bde9-971cd7d85ef0 pipeline stopped
+[2m2025-12-04T00:20:19.441924Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Tearing down topology f71bd500-df8e-4784-a028-38bac5f303cb
+[2m2025-12-04T00:20:19.442009Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Topology f71bd500-df8e-4784-a028-38bac5f303cb pipeline stopped
+[2m2025-12-04T00:20:19.462179Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Tearing down topology 0776e30e-8563-41b5-900e-ff42874a5892
+[2m2025-12-04T00:20:19.462249Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Topology 0776e30e-8563-41b5-900e-ff42874a5892 pipeline stopped
+[2m2025-12-04T00:20:20.178954Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Deploying topology 42b5833b-271f-40b0-8f74-8dbc5ab382cb (load-test-topology)
+[2m2025-12-04T00:20:20.423923Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Deploying topology 1e9c6f94-7ce8-4cb9-b988-5ce64f97c92c (load-test-topology)
+[2m2025-12-04T00:20:23.213929Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Tearing down topology 42b5833b-271f-40b0-8f74-8dbc5ab382cb
+[2m2025-12-04T00:20:23.214326Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Topology 42b5833b-271f-40b0-8f74-8dbc5ab382cb pipeline stopped
+[2m2025-12-04T00:20:23.463980Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Tearing down topology 1e9c6f94-7ce8-4cb9-b988-5ce64f97c92c
+[2m2025-12-04T00:20:23.464074Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Topology 1e9c6f94-7ce8-4cb9-b988-5ce64f97c92c pipeline stopped
+[2m2025-12-04T00:20:24.253422Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Deploying topology 033cc3d4-167c-4db6-a74d-5857d2d86546 (load-test-topology)
+[2m2025-12-04T00:20:24.498898Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Deploying topology 7121071f-752b-4bd2-bec7-3e9a4a406eb1 (load-test-topology)
+[2m2025-12-04T00:20:27.307794Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Tearing down topology 033cc3d4-167c-4db6-a74d-5857d2d86546
+[2m2025-12-04T00:20:27.308130Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Topology 033cc3d4-167c-4db6-a74d-5857d2d86546 pipeline stopped
+[2m2025-12-04T00:20:27.576550Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Tearing down topology 7121071f-752b-4bd2-bec7-3e9a4a406eb1
+[2m2025-12-04T00:20:27.576657Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Topology 7121071f-752b-4bd2-bec7-3e9a4a406eb1 pipeline stopped
+[2m2025-12-04T00:20:33.919135Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Deploying topology 0050ae87-f7a6-4ee5-af11-d3e94b45003b (throughput-test)
+[2m2025-12-04T00:21:37.397522Z[0m [32m INFO[0m [2mworker[0m[2m:[0m Tearing down topology 0050ae87-f7a6-4ee5-af11-d3e94b45003b
+[2m2025-12-04T00:21:37.397622Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Flushed window for topology 0050ae87-f7a6-4ee5-af11-d3e94b45003b [3mkey[0m[2m=[0mSome("service-1")
+[2m2025-12-04T00:21:37.397641Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Flushed window for topology 0050ae87-f7a6-4ee5-af11-d3e94b45003b [3mkey[0m[2m=[0mSome("service-9")
+[2m2025-12-04T00:21:37.397653Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Flushed window for topology 0050ae87-f7a6-4ee5-af11-d3e94b45003b [3mkey[0m[2m=[0mSome("service-4")
+[2m2025-12-04T00:21:37.397663Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Flushed window for topology 0050ae87-f7a6-4ee5-af11-d3e94b45003b [3mkey[0m[2m=[0mSome("service-2")
+[2m2025-12-04T00:21:37.397672Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Flushed window for topology 0050ae87-f7a6-4ee5-af11-d3e94b45003b [3mkey[0m[2m=[0mSome("service-6")
+[2m2025-12-04T00:21:37.397681Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Flushed window for topology 0050ae87-f7a6-4ee5-af11-d3e94b45003b [3mkey[0m[2m=[0mSome("service-0")
+[2m2025-12-04T00:21:37.397708Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Flushed window for topology 0050ae87-f7a6-4ee5-af11-d3e94b45003b [3mkey[0m[2m=[0mSome("service-7")
+[2m2025-12-04T00:21:37.397718Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Flushed window for topology 0050ae87-f7a6-4ee5-af11-d3e94b45003b [3mkey[0m[2m=[0mSome("service-5")
+[2m2025-12-04T00:21:37.397727Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Flushed window for topology 0050ae87-f7a6-4ee5-af11-d3e94b45003b [3mkey[0m[2m=[0mSome("service-8")
+[2m2025-12-04T00:21:37.397737Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Flushed window for topology 0050ae87-f7a6-4ee5-af11-d3e94b45003b [3mkey[0m[2m=[0mSome("service-3")
+[2m2025-12-04T00:21:37.397746Z[0m [32m INFO[0m [2mworker::pipeline[0m[2m:[0m Topology 0050ae87-f7a6-4ee5-af11-d3e94b45003b pipeline stopped

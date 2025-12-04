@@ -1,0 +1,4 @@
+[2m2025-12-04T00:19:10.795634Z[0m [32m INFO[0m [2mmaster[0m[2m:[0m Master listening on 0.0.0.0:8080
+[2m2025-12-04T00:19:14.014681Z[0m [32m INFO[0m [2mmaster[0m[2m:[0m Worker worker-1 registered at http://127.0.0.1:9001
+[2m2025-12-04T00:19:14.015995Z[0m [32m INFO[0m [2mmaster[0m[2m:[0m Worker worker-2 registered at http://127.0.0.1:9002
+[2m2025-12-04T00:21:37.996223Z[0m [32m INFO[0m [2mmaster[0m[2m:[0m Shutdown signal received
