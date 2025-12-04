@@ -5,23 +5,142 @@ Implementación simplificada de un motor de procesamiento distribuido de eventos
 ## Requisitos
 
 - Rust 1.78+ y `cargo`.
+- Make (para usar los comandos del Makefile).
 - Docker (opcional) para levantar el entorno de demo.
+- k6 (opcional) para pruebas de carga.
+- cargo-tarpaulin (opcional) para reportes de cobertura.
 
 ## Estructura
 
 ```
 code/
 ├── Cargo.toml
-├── master/        # API HTTP + planificador
-├── worker/        # Ejecutor de operadores streaming
-├── client/        # CLI para submit/status/ingest
-├── common/        # Modelos compartidos (topologías, mensajes, estados)
-├── docs/          # Arquitectura y ejemplos
-├── scripts/       # Utilidades (demo, tests)
+├── Makefile           # Comandos de desarrollo y CI
+├── master/            # API HTTP + planificador
+├── worker/            # Ejecutor de operadores streaming
+├── client/            # CLI para submit/status/ingest
+├── common/            # Modelos compartidos (topologías, mensajes, estados)
+├── docs/              # Arquitectura y ejemplos
+├── scripts/           # Utilidades (demo, tests)
 └── docker-compose.yml
 ```
 
+## Comandos Make
+
+Ejecuta `make help` para ver todos los comandos disponibles.
+
+### Compilación
+
+```bash
+# Compilar todo el workspace
+make build
+
+# Compilar versión release
+make build-release
+```
+
+### Desarrollo
+
+```bash
+# Formatear código
+make fmt
+
+# Ejecutar linter (clippy)
+make lint
+
+# Workflow completo de desarrollo (fmt + lint + test)
+make dev
+```
+
+### Testing
+
+```bash
+# Tests básicos (unit + integration)
+make test
+
+# Solo tests unitarios
+make test-unit
+
+# Solo tests de integración
+make test-integration
+
+# Tests end-to-end (requiere master corriendo)
+make test-e2e
+
+# Suite completa de tests
+make test-all
+
+# Pruebas de carga con k6
+make load-test
+
+# Suite de benchmarks
+make benchmark
+
+# Generar reporte de cobertura
+make coverage
+```
+
+### Limpieza
+
+```bash
+# Limpiar artefactos de build y directorios temporales
+make clean
+```
+
+### CI
+
+```bash
+# Workflow de CI (fmt + lint + test-all)
+make ci
+```
+
 ## Uso local
+
+### Opción 1: Usando Make
+
+1. **Compilar todo**
+   ```bash
+   make build
+   ```
+
+2. **Levantar el master**
+   ```bash
+   make run-master
+   ```
+
+3. **Levantar worker(s)** (en otra terminal)
+   ```bash
+   make run-worker
+   # O para levantar un segundo worker:
+   make run-worker-2
+   ```
+
+4. **Enviar una topología**
+   ```bash
+   make submit TOPOLOGY=docs/examples/log_topology.json
+   ```
+
+5. **Consultar estado**
+   ```bash
+   make status TOPOLOGY_ID=<id>
+   ```
+
+6. **Inyectar eventos**
+   ```bash
+   make ingest TOPOLOGY_ID=<id> FILE=docs/examples/logs.jsonl
+   ```
+
+7. **Ver métricas**
+   ```bash
+   make metrics
+   ```
+
+8. **Cancelar topología**
+   ```bash
+   make cancel TOPOLOGY_ID=<id>
+   ```
+
+### Opción 2: Usando cargo directamente
 
 1. **Compilar todo**
    ```bash
@@ -77,8 +196,14 @@ code/
 
 ## Docker Compose
 
-```
+```bash
+# Usando Make
 make compose-up
+make compose-down
+
+# O directamente
+docker compose up --build
+docker compose down
 ```
 
 Levanta `master` + `worker`. Usa el CLI desde el host para enviar topologías o un contenedor adicional.
@@ -87,6 +212,9 @@ Levanta `master` + `worker`. Usa el CLI desde el host para enviar topologías o 
 
 - `make fmt` / `make lint` / `make test`
 - `scripts/demo.sh`: flujo completo (levanta master/worker locales, envía topología ejemplo e inyecta eventos).
+- `scripts/run_tests.sh`: suite completa de tests.
+- `scripts/load_test.sh`: pruebas de carga con k6.
+- `scripts/benchmark.sh`: suite de benchmarks.
 
 ## Documentación
 
